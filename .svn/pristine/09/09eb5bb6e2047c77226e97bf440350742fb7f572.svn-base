@@ -120,48 +120,8 @@ function logs($msg,$level='ERR',$prefix=''){
         $destination = $log_path.'Diy/'.date('y_m_d').'.log'; 
     }
     
-    //对象或数组数据，JSON格式化
-    if( is_array($msg) || is_object($msg) ){
-        $msg = json_decode($msg);
-    }
-    
     //写入日志
     \Think\Log::write($msg,MODULE_NAME.'_'.$level,'File',$destination);
-}
-
-if(!function_exists("array_column")){
-    /**
-     * 当PHP 5 < 5.5.0时，PHP默认不支持，返回数组中指定的一列
-     * @param array  $input            来源数组
-     * @param string $column_name      选中列键值
-     * @param string $index_key        作为新数组键值
-     * @return multitype:| array
-     */
-    function array_column($input, $column_name, $index_key = null) {
-        $columnKeyIsNumber = (is_numeric($column_name)) ? true : false;
-        $indexKeyIsNull = (is_null($index_key)) ? true : false;
-        $indexKeyIsNumber = (is_numeric($index_key)) ? true : false;
-        $result = array();
-        foreach ((array) $input as $key => $row) {
-            if ($columnKeyIsNumber) {
-                $tmp = array_slice($row, $column_name, 1);
-                $tmp = (is_array($tmp) && !empty($tmp)) ? current($tmp) : null;
-            } else {
-                $tmp = isset($row[$column_name]) ? $row[$column_name] : null;
-            }
-            if (!$indexKeyIsNull) {
-                if ($indexKeyIsNumber) {
-                    $key = array_slice($row, $index_key, 1);
-                    $key = (is_array($key) && !empty($key)) ? current($key) : null;
-                    $key = is_null($key) ? 0 : $key;
-                } else {
-                    $key = isset($row[$index_key]) ? $row[$index_key] : 0;
-                }
-            }
-            $result[$key] = $tmp;
-        }
-        return $result;
-    }
 }
 
 /**

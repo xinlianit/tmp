@@ -181,7 +181,7 @@
 										<div class="form-group">
 											<span class="input-group-btn search-btn">
 												<button event-name="addInfo" type="button" class="btn btn-sm btn-success">
-													新增商户
+													新增
 													<i class="icon-plus smaller-75"></i>
 												</button>
 												<div class="separate-2"><i class="separate-flag"></i></div>
@@ -203,13 +203,15 @@
 												</th>
 												
 												<th>商户ID</th>
-												<th>商户名称</th>
-												<th>商户类型</th>
-												<th>商户地址和商圈</th>
-												<th>联系人</th>
-												<th>联系电话</th>
-												<th>广告位数量</th>
-												<th>创建时间</th>
+												<th>上级ID</th>
+												<th>规则名称</th>
+												<th>图标</th>
+												<th>规则标题</th>
+												<th>类型</th>
+												<th>附件条件</th>
+												<th>状态</th>
+												<th>是否显示</th>
+												<th>排序</th>
 												<th class="hidden-480">操作</th>
 											</tr>
 										</thead>
@@ -230,24 +232,15 @@
 													
 	
 													<td><?php echo ($list["id"]); ?></td>
-													<td><?php echo (_default($list["hotel_name"])); ?></td>
-													<td><?php echo (_default(get_fields_to_string("TypeInfo", "type_name", array('id'=>array('in',get_fields_to_array("HotelType", "type_id", array('hotel_id'=>$list["id"]))))))); ?></td>
-													<td>
-														<?php if(($list["province_id"]) != "0"): echo (get_field("CityInfo","city_name",array('id'=>$list["province_id"]))); endif; ?>
-														
-														<?php if(($list["city_id"]) != "0"): echo (get_field("CityInfo","city_name",array('id'=>$list["city_id"]))); endif; ?>
-														
-														<?php if(($list["region_id"]) != "0"): echo (get_field("CityInfo","city_name",array('id'=>$list["region_id"]))); endif; ?>
-														
-														<?php echo ($list["address"]); ?>
-														
-														<?php if(empty($list['province_id']) && empty($list['city_id']) && empty($list['region_id']) && empty($list['province_id'])): echo C('FIELD_DEFAULT_VALUE'); endif; ?>
-														 
-													</td>
-													<td><?php echo (_default($list["contacts"])); ?></td>
-													<td><?php echo (_default($list["contact_way"])); ?></td>
-													<td><?php echo (_default($list["adver_number"])); ?></td>
-													<td><?php echo (date("Y-m-d H:i:s",$list["create_time"])); ?></td>
+													<td><?php echo ($list["pid"]); ?></td>
+													<td><?php echo (_default($list["name"])); ?></td>
+													<td><?php echo (_default($list["icon_name"])); ?></td>
+													<td><?php echo ($list["title"]); ?></td>
+													<td><?php echo ($list["type"]); ?></td>
+													<td><?php echo ($list["condition"]); ?></td>
+													<td><?php echo ($list["status"]); ?></td>
+													<td><?php echo ($list["is_show"]); ?></td>
+													<td><?php echo ($list["sort"]); ?></td>
 													<td>
 														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
 															<a class="blue" event-name="viewInfo" href="javascript:void(0);" title="查看详情">
@@ -304,142 +297,28 @@
 <!-- 添加面板 -->
 <div dialog-id="add" class="hide">
 
-	<form class="form-horizontal" role="form" form-id="add" action="<?php echo U('Shop/add');?>" method="post">
-		<div tag-id="setup-1">
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<input type="text" name="hotel_name" placeholder="输入商户名称" class="col-xs-10 col-sm-8" >
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商户类型：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<div class="shop-type" tag-id="checked-type">
-						请选择类型
-					</div>
-					<button event-name="add-type" url="<?php echo U('Shop/hotelType');?>" type="button" class="btn btn-sm btn-success add-shop-type">
-						添加类型
-					</button>
-					<input type="hidden" name="hotel_type">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 联系人： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="contacts" id="form-field-2" placeholder="输入联系人" class="col-xs-10 col-sm-6">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 联系方式： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="contact_way" id="form-field-2" placeholder="输入联系方式" class="col-xs-10 col-sm-6">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商户图片： </label>
-	
-				<div class="col-sm-9" id="tx-1">
-					
-				   <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
-<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
-<div id="wrapper">
-    <div id="container">
-        <!--头部，相册选择和格式选择-->
+	<form class="form-horizontal" role="form" form-id="add" action="<?php echo U('Index/tpl');?>" method="post">
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 用户名：</label>
 
-        <div id="uploader">
-            <div class="queueList">
-                <div id="dndArea" class="placeholder">
-                    <div id="filePicker"></div>
-                    <p>或将照片拖到这里，单次最多可选300张</p>
-                </div>
-            </div>
-            <div class="statusBar" style="display:none;">
-                <div class="progress">
-                    <span class="text">0%</span>
-                    <span class="percentage"></span>
-                </div><div class="info"></div>
-                <div class="btns">
-                    <div id="filePicker2"></div><div class="uploadBtn">开始上传</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
-<script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
-
-				</div>
+			<div class="col-sm-9">
+				<input type="text" name="account" id="form-field-1" placeholder="输入用户名" class="col-xs-10 col-sm-5" >
 			</div>
 		</div>
-		
-		<div tag-id="setup-2" class="hide">
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户地址：</label>
-				<div class="col-sm-9">
-					<div class="city-component" default-province="440000" default-city="440300" default-region="440304"></div>
-					<input type="text" name="address" placeholder="详细地址" class="col-xs-10 col-sm-12 address" >
-				</div>
+
+		<div class="space-4"></div>
+
+		<div class="form-group">
+			<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 密码： </label>
+
+			<div class="col-sm-9">
+				<input type="password" name="pwd" id="form-field-2" placeholder="输入密码" class="col-xs-10 col-sm-5">
 			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商圈： </label>
-	
-				<div class="col-sm-9">
-					<select name="trade_id" url="<?php echo U('Public/getCity');?>" class="form-control area _city _region">
-						<option value="0">--请选择--</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 广告位和数量：</label>
-	
-				<div class="col-sm-9 adv">
-					<div>*首页广告位 </div>
-					<div style="text-align:right;padding-right:10px;width:10%;">数量</div>
-					<div><input type="text" name="adver_number" placeholder="最大数量为 6" class="col-xs-10" style="float:none;width:100%;"></div>
-				</div>
-			</div>
-			
-			<div class="widget-box transparent hotel-intef">
-				<div class="widget-header widget-header-flat">
-					<h4 class="lighter">
-						<i class="icon-signal"></i>
-						接口信息
-					</h4>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 酒店编码： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="hotel_code" placeholder="酒店编码系统唯一不能重复；如：10001" class="col-xs-10 col-sm-10">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 客户集团编码： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="group_code" placeholder="客户集团编码系统唯一不能重复；如：20001" class="col-xs-10 col-sm-10">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 客户酒店编码： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="customer_code" placeholder="客户酒店编码系统唯一不能重复；如：30001" class="col-xs-10 col-sm-10">
-				</div>
-			</div>
-			
-			
 		</div>
+
+		<div class="space-4"></div>
 	</form>
 </div>
-
 
 <!-- 编辑面板 -->
 <div dialog-id="edit" class="hide">
@@ -451,13 +330,6 @@
 	<h3>查看内容</h3>
 </div>
 
-<!-- 选择类型 -->
-<div dialog-id="type" class="hide">
-	<div class="type-select" tag-id="type-items">
-		
-	</div>
-</div>
-
 <!-- 删除面板 -->
 <div dialog-id="delete" class="hide">
 	<h3>确定要删除吗？</h3>
@@ -467,8 +339,6 @@
 <div dialog-id="deletes" class="hide">
 	<h3>确定要批量删除吗？</h3>
 </div>
-
-
 
 
 				</div><!-- /.main-content -->
@@ -511,11 +381,6 @@
 		    ];
 		    
 			seajs.use( init ,function(common,layout){
-				//初始换
-				$.common.initialize({
-					city_url: '<?php echo U("Public/getCity");?>',
-				});
-				
 				//系统时间
 				layout.getSystemTime();
 				

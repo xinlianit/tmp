@@ -28,6 +28,8 @@ function make_sign($param = null) {
     $string = $buff . "&key=" . $key;
     //MD5加密
     $string = md5($string);
+//    echo $string;
+//    exit();
     //所有字符转为大写
     $result = strtoupper($string);
     return $result;
