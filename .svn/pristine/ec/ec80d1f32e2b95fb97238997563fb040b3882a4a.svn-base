@@ -1,0 +1,50 @@
+<?php
+/**
+ * 验证码验证
+ * @author Create by JiRY
+ * @param string $code      验证码
+ * @param string $id        验证码ID
+ * @return boolean
+ */
+function check_verify($code , $id = ''){
+    $verify = new \Think\Verify();
+    return $verify->check($code, $id);
+}
+
+/**
+ * 获取salt值
+ * @author Create by JiRY
+ * @param integer $length      salt字符长度
+ * @return string
+ */
+function get_salt($length=10){
+    $str = null;
+    $strPol = "ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789abcdefghijklmnopqrstuvwxyz";
+    $max = strlen($strPol)-1;
+    srand(microtime()*100000);
+
+    for($i=0;$i<$length;$i++){
+        //rand($min,$max)生成介于min和max两个数之间的一个随机整数
+        $str.=$strPol[rand(0,$max)];
+    }
+
+    return $str;
+}
+
+/**
+ * 密码加密
+ * @author Create by JiRY
+ * @param string $user_pass     用户明文密码
+ * @param string $encode_salt   密码加密私钥
+ * @return boolean
+ */
+function pass_encode($user_pass,$encode_salt){
+    //取密钥最后一个字母，求模。在模的位置插入该字母
+    $encode_salt = str_split($encode_salt);
+    $num = count($encode_salt);
+    foreach($encode_salt as $l){
+        $i = ord($l) % $num ;
+        $user_pass = substr($user_pass,0,$i) . $l . substr($user_pass,$i) ;
+    }
+    return md5($user_pass);
+}

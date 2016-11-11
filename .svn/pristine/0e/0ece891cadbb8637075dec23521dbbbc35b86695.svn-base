@@ -1,0 +1,78 @@
+<a class="menu-toggler" id="menu-toggler" href="#">
+	<span class="menu-text"></span>
+</a>
+<div class="sidebar" id="sidebar">
+	<script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'fixed')}catch(e){}
+	</script>
+
+	<div class="sidebar-shortcuts" id="sidebar-shortcuts">
+		<div class="sidebar-shortcuts-mini" id="sidebar-shortcuts-mini">
+			<span class="btn btn-success"></span>
+
+			<span class="btn btn-info"></span>
+
+			<span class="btn btn-warning"></span>
+
+			<span class="btn btn-danger"></span>
+		</div>
+	</div><!-- #sidebar-shortcuts -->
+
+	<ul class="nav nav-list">
+		<li class="active">
+			<a href="index.html">
+				<i class="icon-dashboard"></i>
+				<span class="menu-text"> 菜单导航 </span>
+			</a>
+		</li>
+		
+		<notempty name="menu">
+			<volist name="menu" id="big_item">
+				<li>
+					<a href="<eq name='big_item.type' value='3'>{$big_item['id']|get_url_by_node}<else/>javascript:void(0);</eq>" class="dropdown-toggle">
+						<i class="{$big_item['icon_name']}"></i>
+						<span class="menu-text"> {$big_item['title']}</span>
+						<notempty name="big_item.list">
+								<b class="arrow icon-angle-down"></b>
+							</a>
+						    <ul class="submenu">
+							    <volist name="big_item.list" id="small_item">
+							    	<li>
+										<a href="<eq name='small_item.type' value='3'>{$small_item['id']|get_url_by_node}<else/>javascript:void(0);</eq>" class="dropdown-toggle">
+											<i class="{$small_item['icon_name']}"></i>
+											{$small_item['title']}
+										<notempty name="small_item.list">
+												<b class="arrow icon-angle-down"></b>
+											</a>
+											<ul class="submenu">
+												<volist name="small_item.list" id="item">
+													<li>
+														<a href="{$item['id']|get_url_by_node}">
+															<i class="{$item['icon_name']}"></i>
+															{$item['title']}
+														</a>
+													</li>
+												</volist>
+											</ul>
+										<else/>
+											</a>
+										</notempty>
+									</li>
+							    </volist>
+						    </ul>
+						<else/>
+						 	</a>
+						</notempty>
+						
+					
+				</li>
+			</volist>
+		</notempty>
+	<div class="sidebar-collapse" id="sidebar-collapse">
+		<i class="icon-double-angle-left" data-icon1="icon-double-angle-left" data-icon2="icon-double-angle-right"></i>
+	</div>
+
+	<script type="text/javascript">
+		try{ace.settings.check('sidebar' , 'collapsed')}catch(e){}
+	</script>
+</div>

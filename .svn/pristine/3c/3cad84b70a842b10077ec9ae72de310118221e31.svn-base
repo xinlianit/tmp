@@ -1,0 +1,23 @@
+<?php
+/**
+ * IndexController.class.php - 商家管理后台首页
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-10-28 9:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+class IndexController extends CommonController {
+    /**
+     * 后台首页
+     */
+    public function index(){
+        //dump($this->loginInfo);
+        
+        
+        
+        $this->display();
+    }
+}

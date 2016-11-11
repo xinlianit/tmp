@@ -1,0 +1,46 @@
+<div dialog-id="edit-service-box" class="hide">
+    <form class="form-horizontal" role="form" form-id="edit-service-form" action="{:U('Baseinfo/editRoomService')}" method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">服务名称：</label>
+
+            <div class="col-sm-9">
+                <input type="text" name="service_name" id="form-field-1" class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="space-4"></div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-2">消息类型： </label>
+            <div class="col-sm-9">
+                <select class="col-xs-10 col-sm-5"  name="service_type">
+                    <option value="1">发送请求</option>
+                    <option value="2">呼叫电话</option>
+                </select>
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-3">服务描述：</label>
+
+            <div class="col-sm-9">
+                <textarea class="col-xs-10" rows="3" name="service_info"></textarea>
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-4">消息类型： </label>
+            <div class="col-sm-9">
+                <select class="col-xs-10 col-sm-5"  name="icon_id">
+                    <volist name="icon_list" id="list">                        
+                        <option value="{$list.id}" icon_path='{$list.icon_path}'>{$list.icon_name}</option>
+                    </volist>
+                </select>
+            </div>
+        </div>
+        <div class="space-4"></div>        
+        <input type="hidden" name="service_id" >
+        
+    </form>
+</div>

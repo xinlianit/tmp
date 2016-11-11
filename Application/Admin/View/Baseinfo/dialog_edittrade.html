@@ -1,0 +1,26 @@
+<div dialog-id="edit-trade-box" id="edit-trade-box" class="hide">
+    <form class="form-horizontal" role="form" form-id="edit-trade-form" action="{:U('Baseinfo/editTrade')}" method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户类型名称：</label>
+
+            <div class="col-sm-9">
+                <input type="text" name="category_name" class="col-xs-10 col-sm-5">
+                <span class="help-inline col-xs-12 col-sm-7">
+                        <span class="middle red">*</span>
+                </span>
+            </div>
+        </div>
+
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 类型描述：</label>
+
+            <div class="col-sm-9">
+                <textarea class="col-xs-10" rows="3" name="category_desc"></textarea>
+            </div>
+        </div>
+        <input type="hidden" name="trade_id" >
+        <div class="space-4"></div>
+        
+    </form>
+</div>

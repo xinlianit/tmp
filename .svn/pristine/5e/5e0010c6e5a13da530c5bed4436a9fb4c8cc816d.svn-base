@@ -1,0 +1,4 @@
+@CHARSET "UTF-8";
+.shop-type{border:1px solid #D5D5D5;width:330px;height:100px;padding:3px;font-size:15px;color:#A9A9A9;}
+.add-shop-type{float:right;margin:-100px 50px;}
+

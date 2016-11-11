@@ -1,0 +1,70 @@
+/**
+ * 商户信息维护
+ */
+
+seajs.use('',function(){
+	$(function(){
+		//查看详情
+		$('[event-name="viewInfo"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow({
+				id: 'view',
+				height: 300,
+				width: 600,
+				title: '详情',
+			});
+		});
+		
+		//添加
+		$('[event-name="addInfo"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow({
+				id: 'add',
+				height: 300,
+				width: 600,
+				title: '添加',
+				confirm_function: function(){
+					$.common.ajaxFormSubmit({
+						id: 'add',
+//						success: function(data){
+//							//alert("提交成功->返回参数："+JSON.stringify(data));
+//						}
+					});
+				},
+			});
+		});
+		
+		//编辑
+		$('[event-name="editInfo"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow({
+				id: 'edit',
+				height: 300,
+				width: 600,
+				title: '编辑',
+			});
+		});
+		
+		//删除
+		$('[event-name="deleteRow"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow({
+				id: 'delete',
+				height: 300,
+				width: 600,
+				title: '删除',
+			});
+		});
+		
+		//批量删除
+		$('[event-name="deleteRows"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow({
+				id: 'deletes',
+				height: 300,
+				width: 600,
+				title: '批量删除',
+			});
+		});
+	})
+});

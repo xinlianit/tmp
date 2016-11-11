@@ -1,0 +1,9 @@
+<?php
+
+namespace Common\Logic;
+
+class UserLogic {
+    public function test(){
+        echo 'public logic';
+    }
+}

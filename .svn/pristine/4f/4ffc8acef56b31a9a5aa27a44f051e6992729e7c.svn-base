@@ -1,0 +1,33 @@
+<div dialog-id="edit-icon-box" id="edit-icon-box" class="hide">
+    <form class="form-horizontal" role="form" form-id="edit-icon-form" action="{:U('Baseinfo/editIcon')}" method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">分类名称：</label>
+
+            <div class="col-sm-9">
+                <input type="text" name="icon_name" id="form-field-1"  class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-2">图片路径：</label>
+
+            <div class="col-sm-9">
+                <input type="text" name="icon_path" id="form-field-2"  class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-1">图标描述：</label>
+
+            <div class="col-sm-9">
+                <textarea class="col-xs-10" rows="3" name="icon_desc"></textarea>
+            </div>
+        </div>
+        
+        <div class="space-4"></div>
+        <input type="hidden" name="icon_id" >
+        
+    </form>
+</div>

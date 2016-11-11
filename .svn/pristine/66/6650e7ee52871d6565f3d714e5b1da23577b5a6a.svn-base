@@ -1,0 +1,152 @@
+<?php
+/**
+ * CommonLogic.class.php - 公共逻辑
+ * @package Logic
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-10-31 14:40
+ */
+namespace Admin\Logic;
+
+class CommonLogic {
+    /**
+     * 管理员登陆信息
+     * @var array
+     */
+    protected $loginInfo = array();
+    
+    public function __construct(){
+        $storage_type       = C('LOGIN_STORAGE_TYPE');
+        $session_key        = C('AUTH_CONFIG.AUTH_SESSION_KEY');
+        
+        switch( $storage_type ){
+            case 'session':
+                $this->loginInfo = session($session_key);
+                break;
+            case 'redis':
+                break;
+            case 'memcache':
+                break;
+        }
+    }
+    
+    /**
+     * 获取管理员登陆信息
+     */
+    public function getLoginInfo(){
+        return $this->loginInfo;
+    }
+    
+    /**
+     * 存储登陆数据
+     * @param array $data       管理员数据
+     */
+    public function storageLoginData($data){
+        $auth_key           = C('AUTH_CONFIG.AUTH_KEY');
+        $storage_type       = C('LOGIN_STORAGE_TYPE');
+        $session_key        = C('AUTH_CONFIG.AUTH_SESSION_KEY');
+    
+        switch( $storage_type ){
+            case 'session':
+                //登陆成功session写入登陆token
+                session($auth_key , $data['id']);
+                session($session_key , $data);
+                break;
+            case 'redis':
+                break;
+            case 'memcache':
+                break;
+        }
+    }
+    
+    /**
+     * 删除登陆数据
+     */
+    public function deleteLoginData(){
+        $auth_key           = C('AUTH_CONFIG.AUTH_KEY');
+        $storage_type       = C('LOGIN_STORAGE_TYPE');
+        $session_key        = C('AUTH_CONFIG.AUTH_SESSION_KEY');
+    
+        switch( $storage_type ){
+            case 'session':
+                session($auth_key , null);
+                session($session_key , null);
+                break;
+            case 'redis':
+                break;
+            case 'memcache':
+                break;
+        }
+    }
+    
+    /**
+     * 获取模型对象
+     * @param string $modelName         模型名称
+     * @return boolean|object
+     */
+    private function getModel($modelName){
+        if( !$modelName ) return false;
+        
+        return D($modelName) ? D($modelName) : M($modelName);
+    }
+    
+    /**
+     * 获取字段
+     * @param string $modelName     表模型名
+     * @param string $field         字段名称
+     * @param array $condition      查询条件
+     * @return string
+     */
+    public function getField($modelName, $field, $condition=array()){
+        $model = self::getModel($modelName);
+        $model = $model->where($condition);
+        return $model->getField($field);
+    }
+    
+    /**
+     * 获取单条数据
+     * @param string $modelName     表模型名
+     * @param array $condition      查询条件
+     * @param array $field          获取字段
+     * @return array|boolean|null
+     */
+    public function getRow($modelName, $condition=array(), $field=array()){
+        $model = self::getModel($modelName);
+        
+        if( is_array($field) && !empty($field) )
+            $model = $model->field($field);
+        
+        if( is_array($condition) && !empty($condition) )
+            $model = $model->where($condition);
+        
+        return $model->find();
+    }
+    
+    /**
+     * 获取多条数据
+     * @param string $modelName     模型名称
+     * @param array $condition      查询条件
+     * @param array $field          获取字段
+     * @param array $sort           排序规则
+     * @param int $limit            获取行数
+     * @return array
+     */
+    public function getRows($modelName, $condition=array(), $field=array(), $sort=array(), $limit=0){
+        $model = self::getModel($modelName);
+        
+        if( is_array($field) && !empty($field) )
+            $model = $model->field($field);
+        
+        if( is_array($condition) && !empty($condition) )
+            $model = $model->where($condition);
+        
+        if( is_array($sort) && !empty($sort) )
+            $model = $model->order($sort);
+        
+        if( $limit > 0 )
+            $model = $model->limit($limit);
+        
+        return $model->select();
+    }
+}

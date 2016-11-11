@@ -1,0 +1,16 @@
+<?php
+/**
+ * 通过节点获取Url
+ * @param int $nodeId       节点ID
+ * @return string
+ */
+function get_url_by_node($nodeId){
+    $name = D('Common' , 'Logic')->getField('AuthRule', 'name', array('id'=>$nodeId));
+    
+    @list($module , $controller , $action) = explode('/', $name);
+    
+    if(isset($controller) && isset($action))
+        return U($controller.'/'.$action);
+    
+    return '';
+}

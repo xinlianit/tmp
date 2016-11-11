@@ -1,0 +1,464 @@
+[ 2016-11-11T02:32:06+08:00 ] 192.168.1.170 /index.php/Shop/hotelType.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000353s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0033s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0142s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0021s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/hotelType' LIMIT 1   [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`type_name`,`type_class` FROM `pad_type_info` WHERE `data_status` = 1  [ RunTime:0.0013s ]
+
+[ 2016-11-11T02:32:14+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000385s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000592s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0019s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0011s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0023s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+
+[ 2016-11-11T02:33:29+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000232s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000394s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0033s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0032s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+
+[ 2016-11-11T02:33:46+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000357s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0147s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+
+[ 2016-11-11T02:33:58+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000223s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000385s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+
+[ 2016-11-11T02:35:35+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000394s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0021s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_hotel_info`  [ RunTime:0.0011s ]
+
+[ 2016-11-11T02:36:07+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000247s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000438s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0019s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_hotel_info`  [ RunTime:0.0019s ]
+
+[ 2016-11-11T02:37:39+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000253s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000415s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0055s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_hotel_info` LIMIT 1   [ RunTime:0.0019s ]
+
+[ 2016-11-11T02:37:57+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000355s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_hotel_info` LIMIT 1   [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+
+[ 2016-11-11T02:38:19+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000236s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000544s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0021s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_hotel_info` LIMIT 1   [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+
+[ 2016-11-11T02:39:35+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000206s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000363s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0023s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0045s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0027s ]
+SQL: SELECT * FROM `pad_hotel_info` LIMIT 1   [ RunTime:0.0019s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_hotel_info` LIMIT 1   [ RunTime:0.0011s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+
+[ 2016-11-11T02:39:52+08:00 ] 192.168.1.170 /index.php/Shop/add.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000351s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 22 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/add' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_info` LIMIT 1   [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_hotel_info` LIMIT 1   [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: debug /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 108 行.
+NOTIC: [8] Undefined offset: 0 /usr/local/www/l_hotel/Core/Library/Think/Db/Driver.class.php 第 113 行.
+

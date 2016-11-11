@@ -1,0 +1,104 @@
+<?php
+/**
+ * BaseinfoController.class.php - 系统管理-基础信息管理
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM Zhaoxizhan(441534536@qq.com)
+ * @copyright 2016-11-08 10:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+
+class BaseinfoController extends CommonController {
+    /**
+     * 商户列表
+     */
+    public function shopType(){
+        //debug(self::$loginInfo);
+        $page = D('Common' , 'Logic')->page(array('name'=>'TypeInfo'), I('get.p',1));
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加商户类型（AJAX）
+     */
+    public function addType(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //数据组装
+        $data['type_name']      = I('post.type_name');      //类型名称        
+        $data['type_class']     = I('post.type_class');     //类型分类
+        $data['type_desc']      = I('post.type_desc','');   //类型描述
+        
+        //参数校验
+        if(!$data['type_name'] || !$data['type_class']){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('TypeInfo')->add($data);
+        if($rs){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 修改商户类型（AJAX）
+     */
+    public function editType(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //要编辑的类型ID
+        $id = I('post.type_id');
+        //数据组装
+        $data['type_name']      = I('post.type_name');      //类型名称        
+        $data['type_class']     = I('post.type_class');     //类型分类
+        $data['type_desc']      = I('post.type_desc','');   //类型描述
+       
+        //参数校验
+        if(!$data['type_name'] || !$data['type_class'] || !$id){
+            $this->ajaxReturnErr();
+        }
+        //过滤条件
+        $_map['id'] = $id;
+        
+        $rs = D('TypeInfo')->where($_map)->save($data);
+    
+        if($rs !== false){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+
+        /**
+     * 获取商户类型详情
+     */
+    public function getTypeInfo(){
+        
+        //非法请求
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //类型ID
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('TypeInfo')->getInfo($id);
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        $data['info'] = $rs;
+        $this->ajaxReturnSuccess($data);
+    }
+
+}

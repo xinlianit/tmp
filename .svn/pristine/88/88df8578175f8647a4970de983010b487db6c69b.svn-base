@@ -1,0 +1,13 @@
+/**
+ * 后台布局
+ */
+define(function(require, exports, module){
+	return {
+		//获取系统时间
+		getSystemTime:function(){
+			setInterval(function(){
+				document.getElementById('now-datetime').innerHTML = $.common.getNowDateTime('.');
+			},1000);
+		}
+	};
+});

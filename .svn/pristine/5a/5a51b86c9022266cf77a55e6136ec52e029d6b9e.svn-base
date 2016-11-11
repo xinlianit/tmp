@@ -1,0 +1,9 @@
+<div dialog-id="dels-service-box" class="hide">
+    <h3>确定要批量删除吗？</h3>
+    <form class="form-horizontal" role="form" form-id="dels-service-form" action="{:U('Baseinfo/delRoomService')}" method="post">
+
+        <input type="hidden" name="service_id" >
+
+        
+    </form>
+</div>

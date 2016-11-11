@@ -1,0 +1,17 @@
+<div class="breadcrumbs" id="breadcrumbs">
+	<script type="text/javascript">
+		try{ace.settings.check('breadcrumbs' , 'fixed')}catch(e){}
+	</script>
+
+	<ul class="breadcrumb">
+			<li>
+				<i class="icon-home home-icon"></i>
+				<a href="{:U('Index/index')}">首页</a>
+			</li>
+		<volist name="path" id="item">
+			<li class="active"><span style="display:inline-block;margin:0px 6px 0px 1px;">{$item['name']}</span> </li>
+		</volist>
+		
+		
+	</ul><!-- .breadcrumb -->
+</div>

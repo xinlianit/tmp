@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+*{}
+html{}
+body{}
+.hide{display:none!important;}
+.show-block{display:block!important;}
+.show-inline-block{display:inline-block!important;}
+
+/* 头部  */
+.log small{height: 50px;line-height: 50px;}
+.top-nav>li{border:none;height:30px;line-height:40px;}
+.top-nav .nav-tit{color:#fff;font-size:13px;padding:0px 10px;}
+.top-nav .nav-item a,.top-nav .nav-item a:hover{background:none;font-size:13px;}
+.top-nav .nav-item i{font-size:18px!important;}
+.sys-datetime{color:#FFF;padding:10px 10px;}
+
+/* 首页  */
+.home-content{padding:15% 5%;text-align:center;}

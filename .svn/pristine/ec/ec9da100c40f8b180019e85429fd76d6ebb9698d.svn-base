@@ -1,0 +1,35 @@
+/**
+ * 商户列表
+ */
+
+seajs.use(['angular','module/shop'],function(angular,shop){
+	//显示信息
+	$(function(){
+		//查看详情
+		$('[event-name="viewInfo"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow();
+			//alert("查看详情");
+		});
+		
+		//添加
+		$('[event-name="addInfo"]').on('click' , function(){
+			alert("添加");
+		});
+		
+		//编辑
+		$('[event-name="editInfo"]').on('click' , function(){
+			alert("编辑");
+		});
+		
+		//删除
+		$('[event-name="deleteRow"]').on('click' , function(){
+			alert("删除");
+		});
+		
+		//批量删除
+		$('[event-name="deleteRows"]').on('click' , function(){
+			alert("批量删除");
+		});
+	})
+});

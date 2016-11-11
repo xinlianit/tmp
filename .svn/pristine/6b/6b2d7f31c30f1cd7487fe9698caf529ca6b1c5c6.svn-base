@@ -1,0 +1,113 @@
+define(function(require, exports ,module){
+	$.extend({
+		/**
+		 * 常用公共库
+		 */
+		common: {
+				/**
+				 * 获取系统当前时间
+				 * @author Create By JiRY
+				 * @param string dateFlag		日期分隔符
+				 * @param string timeFlag		时间分隔符
+				 * @return string
+				 * */
+				getNowDateTime:function(dateFlag, timeFlag){
+					dateFlag = dateFlag ? dateFlag : '-';
+					timeFlag = timeFlag ?　timeFlag : ':';
+				    var date = new Date();
+				    var seperator1 = dateFlag;
+				    var seperator2 = timeFlag;
+				    var month = date.getMonth() + 1;
+				    var strDate = date.getDate();
+				    var hours = date.getHours();
+				    var minu = date.getMinutes();
+				    var seconds = date.getSeconds();
+				    	
+				    if (month >= 1 && month <= 9) {
+				        month = "0" + month;
+				    }
+				    if (strDate >= 0 && strDate <= 9) {
+				        strDate = "0" + strDate;
+				    }
+				    if( hours < 10 ){
+				    	hours = '0' + hours;
+				    }
+				    if( minu < 10 ){
+				    	minu = '0' + minu;
+				    }
+				    if( seconds < 10 ){
+				    	seconds = '0' + seconds;
+				    }
+				    var currentdate = date.getFullYear() + seperator1 + month + seperator1 + strDate
+				            + " " + hours + seperator2 + minu
+				            + seperator2 + seconds;
+				    return currentdate;
+				},
+				
+				/**
+				 * 打开窗口
+				 * @param string params.id					弹框ID
+				 * @param boolean params.resizable			重置大小
+				 * @param boolean params.modal				背景遮罩
+				 * @param string params.title				弹框标题；html|text,为html时，需配合title_html使用
+				 * @param boolean params.title_html			标题是否支持html
+				 * @param boolean params.enable_confirm		是否启用确定按钮
+				 * @param boolean params.enable_cancel		是否启用取消按钮
+				 * @param string params.confirm_icon		确定按钮图标
+				 * @param string params.confirm_class		确认按钮样式
+				 * @param string params.confirm_title		确认按钮标题
+				 * @param string params.cancel_icon			取消按钮图标
+				 * @param string params.cancel_class		取消按钮样式
+				 * @param string params.cancel_title		取消按钮标题
+				 * */
+				openWindow: function(params){
+					var params = typeof(params) != 'undefined' ? params : {}; 
+					var btn = [];
+					
+					var confirm_icon 		= typeof(params.confirm_icon) != 'undefined' ? params.confirm_icon : 'icon-trash bigger-110';
+					var confirm_title 		= typeof(params.confirm_title) != 'undefined' ? params.confirm_title : '确定';
+					var confirm_class 		= typeof(params.confirm_class) != 'undefined' ? params.confirm_class : 'btn btn-danger btn-xs';
+					var confirm_function 	= typeof(params.confirm_function) != 'undefined' ? params.confirm_function : function(){$( this ).dialog( "close" );};
+					
+					var cancel_icon 		= typeof(params.cancel_icon) != 'undefined' ? params.cancel_icon : 'icon-remove bigger-110';
+					var cancel_title 		= typeof(params.cancel_title) != 'undefined' ? params.cancel_title : '取消';
+					var cancel_class 		= typeof(params.cancel_class) != 'undefined' ? params.cancel_class : 'btn btn-xs';
+					var cancel_function 	= typeof(params.cancel_function) != 'undefined' ? params.cancel_function : function(){$( this ).dialog( "close" );};
+					
+					//确认按钮
+					var enable_confirm = typeof(params.enable_confirm) != 'undefined' ? params.enable_confirm : true;
+					if( enable_confirm ){
+						var confirm_btn = {
+								"html": "<i class='"+confirm_icon+"'></i>&nbsp; "+confirm_title,
+								"class" : confirm_class,
+								"click": confirm_function
+						};
+						btn[0] = confirm_btn;
+					}
+					
+					//取消按钮
+					var enable_cancel = typeof(params.enable_cancel) != 'undefined' ? params.enable_cancel : true;
+					if( enable_cancel ){
+						var cancel_btn = {
+								"html": "<i class='"+cancel_icon+"'></i>&nbsp; "+cancel_title,
+								"class" : cancel_class,
+								"click": cancel_function
+						};
+						btn[1] = cancel_btn;
+					}
+					
+					//dialog 设置
+					$( "#dialog-confirm" ).removeClass('hide').dialog({
+						resizable: typeof(params.resizable) != 'undefined' ? params.resizable : false,
+						modal: typeof(params.modal) != 'undefined' ? params.modal : true,
+						title: typeof(params.title) != 'undefined' ? params.title : '温馨提示',
+						title_html: typeof(params.title_html) != 'undefined' ? params.title_html : true,
+						buttons: btn
+					});
+				}
+			}
+	});
+});
+
+
+

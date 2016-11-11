@@ -1,0 +1,11 @@
+<?php
+
+namespace Common\Api;
+
+class UserApi {
+    public function test(){
+        echo 'public api';
+        echo '<br>';
+        D('User','Logic')->test();        
+    }
+}

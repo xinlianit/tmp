@@ -1,0 +1,57 @@
+/**
+ * 系统基础信息维护
+ */
+
+seajs.use('',function(){
+	$(function(){
+		
+		//添加
+		$('[event-name="add-shop-type"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow({
+				id: 'add-shop-type-box',
+				height: 400,
+				width: 600,
+				title: '新增商户类型',
+				confirm_function: function(){
+					$.common.ajaxFormSubmit({
+						id: 'add-shop-type-form'
+					});
+				},
+			});
+		});
+                
+                //编辑
+		$('[event-name="edit-shop-type"]').on('click' , function(){
+                        var type_id = $(this).attr('event-id');   
+                        $.ajax({
+                            type: "POST",
+                            url: "/Baseinfo/getTypeInfo",
+                            async: false,
+                            data: "id="+type_id,
+                            success: function(rs_info){
+                                //console.log(rs_info.info.type_class);
+                                $("#edit-shop-type-box input[name=type_name]").val(rs_info.info.type_name);
+                                $("#edit-shop-type-box textarea[name=type_desc]").val(rs_info.info.type_desc);
+                                $("#edit-shop-type-box select[name=type_class]").val(rs_info.info.type_class);
+                                $("#edit-shop-type-box input[name=type_id]").val(type_id);
+                            }
+                         });
+                        
+			//打开窗口
+			$.common.openWindow({
+				id: 'edit-shop-type-box',
+				height: 300,
+				width: 600,
+				title: '编辑商户类型',
+                                confirm_function: function(){
+					$.common.ajaxFormSubmit({
+						id: 'edit-shop-type-form'
+					});
+				},
+			});
+		});
+                
+                
+            });
+        });

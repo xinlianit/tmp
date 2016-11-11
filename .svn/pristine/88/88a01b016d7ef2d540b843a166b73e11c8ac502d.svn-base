@@ -1,0 +1,14 @@
+/**
+ * 模块化配置
+ */
+if( typeof(static_base) == 'undefined' ) static_base = '/Public';
+seajs.config({
+	'base': static_base,
+	'alias': {
+		'jquery': static_base + '/static/js/jquery-3.1.1.min.js',
+		'common': static_base + '/static/js/common.js',
+	},
+	'path': {
+		'admin': static_base + '/admin/',
+	},
+});

@@ -1,0 +1,18 @@
+@CHARSET "UTF-8";
+.shop-type{border:1px solid #D5D5D5;width:330px;height:100px;padding:1px 5px;font-size:15px;color:#A9A9A9;}
+.add-shop-type{float:right;margin:-100px 50px;}
+
+.type-select{padding:1px;overflow:auto;}
+.type-select .big-item{clear:both;}
+.type-select .small-item{float:left;width:25%;}
+
+.address{margin-top:10px;width:97.3%;}
+.adv div{
+	display: inline-block;
+    width: 24%;
+    height: 30px;
+    line-height: 30px;
+	font-size:14px;
+}
+.custom-back{margin-right: 375px!important;}
+

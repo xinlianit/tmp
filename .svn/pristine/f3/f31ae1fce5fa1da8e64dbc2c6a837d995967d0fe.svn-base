@@ -1,0 +1,94 @@
+<?php
+/**
+ * CommonController.class.php - 后台公共控制器
+ * @desc 除Public公共访问控制器，其他控制必须继承，用户管理身份及权限认证
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-10-28 9:50
+ */
+namespace Admin\Controller;
+use Think\Controller;
+class CommonController extends Controller {
+    /**
+     * 管理员登陆信息
+     * @var array
+     */
+    protected $loginInfo = array();
+    
+    public function _initialize(){
+        $this->loginInfo = D('Common' , 'Logic')->getLoginInfo();
+        
+        $auth_key = C('AUTH_CONFIG.AUTH_KEY');
+        $login_token = session( $auth_key );
+        
+        //是否登陆
+        if( !$login_token ) 
+            $this->redirect("Public/login");
+        
+        $Auth = new \Think\Auth();
+        $module_name = MODULE_NAME .'/'. CONTROLLER_NAME . '/' . ACTION_NAME;
+        //非超级管理员，权限检测
+        if($this->loginInfo['admin_account'] != C('AUTH_CONFIG.AUTH_ADMINISTRATOR')){  
+            if(!$Auth->check( $module_name , $login_token)){
+                $this->error('没有权限');
+                exit;
+            }
+        }
+        
+        self::header();
+        
+        self::left();
+        
+        self::routePath();
+    }
+    
+    /**
+     * 后台头部
+     */
+    private function header(){
+        $this->assign('loginInfo',$this->loginInfo);
+    }
+    
+    /**
+     * 左侧菜单
+     */
+    private function left(){
+        $commonLogic = D('Common' , 'Logic');
+        
+        $condition  = array(
+            'pid'       => 0,
+            'status'    => 1,
+            'is_show'   => 1,
+        );
+        
+        $rule_list = $commonLogic->getRows( 'AuthRule', $condition, '', array('sort'=>'asc') );
+        foreach($rule_list as $b_k=>$b_v ){
+            $condition['pid'] = $b_v['id'];
+            $rule_list[$b_k]['list'] = $commonLogic->getRows( 'AuthRule', $condition, '', array('sort'=>'asc') );
+            
+            foreach($rule_list[$b_k]['list'] as $s_k=>$s_v ){
+                $condition['pid'] = $s_v['id'];
+                $rule_list[$b_k]['list'][$s_k]['list'] = $commonLogic->getRows( 'AuthRule', $condition, '', array('sort'=>'asc') );
+            }
+        }
+        
+        $this->assign('menu',$rule_list);
+    }
+    
+    /**
+     * 路由信息
+     */
+    private function routePath(){
+        //当前路径信息
+        $path = array(
+        
+//             array(
+//                 'name'      => '首页',
+//             ),
+        
+        );
+        $this->assign('path' , $path);
+    }
+}

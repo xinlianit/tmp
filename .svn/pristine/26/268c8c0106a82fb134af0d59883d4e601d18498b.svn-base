@@ -1,0 +1,25 @@
+<?php
+/**
+ * cli.php - 后端处理程序
+ */
+
+if(version_compare(PHP_VERSION,'5.3.0','<'))  die('require PHP > 5.3.0 !');
+
+
+define('DS',	DIRECTORY_SEPARATOR);
+define('WEB_ROOT', dirname(__FILE__) . DS);
+
+
+define('APP_DEBUG',	true);
+
+define('BASE_PATH',				dirname(__DIR__) . DS);
+
+// 定义应用目录
+define('APP_PATH',BASE_PATH.'/Application/');
+
+// 定义第三方应用库
+define('APP_LIBRARY', APP_PATH.'Common/Lib/');
+
+require BASE_PATH . 'Core/ThinkPHP.php';
+
+

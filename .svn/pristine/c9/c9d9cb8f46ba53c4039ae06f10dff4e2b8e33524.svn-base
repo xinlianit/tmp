@@ -1,0 +1,9 @@
+<div dialog-id="del-shop-type-box" class="hide">
+    <h3>确定要删除吗？</h3>
+    <form class="form-horizontal" role="form" form-id="del-shop-type-form" action="{:U('Baseinfo/delType')}" method="post">
+
+        <input type="hidden" name="type_id" >
+
+        
+    </form>
+</div>

@@ -1,0 +1,84 @@
+/**
+ * 商户信息维护
+ */
+seajs.use(['webupload', 'module/shop'],function(webupload, shop){
+	
+	//显示信息
+	$(function(){
+		
+		//添加
+		$('[event-name="addInfo"]').on('click' , function(){
+			
+			//初始化上传
+			webupload.initialize({
+				upload_url: 'http://www.baidu.com/up',
+				preview_url: 'http://www.baidu.com/pre'
+			});
+			
+			//打开窗口
+			$.common.openWindow({
+				id:'add',
+				title:'新增商户',
+				height:730,
+				width:700,
+				confirm_function: function(){
+					//添加商户
+					shop.addShop('add');
+				}
+			});
+		});
+		
+		//选择类型
+		$(document).on('click','[event-name="add-type"]',function(){
+			
+			var _this = $(this);
+			
+			$.common.ajaxFormSubmit({
+				type: 'GET',
+				url: _this.attr('url'),
+				success:function(data){
+					
+					//显示类型框
+					$.common.openWindow({
+						id: 'type',
+						title: '酒店类型',
+						height:730,
+						width:700,
+					});
+					
+					//关闭提示框
+					$.common.closeTips();
+				},
+			});
+			
+			
+		});
+		
+		//查看详情
+		$('[event-name="viewInfo"]').on('click' , function(){
+			//打开窗口
+			$.common.openWindow({
+				id: 'dialog-confirm',
+				height: 300,
+				width: 600,
+				title: '商户详情',
+			});
+			//alert("查看详情");
+		});
+		
+		//编辑
+		$('[event-name="editInfo"]').on('click' , function(){
+			alert("编辑");
+		});
+		
+		//删除
+		$('[event-name="deleteRow"]').on('click' , function(){
+			alert("删除");
+		});
+		
+		//批量删除
+		$('[event-name="deleteRows"]').on('click' , function(){
+			alert("批量删除");
+		});
+	})
+});

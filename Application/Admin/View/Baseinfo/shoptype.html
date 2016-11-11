@@ -1,0 +1,124 @@
+<div class="main-container" id="main-container">
+    <div class="main-container-inner">
+        <div class="main-content0">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <div class="table-responsive">
+                                    <div class="table-search">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right search-label" for="form-field-1">商户名称：</label>
+                                            <div class="col-sm-2 seach-input-col">
+                                                <input type="text" id="search-key" name="search-key" placeholder="支持模糊查询" value="{$search_key}" class="input-sm seach-input">
+                                            </div>
+                                            <span class="input-group-btn search-btn">
+                                                <button type="button" class="btn btn-purple btn-sm" id="shoptype-search-button" surl='{:U("Baseinfo/shopType")}'>
+                                                    查询
+                                                    <i class="icon-search icon-on-right bigger-110"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="table-search">
+                                        <div class="form-group">
+                                            <span class="input-group-btn search-btn">
+                                                <button event-name="add-shop-type" type="button" class="btn btn-sm btn-success">
+                                                    新增
+                                                    <i class="icon-plus smaller-75"></i>
+                                                </button>
+                                                <div class="separate-2"><i class="separate-flag"></i></div>
+                                                <button event-name="dels-shop-type" type="button" class="btn btn-sm btn-default">
+                                                    删除
+                                                    <i class="icon-remove"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="center">
+                                                    <label>
+                                                        <input type="checkbox" class="ace" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </th>
+
+                                                <th>类型ID</th>
+                                                <th>商户类型名称</th>
+                                                <th>类型分类</th>
+                                                <th>类型描述</th>
+                                                <th class="hidden-480">操作</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+
+                                        <include file="Layout:notlist" />
+                                        <volist name="page.list" id="list">
+                                            <tr>
+                                                <td class="center">
+                                                    <label>
+                                                        <input type="checkbox" name="type_item" value="{$list.id}" class="ace" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+                                                
+                                                <td>{$list.id}</td>
+                                                <td>{$list.type_name|_default}</td>
+                                                <td>
+                                                    <switch name="list.type_class">
+                                                        <case value="1">功能分类</case>
+                                                        <case value="2">星级分类</case>
+                                                        <case value="3">自定义</case>
+                                                    </switch>
+                                                </td>
+                                                <td>{$list.type_desc|_default}</td>
+                                                <td>
+                                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">                                                      
+
+                                                        <a class="green" event-name="edit-shop-type" event-id="{$list.id}" href="javascript:void(0);" title="编辑">
+                                                            <i class="icon-pencil bigger-130"></i>
+                                                        </a>
+
+                                                        <a class="red" event-name="del-shop-type"  event-id="{$list.id}" href="javascript:void(0);" title="删除">
+                                                            <i class="icon-trash bigger-130"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </volist>
+
+                                        </tbody>
+                                    </table>
+                                    <include file="Layout:page" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+    </div><!-- /.main-container-inner -->
+
+</div><!-- /.main-container -->
+
+
+<!-- 添加面板 -->
+<include file="dialog_addshoptype" />
+
+<!-- 编辑面板 -->
+<include file="dialog_editshoptype" />
+
+<!-- 删除面板 -->
+<include file="dialog_delshoptype" />
+
+<!-- 批量删除面板 -->
+<include file="dialog_delshoptypes" />
+

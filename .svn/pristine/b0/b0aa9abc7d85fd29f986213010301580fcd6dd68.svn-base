@@ -1,0 +1,129 @@
+<?php
+/**
+ * PublicController.class.php - 后台公开访问
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-10-28 9:40
+ */
+namespace Admin\Controller;
+use Think\Controller;
+class PublicController extends Controller {
+    /**
+     * 结果集
+     * @var array
+     */
+    private $result = array( 'status' => 0 );
+    
+    /**
+     * 后台登陆
+     * @return json
+     */
+    public function login(){
+        if( IS_POST ){
+            $account        = trim(I('post.loginname'));
+            $passwd         = trim(I('post.password'));
+            $verify         = trim(I('post.code'));
+            
+            //数据验证
+            $data = array(
+                'admin_account'     => $account,
+                'admin_pass'        => $passwd,
+                'verify'            => $verify
+            );
+            $validate_result = D('Admin' , 'Logic')->validateLoginData( $data );
+            if($validate_result !== true){
+                $error = explode('-', $validate_result);
+                $this->result['flag']   = $error[0];
+                $this->result['msg']    = $error[1];
+                $this->ajaxReturn( $this->result );
+            }
+            
+            //验证码验证
+            if( !check_verify($verify) ){
+                $this->result['flag']   = 'code';
+                $this->result['msg']    = "验证码错误";
+                $this->ajaxReturn( $this->result );
+            }
+            
+            //管理员信息
+            $admin_info = D('Admin','Logic')->getRow('AdminInfo',array('admin_account'=>$account));
+            
+            if( !$admin_info ){
+                $this->result['flag']   = 'loginname';
+                $this->result['msg']    = "管理员账号错误";
+                $this->ajaxReturn( $this->result );
+            }
+            
+            //密码验证
+            $make_passwd = pass_encode($passwd, $admin_info['admin_salt']);
+            
+            if( $admin_info['admin_pass'] !== $make_passwd ){
+                $this->result['flag']   = 'password';
+                $this->result['msg']    = "密码错误";
+                $this->ajaxReturn( $this->result );
+            }
+            
+            //管理员登信息
+            $login_data['id']                   = $admin_info['id'];
+            $login_data['admin_account']        = $admin_info['admin_account'];
+            $login_data['admin_name']           = $admin_info['admin_name'];
+            
+            //存储登陆数据
+            D('Admin' , 'Logic')->storageLoginData( $login_data );
+            
+            //登陆成功
+            $this->result['status'] = 1;
+            $this->ajaxReturn( $this->result );
+            
+        }else{
+            $auth_key = C('AUTH_CONFIG.AUTH_KEY');
+            //如果已登录跳转首页
+            if( session($auth_key) ){
+                $this->redirect("Index/index");
+            }
+            
+            layout(false);
+            $this->display();
+        }
+    }
+    
+    /**
+     * 注销登陆
+     */
+    public function logout(){
+        //删除登陆数据
+        D('Admin' , 'Logic')->deleteLoginData();
+        //跳转登陆
+        $this->redirect('Public/login');
+    }
+    
+    /**
+     * 验证码
+     */
+    public function verify(){
+        //验证码字体大小
+        $fontSize       = trim(I('get.fontSize')) ? trim(I('get.fontSize')) : 16;
+        //验证码位数
+        $length         = trim(I('get.length')) ? trim(I('get.length')) : 4;
+        //关闭验证码杂点
+        $useNoise       = isset($_GET['useNoise']) ? (trim(I('get.useNoise')) == 0 ? false : true) : false;
+        //验证码图片高度
+        $height         = trim(I('get.height')) ? trim(I('get.height')) : 38;
+        //验证码图片宽度
+        $width          = trim(I('get.width')) ? trim(I('get.width')) : 110;
+        
+        $config = array(
+            'fontSize'      => $fontSize,         
+            'length'        => $length,          
+            'useNoise'      => $useNoise,       
+            'imageH'        => $height,             
+            'imageW'        => $width         
+        );
+        
+        $Verify =new \Think\Verify( $config );
+        $Verify->entry();
+    }
+    
+}

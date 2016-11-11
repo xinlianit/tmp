@@ -1,0 +1,34 @@
+<?php
+/**
+ * ShopController.class.php - 商户管理
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-11-03 17:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+class ShopController extends CommonController {
+    /**
+     * 商户列表
+     */
+    public function index(){
+        //debug(self::$loginInfo);
+        $this->display();
+    }
+    
+    /**
+     * 楼层管理
+     */
+    public function floor(){
+        $this->display();
+    }
+    
+    /**
+     * 设备管理
+     */
+    public function device(){
+        $this->display('index');
+    }
+}

@@ -1,0 +1,14 @@
+/**
+ * 路由信息配置
+ */
+
+var _route = {
+	/**
+     * 路由名称: 路由地址
+     * 路由名称配置规则：控制器_方法名称；如:Index_index
+     * 路由地址配置规则：控制器名/方法名；如：index/index （注：路由地址无需后缀名）
+     * */
+    'Public_login': 'public/login',
+    'Shop_index': 'shop/index',
+    'Shop_floor': 'shop/floor'
+}

@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="utf-8" />
+		<title>控制台 - 乐锋派后台管理系统</title>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+		<!-- basic styles -->
+		<link href="__PUBLIC__/plugins/assets/css/bootstrap.min.css" rel="stylesheet" />
+		<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/font-awesome.min.css" />
+		<!--[if IE 7]>
+		  <link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/font-awesome-ie7.min.css" />
+		<![endif]-->
+		<!-- page specific plugin styles -->
+		
+		<!-- ace styles -->
+		<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/ace.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/jquery-ui-1.10.3.full.min.css" />
+		<link rel="stylesheet" href="__PUBLIC__/plugins/nice-validator-1.0.7/jquery.validator.css" />
+		<link rel="stylesheet" href="__PUBLIC__/static/css/common.css" />
+		<!--[if lte IE 8]>
+		  <link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/ace-ie.min.css" />
+		<![endif]-->
+		<!-- inline styles related to this page -->
+		<!-- ace settings handler -->
+		<!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!--[if lt IE 9]>
+		<script src="__PUBLIC__/plugins/assets/js/html5shiv.js"></script>
+		<script src="__PUBLIC__/plugins/assets/js/respond.min.js"></script>
+		<![endif]-->
+		
+	</head>
+	<body>
+		<include file="Layout:header" />
+		<div class="main-container" id="main-container">
+			<div class="main-container-inner">
+				<include file="Layout:left" />
+				<div class="main-content">
+					<include file="Layout:path" />
+					{__CONTENT__}
+				</div><!-- /.main-content -->
+				<!-- include setting path  -->
+			</div><!-- /.main-container-inner -->
+			<a href="#" id="btn-scroll-up" class="btn-scroll-up btn btn-sm btn-inverse">
+				<i class="icon-double-angle-up icon-only bigger-110"></i>
+			</a>
+		</div><!-- /.main-container -->
+		<!-- basic scripts -->
+		
+		<script src="__PUBLIC__/static/js/jquery-1.10.2.min.js"></script>
+		
+		<script type="text/javascript">
+			if("ontouchend" in document) 
+				document.write("<script src='__PUBLIC__/plugins/assets/js/jquery.mobile.custom.min.js'>"+"<"+"script>");
+		</script>
+		
+		<script src="__PUBLIC__/plugins/assets/js/bootstrap.min.js"></script>
+		<!-- page specific plugin scripts -->
+		<!--[if lte IE 8]>
+		  <script src="__PUBLIC__/plugins/assets/js/excanvas.min.js"></script>
+		<![endif]-->
+		
+		
+		<script type="text/javascript">
+			var static_base = "__PUBLIC__";
+		</script>
+		<script src="__PUBLIC__/static/js/sea.js"></script>
+		<script src="__PUBLIC__/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>
+		<script src="__PUBLIC__/plugins/assets/js/ace.min.js"></script>
+		<script src="__PUBLIC__/plugins/assets/js/bootbox.min.js"></script>
+		<script src="__PUBLIC__/plugins/nice-validator-1.0.7/jquery.validator.min.js"></script>
+		<script src="__PUBLIC__/admin/config/main.js"></script>
+		
+		<script type="text/javascript">
+		    var init = [
+		    	'static/js/common',
+		    	'module/layout'
+		    ];
+		    
+			seajs.use( init ,function(common,layout){
+				//系统时间
+				layout.getSystemTime();
+				
+				//当前路由
+				var route_name = '{$Think.CONTROLLER_NAME}';
+				
+				//加载事件库
+				layout.autoLoadEvents();
+				
+				//自动加载js路由
+				layout.autoLoadRoute(route_name);
+			});
+		</script>
+		<div id="route"></div>
+</body>
+</html>
+
