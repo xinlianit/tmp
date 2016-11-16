@@ -1,0 +1,240 @@
+<?php
+/**
+ * CommonController.class.php - 管家部APP接口公共控制器
+ * @package ManageApi\Controller
+ * @subpackage null
+ * @link http://rapi.pad-phone.com/
+ * @author MSC PHP DEV TEAM HuangZH(47198839@qq.com)
+ * @copyright 派锋科技 2016年11月07日  14:26
+ * @version V1.0.0
+ */
+namespace ManageApi\Controller;
+use Think\Controller;
+
+class CommonController extends Controller {
+    //API公共参数配置
+    private $apiComm = array();
+    //状态码
+    protected $status = array();
+    //表字段状态和类型对应名称
+    protected $fieldLable = array();
+    //默认通过Action
+    protected $passAction = array();
+    //接口数据输入数据集
+    protected $I = array();
+    //接口数据输出数据集
+    protected $result = null;
+    //服务员登录信息
+    protected $staffInfo = array();
+    
+    public function _initialize(){
+        //接口状态返回
+        $this->status = C('MANAGEAPI');
+
+        if(IS_POST) {
+            //数据库输入
+            $this -> I = I('post.') ? I('post.') : $_POST;
+            $this -> apiComm = [];
+            $this -> apiComm = array_merge($this -> apiComm, $this -> I);
+            //初始化API参数
+            /*$this -> apiComm = array(
+                //app 唯一设备号
+                'only_token' => trim($this->I['only_token']),
+                //请求时间戳（秒）
+                'timestamp' => trim($this->I['timestamp']) ? trim($this->I['timestamp']) : time(),
+                //系统版本号
+                'sys_version' => trim($this->I['sys_version']),
+                //安卓imei
+                'imei' => trim($this->I['imei']),
+                //当前app版本号
+                'app_version' => trim($this->I['app_version']),
+                //用户身份令牌
+                'token' => trim($this->I['token']),
+                //签名
+                'sign' => trim($this->I['sign']),
+            );*/
+
+            //表字段状态和类型对应名称
+            $this -> fieldLable = C('MANAGETABLE');
+
+            //默认通过Action
+            $this -> passAction = C('MANAGEPASS');
+
+            //服务员登录信息
+            $this -> staffInfo = D('User', 'Api') -> getStaffByToken($this -> apiComm['token']);
+
+            //token验证
+            $this -> toKenVerify();
+
+            //签名验证
+            $this->signVerify();
+
+            //默认输出结果集合
+            $this -> result['request_time'] = $this -> apiComm['timestamp'];
+            $this -> result = array_merge($this -> result, $this -> status['1']) ;
+        }else{
+            $this -> ajaxReturn($this -> status['0']);
+        }
+    }
+    
+    /**
+     * sign签名验证
+     * @return json
+     */
+    private function signVerify(){
+        //免签名
+        $public_actions = array(
+            strtoupper('MemberupdateHeadImg') => ''
+        );
+
+        if( !array_key_exists(strtoupper(CONTROLLER_NAME.ACTION_NAME) , $public_actions) ){
+            $sign_result = make_sign($this->apiComm);
+            if( $sign_result && $sign_result != strtoupper($this->apiComm['sign']) ) {
+                $error_msg = $this->status['2'];
+                $error_msg['sign'] = $this->apiComm['sign'];
+                //$error_msg['sign_str'] = makeSignstr ();
+                $this->ajaxReturn( $error_msg );
+            }
+        }
+        
+    }
+    
+    /**
+     * token用户身份令牌验证
+     * @return json
+     */
+    private function toKenVerify(){
+        //无需验证token的方法
+        $public_actions = arrayKeyValChange( $this -> passAction, 'upper', 2);
+
+        //必要参数检测
+        if( array_key_exists(strtoupper(CONTROLLER_NAME . '_' . ACTION_NAME), $public_actions) ){
+            if( empty($this->apiComm['token']) ) $this->ajaxReturn( $this->status['100009'] );
+            if( !$this->staffInfo ) $this->ajaxReturn( $this->status['100007'] );
+
+            //账户状态检测
+            $this->accountCheck();
+
+            //店铺状态检测
+            //$this->shopCheck();
+        }
+    }
+    
+    /**
+     * 服务员账户检测
+     * @return json
+     */
+    private function accountCheck(){
+        $account_status = D('User' , 'Api') -> accountStatusCheck( $this->staffInfo['staff_id'] , $this->fieldLable['STAFF_INFO']['STAFF_STATUS']['NORMAL']['VALUE']);
+        if( !$account_status ) $this->ajaxReturn( $this->status['100005'] );
+    }
+    
+    /**
+     * 商家店铺检测
+     * @return json
+     */
+    private function shopCheck(){
+        $normal_status = array(
+            //正常
+            $this->fieldLable['SHOP_INFO']['SHOP_STATUS']['NORMAL']['VALUE'],
+            //下架
+            $this->fieldLable['SHOP_INFO']['SHOP_STATUS']['OFFLINE']['VALUE'],
+        );
+        $shop_status = D('Shop' , 'Logic')->shopStatusCheck( $this->staffInfo['shopid'] , $normal_status);
+        if( !$shop_status ) $this->ajaxReturn( $this->status['700000'] );
+    }
+    
+    /**
+     * 设置及更新公共配置
+     * @param string $key                    配置键名
+     * @param string|array|int $value        配置值
+     */
+    public function setApiComm($key = null , $value = null){
+        $this->apiComm[$key] = $value;
+    }
+    
+    /**
+     * 获取公共配置
+     * @param string $key               要获取的配置键名
+     * @return array|string
+     */
+    public function getApiComm($key = null){
+        $configVal = $this->apiComm;
+        if(!empty($key)){
+            $configVal = $this->apiComm[$key];
+        }
+        return $configVal;
+    }
+    
+    /**
+     * 通知数
+     * @param int $type         列表数据类型：1：待确认的订单数、2：待结账通知数、3：其他服务数
+     * @return array            数据列表
+     */
+    public function notice($type = 1){
+        $order      = Core()->logic->message->order()->getNotSureOrderList($this->staffInfo['uid']);
+        $closing    = Core()->logic->message->pay()->getPayNoticeList($this->staffInfo['uid']);
+        $other      = Core()->logic->message->mix()->getMixNoticeList($this->staffInfo['uid']);
+        
+        //统计当前服务员负责的待确认的订单数
+        $this->status['1']['orderCount'] = count($order);
+        //统计当前服务员负责的待结账通知数
+        $this->status['1']['closingCount'] = count($closing);
+        //统计当前服务员负责的其他服务数
+        $this->status['1']['otherCount'] = count($other);
+        
+        $result = array();
+        switch(intval($type)){
+            //待确认的订单
+            case 1:
+                $result = $order;
+                break;
+            //待结账通知
+            case 2:
+                $result = $closing;
+                break;
+            //其他服务
+            case 3:
+                $result = $other;
+                break;
+        }
+        return $result;
+    }
+    
+    /**
+     * 分页查询公共头部
+     * @return array        分页请求头部数据
+     */
+    public function pageQueryHead(){
+        return array(
+            //页数
+            'pageIndex'          => trim($this->I['pageIndex']) ? trim($this->I['pageIndex']) : 1,
+            //每页获取记录数
+            'pageCount'          => trim($this->I['pageCount']) ? trim($this->I['pageCount']) : 10,
+            //查询时间
+            'queryTime'          => trim($this->I['queryTime']) ? trim($this->I['queryType']) == 1 ? trim($this->I['queryTime']) : 0 : 0,
+            //查询类型  1:上拉翻页    2：下拉更新
+            'queryType'          => trim($this->I['queryType']) ? trim($this->I['queryType']) : 2
+        );
+    }
+    
+    /**
+     * 分页请求公共尾部 
+     * @param int $pageIndex        当前页数
+     * @param int $queryTime        最后一次查询时间
+     * @param array $result         查询到的结果集
+     * @return array
+     */
+    public function pageQueryFoot($pageIndex = 1 , $queryTime , $result){
+        $this->result                           = $this->status['1'];
+        //下一页页数
+        $this->result['nextPageIndex']          = intval($pageIndex + 1);
+        //最后请求时间
+        $this->result['queryTime']              = $queryTime ? $queryTime : time();
+        //数据结果集
+        $this->result['result']                 = $result ? $result : null;
+        $this->ajaxReturn($this->result);
+    }
+
+}
+?>

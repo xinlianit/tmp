@@ -1,0 +1,48 @@
+/**
+ * 商户信息维护
+ */
+define(function(require, exports, module){
+	return {
+		/**
+		 * 添加商户
+		 * @param string form_id		表单ID
+		 * @param string flag			提交标识；add:添加、edit:编辑
+		 */
+		saveShop: function(form_id, flag){
+			//表单验证参数
+			var validator_params = {
+					//验证字段
+					fields:{
+						//详细配置
+						hotel_name: {
+							rule: 'required',
+							msg: {
+								required: '请输入商户名称！',
+							}
+						},
+						hotel_type: {
+							rule: 'required',
+							msg: {
+								required: '请选择商户类型',
+							}
+						},
+						adver_number: {
+							rule: 'range[0~6]',
+						},
+					}
+					
+			};
+			
+			//提交参数
+			var request_data = {
+					data: {
+						flag: $.common.typeCheck(flag, 'undefined', 'add')
+					}
+			};
+			
+			//提交表单
+			$.common.formSubmit(form_id, validator_params, request_data);
+		},
+		
+	}
+});

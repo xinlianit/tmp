@@ -1,0 +1,201 @@
+<div class="main-container" id="main-container">
+	<div class="main-container-inner">
+		<div class="main-content0">
+			<div class="page-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+						<div class="row">
+							<div class="col-xs-12">
+
+								<div class="table-responsive">
+									<div class="table-search">
+										<form name="" action="" method="get">
+											<div class="form-group">
+												<div class="seach-item">
+													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">商户名称：</label>
+													<input type="text" name="hotel_name" value="{$_GET['hotel_name']}" placeholder="支持模糊查询" class="input-sm seach-input value">
+												</div>
+												<span class="input-group-btn search-btn">
+													<button type="submit" class="btn btn-purple btn-sm">
+														查询
+														<i class="icon-search icon-on-right bigger-110"></i>
+													</button>
+												</span>
+											</div>
+										</form>
+									</div>
+									<div class="table-search">
+										<div class="form-group">
+											<span class="input-group-btn search-btn">
+												<button event-name="addEditWiFi" dialog-title="WiFi服务新增" submit-title="添加" type="button" class="btn btn-sm btn-success">
+													新增WiFi信息
+													<i class="icon-plus smaller-75"></i>
+												</button>
+												<div class="separate-2"><i class="separate-flag"></i></div>
+												<button event-name="delete" table-name="list" url="{:U('Shopsetting/deleteWifi')}" message="确认要删选中的XX条WiFi信息？|删除后信息不可恢复！" type="button" class="btn btn-sm btn-default">
+													删除
+													<i class="icon-remove"></i>
+												</button>
+											</span>
+										</div>
+									</div>
+									<table table-id="list" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="center">
+													<label>
+														<input type="checkbox" class="ace" />
+														<span class="lbl"></span>
+													</label>
+												</th>
+												
+												<th>商户ID</th>
+												<th>商户名称</th>
+												<th>WiFi连接方式</th>
+												<th>WiFi账号</th>
+												<th>WiFi密码</th>
+												<th>二维码图片</th>
+												<th class="hidden-480">操作</th>
+											</tr>
+										</thead>
+
+										<tbody>
+										
+											<include file="Layout:notlist" />
+											<volist name="page.list" id="list">
+												<tr>
+													<td class="center">
+														<label>
+															<input type="checkbox" tag-name="ids" value="{$list.id}" class="ace" />
+															<span class="lbl"></span>
+														</label>
+													</td>
+													
+	
+													<td>{$list.hotel_id}</td>
+													<td>{$list.hotel_id|get_field="HotelInfo","hotel_name",array('id'=>###,'data_status'=>array('neq',99))|_default}</td>
+													<td>{$list.link_method|get_field_status="WIFI_SERVICE","LINK_METHOD",###,"NAME"|_default}</td>
+													<td>{$list.wifi_account|_default}</td>
+													<td>{$list.wifi_password|_default}</td>
+													<td>
+														<img src="{$list.qrcode_path|default_img='60_60'}" width="60" height="60" />
+													</td>
+													<td>
+														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+															<a class="green" event-name="addEditWiFi" url="{:U('Shopsetting/wifiInfo')}" params="id={$list.id}"  dialog-title="WiFi服务编辑" submit-title="保存" flag="edit" href="javascript:void(0);" title="编辑">
+																<i class="icon-pencil bigger-130"></i>
+															</a>
+	
+															<a class="red" event-name="delete" id-value="{$list.id}" url="{:U('Shopsetting/deleteWifi')}" message="确认要删除此WiFi信息？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
+																<i class="icon-trash bigger-130"></i>
+															</a>
+														</div>
+													</td>
+												</tr>
+											</volist>
+										</tbody>
+									</table>
+									<include file="Layout:page" />
+								</div>
+							</div>
+						</div>
+						
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.page-content -->
+		</div><!-- /.main-content -->
+		
+	</div><!-- /.main-container-inner -->
+	
+</div><!-- /.main-container -->
+
+
+<!-- 添加编辑 -->
+<div dialog-id="addEdit" class="hide">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="{:U('Shopsetting/addEditWifi')}" method="post">
+		<input name="id" type="hidden" value="0" />
+		<div tag-id="setup-1">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input name="hotel_id" type="hidden" value="0" />
+					<input type="text" name="hotel_name" disabled="disabled" placeholder="商户名称" class="col-xs-10 col-sm-9" >
+					<a href="javascript:void(0);" event-name="openSeach"><i class="icon-search hotet-sea-btn"></i></a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> WiFi连接方式：<span class="must">*</span></label>
+				<div class="col-sm-4">
+					<select event-name="change-type" tag-id="link-method" name="link_method" class="form-control">
+						<volist name=":get_field_status('WIFI_SERVICE','LINK_METHOD')" id="type">
+							<option value="{$type.VALUE}">{$type.NAME}</option>
+						</volist>
+					</select>
+				</div>
+			</div>
+			
+			<div tag-id="sns_type">
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> WiFi账号：<span class="must">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="wifi_account" placeholder="输入WiFi账号" class="col-xs-10 col-sm-9" style="width:42%;">
+					</div>
+				</div>
+			</div>
+			
+			<div tag-id="account_type">
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> WiFi密码：<span class="must">*</span></label>
+					<div class="col-sm-9">
+						<input type="text" name="wifi_password" placeholder="输入WiFi密码" class="col-xs-10 col-sm-9" style="width:42%;">
+					</div>
+				</div>
+			</div>
+			
+			<div tag-id="code_type" class="hide">
+				<div class="form-group">
+					<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 二维码图片：<span class="must">*</span></label>
+					<div class="col-sm-9">
+						<input type="file" name="qrcode_path" placeholder="上传二维码图片" class="col-xs-10 col-sm-9" style="width:42%;">
+					</div>
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</div>
+
+<!-- 搜索商户 -->
+<div dialog-id="seachShop" class="hide">
+	<div tag-id="setup-1">
+		<div class="form-group">
+			<div class="seach-item" style="width:78%;margin-top:15px;">
+				<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="height:30px;line-height:30px;width:25%!important;" for="form-field-1">商户名称：</label>
+				<input type="text" tag-id="hotel_name" name="hotel_name" placeholder="支持模糊查询" class="input-sm seach-input value" style="width:70%!important;">
+			</div>
+			<span class="input-group-btn search-btn" style="display:inline-block;">
+				<button event-name="seachShop" url="{:U('Shop/seach')}" class="btn btn-purple btn-sm">
+					搜索
+					<i class="icon-search icon-on-right bigger-110"></i>
+				</button>
+			</span>
+		</div>
+		<div class="form-group">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr class="tr-center">
+						<th colspan="2">商户名称</th>
+						<th>商户类型</th>
+					</tr>
+				</thead>
+
+				<tbody tag-id="shop-result">
+						<tr><td colspan="3" style="text-align:center;">暂无搜索结果！</td></tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+

@@ -381,6 +381,11 @@
 		    ];
 		    
 			seajs.use( init ,function(common,layout){
+				//初始换
+				$.common.initialize({
+					city_url: '<?php echo U("Public/getCity");?>',
+				});
+				
 				//系统时间
 				layout.getSystemTime();
 				

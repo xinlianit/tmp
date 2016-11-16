@@ -1,0 +1,806 @@
+<?php
+/**
+ * BaseinfoController.class.php - 系统管理-基础信息管理
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM Zhaoxizhan(441534536@qq.com)
+ * @copyright 2016-11-08 10:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+
+class BaseinfoController extends CommonController {
+    /**
+     * 商户类型列表
+     */
+    public function shopType(){
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        //搜索条件
+        if(!empty($search_key)){
+            $_map['type_name'] = array('like','%'.$search_key.'%');
+        }else{
+            $_map = '';
+        }
+        
+        $page = D('Common' , 'Logic')->page(array('name'=>'TypeInfo','where'=>$_map), I('get.p',1));
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+
+        /**
+     * 添加商户类型（AJAX）
+     */
+    public function addType(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //数据组装
+        $data['type_name']      = I('post.type_name');      //类型名称        
+        $data['type_class']     = I('post.type_class');     //类型分类
+        $data['type_desc']      = I('post.type_desc','');   //类型描述
+        
+        //参数校验
+        if(!$data['type_name'] || !$data['type_class']){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('TypeInfo')->add($data);
+        if($rs){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 修改商户类型（AJAX）
+     */
+    public function editType(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //要编辑的类型ID
+        $id = I('post.type_id');
+        //数据组装
+        $data['type_name']      = I('post.type_name');      //类型名称        
+        $data['type_class']     = I('post.type_class');     //类型分类
+        $data['type_desc']      = I('post.type_desc','');   //类型描述
+       
+        //参数校验
+        if(!$data['type_name'] || !$data['type_class'] || !$id){
+            $this->ajaxReturnErr();
+        }
+        //过滤条件
+        $_map['id'] = $id;
+        
+        $rs = D('TypeInfo')->where($_map)->save($data);
+    
+        if($rs !== false){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 删除商家类型
+     */
+    public function delType(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+        
+        $id = I('post.type_id'); //要编辑的类型ID
+
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //过滤条件
+        $_map['id'] = array('in',$id_arr);
+        //删除
+        $rs = D('TypeInfo')->where($_map)->delete();
+    
+        if($rs !== false){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+
+    /**
+     * 获取商户类型详情
+     */
+    public function getTypeInfo(){
+        
+        //非法请求
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //类型ID
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('TypeInfo')->getInfo($id);
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        $data['info'] = $rs;
+        $this->ajaxReturnSuccess($data);
+    }
+    
+    /**
+     * 行业分类标签
+     */
+    public function tradeCate(){
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        //搜索条件
+        if(!empty($search_key)){
+            $_map['category_name'] = array('like','%'.$search_key.'%');
+        }else{
+            $_map = '';
+        }
+        
+        $page = D('Common' , 'Logic')->page(array('name'=>'CategoryInfo','where'=>$_map), I('get.p',1));
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加行业分类（AJAX）
+     */
+    public function addTrade(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //数据组装
+        $data['category_name']      = I('post.category_name');      //类型名称        
+        $data['category_desc']     = I('post.category_desc');     //类型分类
+        
+        //参数校验
+        if(!$data['category_name'] ){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('CategoryInfo')->add($data);
+        if($rs){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 删除行业分类
+     */
+    public function delTrade(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+        
+        $id = I('post.trade_id'); //要编辑的类型ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //过滤条件
+        $_map['id'] = array('in',$id_arr);
+        //删除
+        $rs = D('CategoryInfo')->where($_map)->delete();
+    
+        if($rs !== false){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 获取商户类型详情
+     */
+    public function getTradeInfo(){
+        
+        //非法请求
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //类型ID
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('CategoryInfo')->getInfo($id);
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        $data['info'] = $rs;
+        $this->ajaxReturnSuccess($data);
+    }
+    
+    /**
+     * 修改分类（AJAX）
+     */
+    public function editTrade(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //要编辑的类型ID
+        $id = I('post.trade_id');
+        //数据组装
+        $data['category_name']      = I('post.category_name');      //分类名称    
+        $data['category_desc']      = I('post.category_desc','');   //分类描述
+       
+        //参数校验
+        if(!$data['category_name']  || !$id){
+            $this->ajaxReturnErr();
+        }
+        //过滤条件
+        $_map['id'] = $id;
+        
+        $rs = D('CategoryInfo')->where($_map)->save($data);
+    
+        if($rs !== false){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 客户服务信息
+     */
+    public function iconList(){
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        //搜索条件
+        if(!empty($search_key)){
+            $_map['icon_name'] = array('like','%'.$search_key.'%');
+        }else{
+            $_map = '';
+        }
+        
+        $page = D('Common' , 'Logic')->page(array('name'=>'ServiceIcon','where'=>$_map), I('get.p',1));
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加图标（AJAX）
+     */
+    public function addIcon(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //数据组装
+        $data['icon_name']     = I('post.icon_name');      //图标名称        
+        $data['icon_category'] = I('post.icon_category');  //图标分类
+        $data['icon_desc']     = I('post.icon_desc');      //图标描述
+        $data['data_status'] = 1;//状态信息,1:有效,2:无效,99:删除
+        
+        $icon_md5 = I('post.icon_md5');     //资源md5
+        $res_info = D('Resource')->getResourceByMd5($icon_md5);
+        //没有找到对应资源
+        if(!$res_info){
+            $this->ajaxReturnErr();
+        }
+        
+        $data['res_id']         = $res_info['id'];          //资源ID
+        $data['icon_path']      = $res_info['res_path'];    //资源路径
+        
+        //参数校验
+        if(!$data['icon_name'] || !$data['icon_path']){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('ServiceIcon')->add($data);
+        if($rs){
+            $data['id']         = $rs;          //ID
+            D('Sys','Cache')->getIconInfo($rs,true, $data);
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 删除图标
+     */
+    public function delIcon(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+        
+        $id = I('post.icon_id'); //要编辑的类型ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        
+        //过滤条件
+        $_map['id'] = array('in',$id_arr);
+        //删除
+        $rs = D('ServiceIcon')->where($_map)->delete();
+    
+        if($rs !== false){
+            //清空缓存
+            foreach ($id_arr as $val) {
+                D('Sys','Cache')->getIconInfo($val,true);
+            }
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 获取图标详情
+     */
+    public function getIconInfo(){
+        
+        //非法请求
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //类型ID
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('Sys','Cache')->getIconInfo($id);
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        $data['info'] = $rs;
+        $this->ajaxReturnSuccess($data);
+    }
+    
+    /**
+     * 修改图标（AJAX）
+     */
+    public function editIcon(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //要编辑的类型ID
+        $id = I('post.icon_id');
+        
+        //数据组装
+        $data['icon_name']     = I('post.icon_name');      //图标名称        
+        $data['icon_category'] = I('post.icon_category');  //图标分类
+        $data['icon_desc']     = I('post.icon_desc');      //图标描述
+        
+        $icon_md5 = I('post.icon_md5');     //资源md5
+
+        if($icon_md5){
+            $res_info = D('Resource')->getResourceByMd5($icon_md5);
+            
+            //没有找到对应资源
+            if(!$res_info){
+                $this->ajaxReturnErr();
+            }
+
+            $data['res_id']         = $res_info['id'];          //资源ID
+            $data['icon_path']      = $res_info['res_path'];    //资源路径
+        }
+
+        //参数校验
+        if(!$data['icon_name']  || !$id || ($icon_md5 && !$data['icon_path'] )){            
+            $this->ajaxReturnErr();
+        }
+        //过滤条件
+        $_map['id'] = $id;
+        //更新
+        $rs = D('ServiceIcon')->where($_map)->save($data);
+
+        if($rs !== false){
+            $_old_cache = D('Sys','Cache')->getIconInfo($id);
+            $_new_cache = array_merge($_old_cache,$data);
+            D('Sys','Cache')->getIconInfo($id,true,$_new_cache);
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    
+    /**
+     * 客房服务信息
+     */
+    public function roomService(){
+      
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        //搜索条件
+        if(!empty($search_key)){
+            $_map['service_name'] = array('like','%'.$search_key.'%');
+        }
+        $_map['data_status'] = 1;
+        
+        //获取分页数据
+        $page = D('Common' , 'Logic')->page(array('name'=>'ServiceInfo','where'=>$_map), I('get.p',1));
+        
+        //遍历获取图标详情
+        foreach ($page['list'] as &$val) {            
+            $_icon_path = D('Sys','Cache')->getIconInfo($val['icon_id']);            
+            $val['icon_path'] = $_icon_path?$_icon_path['icon_path']:'';
+        }
+
+        $this->assign('page',$page);
+        
+        //获取图标列表 icon_list
+        $icon_list = D('ServiceIcon')->select();
+        $this->assign('icon_list',$icon_list);
+        $this->display();
+    }
+    
+    /**
+     * 添加客房服务（AJAX）
+     */
+    public function addRoomService(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+ 
+        //数据组装
+        $data['icon_id']            = I('post.icon_id');          //图标ID        
+        $data['service_type']       = I('post.service_type');     //服务类型(消息类型) 0:未知服务,1:发送请求,2:呼叫电话
+        $data['service_name']       = I('post.service_name');     //服务名称
+        $data['service_info']       = I('post.service_info');     //服务描述
+        
+        /**
+         * 待删除
+         */
+        $data['service_code']       = '-';
+        
+        //参数校验
+        if(!$data['icon_id'] || !$data['service_type'] || !$data['service_name']){
+            $this->ajaxReturnErr();
+        }
+       
+        $rs = D('ServiceInfo')->add($data);
+        if($rs){
+            //增加二级服务
+            if(empty(I('post.service_two'))){
+                $this->ajaxReturnSuccess();
+            }            
+            //二级服务添加
+            foreach (I('post.service_two') as $v){
+                $data_two[] = array('service_id'=>$rs,'server_name'=>$v);
+            }
+            
+            M('ServiceTwo')->addAll($data_two);
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 删除客房服务
+     */
+    public function delRoomService(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+        
+        $id = I('post.service_id'); //要编辑的ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //遍历删除服务信息
+        foreach ($id_arr as $val){
+            $rs = D('ServiceInfo','Logic')->delServiceById($val);
+            if($rs === false){
+                $this->ajaxReturnErr();
+            }
+        }
+        $this->ajaxReturnSuccess();        
+    }
+    
+    /**
+     * 修改客房服务（AJAX）
+     */
+    public function editRoomService(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+       
+        //要编辑的类型ID
+        $id = I('post.service_id');
+        //数据组装
+        
+        $data['icon_id']            = I('post.icon_id');          //图标ID        
+        $data['service_type']       = I('post.service_type');     //服务类型(消息类型) 0:未知服务,1:发送请求,2:呼叫电话
+        $data['service_name']       = I('post.service_name');     //服务名称
+        $data['service_info']       = I('post.service_info');     //服务描述
+              
+        //参数校验
+        if(!$data['icon_id'] || !$data['service_type'] || !$data['service_name'] || !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        //过滤条件
+        $_map['id'] = $id;
+        //更新主服务
+        $rs = D('ServiceInfo')->where($_map)->save($data);
+        if($rs === false){
+            $this->ajaxReturnErr();            
+        }
+        
+        //要修改的二级分类
+        $service_two_edit = I('post.service_two_edit');
+        //修改二级分类
+        foreach ($service_two_edit as $key=>$val){
+            $_map_two_up['id'] = substr($key, 4);
+            $_map_two_up['service_id'] = $id;
+            $_data_two_up['server_name'] = $val;
+            $rs_two_up = M('ServiceTwo')->where($_map_two_up)->save($_data_two_up);
+            if($rs_two_up === false){
+                $this->ajaxReturnErr();
+            }
+        }
+        
+        //获取现有二级分类
+        $_map_two['service_id'] = $id;
+        $rs_two_list = M('ServiceTwo')->where($_map_two)->select();
+        
+        //遍历获取要删除的二级分类ID
+        foreach ($rs_two_list as $val) {
+            //当前分类不存在于前端传过来的 二级分类列表
+            if(!array_key_exists('key_'.$val['id'],$service_two_edit)){
+                $del_two_id[] = $val['id'];
+            }
+        }
+        
+        //删除二级分类
+        if(!empty($del_two_id)){
+            $_map_two_del['id'] = array('in',$del_two_id);
+            $_map_two_del['service_id'] = $id;
+            $rs_two_del = M('ServiceTwo')->where($_map_two_del)->delete();
+            if($rs_two_del === false){
+                $this->ajaxReturnErr();
+            }
+        }
+                    
+        //二级服务添加
+        foreach (I('post.service_two') as $v){
+            $data_two[] = array('service_id'=>$id,'server_name'=>$v);
+        }
+        //增加二级服务
+        if(!empty(I('post.service_two'))){
+            $rs_two_add = M('service_two')->addAll($data_two);
+            if($rs_two_add === false){
+                $this->ajaxReturnErr();
+            }
+        }        
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 获取客房服务详情
+     */
+    public function getRoomServiceInfo(){
+        
+        //非法请求
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //服务ID
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('ServiceInfo')->getInfo($id);
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        $data['info'] = $rs;
+        
+        //获取当前图标路径
+        $icon_info = D('Sys','Cache')->getIconInfo($rs['icon_id']);        
+        $data['info']['icon_path'] = $icon_info['icon_path']?C('FASTDFS_URL').$icon_info['icon_path']:'';
+        
+        //获取当前服务下的反有二级服务
+        $_map['service_id'] = $id;
+        $service_two = M('ServiceTwo')->where($_map)->select();
+        if($service_two){
+            $data['info']['service_two'] = $service_two;
+        }else{
+            $data['info']['service_two'] = '';
+        }
+        
+        $this->ajaxReturnSuccess($data);
+    }
+    
+    /**
+     * 行政区域
+     */
+    public function area(){
+        $area_list = D('CityInfo','Logic')->getAreaAll();
+
+        //dump($_area);
+        $this->assign('area', $area_list);
+        $this->display();
+    }
+    
+    /**
+     * 商圈信息维护
+     */
+    public function mart(){
+        //获取全总地区
+        $area_list = D('CityInfo','Logic')->getAreaAllWithMart();
+
+        //dump($_area);
+        $this->assign('area', $area_list);
+        $this->display();
+    }
+    
+    /**
+     * 添加商圈
+     */
+    public function addMart(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //数据组装
+        $data['city_id']     = I('post.region_id');      //地区ID        
+        $data['mart_name']   = I('post.mart_name');  //商圈名称
+        
+ 
+        //参数校验
+        if(!$data['city_id'] || !is_array($data['mart_name'])){
+            $this->ajaxReturnErr();
+        }
+        
+        $_time = time();
+        //循环遍历提交的商圈名
+        foreach ($data['mart_name'] as $val) {
+            if(empty($val)){
+                continue;
+            }
+            $datalist[] = array('city_id'=>$data['city_id'],'area_name'=>$val,'create_time'=>$_time,'update_time'=>$_time);
+        }
+        
+        //空参数
+        if(empty($datalist)){
+            $this->ajaxReturnErr();
+        }
+        
+        $rs = D('TradingArea')->addAll($datalist);
+        if($rs){
+            $this->ajaxReturnSuccess();
+        }
+        $this->ajaxReturnErr();
+    }
+    
+    /**
+     * 编辑地区商圈
+     */
+    public function editMart(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //数据组装
+        $area_id    = I('post.cid');           //地区ID        
+        $data['mart_name_edit']   = I('post.mart_name_edit');      //商圈名称
+ 
+        //参数校验
+        if(!$area_id){
+            $this->ajaxReturnErr();
+        }
+        
+        $_time = time();
+        
+        //1.获取现有商圈
+        $_map_two['city_id'] = $area_id;
+        $_map_two['data_status'] = 1;
+        $rs_list = M('TradingArea')->where($_map_two)->select();
+        
+        //2.要修改的商圈
+        $mart_name_edit = I('post.mart_name_edit');
+        //修改商圈
+        foreach ($mart_name_edit as $key=>$val){
+            $_map_up['id'] = substr($key, 4);
+            $_map_up['city_id'] = $area_id;
+            $_data_up['area_name'] = $val;
+            $_data_up['update_time'] = $_time;
+            $rs_two_up = M('TradingArea')->where($_map_up)->save($_data_up);
+            if($rs_two_up === false){
+                $this->ajaxReturnErr();
+            }
+        }
+        
+        //3.遍历获取要删除的商圈ID
+        foreach ($rs_list as $val) {
+            //当前分类不存在于前端传过来的 二级分类列表
+            if(!array_key_exists('key_'.$val['id'],$mart_name_edit)){
+                $del_id[] = $val['id'];
+            }
+        }
+        
+        //删除商圈
+        if(!empty($del_id)){
+            $_map_del['id'] = array('in',$del_id);
+            $_map_del['city_id'] = $area_id;
+            $_data_save['data_status'] = 99;
+            $rs_del = M('TradingArea')->where($_map_del)->save($_data_save);
+            if($rs_del === false){
+                $this->ajaxReturnErr();
+            }
+        }
+                    
+        //商圈添加
+        foreach (I('post.mart_name') as $v){
+            $data_add[] = array('city_id'=>$area_id,'area_name'=>$v,'create_time'=>$_time,'update_time'=>$_time);
+        }
+        //增加二级服务
+        if(!empty(I('post.mart_name'))){
+            $rs_add = M('TradingArea')->addAll($data_add);
+            if($rs_add === false){
+                $this->ajaxReturnErr();
+            }
+        }        
+        
+        $this->ajaxReturnSuccess();        
+    }
+    
+    /**
+     * 获取城市详情(包含商圈)
+     */
+    public function getCityInfo(){
+        
+        //非法请求
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //服务ID
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        //获取地区详情
+        $rs = D('CityInfo','Logic')->getInfoWithMart($id);
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        $data['info'] = $rs;
+        
+        $this->ajaxReturnSuccess($data);
+    }
+    
+    
+}

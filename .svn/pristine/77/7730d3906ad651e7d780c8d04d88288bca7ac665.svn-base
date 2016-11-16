@@ -1,0 +1,655 @@
+/**
+ * 系统基础信息维护
+ */
+
+seajs.use(['webupload'], function (webupload) {
+    $(function () {
+        //======================================================================
+        //地区管理===============================================================
+        //======================================================================
+        
+        $(".tree_box .spread").on('click',function(){
+            if($(this).parent().next().css('display') === 'none'){
+                $(this).parent().parent().find('.tree_box_2').removeClass('hide'); 
+                $(this).removeClass('icon-plus-sign').addClass('icon-minus-sign');
+            }else{
+                $(this).parent().parent().find('.tree_box_2').addClass('hide');
+                $(this).removeClass('icon-minus-sign').addClass('icon-plus-sign');
+            }
+        });
+        $(".tree_box .spread2").on('click',function(){
+            if($(this).parent().parent().next().css('display') === 'none'){
+                $(this).parent().parent().next().removeClass('hide');
+                $(this).removeClass('icon-plus-sign').addClass('icon-minus-sign');
+            }else{
+                $(this).parent().parent().next().addClass('hide');
+                $(this).removeClass('icon-minus-sign').addClass('icon-plus-sign');
+            }
+        });
+        
+        //======================================================================
+        //商圈管理==============================================================
+        //======================================================================
+        //搜索
+        $('#mart-search-button').on('click', function () {
+            var search_key = $("#search-key").val();
+            var search_url = $(this).attr('surl') + "?search_key=" + search_key;
+            window.location.href = search_url
+        });
+          
+        //动态添加商圈
+        $(".mart_add").on('click',function(){
+            var _this_clone_obj = $(this).parent().parent().prev();               
+            var html = '<div class="form-group" mart_box="two">' +
+                        '<label class="col-sm-2 control-label no-padding-right">商圈名称：</label>' +
+                        '<div class="col-sm-10">'+
+                        '<input type="text" name="mart_name[]"   class="col-xs-10">&nbsp;&nbsp;<a class="mart_close" href="javascript:void(0)"><i class="icon-minus-sign"></i></a>'+
+                        '</div>'+            
+                        '</div>';
+             $(html).insertAfter(_this_clone_obj);
+        });
+        //动态删除添加商圈
+        $("body").on('click','.mart_close',function(){
+            $(this).parent().parent().remove();
+        });
+
+
+        //添加商圈
+        $('[event-name="add-mart"]').on('click', function () {
+            //初始换 地区组件            
+            $.common.cityComponent('city-component1');
+            
+            $("div[dialog-id=add-mart-box] div[mart_box=two]").remove();
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-mart-box',
+                height: 450,
+                width: 650,
+                title: '新增商圈',
+                confirm_function: function () {
+                    //表单验证参数
+                    var validator_params = {
+                        //验证字段
+                        fields: {
+                            //详细配置
+                            service_name: {
+                                rule: 'required',
+                                msg: {
+                                    required: "请输入服务名！",
+                                },
+                            },
+                        }
+                    };
+
+                    //提交表单
+                    $.common.formSubmit('add-mart-form', validator_params);
+
+                },
+
+            });
+        });
+        
+        //编辑商圈
+        $('[event-name="edit-mart"]').on('click', function () {
+            var mart_id = $(this).attr('event-id');
+            $("div[dialog-id=edit-mart-box] div[mart_box=two]").remove();                                
+            $.ajax({
+                type: "POST",
+                url: "/Baseinfo/getCityInfo",
+                async: false,
+                data: "id=" + mart_id,
+                success: function (rs_info) {
+                    var _area_obj = $("div[dialog-id=edit-mart-box] div.city-component");
+                    _area_obj.attr('default-province',rs_info.info.level_1_id);
+                    _area_obj.attr('default-city',rs_info.info.level_2_id);
+                    _area_obj.attr('default-region',rs_info.info.level_3_id);
+                    
+                    //初始换 地区组件            
+                    $.common.cityComponent('city-component2');            
+                    $("div[dialog-id=edit-mart-box] input[name=cid]").val(mart_id);
+                    
+                    if(rs_info.info.mart !== ''){                        
+                        //开始遍历
+                        $.each(rs_info.info.mart,function(i,n){                     
+                            var html = '<div class="form-group" mart_box="two">' +
+                                        '<label class="col-sm-2 control-label no-padding-right">商圈名称：</label>' +
+                                        '<div class="col-sm-10">'+                                        
+                                        '<input type="text" name="mart_name_edit[key_'+n.id+']"  value="'+n.area_name+'" class="col-xs-10">&nbsp;&nbsp;'+
+                                        '<a class="mart_close" href="javascript:void(0)"><i class="icon-minus-sign"></i></a>'+
+                                        '</div>'+            
+                                        '</div>';
+                             $(html).insertAfter($('.mart_add').parent().parent().prev());
+                        });                        
+                    }
+                     
+                }
+            });
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-mart-box',
+                height: 350,
+                width: 650,
+                title: '编辑商圈',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-mart-form'
+                    });
+                },
+            });
+        });
+        //=========================================================================
+        //商户类型标签==============================================================
+        //=========================================================================   
+        //搜索
+        $('#shoptype-search-button').on('click', function () {
+            var search_key = $("#search-key").val();
+            var search_url = $(this).attr('surl') + "?search_key=" + search_key;
+            window.location.href = search_url
+        })
+
+        //添加商户类型
+        $('[event-name="add-shop-type"]').on('click', function () {
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-shop-type-box',
+                height: 320,
+                width: 600,
+                title: '新增商户类型',
+                confirm_function: function () {
+                    //表单验证参数
+                    var validator_params = {
+                        //验证字段
+                        fields: {
+                            //详细配置
+                            type_name: {
+                                rule: 'required',
+                                msg: {
+                                    required: "请输入类型名！",
+                                },
+                            },
+                        }
+
+                    };
+
+                    //提交表单
+                    $.common.formSubmit('add-shop-type-form', validator_params);
+
+                },
+
+            });
+        });
+
+        //删除商户类型-单个
+        $('[event-name="del-shop-type"]').on('click', function () {
+            //要删除的ID
+            var type_id = $(this).attr('event-id');
+            $("div[dialog-id=del-shop-type-box] input[name=type_id]").val(type_id);
+            //打开窗口
+            $.common.openWindow({
+                id: 'del-shop-type-box',
+                height: 300,
+                width: 600,
+                title: '删除商户类型',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'del-shop-type-form'});
+                },
+            });
+        });
+
+        //删除商户类型-多个
+        $('[event-name="dels-shop-type"]').on('click', function () {
+            //要删除的ID
+            var type_id = $(this).attr('event-id');
+            var chk_value = [];
+            $("input[name=type_item]:checked").each(function () {
+                chk_value.push($(this).val());
+            });
+            $("div[dialog-id=dels-shop-type-box] input[name=type_id]").val(chk_value);
+            //打开窗口
+            $.common.openWindow({
+                id: 'dels-shop-type-box',
+                height: 300,
+                width: 600,
+                title: '批量删除商户类型',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'dels-shop-type-form'});
+                },
+            });
+        });
+
+        //编辑商户类型
+        $('[event-name="edit-shop-type"]').on('click', function () {
+            var type_id = $(this).attr('event-id');
+            $.ajax({
+                type: "POST",
+                url: "/Baseinfo/getTypeInfo",
+                async: false,
+                data: "id=" + type_id,
+                success: function (rs_info) {
+                    //console.log(rs_info.info.type_class);
+                    $("#edit-shop-type-box input[name=type_name]").val(rs_info.info.type_name);
+                    $("#edit-shop-type-box textarea[name=type_desc]").val(rs_info.info.type_desc);
+                    $("#edit-shop-type-box select[name=type_class]").val(rs_info.info.type_class);
+                    $("#edit-shop-type-box input[name=type_id]").val(type_id);
+                }
+            });
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-shop-type-box',
+                height: 300,
+                width: 600,
+                title: '编辑商户类型',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-shop-type-form'
+                    });
+                },
+            });
+        });
+
+
+        //=========================================================================
+        //行业分类标签==============================================================
+        //=========================================================================   
+        //搜索
+        $('#trade-search-button').on('click', function () {
+            var search_key = $("#search-key").val();
+            var search_url = $(this).attr('surl') + "?search_key=" + search_key;
+            window.location.href = search_url
+        })
+
+        //添加行业分类
+        $('[event-name="add-trade"]').on('click', function () {
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-trade-box',
+                height: 260,
+                width: 600,
+                title: '新增行业分类',
+                confirm_function: function () {
+                    //表单验证参数
+                    var validator_params = {
+                        //验证字段
+                        fields: {
+                            //详细配置
+                            category_name: {
+                                rule: 'required',
+                                msg: {
+                                    required: "请输入分类名！",
+                                },
+                            },
+                        }
+
+                    };
+
+                    //提交表单
+                    $.common.formSubmit('add-trade-form', validator_params);
+
+                },
+
+            });
+        });
+
+        //删除商户类型-单个
+        $('[event-name="del-trade"]').on('click', function () {
+            //要删除的ID
+            var type_id = $(this).attr('event-id');
+
+            $("div[dialog-id=del-trade-box] input[name=trade_id]").val(type_id);
+            //打开窗口
+            $.common.openWindow({
+                id: 'del-trade-box',
+                height: 300,
+                width: 600,
+                title: '删除行业分类',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'del-trade-form'});
+                },
+            });
+        });
+
+        $('[event-name="dels-trade"]').on('click', function () {
+            //要删除的ID
+            var type_id = $(this).attr('event-id');
+            var chk_value = [];
+            $("input[name=type_item]:checked").each(function () {
+                chk_value.push($(this).val());
+            });
+            $("div[dialog-id=dels-trade-box] input[name=trade_id]").val(chk_value);
+            //打开窗口
+            $.common.openWindow({
+                id: 'dels-trade-box',
+                height: 300,
+                width: 600,
+                title: '批量删除行业分类',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'dels-trade-form'});
+                },
+            });
+        });
+
+        //编辑商户类型
+        $('[event-name="edit-trade"]').on('click', function () {
+            var trade_id = $(this).attr('event-id');
+            $.ajax({
+                type: "POST",
+                url: "/Baseinfo/getTradeInfo",
+                async: false,
+                data: "id=" + trade_id,
+                success: function (rs_info) {
+                    $("#edit-trade-box input[name=category_name]").val(rs_info.info.category_name);
+                    $("#edit-trade-box textarea[name=category_desc]").val(rs_info.info.category_desc);
+                    $("#edit-trade-box input[name=trade_id]").val(trade_id);
+                }
+            });
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-trade-box',
+                height: 300,
+                width: 600,
+                title: '编辑商户类型',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-trade-form'
+                    });
+                },
+            });
+        });
+
+
+
+        //=========================================================================
+        //图标管理   ==============================================================
+        //=========================================================================   
+        //搜索
+        $('#icon-search-button').on('click', function () {
+            var search_key = $("#search-key").val();
+            var search_url = $(this).attr('surl') + "?search_key=" + search_key;
+            window.location.href = search_url
+        })
+
+        //添加图标
+        $('[event-name="add-icon"]').on('click', function () {
+            $('input[name=icon_md5]').val('');
+            //初始化上传
+            webupload.initialize({
+                    upload_url: '/Public/doUpload',
+                    preview_url: 'http://www.baidu.com/pre',
+                    multiple_val:false,
+                    extensions_val:'jpg,jpeg,png,rar,zip',
+                    md5_input:'icon_md5',
+                    uploader_box:'uploader1',
+                    filePicker:'filePicker1'
+            });
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-icon-box',
+                height: 550,
+                width: 600,
+                title: '新增图标',
+                confirm_function: function () {
+                    //表单验证参数
+                    var validator_params = {
+                        //验证字段
+                        fields: {
+                            //详细配置
+                            category_name: {
+                                rule: 'required',
+                                msg: {
+                                    required: "请输入图标名！",
+                                },
+                            },
+                        }
+
+                    };
+
+                    //提交表单
+                    $.common.formSubmit('add-icon-form', validator_params);
+
+                },
+
+            });
+        });
+
+        //删除图标-单个
+        $('[event-name="del-icon"]').on('click', function () {
+            //要删除的ID
+            var icon_id = $(this).attr('event-id');
+
+            $("div[dialog-id=del-icon-box] input[name=icon_id]").val(icon_id);
+            //打开窗口
+            $.common.openWindow({
+                id: 'del-icon-box',
+                height: 300,
+                width: 600,
+                title: '删除图标',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'del-icon-form'});
+                },
+            });
+        });
+
+        //删除图标-多个
+        $('[event-name="dels-icon"]').on('click', function () {
+            //要删除的ID
+            var icon_id = $(this).attr('event-id');
+            var chk_value = [];
+            $("input[name=icon_item]:checked").each(function () {
+                chk_value.push($(this).val());
+            });
+            $("div[dialog-id=dels-icon-box] input[name=icon_id]").val(chk_value);
+            //打开窗口
+            $.common.openWindow({
+                id: 'dels-icon-box',
+                height: 300,
+                width: 600,
+                title: '批量删除图标',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'dels-icon-form'});
+                },
+            });
+        });
+
+        //编辑商户类型
+        $('[event-name="edit-icon"]').on('click', function () {
+            $('input[name=icon_md5]').val('');
+            //初始化上传
+            webupload.initialize({
+                    upload_url: '/Public/doUpload',
+                    preview_url: 'http://www.baidu.com/pre',
+                    multiple_val:false,
+                    extensions_val:'jpg,jpeg,png,rar,zip',
+                    md5_input:'icon_md5',
+                    uploader_box:'uploader2',
+                    filePicker:'filePicker2',
+            });
+            var icon_id = $(this).attr('event-id');
+            $.ajax({
+                type: "POST",
+                url: "/Baseinfo/getIconInfo",
+                async: false,
+                data: "id=" + icon_id,
+                success: function (rs_info) {
+                    $("div[dialog-id=edit-icon-box] input[name=icon_name]").val(rs_info.info.icon_name);
+                    $("div[dialog-id=edit-icon-box] input[name=icon_path]").val(rs_info.info.icon_path);
+                    $("div[dialog-id=edit-icon-box] textarea[name=icon_desc]").val(rs_info.info.icon_desc);
+                    $("div[dialog-id=edit-icon-box] select[name=icon_category]").val(rs_info.info.icon_category);
+                    $("div[dialog-id=edit-icon-box] input[name=icon_id]").val(icon_id);
+                    $("#has_img").attr('src',$("#has_img").attr('src')+rs_info.info.icon_path);
+                }
+            });
+            
+            
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-icon-box',
+                height: 550,
+                width: 600,
+                title: '编辑商户类型',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-icon-form'
+                    });
+                },
+            });
+        });
+        
+        
+        //=========================================================================
+        //客房服务管理==============================================================
+        //=========================================================================   
+        //搜索
+        $('#service-search-button').on('click', function () {
+            var search_key = $("#search-key").val();
+            var search_url = $(this).attr('surl') + "?search_key=" + search_key;
+            window.location.href = search_url
+        });
+        //动太选择图标显示
+        $("select[name=icon_id]").change( function() {
+            var icon_path = $(this).find('option:selected').attr('icon_path');
+            $(this).parent().next().find('img').attr('src',icon_path);
+        });
+        
+        //动态添加二级服务
+        $(".service_two_add").on('click',function(){
+            var _this_clone_obj = $(this).parent().parent().prev();               
+            var html = '<div class="form-group" service_box="two">' +
+                        '<label class="col-sm-3 control-label no-padding-right">二级服务：</label>' +
+                        '<div class="col-sm-9">'+
+                        '<input type="text" name="service_two[]"   class="col-xs-10">&nbsp;&nbsp;<a class="service_two_close" href="javascript:void(0)"><i class="icon-remove bigger-110"></i></a>'+
+                        '</div>'+            
+                        '</div>';
+             $(html).insertAfter(_this_clone_obj);
+        });
+        //动态删除二级服务
+        $("body").on('click','.service_two_close',function(){
+            $(this).parent().parent().remove();
+        });
+
+        //添加客户服务
+        $('[event-name="add-service"]').on('click', function () {
+            $("div[dialog-id=add-service-box] div[service_box=two]").remove();
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-service-box',
+                height: 450,
+                width: 600,
+                title: '新增服务',
+                confirm_function: function () {
+                    //表单验证参数
+                    var validator_params = {
+                        //验证字段
+                        fields: {
+                            //详细配置
+                            service_name: {
+                                rule: 'required',
+                                msg: {
+                                    required: "请输入服务名！",
+                                },
+                            },
+                        }
+
+                    };
+
+                    //提交表单
+                    $.common.formSubmit('add-service-form', validator_params);
+
+                },
+
+            });
+        });
+
+        //删除服务-单个
+        $('[event-name="del-service"]').on('click', function () {
+            //要删除的ID
+            var service_id = $(this).attr('event-id');
+
+            $("div[dialog-id=del-service-box] input[name=service_id]").val(service_id);
+            //打开窗口
+            $.common.openWindow({
+                id: 'del-service-box',
+                height: 300,
+                width: 600,
+                title: '删除单条服务',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'del-service-form'});
+                },
+            });
+        });
+
+        //删除服务-多个
+        $('[event-name="dels-service"]').on('click', function () {
+            //要删除的ID
+            var service_id = $(this).attr('event-id');
+            var chk_value = [];
+            $("input[name=service_item]:checked").each(function () {
+                chk_value.push($(this).val());
+            });
+            $("div[dialog-id=dels-service-box] input[name=service_id]").val(chk_value);
+            //打开窗口
+            $.common.openWindow({
+                id: 'dels-service-box',
+                height: 300,
+                width: 600,
+                title: '批量删除服务',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'dels-service-form'});
+                },
+            });
+        });
+
+        //编辑客户服务
+        $('[event-name="edit-service"]').on('click', function () {
+            var service_id = $(this).attr('event-id');
+            $("div[dialog-id=edit-service-box] div[service_box=two]").remove();
+            $.ajax({
+                type: "POST",
+                url: "/Baseinfo/getRoomServiceInfo",
+                async: false,
+                data: "id=" + service_id,
+                success: function (rs_info) {
+                    $("div[dialog-id=edit-service-box] input[name=service_name]").val(rs_info.info.service_name);
+                    $("div[dialog-id=edit-service-box] textarea[name=service_info]").val(rs_info.info.service_info); 
+                    
+                    $("div[dialog-id=edit-service-box] select[name=icon_id]").val(rs_info.info.icon_id);
+                    $("div[dialog-id=edit-service-box] select[name=service_type]").val(rs_info.info.service_type);                    
+                    $("div[dialog-id=edit-service-box] input[name=service_id]").val(service_id);
+                    $("div[dialog-id=edit-service-box] #icon_path").attr('src',rs_info.info.icon_path);
+                    
+                    if(rs_info.info.service_two !== ''){                        
+                        //开始遍历
+                        $.each(rs_info.info.service_two,function(i,n){
+                            var html = '<div class="form-group" service_box="two">' +
+                                        '<label class="col-sm-3 control-label no-padding-right">二级服务：</label>' +
+                                        '<div class="col-sm-9">'+
+                                        '<input type="text" name="service_two_edit[key_'+n.id+']" class="col-xs-10" value="'+n.server_name+'">&nbsp;&nbsp;'+
+                                        '<a class="service_two_close" href="javascript:void(0)"><i class="icon-remove bigger-110"></i></a>'+
+                                        '</div>'+            
+                                        '</div>';
+                             $(html).insertAfter($('.service_two_add').parent().parent().prev());
+                        });                        
+                    }
+                     
+                }
+            });
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-service-box',
+                height: 350,
+                width: 600,
+                title: '编辑服务',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-service-form'
+                    });
+                },
+            });
+        });
+
+    });
+});

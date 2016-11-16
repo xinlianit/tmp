@@ -1,0 +1,6 @@
+/**
+ * 商户界面设置
+ */
+seajs.use(['module/shopsetting'],function(shopsetting){
+	
+});

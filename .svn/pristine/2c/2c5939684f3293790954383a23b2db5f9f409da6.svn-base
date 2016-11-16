@@ -1,0 +1,68 @@
+<?php
+/**
+ * HomeController.class.php - 管家部APP接口首页信息
+ * @package ManageApi\Controller
+ * @subpackage null
+ * @link http://rapi.pad-phone.com/
+ * @author MSC PHP DEV TEAM HuangZH(47198839@qq.com)
+ * @copyright 派锋科技 2016年11月10日  09:05
+ * @version V1.0.0
+ */
+namespace ManageApi\Controller;
+
+class HomeController extends CommonController {
+    public function getHotelInfo(){
+        //获取酒店信息
+        $device_address = trim($this->I['only_token']); //设备唯一识别码
+        if(isset($device_address) && !empty($device_address)) {
+            $room_info = M("room_info");
+            $_room_info = $room_info->field('a.id as room_id, a.hotel_id, a.room_name, a.room_code, a.build_id, a.floor_id, b.id as device_id, b.telephone, b.position') -> alias('a')
+                ->join('__ROOM_DEVICE__ b ON a.id = b.room_id', 'left')
+                ->where(array('b.device_address' => $device_address, 'a.data_status' => 1))
+                ->find();
+
+            if($_room_info){
+                $_info = M("hotel_info");
+                $_hotel_info = $_info->field('hotel_code, group_code, customer_code, hotel_name, interface_type, interface_url, para1, para2, para3, para4 ')
+                    ->where(array('id' => $_room_info['hotel_id'], 'data_status' => 1))
+                    ->find();
+
+                if($_hotel_info){
+                    $_hotel_info = array_merge($_hotel_info, $_room_info);
+                    $this -> result = array_merge($this -> result, $_hotel_info) ;
+
+                    $_conf_info = M("config_info");
+                    $_conf_info = $_conf_info->field('conf_name, conf_value')
+                        ->where(array('conf_code' => 'PIC_PATH', 'data_status' => 1))
+                        ->find();
+
+                    if($_conf_info){
+                        $this -> result['pic_path'] = $_conf_info['conf_value'];
+                    }else{
+                        $this -> result['pic_path'] = '';
+                    }
+
+
+                    $_wifi_info = M("wifi_service");
+                    $_wifi_info = $_wifi_info->field('link_method')
+                        ->where(array('hotel_id' => $_room_info['hotel_id'], 'data_status' => 1))
+                        ->find();
+
+                    if($_wifi_info){
+                        $this -> result['link_method'] = $_wifi_info['link_method'];
+                    }else{
+                        $this -> result['link_method'] = '';
+                    }
+                }else{
+                    $this -> result = array_merge($this -> result, $this -> status['100000']) ;
+                }
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['300000']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['400000']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+}

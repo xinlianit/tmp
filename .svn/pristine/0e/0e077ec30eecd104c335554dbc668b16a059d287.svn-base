@@ -1,0 +1,47 @@
+<?php
+/**
+ * ShopsettingController.class.php - 酒店界面设置
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-11-16 11:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+class ShopsettingController extends CommonController {
+    /**
+     * 酒店服务指南
+     */
+    public function service(){
+        $this->display();
+    }
+    
+    /**
+     * WIFI服务
+     */
+    public function wifi(){
+        $this->display();
+    }
+    
+    /**
+     * 服务电话
+     */
+    public function tel(){
+        $this->display();
+    }
+    
+    /**
+     * 客房服务
+     */
+    public function room(){
+        $this->display();
+    }
+    
+    /**
+     * 服务意见反馈
+     */
+    public function quest(){
+        $this->display();
+    }
+}

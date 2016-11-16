@@ -1,0 +1,365 @@
+<div class="main-container" id="main-container">
+	<div class="main-container-inner">
+		<div class="main-content0">
+			<div class="page-content">
+				<div class="row">
+					<div class="col-xs-12">
+						<!-- PAGE CONTENT BEGINS -->
+						<div class="row">
+							<div class="col-xs-12">
+
+								<div class="table-responsive">
+									<div class="table-search">
+										<form name="" action="" method="get">
+											<div class="form-group">
+												<div class="seach-item">
+													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">商户名称：</label>
+													<input type="text" id="form-field-1" placeholder="支持模糊查询" class="input-sm seach-input value">
+												</div>
+												<span class="input-group-btn search-btn">
+													<button type="submit" class="btn btn-purple btn-sm">
+														查询
+														<i class="icon-search icon-on-right bigger-110"></i>
+													</button>
+												</span>
+											</div>
+										</form>
+									</div>
+									<div class="table-search">
+										<div class="form-group">
+											<span class="input-group-btn search-btn">
+												<button event-name="addFloor" type="button" class="btn btn-sm btn-success">
+													新增楼层信息
+													<i class="icon-plus smaller-75"></i>
+												</button>
+												<div class="separate-2"><i class="separate-flag"></i></div>
+												<button event-name="delete" table-name="list" url="" message="确认要删选中的  x 条楼层信息？|删除后信息不可恢复！" type="button" class="btn btn-sm btn-default">
+													删除
+													<i class="icon-remove"></i>
+												</button>
+											</span>
+										</div>
+									</div>
+									<table table-id="list" class="table table-striped table-bordered table-hover">
+										<thead>
+											<tr>
+												<th class="center">
+													<label>
+														<input type="checkbox" class="ace" />
+														<span class="lbl"></span>
+													</label>
+												</th>
+												
+												<th>商户ID</th>
+												<th>商户名称</th>
+												<th>楼层名称</th>
+												<th>总楼层数</th>
+												<th>总房间数</th>
+												<th class="hidden-480">操作</th>
+											</tr>
+										</thead>
+
+										<tbody>
+										
+												<tr>
+													<td class="center">
+														<label>
+															<input tag-name="ids" type="checkbox" value="1" class="ace" />
+															<span class="lbl"></span>
+														</label>
+													</td>
+													
+													<td>1</td>
+													<td>尚美水晶酒店</td>
+													<td>3楼；7楼；8楼</td>
+													<td>3</td>
+													<td>68</td>
+													<td>
+														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+															<a class="blue" event-name="viewFloor" href="javascript:void(0);" title="查看详情">
+																<i class="icon-zoom-in bigger-130"></i>
+															</a>
+	
+															<a class="green" event-name="editInfo" href="javascript:void(0);" title="编辑">
+																<i class="icon-pencil bigger-130"></i>
+															</a>
+	
+															<a class="red" event-name="delete" id-value="1" url="" message="确认要删除此楼层信息？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
+																<i class="icon-trash bigger-130"></i>
+															</a>
+														</div>
+													</td>
+												</tr>
+												
+												<tr>
+													<td class="center">
+														<label>
+															<input tag-name="ids" type="checkbox" value="2" class="ace" />
+															<span class="lbl"></span>
+														</label>
+													</td>
+													
+													<td>2</td>
+													<td>尚美水晶酒店</td>
+													<td>3楼；7楼；8楼</td>
+													<td>3</td>
+													<td>68</td>
+													<td>
+														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+															<a class="blue" event-name="viewFloor" href="javascript:void(0);" title="查看详情">
+																<i class="icon-zoom-in bigger-130"></i>
+															</a>
+	
+															<a class="green" event-name="editInfo" href="javascript:void(0);" title="编辑">
+																<i class="icon-pencil bigger-130"></i>
+															</a>
+	
+															<a class="red" event-name="delete" id-value="2" message="确认要删除此楼层信息？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
+																<i class="icon-trash bigger-130"></i>
+															</a>
+														</div>
+													</td>
+												</tr>
+												
+												<tr>
+													<td class="center">
+														<label>
+															<input tag-name="ids" type="checkbox" value="3" class="ace" />
+															<span class="lbl"></span>
+														</label>
+													</td>
+													
+													<td>3</td>
+													<td>尚美水晶酒店</td>
+													<td>3楼；7楼；8楼</td>
+													<td>3</td>
+													<td>68</td>
+													<td>
+														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+															<a class="blue" event-name="viewFloor" href="javascript:void(0);" title="查看详情">
+																<i class="icon-zoom-in bigger-130"></i>
+															</a>
+	
+															<a class="green" event-name="editInfo" href="javascript:void(0);" title="编辑">
+																<i class="icon-pencil bigger-130"></i>
+															</a>
+	
+															<a class="red" event-name="delete" id-value="3" message="确认要删除此楼层信息？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
+																<i class="icon-trash bigger-130"></i>
+															</a>
+														</div>
+													</td>
+												</tr>
+											
+										</tbody>
+									</table>
+									<include file="Layout:page" />
+								</div>
+							</div>
+						</div>
+						
+					</div><!-- /.col -->
+				</div><!-- /.row -->
+			</div><!-- /.page-content -->
+		</div><!-- /.main-content -->
+		
+	</div><!-- /.main-container-inner -->
+	
+</div><!-- /.main-container -->
+
+
+<!-- 添加面板 -->
+<div dialog-id="addFloor" class="hide">
+	<form class="form-horizontal" role="form" form-id="add" action="{:U('Shop/add')}" method="post">
+		<div tag-id="setup-1">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="hotel_name" disabled="disabled" placeholder="商户名称" class="col-xs-10 col-sm-9" >
+					<a href="javascript:void(0);" event-name="openSeach"><i class="icon-search hotet-sea-btn"></i></a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 楼层信息：<span class="must">*</span></label>
+				<div class="col-sm-9 floor-info">
+					<div class="row-td td-tit"><span>楼层名称</span></div>
+					<div class="row-td">
+						<div class="col-sm-9">
+							<input type="text" name="hotel_name" placeholder="输入楼层名称" class="col-xs-10 col-sm-3" >
+						</div>
+					</div>
+					<div class="row-td td-tit"><span>房间数量 </span></div>
+					<div class="row-td" style="width:15%;">
+						<div class="col-sm-9">
+							<input type="text" name="hotel_name" placeholder="输入数量" class="col-xs-10 col-sm-2" >
+						</div>
+					</div>
+					<div class="row-td td-last"><span>间 </span></div>
+					<div class="item-list">
+						<ul tag-id="floor-item">
+							
+						</ul>
+					</div>
+					<a event-name="addFloorItem" href="javascript:void(0);" class="add-floor-btn">
+						<i class="icon-plus-sign"></i> 添加楼层
+					</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!-- 编辑面板 -->
+<div dialog-id="editFloor" class="hide">
+	<form class="form-horizontal" role="form" form-id="add" action="{:U('Shop/add')}" method="post">
+		<div tag-id="setup-1">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="hotel_name" disabled="disabled" placeholder="商户名称" class="col-xs-10 col-sm-9" >
+					<a href="javascript:void(0);" event-name="openSeach"><i class="icon-search hotet-sea-btn"></i></a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 楼层信息：<span class="must">*</span></label>
+				<div class="col-sm-9 floor-info">
+					<div class="row-td td-tit"><span>楼层名称</span></div>
+					<div class="row-td">
+						<div class="col-sm-9">
+							<input type="text" name="hotel_name" placeholder="输入楼层名称" class="col-xs-10 col-sm-3" >
+						</div>
+					</div>
+					<div class="row-td td-tit"><span>房间数量 </span></div>
+					<div class="row-td" style="width:15%;">
+						<div class="col-sm-9">
+							<input type="text" name="hotel_name" placeholder="输入数量" class="col-xs-10 col-sm-2" >
+						</div>
+					</div>
+					<div class="row-td td-last"><span>间 </span></div>
+					<div class="item-list">
+						<ul tag-id="floor-item">
+							
+						</ul>
+					</div>
+					<a event-name="addFloorItem" href="javascript:void(0);" class="add-floor-btn">
+						<i class="icon-plus-sign"></i> 添加楼层
+					</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>
+
+<!-- 搜索商户 -->
+<div dialog-id="seachShop" class="hide">
+	<div tag-id="setup-1">
+		<div class="form-group">
+			<div class="seach-item" style="width:78%;margin-top:15px;">
+				<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="height:30px;line-height:30px;width:25%!important;" for="form-field-1">商户名称：</label>
+				<input type="text" id="form-field-1" placeholder="支持模糊查询" class="input-sm seach-input value" style="width:70%!important;">
+			</div>
+			<span class="input-group-btn search-btn" style="display:inline-block;">
+				<button type="submit" class="btn btn-purple btn-sm">
+					搜索
+					<i class="icon-search icon-on-right bigger-110"></i>
+				</button>
+			</span>
+		</div>
+		<div class="form-group">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr class="tr-center">
+						<th colspan="2">商户名称</th>
+						<th>商户类型</th>
+					</tr>
+				</thead>
+
+				<tbody>
+				
+						<tr>
+							<td class="center">
+								<input name="hetel" type="radio" value="1" />
+							</td>
+							<td>维也纳酒店</td>
+							<td>商务酒店；三星级酒店</td>
+						</tr>
+						
+						<tr>
+							<td class="center">
+								<input name="hetel" type="radio" value="1" />
+							</td>
+							<td>尚美酒店XX分店</td>
+							<td>商务酒店</td>
+						</tr>
+					
+				</tbody>
+			</table>
+		</div>
+	</div>
+</div>
+
+<!-- 查看面板 -->
+<div dialog-id="viewFloor" class="hide">
+	<div tag-id="setup-1">
+		<div class="form-group floor-view">
+			<div class="head-left">
+				<span>商户名称：尚美水晶酒店</span>
+			</div>
+			<div class="head-right">
+				<span>商户ID：00156</span>
+			</div>
+		</div>
+		<div class="form-group" style="padding-top:30px;">
+			<table class="table table-striped table-bordered table-hover">
+				<thead>
+					<tr class="tr-center">
+						<th>楼层名称</th>
+						<th>房间数</th>
+					</tr>
+				</thead>
+
+				<tbody>
+						<tr>
+							<td>3楼</td>
+							<td>60</td>
+						</tr>
+						
+						<tr>
+							<td>13楼</td>
+							<td>23</td>
+						</tr>
+						<tr>
+							<td>13楼</td>
+							<td>23</td>
+						</tr>
+						<tr>
+							<td>13楼</td>
+							<td>23</td>
+						</tr>
+						<tr>
+							<td>13楼</td>
+							<td>23</td>
+						</tr>
+						<tr>
+							<td>13楼</td>
+							<td>23</td>
+						</tr>
+						<tr>
+							<td>13楼</td>
+							<td>23</td>
+						</tr>
+				</tbody>
+			</table>
+		</div>
+		<div class="form-group floor-view">
+			<div class="head-right">
+				<span>总计：101 间</span>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+

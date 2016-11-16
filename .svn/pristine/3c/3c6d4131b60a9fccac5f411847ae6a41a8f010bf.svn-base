@@ -1,0 +1,384 @@
+<?php
+/**
+ * ShopLogic.class.php - 商户逻辑
+ * @package Logic
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-11-10 14:40
+ */
+namespace Admin\Logic;
+use Admin\Logic\CommonLogic;
+class ShopLogic extends CommonLogic{
+    /**
+     * 添加编辑商户
+     * @param string $flag          操作标志；add:添加、edit:编辑
+     * @return boolean
+     */
+    function saveShop($flag='add'){
+        $model = self::getModel('HotelInfo');
+        
+        $model->startTrans();
+        
+        if( @$data = $model->create() ){
+            
+            $check_condition = array(
+                'data_status'=>1
+            );
+            
+            //唯一性验证
+            $hotel_code_map             = array('hotel_code'=>$data['hotel_code']);
+            $group_code_map             = array('group_code'=>$data['group_code']);
+            $customer_code_map          = array('customer_code'=>$data['customer_code']);
+            
+            $delete_type_result         = true;
+            $delete_trade_result        = true;
+            $insert_id                  = 0;
+            
+            if($flag == 'edit'){
+                $hotel_code_map['id']           = array('neq', $data['id']);
+                $group_code_map['id']           = array('neq', $data['id']);
+                $customer_code_map['id']        = array('neq', $data['id']);
+                
+                $log_msg = '添加商户';
+            }else{
+                unset($data['id']);
+                
+                $log_msg = '编辑商户';
+            }
+            
+            $log_info['log_msg'] = self::$loginInfo['admin_account'] . $log_msg . '，商户名称：' . $data['hotel_name'];
+            
+            //酒店编码唯一
+            if( !empty($data['hotel_code']) ){
+                if( !$this->rowExists('HotelInfo', array_merge($check_condition, $hotel_code_map)) ){
+                    $this->result['msg']        = "酒店编码已经存在！";
+                    return $this->result;
+                }
+            }
+            
+            //客户集团编码唯一
+            if( !empty($data['group_code']) ){
+                if( !$this->rowExists('HotelInfo', array_merge($check_condition, $group_code_map))){
+                    $this->result['msg']        = "客户集团编码已经存在！";
+                    return $this->result;
+                }
+            }
+            
+            //客户酒店编码唯一
+            if( !empty($data['customer_code']) ){
+                if( !$this->rowExists('HotelInfo', array_merge($check_condition, $customer_code_map))){
+                    $this->result['msg']        = "客户酒店编码已经存在！";
+                    return $this->result;
+                }
+            }
+            
+            //添加商户信息
+            if($flag == 'edit'){
+                $shop_result    = $model->where(array('id'=>$data['id']))->save($data);
+                if( $shop_result !== false){
+                    $insert_id = $data['id'];
+                }
+                
+                //删除酒店对应的类型
+                $delete_type_result     = D('HotelType')->where( array('hotel_id'=>$insert_id) )->delete();
+                
+                //删除酒店对应的商圈
+                $delete_trade_result    = D('BusinessDistrict')->where( array('hotel_id'=>$insert_id) )->delete();
+            }else{
+                $insert_id = $model->add($data);
+            }
+            
+            //添加商户类型
+            $type_list = explode(',', I('post.hotel_type'));
+            $type_data = array();
+            foreach($type_list as $v){
+                $tmp = array('hotel_id'=>$insert_id, 'type_id'=>$v);
+                array_push($type_data, $tmp);
+            }
+            $type_result = D('HotelType')->addAll($type_data);
+            
+            //添加商圈
+            $trade_list = explode(',', I('post.trade_id'));
+            $trade_data = array();
+            foreach($trade_list as $v){
+                $tmp = array('hotel_id'=>$insert_id, 'trade_id'=>$v);
+                array_push($trade_data, $tmp);
+            }
+            $trade_result = D('BusinessDistrict')->addAll($trade_data);
+            
+            //成功
+            if( $insert_id && $type_result && $trade_result && $delete_type_result && $delete_trade_result){
+                $this->result['status']     = 1;
+                $this->result['msg']        = $insert_id;
+                
+                $model->commit();
+                
+                //记录日志
+                $this->recodeLog($log_info);
+            }else{
+                $this->result['msg']        = $model->getError();
+                
+                $model->rollback();
+            }
+        }else{
+            $this->result['msg']            = $model->getError();
+        }
+        
+        return $this->result;
+    }
+    
+    /**
+     * 添加编辑楼层
+     * @param array $floor_list     楼层列表
+     * @param string $flag          操作标志；add:添加、edit:编辑
+     * @return boolean
+     */
+    function saveFloor($floor_list, $flag='add'){
+        
+        $model = self::getModel('FloorInfo');
+        
+        //编辑
+        if($flag == 'edit'){
+            
+            //已存在的楼层ID集合
+            $exists_id = array();
+            //新增的数据
+            $add_data = array();
+            
+            foreach($floor_list as $k=>$v){
+                $exists_map = array(
+                    'hotel_id'      => $v['hotel_id'],
+                    'floor_name'    => $v['floor_name'],
+                );
+                //楼层存在验证
+                $exists = $model->where($exists_map)->find();
+                
+                $update_status = true;
+                
+                if($exists){
+                    array_push($exists_id, $exists['id']);
+                    
+                    $update_map = array(
+                        'id'        => $exists['id']
+                    );
+                    
+                    $update_data = array(
+                        'floor_name'        => $v['floor_name'],
+                        'room_number'       => $v['room_number'],
+                    );
+                    
+                    //更新已存在的
+                    $update_result = $model->where( $update_map )->save( $update_data );
+                    
+                    if( $update_result === false ){
+                        $update_status = false;
+                    }
+                }else{
+                    //新增
+                    $add_id    = $model->add( $v );
+                    
+                    //加入已存在的集合
+                    if( $add_id ){
+                        array_push($exists_id, $add_id);
+                    }else{
+                        $update_status = false;
+                    }
+                }
+                
+                //楼层更新失败
+                if( $update_status == false ){
+                    $this->result['msg'] = "更新失败";
+                    return $this->result;
+                }
+            }
+            
+            if( !empty($floor_list) ){
+                $delete_map = array(
+                    'id'            => array('not in',$exists_id),
+                    'hotel_id'      => $floor_list[0]['hotel_id'],
+                );
+                
+                //删除已移除的楼层
+                $delete_result = $model->where( $delete_map )->delete();
+            
+                //楼层更新失败
+                if( $delete_result === false ){
+                    $this->result['msg'] = "更新失败";
+                    return $this->result;
+                }
+            
+                //写入操作日志
+                $hotel_name = $this->getField('HotelInfo', 'hotel_name', array('id'=>$floor_list[0]['hotel_id']));
+                $info['log_msg'] = self::$loginInfo['admin_account'] . ' 编辑 ' . $hotel_name . ' 酒店的楼层';
+                self::recodeLog($info);
+            }
+            
+        //新增
+        }else{
+            foreach($floor_list as $k=>$v){
+                
+                //楼层存在验证
+                $exist_map = array(
+                    'floor_name'        => $v['floor_name'],
+                    'hotel_id'          => $v['hotel_id'],
+                );
+                
+                $exists = $model->where( $exist_map )->find();
+                
+                if( $exists ){
+                    //楼层已存在
+                    $this->result['msg'] = $v['floor_name'] . " 楼层已存在！";
+                    return $this->result;
+                }
+                
+                //添加新楼层
+                $data = $model->create($v);
+            
+                if( !$data ){
+                    //创建数据失败
+                    $this->result['msg'] = $model->getError();
+                    return $this->result;
+                }
+            
+                $result = $model->add( $v );
+            
+                if( !$result ){
+                    //添加失败
+                    $this->result['msg'] = $model->getError();
+                    return $this->result;
+                }
+            }
+            
+            if( !empty($floor_list) ){
+                //写入操作日志
+                $hotel_name = $this->getField('HotelInfo', 'hotel_name', array('id'=>$floor_list[0]['hotel_id']));
+                $info['log_msg'] = self::$loginInfo['admin_account'] . ' 新增 ' . $hotel_name . ' 酒店的楼层';
+                self::recodeLog($info);
+            }
+            
+        }
+        
+        //全部通过，返回真
+        return true;
+    }
+    
+    /**
+     * 添加编辑房间（绑定设备）
+     * @param array $floor_list     楼层列表
+     * @param string $flag          操作标志；add:添加、edit:编辑
+     * @return boolean
+     */
+    function saveRoom($device_list, $flag='add'){
+    
+        $model = self::getModel('RoomInfo');
+        
+        $model->startTrans();
+        
+        $room_data = $model->create();
+        
+        //创建数据失败
+        if( !$room_data ){
+            $this->result['msg']    = $model->getError();
+            return $this->result;
+        }
+        
+        //房间唯一检测
+        $exists_map = array(
+            'data_status'   => 1,
+            'room_name'     => $room_data['room_name'],
+        );
+        
+        if($flag == 'edit'){
+            $exists_map['id'] =   array('neq', $room_data['id']);
+        }
+        
+        $exists = $this->getField('RoomInfo', 'id', $exists_map);
+        if($exists){
+            $this->result['msg']    = "楼层已经已经存在！";
+            return $this->result;
+        }
+        
+        //编辑
+        if($flag == 'edit'){
+            //编辑房间数据
+            $update_map = array(
+                'id'        => $room_data['id'],
+            );
+            
+            //更新房间
+            $update_result = $model->where($update_map)->save($room_data);
+            
+            $exists_id = array();
+            //更新已存在的
+            if( !empty($device_list) ){
+                foreach($device_list as $k=>$v){
+                    
+                    $exists_map = array(
+                        'device_address'        => $v['device_address'],
+                        'room_id'               => $room_data['id']
+                    );
+                    
+                    $exists_device_id = self::getField('RoomDevice', 'id', $exists_map);
+                    
+                    if( $exists_device_id ){
+                        array_push($exists_id, $exists_device_id);
+                        
+                        //更新设备
+                        $update_dev_result  = D(RoomDevice)->where($exists_map)->save($v);
+                    }else{
+                        //添加新增的
+                        $add_dev_id         = D(RoomDevice)->add($v);
+                        if( $add_dev_id ){
+                            array_push($exists_id, $add_dev_id);
+                        }
+                    }
+                }
+            }
+            
+            //删除已移除的
+            $delete_map = array(
+                'room_id'       => $room_data['id'],
+                'id'            => array('not in',$exists_id)
+            );
+            $delete_result         = D(RoomDevice)->where($delete_map)->delete();
+            
+            if( $update_result === false || $update_dev_result === false || !$add_dev_id){
+                $model->rollback();
+                
+                return $this->result;
+            }
+            
+            //执行成功
+            $model->commit();
+            
+        //添加
+        }else if($flag == 'add'){
+            //添加房间数据
+            $room_id        = $model->add();
+            //添加设备绑定信息
+            if( $room_id ){
+                foreach($device_list as $k=>$v){
+                    $device_list[$k]['room_id']       = $room_id;
+                }
+            }
+            $device_result = D('RoomDevice')->addAll($device_list);
+            
+            if( !$room_id || !$device_result ){
+                $model->rollback();
+                
+                return $this->result;
+            }
+            
+            $model->commit();
+        }
+        
+        //写入操作日志
+        $info['log_msg'] = self::$loginInfo['admin_account'] . ($flag == 'edit' ? ' 编辑' : ' 添加') . ' 房间设备；房间号：' . $room_data['room_name'];
+        self::recodeLog($info);
+    
+        //全部通过，返回真
+        return true;
+    }
+    
+}

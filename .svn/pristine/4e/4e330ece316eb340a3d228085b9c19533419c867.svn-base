@@ -1,0 +1,13 @@
+<?php
+/**
+ * FloorInfoModel.class.php - 楼层信息模型
+ * @link http://www.pad-phone.com
+ * @copyright 2016-11-14 10:40 JiRY(390066398@qq.com)
+ */
+
+namespace Admin\Model;
+use Think\Model;
+
+class FloorInfoModel extends Model {
+    protected $tableName = 'floor_info';
+}

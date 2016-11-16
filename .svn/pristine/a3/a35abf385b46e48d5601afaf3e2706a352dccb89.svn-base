@@ -1,0 +1,79 @@
+/**
+ * 商户界面设置
+ */
+seajs.use(['module/shopsetting','controller/shop'],function(shopsetting,shop){
+	
+	//模块初始换
+	shopsetting.initiailize();
+	
+	//新增编辑服务指南
+	$(document).on('click', '[event-name="addEditSerGuide"]', function(){
+		var _this = $(this);
+		
+		var _form = $(document).find('[form-id="addEdit"]');
+
+		//获取详情
+		$.common.getInfoRender({
+			event_object: _this,
+			form_id: 'addEdit',
+			success: function(result){
+				
+				//图片数量定位
+				var pic_num = $(document).find('[tag-id="pic-num"] option');
+				$.each(pic_num, function(i,item){
+					if(result.pic_num == $(this).val()){
+						$(this).attr('selected','selected');
+					}
+				});
+			}
+		});
+		
+		//打开窗口
+		$.common.openWindow({
+			id: 'addEdit',
+			height: 500,
+			width: 700,
+			title: $.common.typeCheck(_this.attr('dialog-title'), 'undefined', ''),
+			confirm_title: $.common.typeCheck(_this.attr('submit-title'), 'undefined', ''),
+			confirm_function: function(){
+				var flag = $.common.typeCheck(_this.attr('flag'), 'undefined', 'add');
+				shopsetting.saveServer('addEdit', flag);
+			}
+		});
+	});
+	
+	//获取服务指南详情
+	$(document).on('click', '[event-name="viewServer"]', function(){
+		var _this 		= $(this);
+		var url			= $.common.typeCheck(_this.attr('url'), 'undefined', '');
+		
+		//获取详情
+		$.common.ajaxFormSubmit({
+			url: url,
+			data: $.common.getParams({event_object: _this}),
+			success: function(result){
+				//绑定数据
+				var view = $(document).find('[tag-id="floor-view"]');
+				//酒店名称
+				view.find('[tag-id="hotel-name"]').html( result.data.hotel_name );
+				
+				if( typeof(result) == 'object' && typeof(result.data) == 'object' ){
+					
+				}
+				
+				//关闭加载框
+				$.common.closeTips();
+			}
+		});
+		
+		//打开窗口
+		$.common.openWindow({
+			id: 'viewServer',
+			height: 550,
+			width: 750,
+			title: '服务指南详情',
+			enable_confirm: false,
+			cancel_title: '关闭',
+		});
+	});
+});

@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+    <head lang="en">
+        <meta charset="UTF-8">
+        <title>大文件上传实例</title>
+        
+        <style type="text/css">  
+#parent{width:550px; height:50px; border:5px solid blue;}  
+#son {width:0; height:100%; background-color:red; text-align:center; line-height:50px; font-size:20px; font-weight:bold;}  
+</style>  
+        <script src="__PUBLIC__/js/spark-md5.js"></script>
+
+        <script type="text/javascript">
+
+            function sendRequest() {
+                var log = document.getElementById("log");
+                var blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+                var file = document.getElementById('file').files[0];
+                var chunkSize = 2*1024*1024; // read in chunks of 2MB
+                var chunks = slices = Math.ceil(file.size / chunkSize);
+                var currentChunk = 0;
+                var spark = new SparkMD5.ArrayBuffer();
+                var md5val = '';
+                var loadall = 0;
+         
+                var frOnload = function (e) {
+                    //log.innerHTML += "\nread chunk number " + parseInt(currentChunk + 1) + " of " + chunks;
+                    spark.append(e.target.result); // append array buffer
+                    currentChunk++;
+                    if (currentChunk < chunks){
+                        loadNext();
+                    }                        
+                    else{
+                        md5val = spark.end();                        
+                        //文件前端校验完成 开始向服务器上传
+                        //alert(md5val);
+                        currentChunk = 0;
+                        sendFile();
+                    }
+                        
+                };
+                var frOnerror = function () {
+                    alert('err')
+                };
+                var loadNext = function () {
+                    
+                    var fileReader = new FileReader();
+                    fileReader.onload = frOnload;
+                    fileReader.onerror = frOnerror;
+                    var start = currentChunk * chunkSize;
+                    var end = ((start + chunkSize) >= file.size) ? file.size : start + chunkSize;
+                    fileReader.readAsArrayBuffer(blobSlice.call(file, start, end));
+                };
+                
+                
+                
+                //发送请求
+                function sendFile() {
+                    
+                    var start = 0;
+                    var end;
+                    var index = 0;
+                    
+                    while(start < file.size) {
+                        
+                        
+                        end = start + chunkSize;
+                        if(end > file.size) {
+                            end = file.size;
+                        }                        
+                        uploadFile(index, start, end);
+                        start = end;
+                        index ++;
+                    }
+
+                }
+
+                //上传文件
+                function uploadFile(index, start, end) {
+                    var xhr;
+                    var fd;
+                    var chunk;
+
+                    xhr = new XMLHttpRequest();
+                    xhr.onreadystatechange = function() {                        
+                        if(xhr.readyState === 4) {
+                            if(xhr.responseText) {
+                                alert(xhr.responseText);
+                            }
+                            slices --;
+                            // 如果所有文件切片都成功发送，发送文件合并请求。
+                            if(slices == 0) {
+                                mergeFile();
+                                alert('文件上传完毕');
+                            }
+                        }
+                    };
+                    
+                    
+                    //侦查当前附件上传情况  
+                    xhr.upload.onprogress = function(evt){  
+                        //侦查附件上传情况  
+                        //通过事件对象侦查  
+                        //该匿名函数表达式大概0.05-0.1秒执行一次  
+                        //console.log(evt);  
+                        log.innerHTML += evt;
+                        //console.log(evt.loaded);  //已经上传大小情况  
+                        //evt.total; 附件总大小  
+                        var loaded = evt.loaded;  
+                        var tot = file.size;  
+                        loadall = loadall + loaded;
+                        
+                        var per = Math.floor(100*loadall/tot);  //已经上传的百分比  
+                        var son =  document.getElementById('son');  
+                        son.innerHTML = per+"%";  
+                        son.style.width=per+"%";  
+                        
+                        log.innerHTML += " loaded: " + loadall + " tot: " + tot + ' pre: ' + per + '<br>';
+                    } 
+                    
+                    chunk =blobSlice.call(file, start, end);
+
+                    //构造form数据
+                    fd = new FormData();
+                    fd.append("file", chunk);
+                    fd.append("name", file.name);
+                    fd.append("index", index);
+                    fd.append('md5val',md5val);
+
+                    xhr.open("POST", '{:U("index/doupload")}', true);
+
+                    //设置二进制文边界件头
+                    xhr.setRequestHeader("X_Requested_With", location.href.split("/")[3].replace(/[^a-z]+/g, '$'));
+                    xhr.send(fd);
+                }
+
+                function mergeFile() {
+                    var xhr;
+                    var fd;
+
+                    xhr = new XMLHttpRequest();
+
+                    fd = new FormData();
+                    fd.append("name", file.name);
+                    fd.append("index", chunks);
+                    fd.append('md5val',md5val);
+
+                    xhr.open("POST", '{:U("index/merge")}', true);
+                    xhr.setRequestHeader("X_Requested_With", location.href.split("/")[3].replace(/[^a-z]+/g, '$'));
+                    xhr.send(fd);
+                }
+                
+                loadNext();
+            }
+
+        </script>
+    </head>
+    <body>
+        <div id="parent"><div id="son"></div></div>  
+        <div id="log"></div>
+        <input type="file" id="file"/>
+        <button  onclick="sendRequest()">上传</button>
+    </body>
+</html>
