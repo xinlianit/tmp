@@ -1,0 +1,5 @@
+@CHARSET "UTF-8";
+img{background:#EEF3FA;}
+.view-pic{list-style:none;border-top:1px solid #CCC;border-bottom:1px solid #CCC;overflow:hidden;padding:10px 0px;margin:0px;}
+.view-pic li{display:inline-block;float:left;width:19.1%;margin:3px;border:1px solid #CCC;padding:2px;}
+.view-pic li img{width:100%;}

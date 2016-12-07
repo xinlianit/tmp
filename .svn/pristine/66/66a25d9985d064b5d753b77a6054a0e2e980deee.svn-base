@@ -1,0 +1,326 @@
+<?php
+/**
+ * HomeController.class.php - 客房服务APP接口首页信息
+ * @package RoomApi\Controller
+ * @subpackage null
+ * @link http://rapi.pad-phone.com/
+ * @author MSC PHP DEV TEAM HuangZH(47198839@qq.com)
+ * @copyright 派锋科技 2016年11月10日  09:05
+ * @version V1.0.0
+ */
+namespace RoomApi\Controller;
+
+class HomeController extends CommonController {
+    public function getHotelInfo(){
+        //获取酒店信息
+        $device_address = trim($this->I['only_token']); //设备唯一识别码
+        if(isset($device_address) && !empty($device_address)) {
+            $room_info = M("room_info");
+            $_room_info = $room_info->field('a.id as room_id, a.hotel_id, a.room_name, a.room_code, a.build_id, a.floor_id, b.id as device_id, b.telephone, b.position') -> alias('a')
+                ->join('__ROOM_DEVICE__ b ON a.id = b.room_id', 'left')
+                ->where(array('b.device_address' => $device_address, 'a.data_status' => 1))
+                ->find();
+
+            if($_room_info){
+                $_info = M("hotel_info");
+                $_hotel_info = $_info->field('a.hotel_code, a.group_code, a.customer_code, a.hotel_name, a.interface_type, a.interface_url, a.para1, a.para2, a.para3, a.para4, a.city_id, b.res_path as logo_path')
+                    -> alias('a')
+                    -> join('__RESOURCE__ b ON a.resource_id = b.id', 'LEFT')
+                    ->where(array('a.id' => $_room_info['hotel_id'], 'a.data_status' => 1))
+                    ->find();
+
+                if($_hotel_info){
+                    $_hotel_info['logo_path'] = generateImagePath($_hotel_info['logo_path']);
+                    $_hotel_info = array_merge($_hotel_info, $_room_info);
+                    $this -> result = array_merge($this -> result, $_hotel_info) ;
+
+                    $_conf_info = M("config_info");
+                    $_conf_info = $_conf_info->field('conf_name, conf_value')
+                        ->where(array('conf_code' => 'PIC_PATH', 'data_status' => 1))
+                        ->find();
+
+                    $this -> result['pic_path'] = '';
+                    if($_conf_info){
+                        $_pic_path = M('resource') -> field('res_path') -> where(['id' => trim($_conf_info['conf_value'])]) -> find();
+                        if($_pic_path){
+                            $this -> result['pic_path'] = generateImagePath($_pic_path['res_path']);
+                        }
+                    }
+
+
+                    $_wifi_info = M("wifi_service");
+                    $_wifi_info = $_wifi_info->field('link_method')
+                        ->where(array('hotel_id' => $_room_info['hotel_id'], 'data_status' => 1))
+                        ->find();
+
+                    if($_wifi_info){
+                        $this -> result['link_method'] = $_wifi_info['link_method'];
+                    }else{
+                        $this -> result['link_method'] = '';
+                    }
+                }else{
+                    $this -> result = array_merge($this -> result, $this -> status['100000']) ;
+                }
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['300000']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['400000']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+    //获取酒店广告资源列表信息
+    public function getHotelResources(){
+        $hotel_id = trim($this->I['hotel_id']);   //酒店ID
+        if(isset($hotel_id) && !empty($hotel_id)) {
+            $_advert_info = M("advert_release");
+            $_map['a.hotel_id'] = $hotel_id;
+            $_map['a.begin_time'] = array('elt', time());
+            $_map['a.end_time'] = array('egt', time());
+            $_map['a.data_status'] = 1;
+
+            $advert_info = $_advert_info->field('a.advert_id, b.advert_name, a.hotel_id, b.advert_position, b.weight, b.material_type, concat("' . C('FASTDFS_URL') . '", c.res_path) as source_path, c.res_md5val as source_md5, concat("' . C('FASTDFS_URL') . '", d.res_path) as thumbnail, d.res_md5val as thumb_md5, b.create_time, b.update_time') -> alias('a')
+                ->join('__ADVERT_INFO__ b ON a.advert_id = b.id')
+                ->join('__RESOURCE__ c ON b.source_id = c.id', 'LEFT')
+                ->join('__RESOURCE__ d ON b.thum_id = d.id', 'LEFT')
+                ->where($_map)
+                ->select();
+
+            if($advert_info){
+                $this -> result['list'] = $advert_info ;
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['700000']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['100001']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+    //客房入住请求
+    public function setInHotel(){
+        $room_id = trim($this->I['room_id']);         //房间ID
+        $only_code = trim($this->I['only_code']);    //入住唯一编码
+        $in_time = trim($this->I['in_time']);        //入住时间(时间戳)
+
+        if(isset($room_id) && isset($only_code) && isset($in_time)) {
+            $_room_info = M("room_info");
+            $_data = [
+                'only_code' => $only_code,
+                'in_time' => $in_time
+            ];
+
+            $_map['id'] = $room_id;
+            $room_info = $_room_info -> field('only_code, in_time') -> where($_map) -> find();
+
+            if($room_info){
+                if(0 != strcmp($room_info['only_code'], $only_code)){
+                    $rs = $_room_info -> where($_map) -> save($_data);
+                    if(!$rs){
+                        $this -> result = array_merge($this -> result, $this -> status['300003']) ;
+                    }
+                }
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['300000']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+    //客房离店请求
+    public function setLeaveHotel(){
+        $room_id = trim($this->I['room_id']);
+        $only_code = trim($this->I['only_code']);
+        $out_time = trim($this->I['out_time']);
+
+        if(isset($room_id) && isset($only_code) && isset($in_time)) {
+            $_room_info = M("room_info");
+            $_data = [
+                'out_time' => $out_time
+            ];
+
+            $_map['id'] = $room_id;
+            $room_info = $_room_info -> field('only_code') -> where($_map) -> find();
+
+            if($room_info){
+                if(0 == strcmp($room_info['only_code'], $only_code)) {
+                    $_room_info->where($_map)->save($_data);
+                }else{
+                    $this -> result = array_merge($this -> result, $this -> status['400001']) ;
+                }
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['300000']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //客房操作日志记录接口
+    public function setServerLogs(){
+        $room_id = trim($this->I['room_id']);
+        $device_id = trim($this->I['device_id']);
+        $staff_id = trim($this->I['staff_id']);
+        $operate_type = trim($this->I['operate_id']);
+
+
+        if(isset($room_id) && isset($device_id) && isset($staff_id) && isset($operate_type)) {
+            $_log_info = M("staff_logs");
+            $_data = [
+                'room_id'       => $room_id,
+                'device_id'     => $device_id,
+                'staff_id'      => $staff_id,
+                'operate_type' => $operate_type,
+                'create_time'  => time()
+            ];
+
+            $log_info = $_log_info -> data($_data) -> add();
+            if(!$log_info){
+                $this -> result = array_merge($this -> result, $this -> status['6']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取当前消息信息
+    public function getMsgInfo(){
+        $msg_id = trim($this->I['msg_id']);   //房间ID
+        if(isset($msg_id) && !empty($msg_id)) {
+            $_msg_info = M("msg_service");
+            $_map['id'] = $msg_id;
+
+            $msg_info = $_msg_info->field('id as msg_id, msg_type') -> where($_map) -> find();
+            if($msg_info){
+                $this -> result = array_merge($this -> result, $msg_info) ;
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['600007']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取消息服务内容
+    public function getMsgContent(){
+        $msg_id = trim($this->I['msg_id']);   //消息ID
+        $msg_type = trim($this->I['msg_type']);   //消息类型
+
+        if(isset($msg_id) && isset($msg_type) && $msg_type > 0 && $msg_type < 5) {
+            $_join = [
+                ['__MSG_ROOM__', 'b.service_id, b.two_id'],
+                ['__MSG_ORDER__', 'b.order_no'],
+                ['__ROOM_CALL__', 'b.service_id, b.two_id'],
+                ['__ORDER_CALL__', 'b.order_no'],
+            ];
+
+            $_msg_info = M("msg_service");
+            $_map['a.id'] = $msg_id;
+
+            $msg_info = $_msg_info->field('a.id as msg_id, a.data_status as msg_status, b.service_name, b.create_time, b.update_time, b.data_status, ' . $_join[$msg_type-1][1]) -> alias('a')
+                        -> join($_join[$msg_type-1][0] . ' b ON a.id = b.msg_id') -> where($_map) -> find();
+            if($msg_info){
+                if(1 == $msg_type || 3 == $msg_type){
+                    $msg_info = array_merge($msg_info, ['order_no' => '']);
+                }else{
+                    $msg_info = array_merge($msg_info, ['service_id' => 0, 'two_id' => 0]);
+                }
+                $this -> result = array_merge($this -> result, $msg_info) ;
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['600007']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+    public function getWeatherInfo(){
+        $city_id = trim($this->I['city_id']);   //城市编码
+
+        if(isset($city_id)) {
+            $_weather_info = M("weather_info");
+            $_map['a.city_id'] = $city_id;
+            $_map['a.req_date'] = date('Y-m-d');
+
+            $weather_info = $_weather_info -> field('a.id, b.city_name as weather_city, a.weather_img as icon_id, a.temperature, a.section_temp, a.weather_info, a.req_date as weather_date, a.week as weather_week, null as future_list') -> alias('a')
+                            -> join('__CITY_INFO__ b ON a.city_id = b.id')
+                            -> where($_map) -> order('a.update_time desc') -> find();
+
+            if($weather_info){
+                $weather_info['icon_path'] = getWeatherIcon($weather_info['icon_id']);
+                $weather_info['temperature'] = $weather_info['temperature'] . '°';
+                $weather_info['weather_week'] = getWeek($weather_info['weather_week']);
+                $weather_info['weather_date'] = getMoonAndDay($weather_info['weather_date']);
+
+                $future_list = M('future_day') -> field('week, weather_date, icon_id, weather_info, temperature') -> where(['weather_id' => $weather_info['id']]) -> select();
+
+
+                if($future_list){
+                    $_future_list = [];
+                    $index = 0;
+
+                    foreach ( $future_list as $item ){
+                        if( 0 == $index){
+                            $week = '明天';
+                        }else{
+                            $week = getWeek($item['week']);
+                        }
+                        $index = array_push($_future_list, [
+                            'weather_week' => $week,
+                            'weather_date' => $item['weather_date'],
+                            'icon_path'    => getWeatherIcon($item['icon_id'], 1),
+                            'weather_info' => $item['weather_info'],
+                            'section_temp' => $item['temperature']
+                        ]);
+
+                        //$_future_list[$index - 1]['icon_path'] = getWeatherIcon($item['icon_id']);
+                    }
+
+                    $weather_info['future_list'] = $_future_list;
+                    unset($weather_info['id']);
+                }
+                //$this -> result = array_merge($this -> result, ['weather_data' => json_decode(base64_decode($weather_info['weather_data']))]);
+            }else{
+                $city_name = '深圳';
+                $city_info = M('city_info') -> field('city_name') -> where(['id' => $city_id]) -> find();
+                if($city_info){
+                    $city_name = $city_info['city_name'];
+                }
+                $weather_info = [
+                    'weather_city' => $city_name,
+                    'temperature'  => '21℃',
+                    'weather_week' => getWeek(date("w")),
+                    'weather_date' => date('Y-m-d'),
+                    'icon_path'    => getWeatherIcon(0),
+                    'weather_info' => '多云',
+                    'section_temp' => '21℃-14℃',
+                    'future_list'  => []
+                ];
+
+                $this -> result = array_merge($this -> result, $this -> status['100021']);
+            }
+            $this -> result = array_merge($this -> result, $weather_info);
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']);
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+}

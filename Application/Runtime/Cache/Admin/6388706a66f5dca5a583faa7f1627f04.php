@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -182,12 +179,12 @@
 									<div class="table-search">
 										<div class="form-group">
 											<span class="input-group-btn search-btn">
-												<button event-name="addEditDev" dialog-title="设备新增" submit-title="添加" type="button" class="btn btn-sm btn-success">
+												<button event-name="addEditRoomServer" dialog-title="客房服务新增" submit-title="添加" type="button" class="btn btn-sm btn-success">
 													新增客房服务
 													<i class="icon-plus smaller-75"></i>
 												</button>
 												<div class="separate-2"><i class="separate-flag"></i></div>
-												<button event-name="delete" table-name="list" url="<?php echo U('Shop/deleteDev');?>" message="确认要删选中的 x 条设备信息？|删除后信息不可恢复！" type="button" class="btn btn-sm btn-default">
+												<button event-name="delete" table-name="list" url="<?php echo U('Shopsetting/deleteRoomSer');?>" message="确认要删选中的 x 条客房服务？|删除后信息不可恢复！" type="button" class="btn btn-sm btn-default">
 													删除
 													<i class="icon-remove"></i>
 												</button>
@@ -214,38 +211,53 @@
 											</tr>
 										</thead>
 
-										<tbody>
+										<tbody component-id="hotel-tel">
 										
 											<?php if(empty($page["list"])): ?><tr>
 		<td colspan="100" style="text-align:center;">暂无数据！</td>
 	</tr><?php endif; ?>
-											<?php if(is_array($page["list"])): $i = 0; $__LIST__ = $page["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><tr>
-													<td class="center">
-														<label>
-															<input type="checkbox" tag-name="ids" value="<?php echo ($list["id"]); ?>" class="ace" />
-															<span class="lbl"></span>
-														</label>
-													</td>
-													
-													
-	
-													<td><?php echo (_default(get_field_status("ROOM_INFO","ROOM_TYPE",$list["room_type"],"NAME"))); ?></td>
-													<td>
-														<?php if(is_array($list["device"])): $i = 0; $__LIST__ = $list["device"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$dev): $mod = ($i % 2 );++$i; echo ($dev["device_address"]); ?> <?php echo ($dev["position"]); ?> <br/><?php endforeach; endif; else: echo "" ;endif; ?>
-													</td>
-													<td><?php echo (_default($list["room_phone"])); ?></td>
-													<td>
-														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-															<a class="green" event-name="addEditDev" url="<?php echo U('Shop/devInfo');?>" params="id=<?php echo ($list["id"]); ?>"  dialog-title="设备编辑" submit-title="保存" flag="edit" href="javascript:void(0);" title="编辑">
-																<i class="icon-pencil bigger-130"></i>
-															</a>
-	
-															<a class="red" event-name="delete" id-value="<?php echo ($list["id"]); ?>" url="<?php echo U('Shop/deleteDev');?>" message="确认要删除此设备信息？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
-																<i class="icon-trash bigger-130"></i>
-															</a>
+											<?php if(is_array($page["list"])): $k = 0; $__LIST__ = $page["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($k % 2 );++$k;?><tr tag-name="level-1" tag-index="<?php echo ($k); ?>">
+													<td colspan="100">
+														<div class="level-1">
+															<label>
+																<input type="checkbox" event-name="child-check" tag-name="big_ids" value="<?php echo ($list["id"]); ?>" class="ace" />
+																<span class="lbl"></span>
+															</label>
+															<div event-name="show-child" flag="-" class="item">
+																<i class="icon-plus-sign"></i>
+																<span class="tit"><?php echo (_default($list["hotel_name"])); ?></span>
+															</div>
 														</div>
 													</td>
-												</tr><?php endforeach; endif; else: echo "" ;endif; ?>
+												</tr>
+												<?php if(is_array($list["server_list"])): $i = 0; $__LIST__ = $list["server_list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$tel_list): $mod = ($i % 2 );++$i;?><tr tag-name="level-2" tag-index="level-2-<?php echo ($k); ?>" class="hide">
+														<td class="center" colspan="2">
+															<label>
+																<input type="checkbox" tag-name="ids" value="<?php echo ($tel_list["id"]); ?>" class="ace" />
+																<span class="lbl"></span>
+															</label>
+														</td>
+														
+														<td><?php echo (_default($tel_list["data_sort"])); ?></td>
+														<td><?php echo (_default(get_field("ServiceInfo","service_name",array('id'=>$tel_list["service_id"])))); ?></td>
+														<td><?php echo (_default(get_fields_to_string("ServiceTwo","server_name",array('id'=>array('in',$tel_list["two_service_ids"]))))); ?></td>
+														<td><?php echo (_default($tel_list["telephone"])); ?></td>
+														<td>
+															<?php switch($tel_list["service_detail_type"]): case "1": echo (_default($tel_list["service_content"])); break;?>
+																<?php case "2": ?><img src="<?php echo (default_img($tel_list["resource_id"])); ?>" width="60" height="60" /><?php break; endswitch;?>
+														</td>
+														<td>
+															<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
+																<a class="green" event-name="addEditRoomServer" url="<?php echo U('Shopsetting/roomServerInfo');?>" params="id=<?php echo ($tel_list["id"]); ?>"  dialog-title="客房服务编辑" submit-title="保存" flag="edit" href="javascript:void(0);" title="编辑">
+																	<i class="icon-pencil bigger-130"></i>
+																</a>
+		
+																<a class="red" event-name="delete" id-value="<?php echo ($tel_list["id"]); ?>" url="<?php echo U('Shopsetting/deleteRoomSer');?>" message="确认要删除此客房服务？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
+																	<i class="icon-trash bigger-130"></i>
+																</a>
+															</div>
+														</td>
+													</tr><?php endforeach; endif; else: echo "" ;endif; endforeach; endif; else: echo "" ;endif; ?>
 										</tbody>
 									</table>
 									<?php if(($page["totalCount"]) > "0"): ?><div class="table-footer">
@@ -284,7 +296,7 @@
 
 <!-- 添加编辑 -->
 <div dialog-id="addEdit" class="hide">
-	<form class="form-horizontal" role="form" form-id="addEdit" action="<?php echo U('Shop/addEditDev');?>" method="post">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="<?php echo U('Shopsetting/addEditRoom');?>" method="post">
 		<input name="id" type="hidden" value="0" />
 		<div tag-id="setup-1">
 			<div class="form-group">
@@ -296,63 +308,154 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼层名称：<span class="must">*</span></label>
-				<div class="col-sm-4">
-					<select tag-id="floor-select" name="floor_id" class="form-control">
-						<option value="0">请选择</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间号：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<input type="text" name="room_name" placeholder="输入房间号" class="col-xs-10 col-sm-9" style="width:42%;">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间类型：<span class="must">*</span></label>
-				<div class="col-sm-4">
-					<select tag-id="room_type" name="room_type" class="form-control">
-						<option value="0">请选择</option>
-						<?php $_result=get_field_status('ROOM_INFO','ROOM_TYPE');if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$type_list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($type_list["VALUE"]); ?>"><?php echo ($type_list["NAME"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 设备信息：<span class="must">*</span></label>
-				<div class="col-sm-9 floor-info">
-					<div tag-id="dev-list">
-						<div class="row-td td-tit"><span>设备地址</span></div>
-						<div class="row-td">
-							<div class="col-sm-9">
-								<input type="text" name="device_address[]" placeholder="输入设备地址" class="col-xs-10 col-sm-3" >
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 选择服务：<span class="must">*</span></label>
+				<div component-id="options" class="col-sm-4">
+					<label>
+						<input tag-name="server-type" event-name="tabOptions" value="1" name="server_type" checked="checked" type="radio" class="ace">
+						<span class="lbl"> 推荐服务</span>
+					</label>
+					<span class="separate-3"></span>
+					<label>
+						<input tag-name="server-type" event-name="tabOptions" value="2" name="server_type" type="radio" class="ace">
+						<span class="lbl"> 自定义</span>
+					</label>
+					
+					<div class="form-right">
+						<div tag-name="options-item" tag-id="options-1">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 服务名称：</label>
+								<div class="col-sm-4">
+									<select event-name="getChildServer" url="<?php echo U('Inner/getServerTow');?>" target-id="tow-server" tag-id="room_type" name="service_id" class="form-control" style="width:290%;">
+										<option value="0">请选择</option>
+										<?php if(is_array($server)): $i = 0; $__LIST__ = $server;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$server_list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($server_list["id"]); ?>"><?php echo ($server_list["service_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+									</select>
+								</div>
 							</div>
+							<div tag-id="tow-server"></div>
 						</div>
-						<div class="row-td td-tit"><span>摆放位置 </span></div>
-						<div class="row-td" style="width:19%;">
-							<div class="col-sm-9">
-								<input type="text" name="position[]" placeholder="摆放位置" class="col-xs-10 col-sm-2" >
+						<div tag-name="options-item" tag-id="options-2" class="hide">
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 服务名称：</label>
+								<div class="col-sm-9">
+									<input type="text" name="service_name" placeholder="输入服务名称" class="col-xs-10 col-sm-9" style="width:113.1%;">
+								</div>
 							</div>
-						</div>
-						<div class="item-list">
-							<ul tag-id="floor-item">
-								
-							</ul>
+							<div class="form-group">
+								<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> icon图标：</label>
+								<div class="col-sm-4">
+									<select tag-id="icon-id" name="icon_id" class="form-control">
+										<option value="0">请选择</option>
+										<?php if(is_array($icon)): $i = 0; $__LIST__ = $icon;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$icon_list): $mod = ($i % 2 );++$i;?><option icon-path="<?php echo (default_img($icon_list["resource_id"])); ?>" value="<?php echo ($icon_list["id"]); ?>"><?php echo ($icon_list["icon_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+									</select>
+								</div>
+								<div><img tag-id="icon_log" src="<?php echo default_img();?>" width="33" height="33"></div>
+							</div>
 						</div>
 					</div>
-					<a event-name="addDevItem" href="javascript:void(0);" class="add-floor-btn">
-						<i class="icon-plus-sign"></i> 添加设备信息
-					</a>
 				</div>
 			</div>
-			
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间电话号码：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<input type="text" name="room_phone" placeholder="输入房间电话号码" class="col-xs-10 col-sm-9" style="width:42%;">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 页面排列号：<span class="must">*</span></label>
+				<div class="col-sm-4">
+					<select name="data_sort" class="form-control">
+						<option value="0">请选择</option>
+						<option value="1">1</option>
+						<option value="2">2</option>
+						<option value="3">3</option>
+						<option value="4">4</option>
+						<option value="5">5</option>
+						<option value="6">6</option>
+						<option value="7">7</option>
+						<option value="8">8</option>
+						<option value="9">9</option>
+						<option value="10">10</option>
+						<option value="11">11</option>
+						<option value="12">12</option>
+					</select>
 				</div>
 			</div>
 		</div>
+		
+		<div tag-id="setup-2" class="hide">
+	<div class="form-group hide" tag-id="setup-2-1">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 转接电话号码：<span class="must">*</span></label>
+		<div class="col-sm-9">
+			<input type="text" name="telephone" placeholder="输入转接电话号码" class="col-xs-10 col-sm-9" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 服务详情：</label>
+		<div component-id="options" class="col-sm-4">
+			<label>
+				<input tag-name="info-type" event-name="tabOptions" value="1" name="service_detail_type" checked="checked" type="radio" class="ace">
+				<span class="lbl"> 文字</span>
+			</label>
+			<span class="separate-3"></span>
+			<label>
+				<input tag-name="info-type" event-name="tabOptions" value="2" name="service_detail_type" type="radio" class="ace">
+				<span class="lbl"> 图片</span>
+			</label>
+			
+			<div class="form-right">
+				<div tag-name="options-item" tag-id="options-1">
+					<div class="form-group">
+						<textarea name="service_content" class="form-control" id="form-field-8" placeholder="填写服务详情" style="margin-top: 0px; margin-bottom: 0px;width:370px;height: 130px;"></textarea>
+					</div>
+				</div>
+				
+				<div tag-name="options-item" tag-id="options-2" class="hide">
+					<div class="form-group">
+					   <input type="hidden" name="pic_md5">
+               
+		               <div tag-id="view" class="hide">
+		               		<div>
+		               			<img tag-id="img" style="border:1px solid #CCC;padding:3px;" src="<?php echo default_img();?>" width="130" />
+		               		</div>
+		               		<a tag-id="edit-upload" style="display:inline-block;line-height:35px;" href="javascript:void(0);" event-name="edit-upload">编辑图片</a>
+		               </div>
+		               
+		               <div tag-id="upload">
+		               		<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
+<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
+<div id="wrapper">
+    <div id="container">
+        <!--头部，相册选择和格式选择-->
+
+        <div id="uploader1" class="uploader">
+            <div class="queueList">
+                <div id="dndArea" class="placeholder">
+                    <div id="filePicker1"></div>
+                    <p>或将照片拖到这里</p>
+                </div>
+            </div>
+            <div class="statusBar" style="display:none;">
+                <div class="progress">
+                    <span class="text">0%</span>
+                    <span class="percentage"></span>
+                </div><div class="info"></div>
+                <div class="btns">
+                    <div class="uploadBtn">开始上传</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
+<script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
+
+		               		
+		               		<a tag-id="cancel-upload" style="display:inline-block;line-height:35px;" class="hide" href="javascript:void(0);" event-name="cancel-upload">取消编辑</a>
+		               </div>
+					</div>
+				</div>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
 	</form>
 </div>
 
@@ -365,7 +468,7 @@
 				<input type="text" tag-id="hotel_name" name="hotel_name" placeholder="支持模糊查询" class="input-sm seach-input value" style="width:70%!important;">
 			</div>
 			<span class="input-group-btn search-btn" style="display:inline-block;">
-				<button event-name="seachShop" url="<?php echo U('Shop/seach');?>" class="btn btn-purple btn-sm">
+				<button event-name="seachShop" url="<?php echo U('Inner/seach');?>" class="btn btn-purple btn-sm">
 					搜索
 					<i class="icon-search icon-on-right bigger-110"></i>
 				</button>
@@ -416,6 +519,7 @@
 		<script type="text/javascript">
 			var static_base 	= '/Public';
 			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

@@ -1,0 +1,44 @@
+<div dialog-id="addEdit">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="{:U('Index/resetPwd')}" method="post">
+		<div tag-id="setup-1" style="padding: 240px 0px;">
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> 账户ID号：<span class="must">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp; </span></label>
+				<div class="col-sm-3" style="height:28px;line-height:28px;">
+					{$loginInfo.admin_account}
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> 原密码：<span class="must">*</span></label>
+				<div class="col-sm-3">
+					<input type="password" name="old_pwd" placeholder="输入原始密码" class="col-xs-10 col-sm-9">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> 新密码：<span class="must">*</span></label>
+				<div class="col-sm-3">
+					<input type="password" name="admin_pass" placeholder="密码由6~16位数字、字符和符号组成。" class="col-xs-10 col-sm-9">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-5 control-label no-padding-right" for="form-field-1"> 确认新密码：<span class="must">*</span></label>
+				<div class="col-sm-3">
+					<input type="password" name="admin_pass_repeat" placeholder="再次输入新密码" class="col-xs-10 col-sm-9">
+				</div>
+			</div>
+			
+			<div style="text-align:center;">
+				<button event-name="reset-pwd" type="button" class="btn btn-danger btn-xs  ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">
+					<span class="ui-button-text"><i class="icon-ok bigger-110"></i>&nbsp; 确定</span>
+				</button>
+				<span class="separate-2"></span>
+				<button type="button" class="btn btn-xs  ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only" role="button" aria-disabled="false">
+					<span class="ui-button-text"><i class="icon-remove bigger-110"></i>&nbsp; 取消</span>
+				</button>
+			</div>
+		</div>
+		
+	</form>
+</div>

@@ -1,0 +1,1439 @@
+[ 2016-11-24T00:33:55+08:00 ] 192.168.1.150 /index.php/Shop/hotelType.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000225s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000385s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0025s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0027s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0021s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0040s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/hotelType' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0010s ]
+SQL: SELECT `id`,`type_name`,`type_class` FROM `pad_type_info` WHERE `data_status` = 1  [ RunTime:0.0013s ]
+
+[ 2016-11-24T00:54:18+08:00 ] 192.168.1.150 /index.php/Shop/hotelType.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000230s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000396s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0021s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0021s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0044s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0026s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0023s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/hotelType' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0011s ]
+SQL: SELECT `id`,`type_name`,`type_class` FROM `pad_type_info` WHERE `data_status` = 1  [ RunTime:0.0013s ]
+
+[ 2016-11-24T00:54:30+08:00 ] 192.168.1.150 /index.php/Shop/addEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000585s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000919s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0027s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEdit' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `hotel_name` = '派锋酒店（龙华店）' LIMIT 1   [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: hotel_code /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 30 行.
+ERR: 1364:Field 'hotel_code' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`) VALUES ('派锋酒店（龙华店）','','','','0','','','1479920070','1479920070','1')
+ERR: 1364:Field 'hotel_code' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`) VALUES ('派锋酒店（龙华店）','','','','0','','','1479920070','1479920070','1')
+
+[ 2016-11-24T00:54:40+08:00 ] 192.168.1.150 /index.php/Shop/addEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000269s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000440s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEdit' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0025s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `hotel_name` = '派锋酒店（龙华店）' LIMIT 1   [ RunTime:0.0019s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: hotel_code /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 30 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `group_code` = '123456' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `customer_code` = '123456' LIMIT 1   [ RunTime:0.0014s ]
+ERR: 1364:Field 'hotel_code' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`) VALUES ('派锋酒店（龙华店）','','','','0','123456','123456','1479920080','1479920080','1')
+ERR: 1364:Field 'hotel_code' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`) VALUES ('派锋酒店（龙华店）','','','','0','123456','123456','1479920080','1479920080','1')
+
+[ 2016-11-24T00:54:55+08:00 ] 192.168.1.150 /index.php/Shop/addEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000288s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000533s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0047s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEdit' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `hotel_name` = '派锋酒店（龙华店）' LIMIT 1   [ RunTime:0.0022s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: hotel_code /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 30 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `group_code` = '123456' LIMIT 1   [ RunTime:0.0019s ]
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `customer_code` = '123456' LIMIT 1   [ RunTime:0.0027s ]
+ERR: 1364:Field 'hotel_code' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`) VALUES ('派锋酒店（龙华店）','','','','0','123456','123456','1479920095','1479920095','1')
+ERR: 1364:Field 'hotel_code' doesn't have a default value
+ [ SQL语句 ] : INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`) VALUES ('派锋酒店（龙华店）','','','','0','123456','123456','1479920095','1479920095','1')
+
+[ 2016-11-24T00:55:44+08:00 ] 192.168.1.150 /index.php/Shop/addEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000442s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0023s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEdit' LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0022s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `hotel_name` = '派锋酒店（龙华店）' LIMIT 1   [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: hotel_code /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 30 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `group_code` = '123456' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `customer_code` = '123456' LIMIT 1   [ RunTime:0.0016s ]
+SQL: INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`,`hotel_code`) VALUES ('派锋酒店（龙华店）','','','','0','123456','123456','1479920144','1479920144','1','0') [ RunTime:0.0017s ]
+ERR: 1406:Data too long for column 'hotel_code' at row 1
+ [ SQL语句 ] : UPDATE `pad_hotel_info` SET `hotel_code`='PP00032' WHERE `id` = 32
+ERR: 1406:Data too long for column 'hotel_code' at row 1
+ [ SQL语句 ] : UPDATE `pad_hotel_info` SET `hotel_code`='PP00032' WHERE `id` = 32
+
+[ 2016-11-24T01:08:37+08:00 ] 192.168.1.150 /index.php/Shop/addEdit.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000531s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000785s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEdit' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `hotel_name` = '派锋酒店（龙华店）' LIMIT 1   [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: hotel_code /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 30 行.
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `group_code` = '123456' LIMIT 1   [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_hotel_info` WHERE `data_status` = 1 AND `customer_code` = '123456' LIMIT 1   [ RunTime:0.0014s ]
+SQL: INSERT INTO `pad_hotel_info` (`hotel_name`,`contacts`,`contact_way`,`address`,`adver_number`,`group_code`,`customer_code`,`create_time`,`update_time`,`data_status`,`hotel_code`) VALUES ('派锋酒店（龙华店）','','','','0','123456','123456','1479920917','1479920917','1','0') [ RunTime:0.0012s ]
+SQL: UPDATE `pad_hotel_info` SET `hotel_code`='P000000033' WHERE `id` = 33 [ RunTime:0.0060s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_type` [ RunTime:0.0012s ]
+SQL: INSERT INTO `pad_hotel_type` (`hotel_id`,`type_id`) VALUES ('33','1') [ RunTime:0.0246s ]
+SQL: SHOW COLUMNS FROM `pad_business_district` [ RunTime:0.0012s ]
+SQL: INSERT INTO `pad_business_district` (`hotel_id`,`trade_id`) VALUES ('33','0') [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 281 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 285 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shop','addEdit','192.168.1.150','1','admin编辑商户，商户名称：派锋酒店（龙华店）','1479920917') [ RunTime:0.0240s ]
+
+[ 2016-11-24T16:39:41+08:00 ] 192.168.1.150 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000789s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001366s ]
+SQL: SHOW COLUMNS FROM `pad_admin_info` [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_admin_info` WHERE `admin_account` = 'admin' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 281 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 285 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Public','login','192.168.1.150','1','admin登陆后台,时间：2016-11-24 16:39:41','1479976781') [ RunTime:0.0192s ]
+
+[ 2016-11-24T18:14:49+08:00 ] 192.168.1.150 /index.php/Baseinfo/roomService.html
+ERR: 系统不支持:redis
+
+[ 2016-11-24T18:29:55+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'service_name' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`service_name` FROM `pad_service_two` WHERE `service_id` = 1 
+
+[ 2016-11-24T18:52:39+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000299s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000546s ]
+
+[ 2016-11-24T18:52:47+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000405s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000929s ]
+
+[ 2016-11-24T18:53:15+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000253s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000472s ]
+
+[ 2016-11-24T18:53:42+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000567s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000945s ]
+
+[ 2016-11-24T18:54:03+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000706s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000874s ]
+
+[ 2016-11-24T18:54:57+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000258s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000448s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T18:55:00+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000246s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000424s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0012s ]
+
+[ 2016-11-24T18:55:19+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000205s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000407s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0012s ]
+
+[ 2016-11-24T18:55:22+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000554s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T18:56:53+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000392s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000783s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0014s ]
+
+[ 2016-11-24T18:57:02+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000458s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000688s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0012s ]
+
+[ 2016-11-24T18:57:25+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000792s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001661s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0013s ]
+
+[ 2016-11-24T18:57:34+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001816s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002502s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0014s ]
+
+[ 2016-11-24T18:57:39+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000338s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000759s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:06:12+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000594s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001323s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:06:14+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000218s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000419s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0018s ]
+
+[ 2016-11-24T19:06:16+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000782s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0023s ]
+
+[ 2016-11-24T19:06:17+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000509s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001132s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:06:19+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000406s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000642s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0019s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0014s ]
+
+[ 2016-11-24T19:06:20+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000373s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000555s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0019s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0016s ]
+
+[ 2016-11-24T19:06:43+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000310s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000566s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:06:45+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000995s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004852s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:06:49+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.004183s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004430s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0021s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:06:52+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000287s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000523s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0015s ]
+
+[ 2016-11-24T19:07:09+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000491s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000737s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0019s ]
+
+[ 2016-11-24T19:07:43+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000728s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:07:44+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000502s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000836s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:07:45+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000498s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001172s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0014s ]
+
+[ 2016-11-24T19:07:59+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000411s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000573s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0019s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0016s ]
+
+[ 2016-11-24T19:08:00+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000902s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001169s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:08:14+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000549s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000858s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:08:16+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000551s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001085s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0012s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:08:19+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.003694s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.004611s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:08:50+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001272s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:08:51+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000969s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001566s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0014s ]
+
+[ 2016-11-24T19:09:13+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000442s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000743s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0018s ]
+
+[ 2016-11-24T19:09:14+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000383s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000645s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:09:38+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000288s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000525s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0018s ]
+
+[ 2016-11-24T19:09:40+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000394s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000750s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:09:41+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000275s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000508s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0022s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0017s ]
+
+[ 2016-11-24T19:09:42+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000732s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000951s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:09:44+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000291s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000529s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:09:45+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000431s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000670s ]
+
+[ 2016-11-24T19:10:05+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001028s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001398s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0011s ]
+
+[ 2016-11-24T19:10:07+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000252s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000540s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0010s ]
+
+[ 2016-11-24T19:10:22+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000359s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000618s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:10:24+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000452s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000918s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0022s ]
+
+[ 2016-11-24T19:10:25+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000263s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000439s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0011s ]
+
+[ 2016-11-24T19:10:26+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000983s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001185s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:10:27+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000839s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001622s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:10:30+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000666s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001538s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0025s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:12:39+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000509s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0011s ]
+
+[ 2016-11-24T19:12:40+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000360s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000766s ]
+
+[ 2016-11-24T19:12:43+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000248s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000493s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:12:45+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000675s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001068s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0009s ]
+
+[ 2016-11-24T19:12:47+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=0
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000513s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000835s ]
+
+[ 2016-11-24T19:13:08+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000330s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000511s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:13:11+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000232s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000413s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:14:33+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000295s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000469s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0014s ]
+
+[ 2016-11-24T19:14:34+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000342s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000520s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0010s ]
+
+[ 2016-11-24T19:14:35+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000431s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000815s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0016s ]
+
+[ 2016-11-24T19:14:37+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000619s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001136s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0025s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0010s ]
+
+[ 2016-11-24T19:14:38+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000299s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000466s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:14:40+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.007447s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.008310s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0012s ]
+
+[ 2016-11-24T19:14:42+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000361s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000710s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0022s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0018s ]
+
+[ 2016-11-24T19:14:44+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000572s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001113s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:14:45+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000535s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000842s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T19:14:49+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000607s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001050s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0016s ]
+
+[ 2016-11-24T19:14:51+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000406s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000800s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0023s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0011s ]
+
+[ 2016-11-24T20:51:14+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=2
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001080s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001603s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0019s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 2  [ RunTime:0.0016s ]
+
+[ 2016-11-24T20:51:16+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000483s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000869s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0012s ]
+
+[ 2016-11-24T20:51:18+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000716s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001009s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0013s ]
+
+[ 2016-11-24T20:52:16+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001852s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002885s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0010s ]
+
+[ 2016-11-24T21:01:02+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000388s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000682s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0012s ]
+
+[ 2016-11-24T21:03:47+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000723s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001731s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0014s ]
+
+[ 2016-11-24T21:03:49+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000671s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001189s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0016s ]
+
+[ 2016-11-24T21:03:50+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000351s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000605s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0028s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0014s ]
+
+[ 2016-11-24T21:03:52+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000273s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000538s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0022s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0011s ]
+
+[ 2016-11-24T21:26:28+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`icon_name`,`icon_path` FROM `pad_service_icon` WHERE `icon_category` = 2 AND `data_status` <> 99 
+
+[ 2016-11-24T21:26:42+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`icon_name`,`icon_path` FROM `pad_service_icon` WHERE `icon_category` = 2 AND `data_status` <> 99 
+
+[ 2016-11-24T21:26:42+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`icon_name`,`icon_path` FROM `pad_service_icon` WHERE `icon_category` = 2 AND `data_status` <> 99 
+
+[ 2016-11-24T21:26:42+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`icon_name`,`icon_path` FROM `pad_service_icon` WHERE `icon_category` = 2 AND `data_status` <> 99 
+
+[ 2016-11-24T21:26:43+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `id`,`icon_name`,`icon_path` FROM `pad_service_icon` WHERE `icon_category` = 2 AND `data_status` <> 99 
+
+[ 2016-11-24T21:29:53+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:29:56+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:29:57+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:29:57+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:00+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:05+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:10+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:11+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:11+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:11+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:18+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:19+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:20+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:21+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:23+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:26+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:28+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:30+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:34+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:40+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:30:46+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:21+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:24+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:26+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:27+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:30+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:31+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:32+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:31:33+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:03+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:07+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:07+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:21+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:21+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:30+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:33+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:34+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:34+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:35+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:47+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:32:58+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:33:19+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:33:31+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:37:10+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:37:20+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:37:57+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:37:58+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:37:58+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:37:58+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:37:58+08:00 ] 192.168.1.150 /index.php/Shopsetting/tel.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = 7 AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:39:07+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:41:50+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:44:34+08:00 ] 192.168.1.150 /index.php/Shopsetting/room.html
+ERR: 1054:Unknown column 'icon_path' in 'field list'
+ [ SQL语句 ] : SELECT `icon_path` FROM `pad_service_icon` WHERE `id` = null AND `data_status` <> 99 LIMIT 1  
+
+[ 2016-11-24T21:59:08+08:00 ] 192.168.1.150 /index.php/Shop/seach.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000671s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000836s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0019s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/seach' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0025s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `data_status` <> 99 AND `hotel_name` LIKE '%派锋%'  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_type` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 1  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0014s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('6')  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0023s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 1 AND `data_status` <> 99  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 26  [ RunTime:0.0012s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('7','9','13')  [ RunTime:0.0012s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 31  [ RunTime:0.0014s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 31 AND `data_status` <> 99  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 33  [ RunTime:0.0015s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('1')  [ RunTime:0.0017s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 33 AND `data_status` <> 99  [ RunTime:0.0015s ]
+
+[ 2016-11-24T21:59:22+08:00 ] 192.168.1.150 /index.php/Shop/addEditDev.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000466s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000676s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEditDev' LIMIT 1   [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: device_address /usr/local/www/l_hotel/Application/Admin/Controller/ShopController.class.php 第 331 行.
+NOTIC: [2] Invalid argument supplied for foreach() /usr/local/www/l_hotel/Application/Admin/Controller/ShopController.class.php 第 331 行.
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: room_name /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 302 行.
+ERR: 表达式错误:26
+
+[ 2016-11-24T22:00:01+08:00 ] 192.168.1.150 /index.php/Shop/seach.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000408s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000591s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/seach' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `data_status` <> 99 AND `hotel_name` LIKE '%派锋%'  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_type` [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 1  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0016s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('6')  [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0012s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 1 AND `data_status` <> 99  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 26  [ RunTime:0.0014s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('7','9','13')  [ RunTime:0.0014s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 31  [ RunTime:0.0014s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 31 AND `data_status` <> 99  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 33  [ RunTime:0.0013s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('1')  [ RunTime:0.0011s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 33 AND `data_status` <> 99  [ RunTime:0.0014s ]
+
+[ 2016-11-24T22:00:10+08:00 ] 192.168.1.150 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000318s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000488s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0064s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0013s ]
+
+[ 2016-11-24T22:01:46+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000248s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000431s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0014s ]
+
+[ 2016-11-24T22:01:49+08:00 ] 192.168.1.150 /index.php/Shop/seach.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000386s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000699s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/seach' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `data_status` <> 99 AND `hotel_name` LIKE '%派锋%'  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_type` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 1  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0012s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('6')  [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0012s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 1 AND `data_status` <> 99  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 26  [ RunTime:0.0014s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('7','9','13')  [ RunTime:0.0014s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 31  [ RunTime:0.0013s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 31 AND `data_status` <> 99  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 33  [ RunTime:0.0014s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('1')  [ RunTime:0.0014s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 33 AND `data_status` <> 99  [ RunTime:0.0014s ]
+
+[ 2016-11-24T22:04:48+08:00 ] 192.168.1.150 /index.php/Shop/seach.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000371s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000645s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/seach' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `data_status` <> 99 AND `hotel_name` LIKE '%派锋%'  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_type` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 1  [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0012s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('6')  [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 1 AND `data_status` <> 99  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 26  [ RunTime:0.0010s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('7','9','13')  [ RunTime:0.0013s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 31  [ RunTime:0.0013s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 31 AND `data_status` <> 99  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 33  [ RunTime:0.0010s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('1')  [ RunTime:0.0013s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 33 AND `data_status` <> 99  [ RunTime:0.0011s ]
+
+[ 2016-11-24T22:05:01+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000684s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000915s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0019s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0010s ]
+
+[ 2016-11-24T22:05:12+08:00 ] 192.168.1.150 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000886s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001505s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0017s ]
+
+[ 2016-11-24T23:33:06+08:00 ] 192.168.1.150 /index.php/Shop/seach.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001314s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001924s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0025s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0041s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0019s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/seach' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `data_status` <> 99 AND `hotel_name` LIKE '%派锋%'  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_type` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 1  [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_type_info` [ RunTime:0.0018s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('6')  [ RunTime:0.0017s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0028s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 1 AND `data_status` <> 99  [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 26  [ RunTime:0.0010s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('7','9','13')  [ RunTime:0.0012s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 31  [ RunTime:0.0013s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 31 AND `data_status` <> 99  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_hotel_type` WHERE `hotel_id` = 33  [ RunTime:0.0014s ]
+SQL: SELECT `type_name` FROM `pad_type_info` WHERE `id` IN ('1')  [ RunTime:0.0024s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 33 AND `data_status` <> 99  [ RunTime:0.0030s ]
+
+[ 2016-11-24T23:33:24+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000275s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000502s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 1  [ RunTime:0.0012s ]
+
+[ 2016-11-24T23:33:31+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000381s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001201s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0022s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0019s ]
+
+[ 2016-11-24T23:33:49+08:00 ] 192.168.1.150 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000247s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000445s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 214 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: INSERT INTO `pad_room_service` (`id`,`hotel_id`,`service_id`,`two_service_ids`,`data_sort`,`telephone`,`service_detail_type`,`service_content`) VALUES ('0','26','9','3,7','1','10','1','测试的') [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 281 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 285 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shopsetting','addEditRoom','192.168.1.150','1','admin 添加 客房服务；酒店ID：26','1480001629') [ RunTime:0.0344s ]
+
+[ 2016-11-24T23:40:47+08:00 ] 192.168.1.150 /index.php/Inner/getServerTow.html?id=9
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000374s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000609s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0018s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 9  [ RunTime:0.0025s ]
+

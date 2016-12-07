@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -227,7 +224,7 @@
 	
 													<td><?php echo (sprintf("%05d",$list["id"])); ?></td>
 													<td><?php echo (_default($list["hotel_name"])); ?></td>
-													<td><?php echo (_default(get_field("HotelService", "pic_num", array('hotel_id'=>$list["id"],'data_status'=>array('neq',99))))); ?></td>
+													<td><?php echo ($list["pic_num"]); ?></td>
 													<td>
 														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
 															<a class="blue" event-name="viewServer" url="<?php echo U('Shopsetting/serviceInfo');?>" params="id=<?php echo ($list["id"]); ?>" href="javascript:void(0);" title="查看详情">
@@ -293,27 +290,54 @@
 					<a href="javascript:void(0);" event-name="openSeach"><i class="icon-search hotet-sea-btn"></i></a>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片数量：<span class="must">*</span></label>
-				<div class="col-sm-4">
-					<select tag-id="pic-num" name="pic_num" class="form-control">
-						<option value="1">1</option>
-						<option value="2">2</option>
-						<option value="3">3</option>
-						<option value="4">4</option>
-						<option value="5">5</option>
-						<option value="6">6</option>
-						<option value="7">7</option>
-						<option value="8">8</option>
-						<option value="9">9</option>
-						<option value="10">10</option>
-					</select>
-				</div>
-			</div>
+			
 			<div class="form-group">
 				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图片上传：<span class="must">*</span></label>
 				<div class="col-sm-9">
-					<input type="file" name="pic_path[]" placeholder="" class="col-xs-10 col-sm-9" style="width:42%;">
+					<input type="hidden" name="pic_md5" value="" />
+					<span style="line-height:30px;">最多允许上传 10 张图片</span>
+	               <div tag-id="view" class="hide">
+	               		<div>
+	               			<img tag-id="img" style="border:1px solid #CCC;padding:3px;" src="<?php echo default_img();?>" width="130" />
+	               		</div>
+	               		<a tag-id="edit-upload" style="display:inline-block;line-height:35px;" href="javascript:void(0);" event-name="edit-upload">编辑图片</a>
+	               </div>
+	               
+	               <div tag-id="upload">
+	               		<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
+<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
+<div id="wrapper">
+    <div id="container">
+        <!--头部，相册选择和格式选择-->
+
+        <div id="uploader1" class="uploader">
+            <div class="queueList">
+                <div id="dndArea" class="placeholder">
+                    <div id="filePicker1"></div>
+                    <p>或将照片拖到这里</p>
+                </div>
+            </div>
+            <div class="statusBar" style="display:none;">
+                <div class="progress">
+                    <span class="text">0%</span>
+                    <span class="percentage"></span>
+                </div><div class="info"></div>
+                <div class="btns">
+                    <div class="uploadBtn">开始上传</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
+<script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
+
+	               		
+	               		<a tag-id="cancel-upload" style="display:inline-block;line-height:35px;" class="hide" href="javascript:void(0);" event-name="cancel-upload">取消编辑</a>
+	               </div>
+	               
 				</div>
 			</div>
 		</div>
@@ -329,7 +353,7 @@
 				<input type="text" tag-id="hotel_name" name="hotel_name" placeholder="支持模糊查询" class="input-sm seach-input value" style="width:70%!important;">
 			</div>
 			<span class="input-group-btn search-btn" style="display:inline-block;">
-				<button event-name="seachShop" url="<?php echo U('Shop/seach');?>" class="btn btn-purple btn-sm">
+				<button event-name="seachShop" url="<?php echo U('Inner/seach');?>" class="btn btn-purple btn-sm">
 					搜索
 					<i class="icon-search icon-on-right bigger-110"></i>
 				</button>
@@ -362,16 +386,6 @@
 		</div>
 		<div class="form-group" style="padding-top:30px;">
 			<ul class="view-pic">
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
-				<li><img src="/Public/plugins/assets/avatars/profile-pic.jpg" /></li>
 			</ul>
 		</div>
 	</div>
@@ -404,6 +418,7 @@
 		<script type="text/javascript">
 			var static_base 	= '/Public';
 			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

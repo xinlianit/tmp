@@ -1,0 +1,21 @@
+<div dialog-id="shelf-up-box" class="hide">
+
+    <form class="form-horizontal" role="form" form-id="shelf-up-form" action="{:U('Goods/upGoods')}" method="post">
+        <div class="form-group">
+            <label class="col-sm-11  text-left">上架商品：<span id="up-goods-name"></span></label>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-11  text-left">上架商户</label>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <div class="col-sm-11">
+                sdfsfd
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+    </form>
+</div>

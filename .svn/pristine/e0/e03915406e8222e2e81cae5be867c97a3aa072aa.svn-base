@@ -1,0 +1,130 @@
+<div dialog-id="edit-adv-box" class="hide">
+    <form class="form-horizontal" role="form" form-id="edit-adv-form" action="{:U('Adv/editAdvert')}" method="post">
+        <div tag-id="setup-1">
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" >广告名称：</label>
+                <div class="col-sm-9">
+                    <input type="text" name="advert_name" class="col-xs-10 col-sm-7">
+                </div>
+            </div>
+            <div class="space-4"></div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"> 广告主选择：<span class="must">*</span></label>
+                <div class="col-sm-9">
+                        <input name="adver_id" type="hidden" value="0" />
+                        <input type="text" name="adver_name" disabled="disabled" placeholder="广告主名称" class="col-xs-10 col-sm-9" >
+                        <a href="javascript:void(0);" event-name="open-seach-adver"><i class="icon-search hotet-sea-btn"></i></a>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"> 广告类别： </label>
+                <div class="col-sm-9">
+                    <select class="col-xs-10 col-sm-5"  name="advert_position">
+                        <option value="1">首页广告</option>
+                    </select>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" >广告排列号：</label>
+                <div class="col-sm-9">
+                    <select class="col-xs-10 col-sm-3"  name="weight">
+                        <option value="1">1</option>
+                        <option value="2">2</option>
+                        <option value="3">3</option>
+                        <option value="4">4</option>
+                        <option value="5">5</option>
+                        <option value="6">6</option>
+                        <option value="7">7</option>
+                        <option value="8">8</option>
+                    </select>
+                    <p class="text-muted">&nbsp;&nbsp;数字0-8，数字越小广告位置越靠前</p>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" >投放时间：</label>
+                <div class="col-sm-9">
+                    <div class="input-group">
+                            <span class="input-group-addon">
+                                    <i class="icon-calendar bigger-110"></i>
+                            </span> 
+                        <input class="form-control" type="text" name="date-range-picker" id="id-date-range-picker-1" value="" />
+                    </div>
+                </div>
+            </div>
+            <div class="space-4"></div>
+        </div>
+        <div tag-id="setup-2">
+            <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right" >素材类型：</label>
+                <div class="col-sm-9">
+                    <label class="radio-inline">
+                        <input type="radio" name="material_type" checked="checked" value="1"> 图片
+                    </label>
+                    <label class="radio-inline">
+                        <input type="radio" name="material_type"  value="2"> 视频
+                    </label>
+                </div>
+            </div>
+            <div class="space-4"></div>
+            
+            <div class="form-group material_type">
+                <div  material_type="1" >
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-4">已有广告图：</label>
+                        <div class="col-sm-9">
+                            <img id="has_img_advpic" src="{:C('FASTDFS_URL')}" style="height: 40px">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" >广告图：</label>
+                        <div class="col-sm-9">
+                            <input type="hidden" name="advpic_md5">
+                            <include file="Layout:upload_image_single" uploader="uploader4" filepicker='filePicker4'  />
+                        </div>
+                    </div>                    
+                </div>
+                <div  material_type="2" class="hide">
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-4">已有视频：</label>
+                        <div class="col-sm-9">
+                            <script src="__PUBLIC__/static/js/html5media.min.js"></script>
+                            <video id="has_img_advvideo" src="" width="352" height="264" controls autobuffer></video>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" >广告视频：</label>
+                        <div class="col-sm-9">
+                            <input type="hidden" name="advvideo_md5">
+                            <include file="Layout:upload_image_single" uploader="uploader5" filepicker='filePicker5'  />
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" for="form-field-4">已有缩略图：</label>
+                        <div class="col-sm-9">
+                            <img id="has_img_advvideopic" src="{:C('FASTDFS_URL')}" style="height: 40px">
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label class="col-sm-3 control-label no-padding-right" >缩略图：</label>
+                        <div class="col-sm-9">                            
+                            <input type="hidden" name="advvideopic_md5">
+                            <include file="Layout:upload_image_single" uploader="uploader6" filepicker='filePicker6'  />
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            
+        </div>
+        
+        <input type="hidden" name="id" >
+    </form>
+</div>
+<include file="Layout:rangepicker" pickername="date-range-picker" />

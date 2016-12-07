@@ -1,0 +1,30 @@
+<?php
+/**
+ * GoodsInfoLogic.class.php - 商品逻辑处理
+ * @package Common\Case
+ * @subpackage
+ * @link http://www.pad-phone.com/
+ * @author PHP DEV TEAM zhaoxizhan(441534536@qq.com)
+ * @copyright 派锋科技 2016年11月24日 上午11:35
+ * @version V1.0.0
+ */
+
+namespace Common\Logic;
+
+class GoodsInfoLogic {
+    
+    /**
+     * 判断指定分类下有无产品
+     * @param int $cate_id 分类ID
+     * @return boolean
+     */
+    public function isExistByCateId($cate_id){
+        $rs = D('GoodsInfo')->getListByCateId($cate_id);
+        if(!$rs){
+            return false;
+        }
+        
+        return true;
+    }
+    
+}

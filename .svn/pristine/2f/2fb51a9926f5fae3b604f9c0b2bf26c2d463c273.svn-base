@@ -1,0 +1,410 @@
+<?php
+/**
+ * GoodsController.class.php - 商品管理
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM Zhaoxizhan(441534536@qq.com)
+ * @copyright 2016-11-22 10:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+
+class GoodsController extends CommonController {
+    
+    /**
+     * 商品列表
+     */
+    public function goodsList(){
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        $model = D('GoodsInfo');
+        
+        //搜索条件
+        $_map['data_status'] = array('neq',99);
+        if(!empty($search_key)){
+            $_map['goods_name'] = array('like','%'.$search_key.'%');
+        }
+        //当前页数
+        $page_index  = I('get.p',1);
+        
+        $list = $model->field('id,cate_id')->where($_map)->order('cate_id,id desc')->page($page_index,C('PAGE_SIZE'))->select();
+        $count = $model->where($_map)->count();
+        
+        //结果格式化
+        $_list = array();
+        foreach ($list as $val) {
+            if(!isset($_list['key_'.$val['cate_id']]['cate_name'])){
+                $_tmp_cate_info = D('Goods','Cache')->getGoodsCategoryInfo($val['cate_id']);            
+                $_list['key_'.$val['cate_id']]['cate_name'] = $_tmp_cate_info['category_name'] ;
+            }
+            $_list['key_'.$val['cate_id']]['list'][] = D('Goods','Cache')->getGoodsInfo($val['id']);
+        }
+        $page = show_page($count);
+        $page['list'] = $_list;
+        
+        $cate_list = D('GoodsCategory')->getList();
+        $this->assign('cate',$cate_list);
+
+        
+        
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加商品
+     */
+    public function addGoods(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        
+        //修改参数
+        $_data['cate_id']       = I('post.cate_id');
+        $_data['goods_desc']    = I('post.goods_desc');
+        $_data['goods_name']    = I('post.goods_name');
+        
+        $_file_md5              = I('post.goods_pic_md5');
+        $_data['goods_price']   = I('post.goods_price')*100;
+        $_data['original_cost'] = I('post.original_cost');
+        
+        //参数校验
+        if(empty($_data['goods_name']) || empty($_data['cate_id']) || empty($_data['goods_price']) || empty($_file_md5)){
+            $this->ajaxReturnErr();
+        }
+        
+        if($_file_md5){
+            $res_info = D('Resource')->getResourceByMd5($_file_md5);
+            //没有找到对应资源
+            if(!$res_info){
+                $this->ajaxReturnErr();
+            }
+            $_data['goods_pic'] = $res_info['res_path'];//商品图片
+        }
+        
+        $_time = time();
+        $_data['create_time'] = $_time;
+        $_data['update_time'] = $_time;
+        $_data['data_status'] = 2;
+        $_data['goods_stock'] = 9999;
+        
+        $rs = D('GoodsInfo')->add($_data);
+        
+        if(!$rs){            
+            $this->ajaxReturnErr();
+        }
+        
+        D('Goods','Cache')->getGoodsInfo($rs,true,$_data);
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 删除商品
+     */    
+    public function delGoods(){
+        
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); 
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //成功及失败数量
+        $succeed = $failed = 0;
+        //错误描述
+        $err_str = '';
+        //遍历删除     
+        foreach ($id_arr as $val) {
+            //1.上架商品不能删除
+            $_info = D('Goods','Cache')->getGoodsInfo($val);//商品详情
+            //上架商品不能删除
+            if($_info['data_status'] == 1){
+                $failed++;
+                $err_str = '上架商品不能删除';
+                continue;
+            }
+            
+            M()->startTrans();
+            //2.删除商品主表 及 更新缓存
+            $rs1 = D('GoodsInfo','Logic')->delGoodsInfo($val);            
+            
+            //3.同是删除发布关系 pad_goods_shelves 
+            $_map['goods_id'] = $val;
+            $rs2 = M('goods_shelves ')->where($_map)->delete();
+            if($rs1 === false || $rs2 === false){
+                M()->rollback();
+                $failed++;
+                continue;
+            }
+            M()->commit();
+            
+            $succeed++;
+        }
+        
+        if($succeed>0 && $failed>0){//部分失败
+            $this->ajaxReturnErr('部分商品删除失败;'.$err_str);
+        }elseif($failed>0){//全部失败
+            $this->ajaxReturnErr($err_str);
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+
+    /**
+     * 编辑商品
+     */
+    public function editGoods(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        //判断当前商品是否为上架状态，上架商品无法编辑
+        
+        //修改参数
+        $_data['cate_id']       = I('post.cate_id');
+        $_data['goods_desc']    = I('post.goods_desc');
+        $_data['goods_name']    = I('post.goods_name');
+        $_data['goods_price']   = I('post.goods_price')*100;
+        $_data['original_cost'] = I('post.original_cost');
+        
+        //参数校验
+        if(empty($_data['goods_name']) || empty($_data['cate_id']) || empty($_data['goods_price'])){
+            $this->ajaxReturnErr();
+        }
+        $_file_md5              = I('post.goods_pic_md52');
+        if($_file_md5){
+            $res_info = D('Resource')->getResourceByMd5($_file_md5);
+            //没有找到对应资源
+            if(!$res_info){
+                $this->ajaxReturnErr();
+            }
+            $_data['goods_pic'] = $res_info['res_path'];//商品图片
+        }
+        
+        $_data['update_time'] = time();
+        
+        //商品编辑
+        $rs = D('GoodsInfo','Logic')->editGoodsInfo($id, $_data);
+        
+        if($rs === false){            
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 获取商品详情
+     */
+    public function getGoodsInfo(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        
+        $id = I('post.id'); //要编辑的ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $info = D('Goods','Cache')->getGoodsInfo($id);
+        
+        if(!$info){
+            $this->ajaxReturnErr('ID不存在');
+        }
+        
+        $info['goods_price'] = money_num_format($info['goods_price']);
+        $this->ajaxReturnSuccess(array('data'=>$info));
+    }
+
+    /**
+     * 商品分类列表
+     */
+    public function cate(){        
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        $model = D('GoodsCategory');
+        
+        //搜索条件
+        $_map['data_status'] = 1;
+        if(!empty($search_key)){
+            $_map['category_name'] = array('like','%'.$search_key.'%');
+        }
+        //当前页数
+        $page_index  = I('get.p',1);
+        
+        $list = $model->where($_map)->order('data_sort asc,id')->page($page_index,C('PAGE_SIZE'))->select();
+        $count = $model->where($_map)->count();
+        
+        $page = show_page($count);
+        $page['list'] = $list;
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加产品分类
+     */
+    public function addCate(){
+        
+        //添加参数
+        $_data['category_name']  = I('post.category_name');
+        $_data['data_sort']      = I('post.data_sort');
+        $_data['category_desc']  = I('post.category_desc')?I('post.category_desc'):'';
+        
+        //参数校验
+        if(empty($_data['category_name']) || empty($_data['data_sort'])){
+            $this->ajaxReturnErr();
+        }
+        
+        //添加
+        $rs = D('GoodsCategory')->add($_data);        
+        
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        
+        //增加分类缓存
+        $_data['id'] = $rs;
+        $_data['data_status'] = 1;
+        D('Goods','Cache')->getGoodsCategoryInfo($rs,true,$_data);
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 删除商品分类
+     */    
+    public function delCate(){
+        
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); 
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //成功及失败数量
+        $succeed = $failed = 0;
+        $err_str1 = $err_str2 = '';//错误描述
+        //遍历删除
+        $cache = D('Goods','Cache');
+        foreach ($id_arr as $val) {
+            //判断当前分类下是否有商品            
+            $is_exist = D('GoodsInfo','Logic')->isExistByCateId($val);
+            if($is_exist){
+                $failed++;
+                $_tmp_cate_info = $cache->getGoodsCategoryInfo($val);
+                $err_str1 .= $_tmp_cate_info['category_name'].',';
+                continue;
+            }            
+            //删除
+            $rs = D('GoodsCategory')->delCate($val);
+
+            if($rs === false){
+                $failed++;
+                $_tmp_cate_info = $cache->getGoodsCategoryInfo($val);
+                $err_str2 .= $_tmp_cate_info['category_name'].',';
+                continue;
+            }
+            $cache->getGoodsCategoryInfo($val,true);
+            $succeed++;
+        }
+        //分类下有产品的错误信息处理
+        if(!empty($err_str1)){
+            $err_str1 =  substr($err_str1,0,-1).'等分类下有商品，无法删除！';
+        }
+        //删除失败错误处理
+        if(!empty($err_str2)){
+            $err_str2 =  substr($err_str2,0,-1).'等分类删除失败！';
+        }
+        if($succeed>0 && $failed>0){//部分失败
+            $this->ajaxReturnErr('部分分类删除失败:'.$err_str1.$err_str2);
+        }elseif($failed>0){//全部失败
+            $this->ajaxReturnErr($err_str1.$err_str2);
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 获取商品类型详情
+     */
+    public function getCateInfo(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); //要编辑的类型ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $info = D('Goods','Cache')->getGoodsCategoryInfo($id);
+        
+        if(!$info){
+            $this->ajaxReturnErr('ID不存在');
+        }
+        
+        $this->ajaxReturnSuccess(array('data'=>$info));
+    }
+    
+    /**
+     * 编辑商品分类
+     */
+    public function editCate(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); //要编辑的类型ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        //修改参数
+        $_data['category_name']  = I('post.category_name');
+        $_data['data_sort']      = I('post.data_sort');
+        $_data['category_desc']  = I('post.category_desc')?I('post.category_desc'):'';
+        
+        //参数校验
+        if(empty($_data['category_name']) || empty($_data['data_sort'])){
+            $this->ajaxReturnErr();
+        }
+        //模型
+        $model = D('GoodsCategory');
+        //原分类信息
+        $full_info = $model->getInfo($id);
+        //添加
+        $rs = D('GoodsCategory')->editCate($id,$_data);
+        
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        
+        //更新缓存
+        D('Goods','Cache')->getGoodsCategoryInfo($id,true,$_data,$full_info);
+        $this->ajaxReturnSuccess();
+    }
+}

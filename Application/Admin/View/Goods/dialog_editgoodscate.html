@@ -1,0 +1,44 @@
+<div dialog-id="edit-cate-box" class="hide">
+
+    <form class="form-horizontal" role="form" form-id="edit-cate-form" action="{:U('Goods/editCate')}" method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">商品分类名称：</label>
+            <div class="col-sm-9">
+                <input type="text" name="category_name" placeholder="输入商品分类名称" class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">页面排列号：</label>
+            <div class="col-sm-9">
+                <select class="col-xs-10 col-sm-5"  name="data_sort">
+                    <option value="0">请选择</option>
+                    <option value="1">1</option>
+                    <option value="2">2</option>
+                    <option value="3">3</option>
+                    <option value="4">4</option>
+                    <option value="5">5</option>
+                    <option value="6">6</option>
+                    <option value="7">7</option>
+                    <option value="8">8</option>
+                    <option value="9">9</option>
+                    <option value="10">10</option>
+                    <option value="11">11</option>
+                    <option value="12">12</option>
+                </select>
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">分类描述：</label>
+
+            <div class="col-sm-9">
+                <textarea class="col-xs-10" rows="3" name="category_desc"></textarea>
+            </div>
+        </div>
+
+        <div class="space-4"></div>
+    </form>
+</div>

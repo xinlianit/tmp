@@ -1,0 +1,9 @@
+<div dialog-id="stops-adv-box" class="hide">
+    <h3>确定要停止此广告吗？</h3>
+    <form class="form-horizontal" role="form" form-id="stops-adv-form" action="{:U('Adv/stopAdvert')}" method="post">
+
+        <input type="hidden" name="id" >
+
+        
+    </form>
+</div>

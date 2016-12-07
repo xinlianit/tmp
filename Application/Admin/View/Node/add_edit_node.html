@@ -1,0 +1,82 @@
+<div dialog-id="addEdit" class="hide">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="{:U('Node/addEditNode')}" method="post">
+		<input name="id" type="hidden" value="0" />
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 上级节点：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-6">
+					<select name="pid" class="form-control">
+						<option value="0">请选择</option>
+						<volist name="parent_node" id="p_list">
+							<option value="{$p_list.id}">
+							<switch name="p_list.type">
+								<case value="1">*模块*</case>
+								<case value="2">控制器</case>
+							</switch>
+							— {$p_list.title}（{$p_list.name}）</option>
+						</volist>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 节点名称：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="title" placeholder="节点名称；如：权限管理" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 节点规则：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="name" placeholder="节点规则；如：Admin/Index/index" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 节点类型：<span class="must">*</span></label>
+				<div class="col-sm-4">
+					<select name="type" class="form-control">
+						<option value="1">模块</option>
+						<option value="2">控制器</option>
+						<option value="3">方法</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图标名称：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="icon_name" placeholder="图标名称；如：icon-down" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 排序：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="sort" value="10" placeholder="节点排序号；如：10" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 是否显示：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<label>
+						<input value="1" name="is_show" checked="checked" type="radio" class="ace">
+						<span class="lbl"> 是</span>
+					</label>
+					<span class="separate-3"></span>
+					<label>
+						<input value="0" name="is_show" type="radio" class="ace">
+						<span class="lbl"> 否</span>
+					</label>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 附加规则：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="condition" placeholder="附加规则" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
+	</form>
+</div>

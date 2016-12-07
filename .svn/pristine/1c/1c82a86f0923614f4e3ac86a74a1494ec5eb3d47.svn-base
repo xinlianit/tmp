@@ -1,0 +1,65 @@
+<?php
+
+namespace Common\Api;
+
+class OrderApi {
+    //员工登录令牌生成键值前缀
+    private $_User_Key = 'staff_info_key';
+    private $_log_str = [
+        'hotel_id' => '酒店ID: ',
+        'build_id' => '楼宇ID: ',
+        'floor_id' => '楼层ID: ',
+        'room_id'  => '房间ID: ',
+        'only_code' => '用户唯一ID: ',
+        'device_id' => '设备ID: ',
+        'only_token' => '设备地址: ',
+        'staff_id'  => '房间ID: ',
+        'cancel_content' => '取消原因: ',
+        'service_name'  => '服务名称: ',
+        'msg' => '',
+    ];
+
+    public function test(){
+        echo 'public api';
+        echo '<br>';
+        D('User','Logic')->test();        
+    }
+
+    /**
+     * 生成订单号
+     * @param int $hotel_id   酒店ID
+     * @param int $room_id    房间ID
+     * @return string         订单号
+     */
+    function generate_order_no($hotel_id = 0, $room_id = 0){
+        mt_srand(make_seed($hotel_id));
+        $_val = mt_rand(10001, 99999);
+
+        if(($_hotel_id = $hotel_id % 10)<=0)$_hotel_id = mt_rand(1, 9);
+        if(($_room_id = $room_id % 10)<=0)$_room_id = mt_rand(1, 9);
+
+        return $_hotel_id . str_pad(($_room_id % 10), 2, mt_rand(1, 9), STR_PAD_LEFT) . str_shuffle(date('Ymd')) . $_val;
+    }
+
+    /**
+     * @param array $data 写入参数
+     * @param String $order_no    订单号
+     */
+    public function logs($data = [], $order_no){
+        if(isset($data) && count($data)>0){
+            $_temp = '';
+            foreach ( $data as $key => $value ){
+                if(array_key_exists($key, $this -> _log_str) && !empty($value) && strlen($value)>0){
+                    $_temp .= $this -> _log_str[$key] . $value . ', ';
+                }
+            }
+            $_msg = trim($_temp, ', ');
+
+            $rs = M('order_logs') -> data(['order_no' => $order_no, 'order_msg' => $_msg, 'create_time' => time()]) -> add();
+            if(!$rs){
+                return false;
+            }
+        }
+        return true;
+    }
+}

@@ -1,0 +1,55 @@
+<div tag-id="setup-1">
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
+		<div class="col-sm-9">
+			<input type="text" name="hotel_name" placeholder="输入商户名称" class="col-xs-10 col-sm-8" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商户类型：<span class="must">*</span></label>
+		<div class="col-sm-9">
+			<div class="shop-type" tag-id="checked-type">
+				请选择类型
+			</div>
+			<button event-name="add-type" url="{:U('Shop/hotelType')}" type="button" class="btn btn-sm btn-success add-shop-type">
+				添加类型
+			</button>
+			<input type="hidden" name="hotel_type">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 联系人：<span class="red">&nbsp;&nbsp;</span> </label>
+
+		<div class="col-sm-9">
+			<input type="text" name="contacts" id="form-field-2" placeholder="输入联系人" class="col-xs-10 col-sm-6">
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 联系方式： <span class="red">&nbsp;&nbsp;</span></label>
+
+		<div class="col-sm-9">
+			<input type="text" name="contact_way" id="form-field-2" placeholder="输入联系方式" class="col-xs-10 col-sm-6">
+		</div>
+	</div>
+	
+	<div class="form-group">
+           <label class="col-sm-3 control-label no-padding-right"> 商户图片：<span class="red">&nbsp;&nbsp;</span></label>
+
+           <div class="col-sm-9">
+               <input type="hidden" name="pic_md5">
+               
+               <div tag-id="view" class="hide">
+               		<div>
+               			<img tag-id="img" style="border:1px solid #CCC;padding:3px;" src="{:default_img()}" width="130" />
+               		</div>
+               		<a tag-id="edit-upload" style="display:inline-block;line-height:35px;" href="javascript:void(0);" event-name="edit-upload">编辑图片</a>
+               </div>
+               
+               <div tag-id="upload">
+               		<include file="Layout:upload_image_single" uploader="uploader1" filepicker='filePicker1'  />
+               		
+               		<a tag-id="cancel-upload" style="display:inline-block;line-height:35px;" class="hide" href="javascript:void(0);" event-name="cancel-upload">取消编辑</a>
+               </div>
+           </div>
+       </div>
+</div>

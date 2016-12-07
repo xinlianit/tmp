@@ -1,0 +1,70 @@
+<?php
+return array(
+	//'配置项'=>'配置值'
+    'LAYOUT_ON'             =>  true, // 是否启用布局
+    'LAYOUT_NAME'           =>  'layout', // 当前布局名称 默认为layout
+    
+    //登陆数据存储类型; session、redis、memcache
+    'LOGIN_STORAGE_TYPE'        => 'session',
+    
+    //字段默认值
+    'FIELD_DEFAULT_VALUE'       => '-',
+    
+    //每页显示行数
+    'PAGE_SIZE'                 => 20,
+    
+    //权限验证配置
+    'AUTH_CONFIG'=>array(
+        'AUTH_ADMINISTRATOR'    => 'admin',                         //超级管理员
+        'AUTH_KEY'              => 'login_token',                   //管理员登陆token
+        'AUTH_SESSION_KEY'      => 'login_data',                    //管理员登陆信息存储Key
+        'AUTH_ON'               => true,                            //认证开关
+        'AUTH_TYPE'             => 1,                               // 认证方式，1为时时认证；2为登录认证。
+        'AUTH_GROUP'            => 'pad_auth_group',                //用户组数据表名
+        'AUTH_GROUP_ACCESS'     => 'pad_auth_group_access',         //用户组明细表
+        'AUTH_RULE'             => 'pad_auth_rule',                 //权限规则表
+        'AUTH_USER'             => 'pad_admin_info'                 //用户信息表
+    ),
+    
+    //邮件服务配置
+    'MAIL_SERVER'   => array(
+        'CHARSET'           => 'UTF-8',                 //编码
+        'PORT'              => 25,                      //端口
+        'HOST'              => 'smtp.qq.com',           //主机
+        'USER_NAME'         => '',      //用户名
+        'PASSWORD'          => '',           //密码
+        'NICK'              => '派锋科技-锋云时代',          //发送昵称
+        'WORD_WRAP'         => 80,                      //自动换行
+    ),
+    
+    //表状态字段数据
+    'STATUS_FIELD'              => array(
+        //管理员
+        'ADMIN_INFO'       =>array(
+            //状态
+            'DATA_STATUS'       => array(
+                'VALUE_1'       => array('NAME'   =>'正常',     'VALUE' => 1),
+                'VALUE_2'       => array('NAME'   =>'已停用',     'VALUE' => 2),
+                'VALUE_99'       => array('NAME'   =>'删除',     'VALUE' => 99),
+            ),
+        ),
+        //房间
+        'ROOM_INFO'      => array(
+            //房间类型
+            'ROOM_TYPE'     => array(
+                'VALUE_1'     => array('NAME'   =>'客房',     'VALUE' => 1),
+                'VALUE_2'     => array('NAME'   =>'管家部',    'VALUE' => 2),
+                'VALUE_3'     => array('NAME'   =>'前台',     'VALUE' => 3),
+            ),     
+        ),
+        //WIFI服务
+        'WIFI_SERVICE'      => array(
+            //连接方式
+            'LINK_METHOD'       => array(
+                'VALUE_1'     => array('NAME'   =>'账号密码',     'VALUE' => 1),
+                'VALUE_2'     => array('NAME'   =>'商户二维码',     'VALUE' => 2),
+                'VALUE_3'     => array('NAME'   =>'短信认证',     'VALUE' => 3),
+            ),
+        ),
+    ),
+);

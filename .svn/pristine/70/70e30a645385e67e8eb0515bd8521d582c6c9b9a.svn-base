@@ -1,0 +1,476 @@
+<?php
+/**
+ * RoomController.class.php - 客房服务接口
+ * @package RoomApi\Controller
+ * @subpackage null
+ * @link http://rapi.pad-phone.com/
+ * @author MSC PHP DEV TEAM HuangZH(47198839@qq.com)
+ * @copyright 派锋科技 2016年11月10日  13:52
+ * @version V1.0.0
+ */
+namespace RoomApi\Controller;
+
+class RoomController extends CommonController {
+    //获取当前客房房态信息
+    public function getRoomStatus(){
+        $room_id = trim($this->I['room_id']); //酒店ID
+        if(isset($room_id) && !empty($room_id)) {
+            $_room_status = M("room_info");
+            $room_status = $_room_status -> field('only_code, in_time, out_time, room_status')
+                -> where(array('id' => $room_id, 'data_status' => 1))
+                -> find();
+
+            if($room_status){
+                $this -> result = array_merge($this -> result, $room_status) ;
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['300000']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['300001']) ;
+        }
+        $this->ajaxReturn($this->result);
+    }
+
+    //客房入住数据更新
+    public function setRoomStatus(){
+        $room_id = trim($this->I['room_id']);            //房间ID
+        $only_code = trim($this->I['only_code']);       //入住唯一编码
+        $in_time = trim($this->I['in_time']);           //入住时间(时间戳)
+        $out_time = trim($this->I['out_time']);         //离开时间(时间戳)
+        $room_status = trim($this->I['room_status']);   //实时房态信息,1:空房,2:有人
+
+        if(isset($room_id) && isset($only_code) && isset($room_status)) {
+            $_room_info = M("room_info");
+            $_data = [
+                'only_code'   => $only_code,
+                'in_time'     => $in_time,
+                'out_time'    => $out_time,
+                'room_status' => $room_status
+            ];
+
+            $_map['room_id'] = $room_id;
+            $_map['data_status'] = 1;
+
+            $room_info = $_room_info -> where($_map) -> save($_data);
+            if(!$room_info){
+                $this -> result = array_merge($this -> result, $this -> status['0']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取客房服务精简列表
+    public function getServiceSimple(){
+        $hotel_id = trim($this->I['hotel_id']);   //酒店ID
+        if(isset($hotel_id) && !empty($hotel_id)) {
+            $_room_service = M("room_service");
+            $_map['a.hotel_id'] = $hotel_id;
+            $_map['a.data_status'] = 1;
+
+            $room_service = $_room_service -> field(
+                'a.id as room_server_id, 
+                d.res_path as icon_path, a.service_id as server_id, 
+                b.service_type, b.service_name, 
+                b.service_code, 
+                a.telephone, 
+                a.two_service_ids, 
+                a.data_sort') -> alias('a')
+                -> join('__SERVICE_INFO__ b ON a.service_id = b.id')
+                -> join('__SERVICE_ICON__ c ON c.id = b.icon_id')
+                -> join('__RESOURCE__ d ON c.resource_id = d.id', 'LEFT')
+                -> where($_map)
+                -> select();
+
+            if($room_service){
+                $this -> result['list'] = $room_service ;
+            }else{
+                $this -> result['list'] = [];
+                $this -> result = array_merge($this -> result, $this -> status['300005']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['100001']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取客房服务详细列表
+    public function getServiceList(){
+        $hotel_id = trim($this->I['hotel_id']);   //酒店ID
+        if(isset($hotel_id) && !empty($hotel_id)) {
+            $_room_service = M("room_service");
+            $_map['a.hotel_id'] = $hotel_id;
+            $_map['a.data_status'] = 1;
+
+            $room_service = $_room_service -> field(
+                'a.id as room_server_id, 
+                d.res_path as icon_path, 
+                a.service_id, 
+                b.service_type, 
+                b.service_name, 
+                b.service_code, 
+                a.telephone, 
+                a.service_detail_type, 
+                case a.service_detail_type when 1 then a.service_content when 2 then concat("' . C('FASTDFS_URL') . '", r.res_path) else a.service_content end as service_content,
+                null as two_service,
+                a.data_sort') -> alias('a')
+                -> join('__SERVICE_INFO__ b ON a.service_id = b.id')
+                -> join('__SERVICE_ICON__ c ON c.id = b.icon_id')
+                -> join('__RESOURCE__ d ON c.resource_id = d.id', 'LEFT')
+                -> join('__RESOURCE__ r ON a.resource_id = r.id', 'LEFT')
+                -> where($_map)
+                -> select();
+
+            if($room_service){
+                //将服务ID单独抽成数组，方便一次查询二级服务信息
+                $two_service_ids = array_column($room_service, 'service_id');
+
+                if($two_service_ids){
+                    unset($_map);
+                    $_map['service_id'] = ['in', $two_service_ids];
+
+                    //查询二级服务信息，如果不存在服务ID,则无返回数据
+                    $two_service_list = M('service_two') -> field('id as two_service_id, service_id, server_name') -> where($_map) -> select();
+
+                    //用问卷ID作为键值，生成新数组，并用空数组初始化
+                    $arrTwoService = array_fill_keys($two_service_ids, []);
+
+                    //将问卷ID与选项列表进行关联
+                    foreach ( $two_service_list as $item ){
+                        array_push($arrTwoService[$item['service_id']], ['two_service_id' => $item['two_service_id'], 'two_service_name' => $item['server_name']]);
+                    }
+
+                    //通过服务ID，将对应选项列表信息，关联到服务列表上
+                    foreach ( $room_service as $key => $value ){
+                        $room_service[$key]['icon_path'] = generateImagePath($room_service[$key]['icon_path']);
+                        $room_service[$key]['two_service'] = $arrTwoService[$value['service_id']];
+                    }
+                }else{
+                    //通过服务ID，将对应选项列表信息，关联到服务列表上
+                    foreach ( $room_service as $key => $value ){
+                        $room_service[$key]['icon_path'] = generateImagePath($room_service[$key]['icon_path']);
+                    }
+                }
+
+                $this -> result = array_merge($this -> result, ['list' => $room_service]) ;
+            }else{
+                $this -> result['list'] = [];
+                $this -> result = array_merge($this -> result, $this -> status['300005']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['100001']) ;
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取客房服务详细信息
+    public function getServiceDetail(){
+        $room_server_id = trim($this->I['room_server_id']); //客房服务ID
+        if(isset($room_server_id) && !empty($room_server_id)) {
+            $_room_service = M("room_service");
+            $room_service = $_room_service -> field('service_detail_type, service_content')
+                -> where(array('id' => $room_server_id, 'data_status' => 1))
+                -> find();
+
+            if($room_service){
+                $this -> result = array_merge($this -> result, $room_service) ;
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['300007']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['300006']) ;
+        }
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取二级服务信息
+    public function getServiceTwo(){
+        $two_service_id = trim($this->I['two_service_id']); //二级服务ID
+        if(isset($two_service_id) && !empty($two_service_id)) {
+            $_service_two = M("service_two");
+            $service_two = $_service_two -> field('service_id, server_name')
+                -> where(array('id' => $two_service_id))
+                -> find();
+
+            if($service_two){
+                $this -> result = array_merge($this -> result, $service_two) ;
+            }else{
+                $this -> result = array_merge($this -> result, $this -> status['300009']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['300008']) ;
+        }
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取二级服务列表
+    public function getServiceTwoList(){
+        $server_id = trim($this->I['server_id']); //二级服务ID
+        if(isset($server_id) && !empty($server_id)) {
+            $_service_two = M("service_two");
+            $service_two = $_service_two -> field('id as two_service_id, server_name as two_server_name')
+                -> where(array('service_id' => $server_id))
+                -> select();
+
+            if($service_two){
+                $this -> result = array_merge($this -> result, ['list' => $service_two]) ;
+            }else{
+                $this -> result['list'] = [];
+                $this -> result = array_merge($this -> result, $this -> status['300009']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //获取二级服务列表2
+    public function getServiceTwoList2(){
+        $two_service_ids = trim($this->I['two_service_ids']); //二级服务ID
+        if(isset($two_service_ids) && !empty($two_service_ids)) {
+            if(false !== strpos($two_service_ids, ',')) {
+                $two_service_ids = trim($two_service_ids, ',');
+                $_service_two = M("service_two");
+                $service_two = $_service_two->field('id as two_service_id, server_name as two_server_name')
+                    ->where(array('id' => ['in', $two_service_ids]))
+                    ->select();
+
+                if ($service_two) {
+                    $this->result = array_merge($this->result, ['list' => $service_two]);
+                } else {
+                    $this -> result['list'] = [];
+                    $this->result = array_merge($this->result, $this->status['300009']);
+                }
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+        $this->ajaxReturn($this->result);
+    }
+
+    //客房服务历史消息列表
+    public function getMsgHistoryList(){
+        $room_id = trim($this->I['room_id']);             //房间ID
+        $only_code = trim($this->I['only_code']);        //入住客人唯一编码
+        //$page_no = trim($this->I['page_no']);            //当前页码
+        //$list_count = trim($this->I['list_count']);      //获取记录数
+
+        if (isset($room_id) && isset($only_code)) {
+            /*if(!isset($page_no)){
+                $page_no = 1;
+            }else if($page_no<=0){
+                $page_no = 1;
+            }
+
+            if(!isset($list_count)){
+                $list_count = 10;
+            }else if($list_count<=0){
+                $list_count = 10;
+            }*/
+
+            $_map['a.msg_type'] = 1;
+            $_map['a.room_id'] = $room_id;
+            $_map['a.only_code'] = $only_code;
+
+            $_msg_service = M("msg_service");
+            $msg_service = $_msg_service->field('a.id as msg_id, a.msg_content, a.create_time, a.data_status as msg_status, b.service_id, b.two_id')->alias('a')
+                                        -> join('__MSG_ROOM__  b ON a.id = b.msg_id')
+                                        -> where($_map)
+                                        //-> limit(($page_no - 1) * $list_count, $list_count)
+                                        -> order('a.data_status asc, a.create_time desc')->select();
+
+            if(!$msg_service){
+                $this -> result = array_merge($this -> result, ['list' => []]);
+                $this -> result = array_merge($this -> result, $this -> status['600007']);
+            }else{
+                $this -> result = array_merge($this -> result, ['list' => $msg_service]);
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']);
+        }
+        $this->ajaxReturn($this->result);
+    }
+
+    //客房服务请求信息
+    public function setService(){
+        $hotel_id = trim($this->I['hotel_id']);           //酒店ID
+        $build_id = trim($this->I['build_id']);           //楼宇ID
+        $floor_id = trim($this->I['floor_id']);           //楼层ID
+        $room_id = trim($this->I['room_id']);             //房间ID
+        $service_id = trim($this->I['service_id']);      //一级服务ID
+        $two_id = trim($this->I['two_id']);               //二级服务ID
+        $only_code = trim($this->I['only_code']);
+        $service_name = trim($this->I['service_name']);  //服务名称
+
+        $_data = null;
+
+        if (isset($hotel_id) && isset($build_id) && isset($floor_id) && isset($room_id) && isset($service_id) && isset($service_name) && isset($only_code) && !empty($only_code)) {
+            $_msg_service = M("msg_service");
+            $_msg_room = M("msg_room");
+            $_room_info = M("room_info") -> field("room_name, room_phone") -> where(['id' => $room_id]) -> find();
+
+            if($_room_info) {
+                if( isset($two_id) && !empty($two_id) ){
+                    if(false === strpos($two_id, ',')){
+                        $_arr_two_ids = [$two_id];
+                        $_arr_service_name = [$service_name];
+                    }else{
+                        $_arr_service_name = explode(',', $service_name);
+                        $_arr_two_ids = explode(',', $two_id);
+                    }
+                }else{
+                    $_arr_two_ids = [0];
+                    $_arr_service_name = [$service_name];
+                }
+
+                foreach ( $_arr_two_ids as $key => $value ){
+                    $_data = [
+                        'msg_content' => mb_substr(trim($_arr_service_name[$key]), 0, 35, 'utf-8'),
+                        'hotel_id' => $hotel_id,
+                        'build_id' => $build_id,
+                        'floor_id' => $floor_id,
+                        'room_id' => $room_id,
+                        'only_code' => $only_code,
+                        'room_name' => $_room_info['room_name'],
+                        'room_phone' => $_room_info['room_phone'],
+                        'msg_type' => 1,
+                        'create_time' => time()
+                    ];
+
+                    $insertId = $_msg_service->data($_data)->add();
+                    if ($insertId) {
+                        $_data_info = [
+                            'msg_id' => $insertId,
+                            'service_id' => $service_id,
+                            'two_id' => $value,
+                            'create_time' => time()
+                        ];
+                        $_result = $_msg_room -> add($_data_info);
+
+                        if ($_result) {
+                            $this->result = array_merge($this->result, ['msg_id' => $insertId]);
+                        } else {
+                            $this->result = array_merge($this->result, $this->status['300010']);
+                            break;
+                        }
+                    } else {
+                        $this->result = array_merge($this->result, $this->status['600005']);
+                        break;
+                    }
+                }
+            }else{
+                $this->result = array_merge($this->result, $this->status['300013']);
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']);
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //客房催叫服务请求信息
+    public function setCallService(){
+        $msg_id = trim($this->I['msg_id']); //消息ID
+        $hotel_id = trim($this->I['hotel_id']); //酒店ID
+        $build_id = trim($this->I['build_id']);
+        $floor_id = trim($this->I['floor_id']);
+        $room_id = trim($this->I['room_id']);
+        $only_code = trim($this->I['only_code']);
+        $service_id = trim($this->I['service_id']);      //一级服务ID
+        $two_id = trim($this->I['two_id']);               //二级服务ID
+        $service_name = trim($this->I['service_name']);
+
+        $_data = null;
+
+        if (isset($msg_id) && isset($hotel_id) && isset($build_id) && isset($floor_id) && isset($room_id) && isset($service_id) && isset($service_name) && isset($only_code) && !empty($only_code)) {
+            $_msg_service = M("msg_service");
+            $_map['id'] = $msg_id;
+            $_map['data_status'] = 1;
+
+            $_msg_info = $_msg_service -> field("id") -> where($_map) -> find();
+
+            if($_msg_info) {
+                $_room_info = M("room_info")->field("room_name, room_phone")->where(['id' => $room_id])->find();
+                if ($_room_info) {
+                    $_data = [
+                        'msg_content' => $service_name,
+                        'hotel_id' => $hotel_id,
+                        'build_id' => $build_id,
+                        'floor_id' => $floor_id,
+                        'room_id' => $room_id,
+                        'only_code' => $only_code,
+                        'room_name' => $_room_info['room_name'],
+                        'room_phone' => $_room_info['room_phone'],
+                        'msg_type' => 3,
+                        'create_time' => time()
+                    ];
+
+                    $insertId = $_msg_service->data($_data)->add();
+                    if ($insertId) {
+                        $_room_call = M("room_call");
+
+                        $_data_info = [
+                            'msg_id' => $insertId,
+                            'service_id' => $service_id,
+                            'two_id' => $two_id,
+                            'create_time' => time()
+                        ];
+
+                        $_result = $_room_call->data($_data_info)->add();
+
+                        if ($_result) {
+                            $this->result = array_merge($this->result, ['msg_id' => $insertId]);
+                        } else {
+                            $this->result = array_merge($this->result, $this->status['300011']);
+                        }
+                    } else {
+                        $this->result = array_merge($this->result, $this->status['600005']);
+                    }
+                } else {
+                    $this->result = array_merge($this->result, $this->status['300013']);
+                }
+            }else{
+                $this->result = array_merge($this->result, $this->status['300014']);
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']);
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //当前房间已接收消息列表
+    public function getReceivedMsgList(){
+        $room_id = trim($this->I['room_id']); //房间ID
+        if(isset($room_id) && !empty($room_id)) {
+            $_msg_service = M("msg_service");
+            $_map['room_id'] = $room_id;
+            $_map['data_status'] = ['in', '2, 3, 99',];
+
+            $msg_service = $_msg_service -> field('id as msg_id, msg_type, msg_content, data_status as msg_status')
+                -> where($_map) -> select();
+
+            if($msg_service){
+                $this -> result = array_merge($this -> result, ['list' => $msg_service]) ;
+            }else{
+                $this -> result['list'] = [];
+                $this -> result = array_merge($this -> result, $this -> status['300012']) ;
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']) ;
+        }
+        $this->ajaxReturn($this->result);
+    }
+}

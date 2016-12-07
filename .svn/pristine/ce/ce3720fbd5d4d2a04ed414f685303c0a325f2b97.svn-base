@@ -1,0 +1,564 @@
+<?php
+
+/**
+ * File.class.php - 文件处理类
+ * @package Common\Api
+ * @subpackage
+ * @link http://www.pad-phone.com/
+ * @author PHP DEV TEAM Zhaoxizhan(441534536@qq.com)
+ * @copyright 派锋科技 2016年11月3日 上午11:35
+ * @version V1.0.0
+ */
+
+
+namespace Common\Api;
+
+class FileApi{	
+	
+	//普通文件
+	const FILE_TYPE_COMMON  		= 10;	
+	//普通图片
+	const IMAGE_TYPE_COMMON                 = 20;
+        //普通视频
+	const VIDEO_TYPE_COMMON                 = 30;
+	
+        //错误码
+	private static $_errno = 0;	
+        //错误描述
+	private static $_errstr = '';
+	
+	/**
+	 * 上传文件分组
+	 */
+	public static $file_type_groups = array(
+            self::IMAGE_TYPE_COMMON     => 'group1', 
+            self::FILE_TYPE_COMMON      => 'group1',
+            self::VIDEO_TYPE_COMMON     => 'group1',
+			
+	);	
+	
+	/**
+	 * 允许上传的文件扩展名
+	 */
+	private static $allow_extentions = array(
+			'file' => array('doc', 'xls', 'docx','xlsx'),
+			'image' => array('jpg', 'jpeg', 'png', 'gif'),
+                        'video' => array('3gp', 'mp4'),
+	);	
+	
+	/**
+	 * 错误类型码
+	 */
+	const ERROR_REMOTE_FILE_NOT_EXISTS = 1001;
+	const ERROR_LOCAL_FILE_NOT_EXISTS  = 1002;
+	const ERROR_FILE_TYPE_NOT_ALLOW_UPLOAD = 1003;
+        
+        /**
+         * 根据文件后缀返回文件类型码
+         * @param string $fext
+         * @return boolean|int
+         */
+        public static function getFileTypeByExt($fext){
+            if(in_array($fext,array('doc', 'xls', 'docx','xlsx','rar','gz'))){
+                $file_type = 10;
+            } elseif (in_array($fext, array('jpg', 'jpeg', 'png', 'gif'))) {
+                $file_type = 20;
+            } elseif (in_array($fext, array('3gp', 'mp4'))) {
+                $file_type = 30;
+            } else {
+                return false;
+            }
+            return $file_type;
+        }
+
+        /**
+	 * 文件上传
+	 * @param  string $uploadFile 上传文件路径
+	 * @param  int    $type 上传文件类型：10:普通文件 20:普通图片 30:普通视频
+	 * @return array  $result 失败返回false，成功返回数组
+         *          array(
+         *              groupname => 组名
+	 *              filename   => 文件名
+	 *              fullname   => 文件全名，包含组名
+         *          )       
+	 */
+	public static function uploadFile($uploadFile, $type = self::IMAGE_TYPE_COMMON,$file_ext=null) {
+                if(is_null($file_ext)){
+                    $file_ext = end(explode('.', $uploadFile));
+                }
+                //文件所属组名
+		$group_name = self::$file_type_groups[$type];
+                //是否删除临时文件
+		$is_clean_file = false;
+                //对网络文件的处理
+		if (!file_exists($uploadFile)) {
+			if (preg_match('/^https?:\/\//', $uploadFile)) {
+                                //网络图片请求
+				$res = \Common\Lib\Curl\MyCurl::sendHttp($uploadFile,array(),'get');
+				if ($res !== false) {
+					$uploadFile = tempnam(RUNTIME_PATH . 'Temp', 'remote_');
+					file_put_contents($uploadFile, $res);
+					$is_clean_file = true;
+				} else {
+                                    //网络资源不存在
+                                    return self::set_error_and_return(self::ERROR_REMOTE_FILE_NOT_EXISTS, 'remote file not exists');
+				}
+			} else {
+                            //本地资源不存在
+                            return self::set_error_and_return(self::ERROR_LOCAL_FILE_NOT_EXISTS, 'local file not exists');
+			}
+		}
+                	
+		/**
+		 * 初始化文件
+		 */
+            
+		$file = new \Common\Lib\FastDFS\FastDFS();
+		$file->open($group_name);
+		$result = $file->uploadFile($group_name, $uploadFile,$file_ext);
+	
+		if ($result === false){
+			return self::set_error_and_return($file->get_last_error_no(), $file->get_last_error_info());
+		}
+		$fullname =  $result['groupname'] . '/' . $result['filename'];
+		$result['fullname'] = $fullname;
+	
+		if ($is_clean_file) {
+		    unlink($uploadFile);
+		}
+	
+		return $result;
+	}
+	
+	
+	/**
+	 * 生成缩略图入口 
+	 * @param $string $uploadFile 要处理的原图片
+	 * @param $string $master_filename 主文件名
+	 * @param type $width
+	 * @param type $height
+	 * @param type $type
+	 * @return array  $result 
+	 *	    失败返回false，
+	 *	    成功返回数组
+	 *                group_name 组名
+	 *                filename   文件名 M00/00/04/wKgC-1cMXfuAd9u8AACJg144DQE165_300x300.jpg
+	 *                fullname   文件全名，包含组名
+	 */
+	public static function makeThumb($uploadFile,$master_filename,$width,$height, $type = self::IMAGE_TYPE_COMMON,$quality=75){
+	    //参数验证
+	    if(!$uploadFile || !intval($width) || !intval($height)){
+		return false;
+	    }
+	    //文件所属组
+	    $group_name = self::$file_type_groups[$type];
+	    //
+	    $is_clean_file = false;
+	    if (!file_exists($uploadFile)) {
+		    if (preg_match('/^https?:\/\//', $uploadFile)) {
+			    //$res = Common::sendHttp($uploadFile);
+                            $res = \Common\Lib\Curl\MyCurl::sendHttp($uploadFile,array(),'get');
+			    if ($res !== false) {
+				    $uploadFile = tempnam(RUNTIME_PATH . 'Temp', 'remote_');
+				    file_put_contents($uploadFile, $res['body']);
+				    $is_clean_file = true;
+				    $del_uploadFile = $uploadFile;
+			    } else {
+				    return self::set_error_and_return(self::ERROR_REMOTE_FILE_NOT_EXISTS, 'remote file not exists');
+			    }
+		    } else {
+			    return self::set_error_and_return(self::ERROR_LOCAL_FILE_NOT_EXISTS, 'local file not exists');
+		    }
+	    }
+	    
+            $file_ext = self::getFileExt($uploadFile);
+	    
+	    if (!in_array($file_ext, self::$allow_extentions['image'])) {
+		    return self::set_error_and_return(self::ERROR_FILE_TYPE_NOT_ALLOW_UPLOAD, '该文件类型不允许上传');
+	    }    
+            
+	    //生成原始图片临时图 用于做缩略图
+	    $_rand = time().rand();
+	    $src_img = RUNTIME_PATH . 'Temp/' . $_rand . '.'.$file_ext;
+	    $handle = fopen($uploadFile, "rb");
+	    $contents = fread($handle, filesize ($uploadFile));
+	    fclose($handle);
+	    file_put_contents($src_img, $contents);	
+	    
+	    //在指定目录生成临时缩略图
+	    $dst_img = RUNTIME_PATH . 'Temp/' . $_rand . '_thumb.'.$file_ext;
+	    $resize_image = new \Common\Lib\Image\Resize();
+	    $resize_image->create($src_img, $width, $height, 1, $dst_img,$quality);
+	    
+	    
+	    $file = new \Common\Lib\FastDFS\FastDFS();
+	    $file->open($group_name);	    
+	    $result = $file->uploadSlaveFile($group_name, $dst_img,$master_filename,'_'.$width.'x'.$height, $file_ext);		
+     
+            //缩略图生成失败
+	    if ($result === false){
+                return self::set_error_and_return($file->get_last_error_no(), $file->get_last_error_info());
+	    }		    
+	    $result['fullname'] = $result['groupname'] . '/' . $result['filename'];//图片完整路径
+
+	    if ($is_clean_file) {
+		unlink($del_uploadFile);
+	    }
+	    unlink($src_img);
+	    unlink($dst_img);
+	    
+	    return $result;
+	}
+        
+        /**
+         * 通过资源ID 生成对应子图片 - 操作资源必须为图片
+         * @param type $res_id 
+         */
+        public static function makeThumbByResId($res_id,$res_type){
+            
+        }
+
+        /**
+         * 判断文件是否存在
+         * @param string $groupname 分组名
+         * @param string $filename  文件名
+         * @return boolean
+         */
+        public static function fileExists($groupname, $filename){
+            $file = new \Common\Lib\FastDFS\FastDFS();
+	    return $file->fileExists($groupname,$filename);	
+        }
+        
+        /**
+         * 删除文件
+         * @param string $groupname 分组名
+         * @param string $filename  文件名
+         * @return boolean
+         */
+        public static function deleteFile($groupname, $filename){
+            $file = new \Common\Lib\FastDFS\FastDFS();
+	    return $file->deleteFile($groupname,$filename);	
+        }
+
+        /**
+	 * 设置错误信息
+	 * @access  private
+	 */
+	private static function set_error_and_return($errno, $errmes, $return = false)
+	{
+		self::$_errno = $errno;
+		self::$_errstr = $errmes;
+	
+		return $return;
+	}
+	
+	/**
+	 * 获取错误号
+	 */
+	public static function get_last_error_no()
+	{
+		return self::$_errno;
+	}
+	
+	/**
+	 * 获取错误信息
+	 */
+	public static function get_last_error_info()
+	{
+		return self::$_errstr;
+	}
+        
+        /**
+	 * 获取文件扩展名
+	 */
+	public static function getFileExt($filename)
+	{
+		/**
+		 * 文件类型
+		 */
+		$finfo = finfo_open(FILEINFO_MIME_TYPE);                
+		$mime_type = finfo_file($finfo, $filename);
+		finfo_close($finfo);
+
+		$mime_types = array(
+				'text/plain' => 'txt',
+				'text/html' => 'htm',
+				'text/html' => 'html',
+				'text/html' => 'php',
+				'text/css' => 'css',
+				'application/javascript' => 'js',
+				'application/json' => 'json',
+				'application/xml' => 'xml',
+				'application/x-shockwave-flash' => 'swf',
+				'video/x-flv' => 'flv',
+	
+				// images
+				'image/png' => 'png',
+				'image/jpeg' => 'jpe',
+				'image/jpeg' => 'jpeg',
+				'image/jpeg' => 'jpg',
+				'image/gif' => 'gif',
+				'image/bmp' => 'bmp',
+				'image/vnd.microsoft.icon' => 'ico',
+				'image/tiff' => 'tiff',
+				'image/tiff' => 'tif',
+				'image/svg+xml' => 'svg',
+				'image/svg+xml' => 'svgz',
+	
+				// archives
+				'application/zip' => 'zip',
+				'application/x-rar-compressed' => 'rar',
+				'application/x-msdownload' => 'exe',
+				'application/x-msdownload' => 'msi',
+				'application/vnd.ms-cab-compressed' => 'cab',
+	
+				// audio/video
+				'audio/mpeg' => 'mp3',
+				'video/quicktime' => 'qt',
+				'video/quicktime' => 'mov',
+	
+				// adobe
+				'application/pdf' => 'pdf',
+				'image/vnd.adobe.photoshop' => 'psd',
+				'application/postscript' => 'ai',
+				'application/postscript' => 'eps',
+				'application/postscript' => 'ps',
+	
+				// ms office
+				'application/msword' => 'doc',
+				'application/rtf' => 'rtf',
+				'application/vnd.ms-excel' => 'xls',
+				'application/vnd.ms-powerpoint' => 'ppt',
+	
+				// open office
+				'application/vnd.oasis.opendocument.text' => 'odt',
+				'application/vnd.oasis.opendocument.spreadsheet' => 'ods',
+                    
+                                //apk
+                                'application/jar'=>'apk',
+                                'application/java-archive'=>'apk'
+		);
+	
+	
+		if (isset($mime_types[$mime_type])) {
+			$extention = $mime_types[$mime_type];
+		} else {
+			$extention = '';
+		}
+	
+		return $extention;
+	}
+        
+        
+        /**
+         * 根据MD5做文件合并
+         * @param type $md5val
+         */
+        public static function mergeFile($md5val,$ext,$mime){
+            //文件类型码
+            $file_type = self::getFileTypeByExt($ext);
+            if(!$file_type){
+                return false;
+            }
+            
+            //文件的分片信息
+            $cache_file = S('DATA:RES::TMP::'.$md5val);
+            if(!$cache_file){
+                return false;
+            }
+            
+            //目录文件地址
+            $dst_file = TEMP_PATH . $md5val . '.' .$ext;
+            $dst = fopen($dst_file, 'wb');
+            
+            $chunks = count($cache_file);
+            $size = 0;
+            $fast_file = array();
+            for ($i = 0; $i < $chunks; $i++) {
+                //获取资源详情
+                $res_info = D('Resource')->getInfo($cache_file[$chunks.'_'.$i]);          
+                //打开源文件
+                $src = fopen(C('FASTDFS_URL').$res_info['res_path'], 'rb');
+                //内容拷贝
+                stream_copy_to_stream($src, $dst);
+                fclose($src);
+                $size += $res_info['res_size'];//资源大小
+                $fast_file[] = $res_info['res_path'];//资源服务器中的 临时文件
+            }            
+            fclose($dst);
+            
+            //Resource表中不存在,新上传资源
+            $rs_file = self::uploadFile($dst_file,$file_type, $ext);
+            unlink($dst_file);
+            //上传失败
+            if(!$rs_file){
+                return false;
+            }
+
+            $_data['res_path'] = $rs_file['fullname'];
+            $_data['res_type'] = 1;
+            $_data['res_postfix'] = $ext;        
+            $_data['res_size'] = $size;
+            $_data['res_mime'] = $mime;
+            $_data['res_md5val'] = $md5val;
+            $_data['create_time'] = time();
+            $_data['data_status'] = 1;
+            $_data['remark'] = '';
+            
+            M()->startTrans();
+            //插入资源表
+            $rs_add = D('Resource')->add($_data);
+
+            //删除资源表中的临时文件
+            $rs_del = D('Resource')->delTmpRes($md5val);
+
+            //回滚
+            if(!$rs_add || !$rs_del){
+                M()->rollback();
+                return false;
+            }
+            
+            M()->commit();
+            
+            //遍历删除原临时文件
+            foreach ($fast_file as $val) {
+                // group1/M00/00/01/wKgB_FglWSiAY_1QAAgw93jwDPM18.null
+                $groupname = 'group1';
+                $filename = substr(strlen($groupname)+1,$val);
+                //删除文件
+                if( self::fileExists($groupname, $filename) ){
+                    self::deleteFile($groupname, $filename);
+                }
+            }
+            
+            return true;
+        }
+        
+        
+        /**
+         * 上传文件到FASDFS同时记录到资源表，同时做大文件的分片合并
+         * @param string $filename 要上传的文件（可以为网络地址）
+         * @param int $filesize 文件大小
+         * @param string $filetype 文件的 MIME 类型
+         * @param string $true_type 分片上传时-此选项为必选，主文件的mime类型
+         * @param string $md5val 文件的md5加密
+         * @param int $fext 分片上传时-此选项为必选 文件的后缀（主文件）
+         * @param int $chunks  分片上传时-此选项为必选 总分片数
+         * @param int $chunk   分片上传时-此选项为必选 当前分片数
+         * @return array
+         */
+        public function doUpload($filename,$filesize,$filetype,$true_type,$md5val,$fext,$chunks,$chunk){
+            
+            $cache_key = 'DATA:RES::TMP::';
+        
+            //判断当前文件是否存在
+            $res_exist = D('Resource')->getCountByMd5($md5val,1);
+            //已经存在的资源不在提交
+            if($res_exist){
+                return array('status'=>1,'msg'=>'处理完成','data'=>array('chunks'=>0,'md5val'=>$md5val));
+            }
+
+            //文件是否有分片上传
+            $is_chunked = $chunks ? true : false;
+
+            if(!$md5val){
+                return array('status'=>0,'msg'=>'参数错误1'.$md5val);
+            }
+
+            //检索资源信息数量
+            $res_count = D('Resource')->getCountByMd5($md5val);
+
+            //获取文件 后缀，
+           
+            $ext = $is_chunked?'tmp':$fext;
+
+            //获取文件类型码
+            $file_type_code = D('File','Api')->getFileTypeByExt($fext);
+            if(!$file_type_code){
+                return array('status'=>0,'msg'=>'参数错误2');
+            }
+
+
+            //获取当前文件上传过程的缓存信息
+            $cache = S($cache_key.$md5val);
+            //资源备注条件
+            $remark = $is_chunked?($md5val.'_'.$chunks.'_'.$chunk):'';
+            //检索资源信息
+            $res = D('Resource')->getResourceByMd5($md5val,2,$remark);
+
+            //如果 Resource表中存在
+            if($res){
+                //分片上传 更新缓存
+                if($is_chunked){
+                    $cache[$chunks.'_'.$chunk] = $res['id'];
+                    S($cache_key.$md5val,$cache);
+                    //当前分片是否上传完整
+                    if( $res_count != $chunks || $res_count != count($cache)){
+                        return array('status'=>1,'msg'=>'处理完成','data'=>array('chunks'=>$chunks,'md5val'=>$md5val));
+                    }else{
+                        //已经上传完成分片
+                        //资源表中分片数与缓存中及前端传入分片数一致        
+                        logs('开始合并');
+                        $rs_merge = self::mergeFile($md5val,$fext,$true_type);
+                        logs('合并结束');
+                        if($rs_merge){
+                            return array('status'=>1,'msg'=>'处理完成','data'=>array('chunks'=>0,'md5val'=>$md5val));
+                        }else{
+                            return array('status'=>0,'msg'=>'上传失败-合并失败');
+                        }
+                    }
+                    return array('status'=>1,'msg'=>'分片处理完成','data'=>array('chunks'=>$chunks,'md5val'=>$md5val));
+                }else{
+                    return array('status'=>1,'msg'=>'处理完成','data'=>array('chunks'=>$chunks,'md5val'=>$md5val));
+                }
+            }
+
+            //Resource表中不存在,新上传资源
+            $rs_file = self::uploadFile($filename,$file_type_code,$ext);
+            //上传失败
+            if(!$rs_file){
+                return array('status'=>0,'msg'=>'上传失败');
+            }
+
+            $_data['res_path'] = $rs_file['fullname'];
+            $_data['res_type'] = 1;
+            $_data['res_postfix'] = $ext;        
+            $_data['res_size'] = $filesize;//$_FILES['file']['size'];
+            $_data['res_mime'] = $filetype;//$_FILES['file']['type'];
+            $_data['res_md5val'] = $md5val;
+            $_data['create_time'] = time();
+            $_data['data_status'] = $is_chunked?2:1;
+            $_data['remark'] = $is_chunked?($md5val.'_'.$chunks.'_'.$chunk):'';
+
+
+            //插入资源表
+            $rs_add = D('Resource')->add($_data);
+            if(!$rs_add){
+                return array('status'=>0,'msg'=>'上传失败');
+            }
+            //如果为小文件上传（未分片）
+            if(!$is_chunked){
+                return array('status'=>1,'msg'=>'处理完成','data'=>array('chunks'=>$chunks,'md5val'=>$md5val));
+            }
+
+            //分片时的处理=========================
+
+            //分片信息写入缓存
+            $cache[$chunks.'_'.$chunk] = $rs_add;
+            S($cache_key.$md5val,$cache);
+
+            //通过md5 获取已经存在的分片数 及 缓存中的分片数 及 $chunks 想等时 做合并操作      
+            if( ($res_count+1) != $chunks || ($res_count+1) != count($cache)){
+                return array('status'=>1,'msg'=>'处理完成','data'=>array('chunks'=>$chunks,'md5val'=>$md5val));
+            }
+
+            //资源表中分片数与缓存中及前端传入分片数一致     
+            $rs_merge = self::mergeFile($md5val,$fext,$true_type);
+            if($rs_merge){
+                return array('status'=>1,'msg'=>'处理完成','data'=>array('chunks'=>0,'md5val'=>$md5val));
+            }
+
+            return array('status'=>0,'msg'=>'上传失败-合并失败');
+
+        }
+}

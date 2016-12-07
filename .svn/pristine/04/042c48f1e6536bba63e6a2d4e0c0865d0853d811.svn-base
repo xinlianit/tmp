@@ -1,0 +1,180 @@
+/**
+ * 广告管理
+ */
+seajs.use(['webupload', 'module/goods'], function (webupload, goods) {
+    $(function () {
+        //通用删除
+        $.common.form_del({attr_key:'status',attr_val:'2',attr_msg:'上架中的商品无法删除'});
+        
+        //页面搜索
+        $('#search-button').on('click', function () {
+            var search_key = $("#search-key").val();
+            var search_url = $(this).attr('surl') + "?search_key=" + search_key;
+            window.location.href = search_url;
+        })
+
+        //====================================================================================================
+        //=======商品分类管理
+        //====================================================================================================
+        //添加分类
+        $('[event-name="add-cate"]').on('click', function () {
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-cate-box',
+                height: 350,
+                width: 600,
+                title: '新增分类信息',
+                confirm_function: function () {
+                    goods.addCate('add-cate-form');
+                },
+            });
+        });
+
+        //编辑分类
+        $('[event-name="edit-cate"]').on('click', function () {
+            var id  = $(this).attr('event-id');
+            var info_url = $(this).attr('info-url');
+            $.ajax({
+                type: "POST",
+                url: info_url,
+                data: {id:id},
+                success: function (result) {
+                    //获取数据失败
+                    if(result.status === 0){
+                            $.common.openTips({message: result.msg},'error');
+                            return false;
+                    }
+                    //渲染数据
+                    $.common.renderData({
+                            form_id: 'edit-cate-form',
+                            data: result.data
+                    });                    
+                }
+            });
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-cate-box',
+                height: 450,
+                width: 700,
+                title: '编辑商品分类',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-cate-form',
+                        data:{id:id}
+                    });
+                },
+            });
+        });
+        //====================================================================================================
+        //=======商品管理
+        //====================================================================================================
+        //添加商品
+        $('[event-name="add-goods"]').on('click', function () {
+            $('div[dialog-id=add-goods-box] input[name=goods_pic_md5]').val('');
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-goods-box',
+                height: 650,
+                width: 600,
+                title: '新增商品信息',
+                confirm_function: function () {
+                    goods.addGoods('add-goods-form');
+                },
+            });
+            
+            $.common.webupload_initialize(webupload,'goods_pic_md5',1,'jpg,jpeg,png');
+        });
+        
+        //编辑商品
+        $('[event-name="edit-goods"]').on('click', function () {
+            var id  = $(this).attr('event-id');
+            var info_url = $(this).attr('info-url');
+            var status = $(this).attr('status');
+            //上架商品不可删除
+            if(status === '1'){
+                $.common.openTips({message: '上架中的商品无法编辑，请先下架商品再编辑！'},'error');
+                return false;
+            }
+            $('div[dialog-id=edit-goods-box] input[name=goods_pic_md5]').val('');
+            $.ajax({
+                type: "POST",
+                url: info_url,
+                data: {id:id},
+                success: function (result) {
+                    //获取数据失败
+                    if(result.status === 0){
+                            $.common.openTips({message: result.msg},'error');
+                            return false;
+                    }
+                    //渲染数据
+                    $.common.renderData({
+                            form_id: 'edit-goods-form',
+                            data: result.data
+                    });
+                    $("#has_img_goods").attr('src',static_domain + result.data.goods_pic);
+                }
+            });
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-goods-box',
+                height: 450,
+                width: 700,
+                title: '编辑商品',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-goods-form',
+                        data:{id:id}
+                    });
+                }
+            });
+            $('div[dialog-id=edit-goods-box] input[name=goods_pic_md52]').val('');
+            $.common.webupload_initialize(webupload,'goods_pic_md52',2,'jpg,jpeg,png');
+        });
+        
+        //上架
+        $('[event-name="shelf-up"]').on('click',function(){
+            
+            var id      = $(this).attr('event-id');          
+            var _box = $("div[dialog-id=shelf-up-box]");//上架弹框
+            var shelf_id = '';
+            var goods_name = '';
+            
+            if(id === 'checkbox'){                                            
+                //要删除的ID          
+                $("input[name=item_id]:checked").each(function () {                    
+                    shelf_id = shelf_id + ',' + $(this).val();
+                    goods_name = goods_name + ',' + $(this).attr('item_name');
+                });
+
+                if (shelf_id.substr(0,1) === ','){
+                    shelf_id=shelf_id.substr(1);
+                } 
+                if (goods_name.substr(0,1) === ','){
+                    goods_name=goods_name.substr(1);
+                } 
+
+            }else{                
+                shelf_id = id;
+                goods_name = $(this).attr('item_name'); 
+            }            
+            _box.find("#up-goods-name").html(goods_name);//删除提示内容
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'shelf-up-box',
+                height: 600,
+                width: 600,
+                title: '商品上架',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'shelf-up-form',
+                        data:{id:shelf_id}
+                    });
+                }
+            });
+        });
+
+    });
+});

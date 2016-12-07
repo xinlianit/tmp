@@ -1,0 +1,26 @@
+@CHARSET "UTF-8";
+.hotel_list_box{border: 1px solid #ccc; height: 300px; overflow-y:scroll; padding-left: 5px; padding-right: 5px;}
+.hotel_list{ padding: 0; margin: 0;}
+.hotel_list li{ list-style: none; line-height: 22px; min-height: 22px;}
+.hotel_list li ul li{ cursor:pointer}
+.hotel_list li ul li.active{ background-color:#ccc}
+
+.select_item{padding: 0; margin: 0;}
+.select_item li{list-style: none; line-height: 22px; min-height: 22px;}
+.select_item li div.close{
+    float: right;
+    color: #666;
+    font-size: 11px;
+    font-weight: bold;
+    line-height: 22px; 
+    margin-right: 5px;
+}
+.select_item li:hover{ background:#ccc; cursor: pointer; }
+
+
+.category-box{border:1px solid #D5D5D5;width:58.3333%;height:100px;padding:1px 5px;font-size:15px;color:#A9A9A9;}
+.add-category{float:right;margin:-100px 80px;}
+
+.type-select{padding:1px;overflow:auto;}
+.type-select .big-item{clear:both;}
+.type-select .small-item{float:left;width:25%;}

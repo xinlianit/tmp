@@ -1,0 +1,123 @@
+/**
+ * 广告管理
+ */
+seajs.use(['webupload', 'module/goods'], function (webupload, goods) {
+    $(function () {
+        //页面搜索
+        $('#search-button').on('click', function () {
+            var search_key = $("#search-key").val();
+            var search_url = $(this).attr('surl') + "?search_key=" + search_key;
+            window.location.href = search_url;
+        })
+
+        //====================================================================================================
+        //=======商品分类管理
+        //====================================================================================================
+        //添加分类
+        $('[event-name="add-cate"]').on('click', function () {
+            //打开窗口
+            $.common.openWindow({
+                id: 'add-cate-box',
+                height: 350,
+                width: 600,
+                title: '新增分类信息',
+                confirm_function: function () {
+                    goods.addCate('add-cate-form');
+                },
+            });
+        });
+
+        //编辑广告主
+        $('[event-name="edit-advmain"]').on('click', function () {
+            var id = $(this).attr('event-id');
+            $.ajax({
+                type: "POST",
+                url: "/Adv/getAdverInfo",
+                async: false,
+                data: "id=" + id,
+                success: function (rs_info) {
+                    //console.log(rs_info.info.type_class);
+                    $("div[dialog-id=edit-advmain-box] input[name=advert_name]").val(rs_info.info.advert_name);
+                    $("div[dialog-id=edit-advmain-box] input[name=company_name]").val(rs_info.info.company_name);
+                    $("div[dialog-id=edit-advmain-box] input[name=contacts]").val(rs_info.info.contacts);
+                    $("div[dialog-id=edit-advmain-box] input[name=contact_way]").val(rs_info.info.contact_way);
+                    $("div[dialog-id=edit-advmain-box] input[name=category]").val(rs_info.info.industry_desc);
+                    $("div[dialog-id=edit-advmain-box] input[name=id]").val(id);
+
+                    var checked_name = '';
+                    $.each(rs_info.info.industry_list, function (i, n) {
+                        checked_name += '<span class="label" tag-id="label">' + n.category_name + ' <i id="' + n.id + '" class="icon-remove" style="cursor:pointer;" title="点击移除" event-name="removeType"></i></span><span class="separate"></span>';
+                    });
+
+                    //标签加入标签区域
+                    $("div[dialog-id=edit-advmain-box]").find('[tag-id="checked-type"]').html(checked_name);
+                }
+            });
+
+            //打开窗口
+            $.common.openWindow({
+                id: 'edit-advmain-box',
+                height: 450,
+                width: 700,
+                title: '编辑商户类型',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({
+                        id: 'edit-advmain-form'
+                    });
+                },
+            });
+        });
+
+        //删除
+        $('[event-name="del-event"]').on('click', function () {     
+            var id      = $(this).attr('event-id');    
+            var msg     = $(this).attr('msg');
+            var title   = $(this).attr('title');
+            var url     = $(this).attr('url');
+            
+            var _box = $("div[dialog-id=del-box]");//删除的弹框
+            if(id === 'checkbox'){
+                //要删除的ID            
+                var chk_value = [];
+                $("input[name=item_id]:checked").each(function () {
+                    chk_value.push($(this).val());
+                });
+                _box.find("input[name=id]").val(chk_value);//删除的ID
+            }else{
+                _box.find("input[name=id]").val(id);//删除的ID
+            }            
+            _box.find("#dialog-msg").html(msg);//删除提示内容
+            
+            //打开窗口
+            $.common.openWindow({
+                id: 'del-box',
+                height: 300,
+                width: 600,
+                title: title,
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'del-form',url:url});
+                },
+            });
+        });
+
+        //删除服务-多个
+        $('[event-name="dels-advmain"]').on('click', function () {
+            //要删除的ID        
+            var chk_value = [];
+            $("input[name=item_id]:checked").each(function () {
+                chk_value.push($(this).val());
+            });
+            $("div[dialog-id=dels-advmain-box] input[name=id]").val(chk_value);
+            //打开窗口
+            $.common.openWindow({
+                id: 'dels-advmain-box',
+                height: 300,
+                width: 600,
+                title: '批量删除广告主',
+                confirm_function: function () {
+                    $.common.ajaxFormSubmit({id: 'dels-advmain-form'});
+                },
+            });
+        });
+    });
+});

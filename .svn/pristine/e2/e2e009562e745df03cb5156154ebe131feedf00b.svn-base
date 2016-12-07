@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+.group-access{border:1px solid #D5D5D5;padding:10px;overflow:hidden;}
+.group-access .access-item{margin:0px 0px 20px 30px;clear:both;}
+.group-access .access-item dt{margin-left:-20px;}
+.group-access .access-item dt .lbl{font-weight:bold;font-size:12px;}
+.group-access .access-item dd{float:left;margin-right:20px;}
+.group-access .access-item dd .lbl{font-size:12px;}

@@ -1,0 +1,58 @@
+<div dialog-id="view" class="hide">
+	<div class="base-info">
+		<h3>商户信息</h3>
+		<div class="info-row">
+			<div class="base-left">
+				<span class="profile-picture">
+					<img id="avatar" tag-id="hotel_img" class="editable img-responsive editable-click editable-empty" style="min-width:125px;" src="__PUBLIC__/plugins/assets/avatars/profile-pic.jpg"></img>
+				</span>
+				<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right img-tit">
+					<div class="inline position-relative">
+						<span class="white">商户ID：<span tag-id="hotel_id">00000</span></span>
+					</div>
+				</div>
+			</div>
+			
+			<div class="base-right">
+				<ul>
+					<li>商户名称：<span tag-id="hotel_name">-</span></li>
+					<li>商户类型：<span tag-id="hotel_type">-</span></li>
+					<li>商户地址：<span tag-id="hotel_address">-</span></li>
+					<li>所属商圈：<span tag-id="hotel_trad">-</span></li>
+				</ul>
+			</div>
+		</div>
+	</div>
+	
+	<div class="author-info">
+		<div class="base-info">
+			<h3>联系人信息</h3>
+			<div class="info-row">
+				<div class="base-right">
+					<ul>
+						<li>联系人：<span tag-id="hotel_contacts">-</span></li>
+						<li>联系电话：<span tag-id="hotel_phone">-</span></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		
+		<div class="base-info">
+			<h3>商家广告位</h3>
+			<div class="info-row">
+				<div class="base-right">
+					<ul class="adv-info">
+						<li class="adv-title">
+							<span class="adv-name">广告位名称</span>
+							<span class="adv-num">广告位数量</span>
+						</li>
+						<li class="adv-item">
+							<span class="adv-name">首页广告位</span>
+							<span class="adv-num"><span tag-id="adver_number">0</span>个</span>
+						</li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

@@ -1,0 +1,32 @@
+<div dialog-id="addEdit" class="hide">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="{:U('Shopsetting/addEditQuest')}" method="post">
+		<input name="id" type="hidden" value="0" />
+		<div tag-id="setup-1">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input name="hotel_id" type="hidden" value="0" />
+					<input type="text" name="hotel_name" disabled="disabled" placeholder="商户名称" class="col-xs-10 col-sm-9" >
+					<a href="javascript:void(0);" event-name="openSeach"><i class="icon-search hotet-sea-btn"></i></a>
+				</div>
+			</div>
+			<div class="form-group">
+				<div class="quest">
+					<div class="quest-head">
+						<div class="head-left"><h3>问卷新增</h3></div>
+						<div class="head-right">
+							<span>添加：</span>
+							<button event-name="add-quest-item" flag="1" class="btn btn-xs btn-pink">单选题</button>
+							<button event-name="add-quest-item" flag="2" class="btn btn-xs btn-inverse">多选题</button>
+							<button event-name="add-quest-item" flag="3" class="btn btn-xs btn-primary">填空题</button>
+						</div>
+					</div>
+					
+					<div tag-id="item-body" class="quest-body">
+						<div class="init">请添加问卷题目</div>
+					</div>	
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

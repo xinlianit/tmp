@@ -1,0 +1,61 @@
+<?php
+/**
+ * InnerController.class.php - 后台内部私有
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM JiRY(390066398@qq.com)
+ * @copyright 2016-11-24 11:40
+ */
+namespace Admin\Controller;
+use Think\Controller;
+class InnerController extends Controller {
+    /**
+     * 结果集
+     * @var array
+     */
+    private $result = array( 'status' => 0 );
+    
+    /**
+     * 获取二级服务
+     * @param int $_GET['id']           服务ID
+     * @return json
+     */
+    public function getServerTow(){
+        $id         = trim(I('get.id'));
+        
+        if( !$id ){
+            $this->ajaxReturn($this->result);
+        }
+        
+        $server_two_map = array(
+            'service_id'        => $id
+        );
+        $rows = D('Common', 'Logic')->getRows('ServiceTwo', $server_two_map, array('id','server_name'));
+        
+        $this->result['status']             = 1;
+        $this->result['data']               = $rows;
+        $this->ajaxReturn($this->result);
+        
+    }
+    
+    /**
+     * 获取商圈
+     * @param int $_GET['id']           城市ID
+     * @return json
+     */
+    public function getTrad(){
+        $city_id        = trim(I('get.id'));
+        
+        $map = array(
+            'city_id'       => $city_id ? $city_id : 0,
+            'data_status'   => 1,
+        );
+        
+        $rows = D('Common', 'Logic')->getRows('TradingArea', $map, array('id','area_name'));
+        
+        $this->result['status']             = 1;
+        $this->result['data']               = $rows;
+        $this->ajaxReturn($this->result);
+    }
+}

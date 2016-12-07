@@ -1,0 +1,97 @@
+<?php
+
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+
+namespace Cli\Controller;
+use Think\Controller;
+
+/**
+ * +----------------------------------------------------------------------
+ * | JuhePHP [ NO ZUO NO DIE ]
+ * +----------------------------------------------------------------------
+ * | 天气预报接口调用 － 聚合数据
+ * | 在线接口文档：http://www.juhe.cn/docs/73
+ * | Copyright (c) 2016-2017 http://rapi.pad-phone.com/ All rights reserved.
+ * +----------------------------------------------------------------------
+ * | Author: PAD PHP DEV TEAM HuangZH(47198839@qq.com)
+ * +----------------------------------------------------------------------
+ */
+class WeatherController extends Controller {
+    //获取聚合天气预报数据
+    public function query(){
+        $appkey = C('JUHE_APP_KEY');
+        //************1.根据城市查询天气************
+        $url = C("JUHE_URL");
+
+        $_weather_city = M('hotel_info') -> field('a.id, b.city_code') -> alias('a')
+                        -> join('__CITY_INFO__ b ON a.city_id = b.id')
+                        -> where(['a.data_status' => 1, 'b.city_code' => ['exp', 'is not null']])
+                        -> select();
+
+        if(isset($_weather_city) && !empty($_weather_city)) {
+            $city_codes = array_column($_weather_city, 'city_code');
+            $_weather_city = M('weather_city');
+            $weather_city = $_weather_city -> field('id, city_name') -> where(['id' => ['in', $city_codes]]) -> select();
+
+            if(isset($weather_city) && !empty($weather_city)) {
+                foreach ($weather_city as $item) {
+                    $result = null;
+                    $_city_code = null;
+                    $_request_date = null;
+                    $weather_data = null;
+
+//                    $_weather_data = M('weather_info')->field('id')->where(['city_code' => $item['id'], 'req_date' => date('Y-m-d')])->find();
+//
+//                    if (!isset($_weather_data)) {
+                        $params = array(
+                            "cityname" => trim($item['city_name']),//要查询的城市，如：温州、上海、北京
+                            "key" => $appkey,//应用APPKEY(应用详细页查询)
+                            "dtype" => "json",//返回数据的格式,xml或json，默认json
+                        );
+                        $paramstring = http_build_query($params);
+                        $content = juhecurl($url, $paramstring);
+
+                        $result = json_decode($content, true);
+                        if ($result) {
+                            if ($result['error_code'] == '0') {
+                                if (isset($result['result']['data'])) {
+                                    $_city_code = trim($result['result']['data']['realtime']['city_code']);
+                                    $_request_date = trim($result['result']['data']['realtime']['date']);
+                                    $weather_data = M('weather_info')->field('id')->where(['city_code' => $_city_code, 'req_date' => $_request_date])->find();
+
+                                    $_data = [
+                                        'city_code' => $_city_code,
+                                        'weather_data' => base64_encode(json_encode($result['result']['data'])),
+                                        'req_date' => $_request_date,
+                                        'create_time' => time(),
+                                        'update_time' => trim($result['result']['data']['realtime']['dataUptime']),
+                                    ];
+
+                                    if (empty($weather_data)) {
+                                        $_rs = M('weather_info')->data($_data)->add();
+                                    }else{
+                                        $_rs = M('weather_info') -> where(['city_code' => $_city_code, 'req_date' => $_request_date]) -> save($_data);
+                                    }
+
+                                    if ($_rs) {
+                                        logs("[Date=" . $_request_date . "] " . $result['reason'] . ":" . trim($result['result']['data']['realtime']['city_name']) . "(" . $_city_code . ")", 'INFO', 'Weather');
+                                    } else {
+                                        logs("[Date=" . $_request_date . "] " . $result['reason'] . ":" . trim($result['result']['data']['realtime']['city_name']) . "(" . $_city_code . ")", 'ERR', 'Weather');
+                                    }
+                                }
+                            } else {
+                                logs($result['error_code'] . ":" . $result['reason'], 'ERR', 'Weather');
+                            }
+                        } else {
+                            logs("请求失败", 'ERR', 'Weather');
+                        }
+//                    }
+                }
+            }
+        }
+    }
+}

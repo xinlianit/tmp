@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -228,7 +225,7 @@
                                                 <td>
                                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">                                                      
 
-                                                        <a class="green" event-name="edit-trade" event-id="<?php echo ($list["id"]); ?>" href="javascript:void(0);" title="编辑">
+                                                        <a class="green" event-name="edit-trade" event-id="<?php echo ($list["id"]); ?>" info-url='<?php echo U("Baseinfo/getTradeInfo");?>' href="javascript:void(0);" title="编辑">
                                                             <i class="icon-pencil bigger-130"></i>
                                                         </a>
 
@@ -322,7 +319,7 @@
                 <textarea class="col-xs-10" rows="3" name="category_desc"></textarea>
             </div>
         </div>
-        <input type="hidden" name="trade_id" >
+        <input type="hidden" name="id" >
         <div class="space-4"></div>
         
     </form>
@@ -375,7 +372,9 @@
 		
 		
 		<script type="text/javascript">
-			var static_base = "/Public";
+			var static_base 	= '/Public';
+			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

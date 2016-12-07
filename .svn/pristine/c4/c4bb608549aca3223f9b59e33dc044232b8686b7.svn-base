@@ -1,0 +1,58 @@
+<?php
+namespace RoomApi\Controller;
+
+class IndexController extends CommonController {
+    public function index(){
+        header("Content-Type: text/html; charset=utf-8");
+        $url = "http://cj.weather.com.cn/support/Detail.aspx?id=51837fba1b35fe0f8411b6df";
+        $data = file_get_contents($url);
+
+        import('phpQuery.phpQuery', APP_LIBRARY, '.php');
+
+        $doc = \phpQuery::newDocumentHTML($data);
+        \phpQuery::selectDocument($doc);
+        $city_data = pq('.entry-content')->getDocument();
+
+        $p = $city_data -> find('p[style="text-align:left;"]');
+        file_put_contents('temp.html', $p);
+        //var_dump($p -> elements);
+        $i = 0 ;
+        foreach ( $p -> elements as $item ){
+            if($i>0){
+
+                $_tmp = explode(',', str_replace('，', ',', $item -> nodeValue));
+
+                $_map['city_name'] = trim($_tmp[1]) . '市';
+                //$_map['city_name'] = trim($_tmp[1]);
+
+                $city_data = M('city_info') -> field('id') -> where(['city_code' => trim($_tmp[0])]) -> find();
+                if(!$city_data) {
+                    $city_list = M('city_info')->field('id, city_name, city_code')->where($_map)->select();
+                    if ($city_list && 1 == count($city_list)) {
+                        foreach ($city_list as $city) {
+                            if (strlen(trim($city['city_code'])) > 0) {
+                                continue;
+                            } else {
+                                $rs = M('city_info')->data(['city_code' => trim($_tmp[0])])->where(['id' => $city['id']])->save();
+                                if ($rs) {
+                                    file_put_contents('success.log', trim($_tmp[0]) . ' => ' . $city['id'] . '(' . trim($_tmp[1]) . ')\n\r', FILE_APPEND);
+                                } else {
+                                    file_put_contents('error.log', trim($_tmp[0]) . ' => ' . $city['id'] . '(' . trim($_tmp[1]) . ')\n\r', FILE_APPEND);
+                                }
+                            }
+                        }
+                    } else {
+                        file_put_contents('notwritten.log', trim($_tmp[0]) . ' => ' . trim($_tmp[1]) . '\n\r', FILE_APPEND);
+                    }
+                }/*else{
+                    if (strlen(trim($city_data['city_code'])) > 0) {
+                        $rs = M('city_info')->data(['city_code' => null])->where(['id' => $city_data['id']])->save();
+                    }
+                }*/
+            }
+            $i = $i + 1;
+        }
+        echo 'ok';
+        //print_r($city_data);
+    }
+}

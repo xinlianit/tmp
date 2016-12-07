@@ -1,0 +1,35 @@
+[ 2016-11-26T00:16:46+08:00 ] 192.168.1.150 /index.php/Node/addEditGroup.html?id=1
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000475s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000828s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 220 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 0 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 8 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 9 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 13 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 18 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 19 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 20 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 45 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 21 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 23 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 24 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0029s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 25 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 29 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0020s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 32 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 33 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 34 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 35 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 36 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 1 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 2 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `pid` = 37 AND `status` = 1 AND `is_show` = 1 ORDER BY `sort` asc  [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Node/addEditGroup' LIMIT 1   [ RunTime:0.0013s ]
+INFO: [ app_end ] --START--
+INFO: Run Behavior\ShowPageTraceBehavior [ RunTime:0.000423s ]
+INFO: [ app_end ] --END-- [ RunTime:0.000447s ]
+
+[ 2016-11-26T00:19:25+08:00 ] 192.168.1.150 /index.php/Baseinfo/roomService.html
+ERR: 系统不支持:redis
+

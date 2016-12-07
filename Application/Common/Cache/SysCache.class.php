@@ -15,6 +15,23 @@ use Common\Cache\BaseCache;
 class SysCache extends BaseCache {
     
     /**
+     * 菜单节点
+     * @param array|string $val    缓存值
+     * @return array|boolean
+     */
+    public function getMenu($val=null){
+        $key = self::$KEY_MENU_NODE;
+        
+        if( $val === null ){
+            $val = S($key);
+        }else{
+            S($key, $val);
+        }
+        
+        return $val;
+    }
+    
+    /**
      * icon 图标详情
      * @access public
      * @param int $id 图标ID
@@ -42,6 +59,7 @@ class SysCache extends BaseCache {
         
         //当前缓存不存在，通过数据库重新获取数据 写入缓存并且返回
         $rs_info = D('ServiceIcon')->getInfo($id);
+        $rs_info['icon_path'] = get_src($rs_info['resource_id']);
         //如果数据库没有找到对应值返回false
         if(!$rs_info){
             return false;

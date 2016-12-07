@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -384,7 +381,7 @@
 				<input type="text" tag-id="hotel_name" name="hotel_name" placeholder="支持模糊查询" class="input-sm seach-input value" style="width:70%!important;">
 			</div>
 			<span class="input-group-btn search-btn" style="display:inline-block;">
-				<button event-name="seachShop" url="<?php echo U('Shop/seach');?>" class="btn btn-purple btn-sm">
+				<button event-name="seachShop" url="<?php echo U('Inner/seach');?>" class="btn btn-purple btn-sm">
 					搜索
 					<i class="icon-search icon-on-right bigger-110"></i>
 				</button>
@@ -435,6 +432,7 @@
 		<script type="text/javascript">
 			var static_base 	= '/Public';
 			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

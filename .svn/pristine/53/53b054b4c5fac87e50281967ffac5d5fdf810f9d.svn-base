@@ -1,0 +1,33 @@
+ <div dialog-id="edit-match-box" class="hide">
+
+    <form class="form-horizontal" role="form" form-id="edit-match-form"  method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"> 商户选择：<span class="must">*</span></label>
+            <div class="col-sm-9">
+                    <input name="hotel_id" type="hidden" value="0" />
+                    <input type="text" name="hotel_name" disabled="disabled" placeholder="商户名称" class="col-xs-10 col-sm-9" >
+                    <a href="javascript:void(0);" event-name="open-seach-hotel2"><i class="icon-search hotet-sea-btn"></i></a>
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"> 商品选择：<span class="must">*</span></label>
+            <div class="col-sm-9">
+                    <input name="goods_id" type="hidden" value="0"  tag-id="goods_id_edit" />
+                    <input type="text" name="goods_name" disabled="disabled" placeholder="商品名称" class="col-xs-10 col-sm-9" >
+                    <a href="javascript:void(0);" event-name="open-seach-goods"><i class="icon-search hotet-sea-btn"></i></a>
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">配对编号：<span class="must">*</span></label>
+            <div class="col-sm-9">
+                <input type="text" name="match_code" placeholder="输入配对编号" class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+    </form>
+</div>

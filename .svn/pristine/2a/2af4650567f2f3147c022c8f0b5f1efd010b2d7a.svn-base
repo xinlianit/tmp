@@ -1,0 +1,971 @@
+<?php
+/**
+ * GoodsController.class.php - 商品管理
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM Zhaoxizhan(441534536@qq.com)
+ * @copyright 2016-11-22 10:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+
+class GoodsController extends CommonController {
+    
+    /**
+     * 商品列表
+     */
+    public function goodsList(){
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        $model = D('GoodsInfo');
+        
+        //搜索条件
+        $_map['data_status'] = array('neq',99);
+        if(!empty($search_key)){
+            $_map['goods_name'] = array('like','%'.$search_key.'%');
+        }
+        //当前页数
+        $page_index  = I('get.p',1);
+        
+        $list = $model->field('id,cate_id')->where($_map)->order('cate_id,id desc')->page($page_index,C('PAGE_SIZE'))->select();
+        $count = $model->where($_map)->count();
+        
+        //结果格式化
+        $_list = array();
+        foreach ($list as $val) {
+            if(!isset($_list['key_'.$val['cate_id']]['cate_name'])){
+                $_tmp_cate_info = D('Goods','Cache')->getGoodsCategoryInfo($val['cate_id']);            
+                $_list['key_'.$val['cate_id']]['cate_name'] = $_tmp_cate_info['category_name'] ;
+            }
+            //商品详情
+            $goods_info = D('Goods','Cache')->getGoodsInfo($val['id']);
+            $goods_info['up_count'] = M('goods_shelves')->where('goods_id='.$goods_info['id'])->count();
+            $_list['key_'.$val['cate_id']]['list'][] = $goods_info;
+        }
+        $page = show_page($count);
+        $page['list'] = $_list;
+        
+        $cate_list = D('GoodsCategory')->getList();
+        $this->assign('cate',$cate_list);
+
+        
+        
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加商品
+     */
+    public function addGoods(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        
+        //修改参数
+        $_data['cate_id']       = I('post.cate_id');
+        $_data['goods_desc']    = I('post.goods_desc');
+        $_data['goods_name']    = I('post.goods_name');
+        
+        $_file_md5              = I('post.goods_pic_md5');
+        $_data['goods_price']   = I('post.goods_price')*100;
+        $_data['original_cost'] = I('post.original_cost');
+        
+        //参数校验
+        if(empty($_data['goods_name']) || empty($_data['cate_id']) || empty($_data['goods_price']) || empty($_file_md5)){
+            $this->ajaxReturnErr();
+        }
+        
+        if($_file_md5){
+            $res_info = D('Resource')->getResourceByMd5($_file_md5);
+            //没有找到对应资源
+            if(!$res_info){
+                $this->ajaxReturnErr();
+            }
+            $_data['resource_id'] = $res_info['id'];//商品图片
+        }
+        
+        $_time = time();
+        $_data['create_time'] = $_time;
+        $_data['update_time'] = $_time;
+        $_data['data_status'] = 2;
+        $_data['goods_stock'] = 9999;
+        
+        $rs = D('GoodsInfo')->add($_data);
+        
+        if(!$rs){            
+            $this->ajaxReturnErr();
+        }
+        
+        D('Goods','Cache')->getGoodsInfo($rs,true,$_data);
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 删除商品
+     */    
+    public function delGoods(){
+        
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); 
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //成功及失败数量
+        $succeed = $failed = 0;
+        //错误描述
+        $err_str = '';
+        //遍历删除     
+        foreach ($id_arr as $val) {
+            //1.上架商品不能删除
+            $_info = D('Goods','Cache')->getGoodsInfo($val);//商品详情
+            //上架商品不能删除
+            if($_info['data_status'] == 1){
+                $failed++;
+                $err_str = '上架商品不能删除';
+                continue;
+            }
+            
+            M()->startTrans();
+            //2.删除商品主表 及 更新缓存
+            $rs1 = D('GoodsInfo','Logic')->delGoodsInfo($val);            
+            
+            //3.同是删除发布关系 pad_goods_shelves 
+            $_map['goods_id'] = $val;
+            $rs2 = M('goods_shelves ')->where($_map)->delete();
+            if($rs1 === false || $rs2 === false){
+                M()->rollback();
+                $failed++;
+                continue;
+            }
+            M()->commit();
+            
+            $succeed++;
+        }
+        
+        if($succeed>0 && $failed>0){//部分失败
+            $this->ajaxReturnErr('部分商品删除失败;'.$err_str);
+        }elseif($failed>0){//全部失败
+            $this->ajaxReturnErr($err_str);
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+
+    /**
+     * 编辑商品
+     */
+    public function editGoods(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        //判断当前商品是否为上架状态，上架商品无法编辑
+        
+        //修改参数
+        $_data['cate_id']       = I('post.cate_id');
+        $_data['goods_desc']    = I('post.goods_desc');
+        $_data['goods_name']    = I('post.goods_name');
+        $_data['goods_price']   = I('post.goods_price')*100;
+        $_data['original_cost'] = I('post.original_cost');
+        
+        //参数校验
+        if(empty($_data['goods_name']) || empty($_data['cate_id']) || empty($_data['goods_price'])){
+            $this->ajaxReturnErr();
+        }
+        $_file_md5              = I('post.goods_pic_md52');
+        if($_file_md5){
+            $res_info = D('Resource')->getResourceByMd5($_file_md5);
+            //没有找到对应资源
+            if(!$res_info){
+                $this->ajaxReturnErr();
+            }
+            $_data['resource_id'] = $res_info['id'];//商品图片
+        }
+        
+        $_data['update_time'] = time();
+        
+        //商品编辑
+        $rs = D('GoodsInfo','Logic')->editGoodsInfo($id, $_data);
+        
+        if($rs === false){            
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 获取商品详情
+     */
+    public function getGoodsInfo(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        
+        $id = I('post.id'); //要编辑的ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $info = D('Goods','Cache')->getGoodsInfo($id);
+        
+        if(!$info){
+            $this->ajaxReturnErr('ID不存在');
+        }
+        
+        $info['goods_price'] = money_num_format($info['goods_price']);        
+        $info['goods_pic'] = get_src($info['resource_id']);//图片地址
+        $this->ajaxReturnSuccess(array('data'=>$info));
+    }
+
+    /**
+     * 商品分类列表
+     */
+    public function cate(){        
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        $model = D('GoodsCategory');
+        
+        //搜索条件
+        $_map['data_status'] = 1;
+        if(!empty($search_key)){
+            $_map['category_name'] = array('like','%'.$search_key.'%');
+        }
+        //当前页数
+        $page_index  = I('get.p',1);
+        
+        $list = $model->where($_map)->order('data_sort asc,id')->page($page_index,C('PAGE_SIZE'))->select();
+        $count = $model->where($_map)->count();
+        
+        $page = show_page($count);
+        $page['list'] = $list;
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加产品分类
+     */
+    public function addCate(){
+        
+        //添加参数
+        $_data['category_name']  = I('post.category_name');
+        $_data['data_sort']      = I('post.data_sort');
+        $_data['category_desc']  = I('post.category_desc')?I('post.category_desc'):'';
+        
+        //参数校验
+        if(empty($_data['category_name']) || empty($_data['data_sort'])){
+            $this->ajaxReturnErr();
+        }
+        
+        //添加
+        $rs = D('GoodsCategory')->add($_data);        
+        
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        
+        //增加分类缓存
+        $_data['id'] = $rs;
+        $_data['data_status'] = 1;
+        D('Goods','Cache')->getGoodsCategoryInfo($rs,true,$_data);
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 删除商品分类
+     */    
+    public function delCate(){
+        
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); 
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //成功及失败数量
+        $succeed = $failed = 0;
+        $err_str1 = $err_str2 = '';//错误描述
+        //遍历删除
+        $cache = D('Goods','Cache');
+        foreach ($id_arr as $val) {
+            //判断当前分类下是否有商品            
+            $is_exist = D('GoodsInfo','Logic')->isExistByCateId($val);
+            if($is_exist){
+                $failed++;
+                $_tmp_cate_info = $cache->getGoodsCategoryInfo($val);
+                $err_str1 .= $_tmp_cate_info['category_name'].',';
+                continue;
+            }            
+            //删除
+            $rs = D('GoodsCategory')->delCate($val);
+
+            if($rs === false){
+                $failed++;
+                $_tmp_cate_info = $cache->getGoodsCategoryInfo($val);
+                $err_str2 .= $_tmp_cate_info['category_name'].',';
+                continue;
+            }
+            $cache->getGoodsCategoryInfo($val,true);
+            $succeed++;
+        }
+        //分类下有产品的错误信息处理
+        if(!empty($err_str1)){
+            $err_str1 =  substr($err_str1,0,-1).'等分类下有商品，无法删除！';
+        }
+        //删除失败错误处理
+        if(!empty($err_str2)){
+            $err_str2 =  substr($err_str2,0,-1).'等分类删除失败！';
+        }
+        if($succeed>0 && $failed>0){//部分失败
+            $this->ajaxReturnErr('部分分类删除失败:'.$err_str1.$err_str2);
+        }elseif($failed>0){//全部失败
+            $this->ajaxReturnErr($err_str1.$err_str2);
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 获取商品类型详情
+     */
+    public function getCateInfo(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); //要编辑的类型ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $info = D('Goods','Cache')->getGoodsCategoryInfo($id);
+        
+        if(!$info){
+            $this->ajaxReturnErr('ID不存在');
+        }
+        
+        $this->ajaxReturnSuccess(array('data'=>$info));
+    }
+    
+    /**
+     * 编辑商品分类
+     */
+    public function editCate(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); //要编辑的类型ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        //修改参数
+        $_data['category_name']  = I('post.category_name');
+        $_data['data_sort']      = I('post.data_sort');
+        $_data['category_desc']  = I('post.category_desc')?I('post.category_desc'):'';
+        
+        //参数校验
+        if(empty($_data['category_name']) || empty($_data['data_sort'])){
+            $this->ajaxReturnErr();
+        }
+        //模型
+        $model = D('GoodsCategory');
+        //原分类信息
+        $full_info = $model->getInfo($id);
+        //添加
+        $rs = D('GoodsCategory')->editCate($id,$_data);
+        
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        
+        //更新缓存
+        D('Goods','Cache')->getGoodsCategoryInfo($id,true,$_data,$full_info);
+        $this->ajaxReturnSuccess();
+    }
+        
+    /**
+     * 产品上架
+     */
+    public function upGoods(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        
+        $hotel_id = I('post.hotel_id');
+        $goods_id = I('post.id');
+        
+        if(empty($hotel_id) || empty($goods_id)){
+            $this->ajaxReturnErr();
+        }
+        
+        //goods_shelves
+        $hotel_id_arr = explode(',', $hotel_id);
+        $goods_id_arr = explode(',', $goods_id);
+        
+        $_time = time();
+        $data = array();
+        
+        //关系表数据
+        foreach ($hotel_id_arr as $val) {
+            foreach ($goods_id_arr as $v) {
+                $_tmp['hotel_id'] = $val;
+                $_tmp['goods_id'] = $v;
+                $_tmp['create_time'] = $_time;
+                
+                $data[] = $_tmp;
+            }
+        }
+        
+        if (empty($data)){
+            $this->ajaxReturnErr();
+        }
+        
+        M()->startTrans();
+        //删除现有发布关系
+        $_map['goods_id'] = array('in',$goods_id_arr);
+        $rs_del = M('GoodsShelves')->where($_map)->delete();
+        if($rs_del === false){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        //增加关系数据
+        $rs1 = M('GoodsShelves')->addAll($data);
+        //修改发布状态
+        $rs2 = D('GoodsInfo','Logic')->upGoodsInfo($goods_id_arr);
+        if($rs1 === false || $rs2 === false){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        M()->commit();
+        
+        //更新商品缓存（上架及更新状态）
+        foreach ($goods_id_arr as $val) {
+            $_data['data_status'] = 1;
+            $_data['update_time'] = $_time;
+            D('Goods','Cache')->getGoodsInfo($val,true,$_data);
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 产品下架
+     */
+    public function downGoods(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        } 
+        $goods_id = I('post.ids');
+        
+        if(empty($goods_id)){
+            $this->ajaxReturnErr();
+        }
+        //要下架的产品ID
+        $goods_id_arr = explode(',', $goods_id);
+        
+        M()->startTrans();
+        //1.删除关系表
+        $_map['goods_id'] = array('in',$goods_id_arr);
+        $rs1 = M('GoodsShelves')->where($_map)->delete();
+        //2.更新商品转台
+        $rs2 = D('GoodsInfo','Logic')->downGoodsInfo($goods_id_arr);
+        if($rs1 === false || $rs2 === false){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        M()->commit();
+        //3.更新缓存
+        //更新商品缓存（上架及更新状态）
+        foreach ($goods_id_arr as $val) {
+            $_data['data_status'] = 2;
+            $_data['update_time'] = time();
+            D('Goods','Cache')->getGoodsInfo($val,true,$_data);
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 促销列表页面
+     */
+    public function sales(){        
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        $model = M('promotion_info');
+        
+        //搜索条件
+        $_map['data_status'] = 1;
+        if(!empty($search_key)){
+            $_map['promotion_name'] = array('like','%'.$search_key.'%');
+        }
+        //当前页数
+        $page_index  = I('get.p',1);
+        
+        $list = $model->where($_map)->order('data_sort,id desc')->page($page_index,C('PAGE_SIZE'))->select();
+        $count = $model->where($_map)->count();
+        
+        //遍历读取商品信息
+        foreach ($list as &$val) {
+            $good_list = M('GoodsPromotion')->where(array('prom_id'=>$val['id']))->select();
+            $_goods_name = '';
+            foreach ($good_list as $v) {
+                $_goods_info = D('Goods','Cache')->getGoodsInfo($v['goods_id']); 
+                $_goods_name .= $_goods_info['goods_name'].'；';
+            }
+            //促销商品名
+            $val['goods_name'] = (substr($_goods_name, -3) === '；')?substr($_goods_name,0, -3) : '-';
+        }
+        
+        
+        $page = show_page($count);
+        $page['list'] = $list;
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 获取产品列表, 用户前台选择用
+     */
+    public function getGoodsUseChoose(){
+        //分类ID
+        $cate_id = I('post.cate_id');
+        if(!empty($cate_id)){
+            $_map['cate_id'] = $cate_id;
+        }
+        
+        //商品名
+        $goods_name = I('post.goods_name','');        
+        if(!empty($goods_name)){
+            $_map['goods_name'] = array('like','%'.$goods_name.'%');
+        }
+        
+        $_map['data_status'] = 1;//上架状态
+        $rs = D('GoodsInfo')->where($_map)->field('id,goods_name,cate_id')->select();
+        if(!$rs){
+            $this->ajaxReturnErr('没有找到产品');
+        }
+        
+        foreach ($rs as &$val) {
+            $cate_info = D('Goods','Cache')->getGoodsCategoryInfo($val['cate_id']);
+            $val['goods_cate'] = $cate_info['category_name'];
+        }
+        
+        $this->ajaxReturnSuccess($rs);
+    }
+    
+    /**
+     * 添加促销信息
+     */
+    public function addSales(){
+        if(!IS_AJAX){
+            return false;
+        }
+        
+        $_data['data_sort'] = I('post.data_sort');//页面排列号
+        $_data['promotion_name'] = I('post.promotion_name');//促销名称     
+        $_data['data_status'] = 1;//促销状态,1:有效,2:无效,99:删除',
+        $goods_id = I('post.goods_id');//促销产品
+        
+        //参数校验
+        if(!$_data['data_sort'] || !$_data['promotion_name'] || !$goods_id){
+            $this->ajaxReturnErr();
+        }
+        
+        //促销关联的产品信息
+        $goods_id_arr = explode(',', $goods_id);
+        
+        M()->startTrans();
+        
+        //添加商品促销信息
+        $rs1 = M('PromotionInfo')->add($_data);
+        if(!$rs1){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        
+        $_data_goods = array();
+        foreach ($goods_id_arr as $val) {
+            $_tmp['goods_id'] = $val;
+            $_tmp['prom_id'] = $rs1;
+            $_data_goods[] = $_tmp;
+        }
+       
+        //添加商品与促销的关系表
+        $rs2 = M('GoodsPromotion')->addAll($_data_goods);
+        if(!$rs2){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        M()->commit();
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 删除促销信息
+     */    
+    public function delSales(){
+        
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); 
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //成功及失败数量
+        $succeed = $failed = 0;
+        
+        //遍历删除    
+        foreach ($id_arr as $val) {                     
+            //删除
+            M()->startTrans();
+            $rs1 = M('PromotionInfo')->where(array('id'=>$val))->delete();
+            if($rs1 === false){
+                M()->rollback();
+                $failed++;
+                continue;
+            }
+            //删除关系表
+            $rs2 = M('GoodsPromotion')->where(array('prom_id'=>$val))->delete();
+            if($rs2 === false){
+                M()->rollback();
+                $failed++;
+                continue;
+            }
+            M()->commit();
+            $succeed++;
+        }
+        
+        if($succeed>0 && $failed>0){//部分失败
+            $this->ajaxReturnErr('部分删除失败');
+        }elseif($failed>0){//全部失败
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 获取 商品促销信息
+     */
+    public function getSalesInfo(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        //促销详情
+        $id = I('post.id');
+        $rs_info = M('promotion_info')->where(array('id'=>$id))->find();
+        
+        //促销对应商品信息
+        $goods_list = M('goods_promotion')->where(array('prom_id'=>$id))->select();
+    
+        
+        foreach ($goods_list as $val) {
+            $goods_info = D('Goods','Cache')->getGoodsInfo($val['goods_id']);
+            $_tmp = array(
+                'id'=>$val['goods_id'],
+                'goods_name'=>$goods_info['goods_name']
+            );
+            $rs_info['goods_list'][] = $_tmp;
+            $rs_info['goods_ids'] .= $val['goods_id'].',';
+        }
+       
+        $rs_info['goods_ids'] = (substr($rs_info['goods_ids'], -1) === ',')?substr($rs_info['goods_ids'], 0, -1):'';
+        
+        $this->ajaxReturnSuccess($rs_info);
+    }
+    
+    /**
+     * 添加促销信息
+     */
+    public function editSales(){
+        if(!IS_AJAX){
+            return false;
+        }
+        $id = I('post.id');//促销ID
+        
+        $_data['data_sort'] = I('post.data_sort');//页面排列号
+        $_data['promotion_name'] = I('post.promotion_name');//促销名称     
+        $goods_id = I('post.goods_id');//促销产品
+        
+        //参数校验
+        if(!$_data['data_sort'] || !$_data['promotion_name'] || !$goods_id || !$id){
+            $this->ajaxReturnErr();
+        }
+        
+        //促销关联的产品信息
+        $goods_id_arr = explode(',', $goods_id);
+        
+        M()->startTrans();
+        
+        //修改商品促销信息
+        $rs1 = M('PromotionInfo')->where(array('id'=>$id))->save($_data);
+        if($rs1 === false){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        
+        //删除原促销信息
+        $rs_del = M('goods_promotion')->where(array('prom_id'=>$id))->delete();
+        if($rs_del === false){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        
+        $_data_goods = array();
+        foreach ($goods_id_arr as $val) {
+            $_tmp['goods_id'] = $val;
+            $_tmp['prom_id'] = $id;
+            $_data_goods[] = $_tmp;
+        }
+       
+        //添加商品与促销的关系表
+        $rs2 = M('GoodsPromotion')->addAll($_data_goods);
+        if(!$rs2){
+            M()->rollback();
+            $this->ajaxReturnErr();
+        }
+        M()->commit();
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 商品匹配
+     */    
+    public function goodsMatch(){        
+        //搜索信息
+        $search['hotel_name']  = I('get.hotel_name','');
+        $search['goods_name']     = I('get.goods_name','');        
+        $this->assign($search);
+        
+        //过滤条件
+        if($search['hotel_name']){
+            $_where['hotel_name'] = array('like','%'.$search['hotel_name'].'%');
+        }
+        //商品名【如商家或商品太多（10W）时要优化此方法】
+        if($search['goods_name']){
+            //1.通过商品名获取商品ID
+            $_map['goods_name'] = array('like','%'.$search['goods_name'].'%');
+            $goods_list = D('GoodsInfo')->where($_map)->select();
+            $goods_id = array();
+            foreach ($goods_list as $v) {
+                $goods_id[] = $v['id'];
+            }
+            unset($_map);
+            //2.通过商品ID获取匹配表中的酒店ID
+            $hotel_id = array();
+            if(!empty($goods_id)){
+                $_map['goods_id'] = array('in',$goods_id);
+                $match_list = M('GoodsMatch')->where($_map)->select();
+                foreach ($match_list as $v) {
+                    $hotel_id[] = $v['hotel_id'];
+                }
+            }
+            $hotel_id = array_unique($hotel_id);
+            unset($_map);
+            //3.在商家表中对应商家ID的商家（最终条件）
+            if(!empty($hotel_id)){
+                $_where['id'] = array('in',$hotel_id);
+            }
+        }
+        
+        $_map['data_status'] = 1;
+        if(!empty($_where)){
+            $_where['_logic'] = 'or';
+            $_map['_complex'] = $_where;
+        }
+        
+        $model_hotel = D('HotelInfo');
+        $list = $model_hotel->where($_map)->select();
+        $count = $model_hotel->where($_map)->count();
+
+        //遍历酒店
+        foreach ($list as &$val) {
+            $_list = M('goods_match')->where(array('hotel_id'=>$val['id']))->select();
+            foreach ($_list as &$v) {
+                //配对商品详情
+                $_info = D('Goods','Cache')->getGoodsInfo($v['goods_id']);
+                $v['goods_name'] = $_info['goods_name'];
+            }
+            $val['list'] = $_list;
+        }
+        
+        $page = show_page($count);
+        $page['list'] = $list;
+
+        $this->assign('page',$page);
+        
+        $this->display();
+    }
+    
+    /**
+     * 添加配对编号
+     */
+    public function addMatch(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        $_data['hotel_id'] = I('post.hotel_id');
+        $_data['goods_id'] = I('post.goods_id');
+        $_data['match_code'] = I('post.match_code');
+        
+        //参数过滤
+        if(!$_data['hotel_id'] || !$_data['goods_id'] || !$_data['match_code']){
+            $this->ajaxReturnErr();
+        }
+        
+        $model = M('goods_match');
+        //检测同一酒店下是否有相同产品
+        $_map['hotel_id'] = $_data['hotel_id'];
+        $_map['goods_id'] = $_data['goods_id'];
+        $_map['data_status'] = array('neq',99);
+        if($model->where($_map)->count()){
+            $this->ajaxReturnErr('商品重复');
+        }
+        
+        //添加
+        $rs = $model->add($_data);
+        
+        if($rs === false){
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 获取配对详情
+     */
+    public function getMatchInfo(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        
+        $id = I('post.id');
+        if(!$id){
+            $this->ajaxReturnErr();
+        }
+        
+        $_map['id'] = $id;
+        
+        $info = M('goods_match')->where($_map)->find();
+        if(!$info){
+            return false;
+        }
+        
+        //酒店详情
+        $hotel_info = D('HotelInfo')->getInfo($info['hotel_id']);
+        //商品详情
+        $goods_info = D('Goods','Cache')->getGoodsInfo($info['goods_id']);
+        $info['hotel_name'] = $hotel_info['hotel_name'];
+        $info['goods_name'] = $goods_info['goods_name'];
+        
+        $this->ajaxReturnSuccess($info);
+    }
+    
+    /**
+     * 编辑配对编号
+     */
+    public function editMatch(){
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }
+        $_map['id'] = I('post.id');
+        
+        $_data['hotel_id'] = I('post.hotel_id');
+        $_data['goods_id'] = I('post.goods_id');
+        $_data['match_code'] = I('post.match_code');
+        
+        //参数过滤
+        if(!$_data['hotel_id'] || !$_data['goods_id'] || !$_data['match_code'] || !$_map['id']){
+            $this->ajaxReturnErr();
+        }
+        //编辑
+        $rs = M('GoodsMatch')->where($_map)->save($_data);
+        
+        if($rs === false){
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 删除配对信息
+     */    
+    public function delMatch(){
+        
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); 
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //成功及失败数量
+        $succeed = $failed = 0;
+        
+        //遍历删除    
+        foreach ($id_arr as $val) {                     
+            //删除
+            $rs = M('GoodsMatch')->where(array('id'=>$val))->delete();
+            if($rs === false){
+                $failed++;
+                continue;
+            }
+            $succeed++;
+        }
+        
+        if($succeed>0 && $failed>0){//部分失败
+            $this->ajaxReturnErr('部分删除失败');
+        }elseif($failed>0){//全部失败
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+}

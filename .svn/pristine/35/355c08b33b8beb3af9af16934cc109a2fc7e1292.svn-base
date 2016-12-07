@@ -1,0 +1,52 @@
+<div class="main-container-inner">
+    <div class="main-content0">
+        <div class="page-content">
+            <div class="row">
+                <div class="col-xs-12">
+                    <!-- PAGE CONTENT BEGINS -->
+                    <div class="row">
+                        <div class="col-xs-12">
+
+                            <div class="table-responsive">
+                                <div class="table-search">
+                                    <p>当前广告： {$adv_info.advert_name}</p>
+                                </div>
+                                
+                                <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                    <thead>
+                                        <tr>                                           
+                                            <th>酒店</th>
+                                            <th>投放开始时间</th>
+                                            <th>投放结束时间</th>
+                                            <th class="hidden-480">曝光数</th>
+                                        </tr>
+                                    </thead>
+
+                                    <tbody>
+
+                                    <volist name="plist" id="list">
+                                        <tr>
+                                            <td>{$list.hotel_name}</td>
+                                            <td>{$list.begin_time}</td>
+                                            <td>{$list.end_time}</td>
+                                            <td>{$list.exposure_num}</td>
+                                        </tr>
+                                    </volist>
+
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+
+                </div><!-- /.col -->
+            </div><!-- /.row -->
+        </div><!-- /.page-content -->
+    </div><!-- /.main-content -->
+
+</div><!-- /.main-container-inner -->
+
+</div><!-- /.main-container -->
+
+
+

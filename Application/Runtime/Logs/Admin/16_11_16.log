@@ -895,3 +895,45 @@ NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Lo
 NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 285 行.
 SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shopsetting','deleteTel','192.168.1.170','1','admin 删除电话服务；电话ID：6,5','1479296127') [ RunTime:0.0138s ]
 
+[ 2016-11-16T19:48:55+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479375684584
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000194s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000337s ]
+ERR: 非法操作:admin
+
+[ 2016-11-16T19:48:56+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479375685516
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000395s ]
+ERR: 非法操作:admin
+
+[ 2016-11-16T19:48:57+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479375686369
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000247s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000528s ]
+ERR: 非法操作:admin
+
+[ 2016-11-16T19:49:30+08:00 ] 192.168.1.170 /index.php/Baseinfo/roomService.html
+ERR: 系统不支持:redis
+
+[ 2016-11-16T19:49:33+08:00 ] 192.168.1.170 /index.php/Baseinfo/roomService.html
+ERR: 系统不支持:redis
+
+[ 2016-11-16T19:51:36+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479375845315
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000397s ]
+ERR: 非法操作:admin
+
+[ 2016-11-16T19:51:37+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479375845663
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000197s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000342s ]
+ERR: 非法操作:admin
+
+[ 2016-11-16T19:51:37+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479375846341
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000329s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000535s ]
+ERR: 非法操作:admin
+

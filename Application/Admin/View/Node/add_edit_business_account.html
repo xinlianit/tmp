@@ -1,0 +1,49 @@
+<div dialog-id="addEdit" class="hide">
+
+	<form class="form-horizontal" role="form" form-id="addEdit" action="{:U('Node/addEditBusiAcc')}" method="post">
+		<input name="id" type="hidden" value="0" />
+		<div tag-id="setup-1">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input name="hotel_id" type="hidden" value="0" />
+					<input type="text" name="hotel_name" disabled="disabled" placeholder="商户名称" class="col-xs-10 col-sm-9" >
+					<a href="javascript:void(0);" event-name="openSeach"><i class="icon-search hotet-sea-btn"></i></a>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 账号类型：<span class="must">*</span></label>
+				<div class="col-sm-4" style="width:57.3333%;">
+					<select tag-id="data-sort" name="account_type" class="form-control">
+						<option value="0">请选择</option>
+						<volist name=":get_field_status('STAFF_INFO','ACCOUNT_TYPE')" id="type_list">
+							<option value="{$type_list.VALUE}">{$type_list.NAME}</option>
+						</volist>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 账号：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="staff_account" placeholder="输入账号" class="col-xs-10 col-sm-9">
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 密码：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input type="password" name="staff_pwd" placeholder="密码由6~16位数字、字符和符号组成。" class="col-xs-10 col-sm-9">
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 姓名：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="staff_name" placeholder="输入姓名" class="col-xs-10 col-sm-9">
+				</div>
+			</div>
+			
+		</div>
+	</form>
+</div>

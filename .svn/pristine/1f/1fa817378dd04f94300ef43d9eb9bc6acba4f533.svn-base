@@ -1,0 +1,8 @@
+<div dialog-id="addEdit" class="hide">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="{:U('Shopsetting/addEditRoom')}" method="post">
+		<input name="id" type="hidden" value="0" />
+		<include file="room_set_one" />
+		
+		<include file="room_set_two" />
+	</form>
+</div>

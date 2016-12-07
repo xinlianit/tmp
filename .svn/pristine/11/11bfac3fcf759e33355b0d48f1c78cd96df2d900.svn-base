@@ -1,0 +1,126 @@
+<div tag-id="setup-2" class="hide">
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户地址：</label>
+		<div class="col-sm-9">
+			<span tag-id="city-com">
+				<div id="city-component1" tag-id="city_1" url="{:U('Inner/getTrad')}" class="city-component" default-province="440000" default-city="440300" default-region="440304"></div>
+			</span>
+			<input type="text" name="address" placeholder="详细地址" class="col-xs-10 col-sm-12 address" >
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商圈： </label>
+
+		<div class="col-sm-9">
+			<select name="trade_id" class="form-control area">
+				<option value="0">请选择</option>
+				<volist name="trand" id="trand_list">
+					<option value="{$trand_list.id}">{$trand_list.area_name}</option>
+				</volist>
+			</select>
+		</div>
+	</div>
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 广告位和数量：</label>
+
+		<div class="col-sm-9 adv">
+			<div>*首页广告位 </div>
+			<div style="text-align:right;padding-right:10px;width:10%;">数量</div>
+			<div><input type="text" name="adver_number" placeholder="最大数量为 6" class="col-xs-10" style="float:none;width:100%;"></div>
+		</div>
+	</div>
+	
+	<div class="widget-box transparent hotel-intef">
+		<div class="widget-header widget-header-flat">
+			<h4 class="lighter">
+				<i class="icon-signal"></i>
+				接口信息
+			</h4>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 酒店编码： </label>
+
+		<div class="col-sm-9">
+			<input type="text" name="customer_code" placeholder="酒店编码系统唯一不能重复；如：30001" class="col-xs-10 col-sm-10">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 集团编码： </label>
+
+		<div class="col-sm-9">
+			<input type="text" name="group_code" placeholder="集团编码系统唯一不能重复；如：20001" class="col-xs-10 col-sm-10">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 接口类型：<span class="must"></span></label>
+		<div class="col-sm-4">
+			<select tag-id="data-sort" name="interface_type" class="form-control">
+				<option value="0">请选择</option>
+				<volist name=":get_field_status('HOTEL_INFO','INTERFACE_TYPE')" id="list">
+					<option value="{$list.VALUE}">{$list.NAME}</option>
+				</volist>
+			</select>
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 接口地址： </label>
+
+		<div class="col-sm-9">
+			<input type="text" name="interface_url" placeholder="输入接口地址" class="col-xs-10 col-sm-10">
+		</div>
+	</div>
+	
+	<div class="form-group">
+		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 接口参数： </label>
+
+		<div class="col-sm-9 floor-info">
+			<div tag-id="floor-list">
+				<div class="row-td td-tit"><span>参数① </span></div>
+				<div class="row-td" style="width:25%;">
+					<div class="col-sm-9">
+						<input type="text" name="para1" placeholder="如：nick=24K" value="" class="col-xs-10 col-sm-2" >
+					</div>
+				</div>
+				<div class="separate-2"></div>
+				<div class="row-td td-tit"><span>参数② </span></div>
+				<div class="row-td" style="width:25%;">
+					<div class="col-sm-9">
+						<input type="text" name="para2" placeholder="如：nick=24K" value="" class="col-xs-10 col-sm-2" >
+					</div>
+				</div>
+				<div class="item-list">
+					<ul tag-id="floor-item">
+						
+					</ul>
+				</div>
+			</div>
+			<div style="height:10px;"></div>
+			<div tag-id="floor-list">
+				<div class="row-td td-tit"><span>参数③ </span></div>
+				<div class="row-td" style="width:25%;">
+					<div class="col-sm-9">
+						<input type="text" name="para3" placeholder="如：nick=24K" value="" class="col-xs-10 col-sm-2" >
+					</div>
+				</div>
+				<div class="separate-2"></div>
+				<div class="row-td td-tit"><span>参数④ </span></div>
+				<div class="row-td" style="width:25%;">
+					<div class="col-sm-9">
+						<input type="text" name="para4" placeholder="如：nick=24K" value="" class="col-xs-10 col-sm-2" >
+					</div>
+				</div>
+				<div class="item-list">
+					<ul tag-id="floor-item">
+						
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+</div>

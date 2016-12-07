@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -230,7 +227,7 @@
                                                     <?php switch($list["icon_category"]): case "1": ?>服务电话<?php break;?>
                                                         <?php case "2": ?>客房服务<?php break; endswitch;?>
                                                 </td>
-                                                <td><img src="<?php echo C('FASTDFS_URL'); echo ($list["icon_path"]); ?>" style="width:40px"></td>
+                                                <td><img src="<?php echo (get_src($list["resource_id"])); ?>" style="width:40px"></td>
                                                 <td><?php echo (_default($list["icon_desc"])); ?></td>
                                                 <td>
                                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
@@ -390,7 +387,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-4">已有图标：</label>
             <div class="col-sm-9">
-                <img id="has_img" src="<?php echo C('FASTDFS_URL');?>" style="height: 40px">
+                <img id="has_img" src="" style="height: 40px">
             </div>
         </div>
         <div class="form-group">
@@ -484,7 +481,9 @@
 		
 		
 		<script type="text/javascript">
-			var static_base = "/Public";
+			var static_base 	= '/Public';
+			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -231,7 +228,11 @@
                                                         <?php case "2": ?>呼叫电话<?php break; endswitch;?>
                                                 </td>
                                                 <td><?php echo (_default($list["service_info"])); ?></td>
-                                                <td><?php echo ($list["icon_id"]); ?></td>
+                                                <td>
+                                                    <?php if(empty($list["icon_path"])): ?>-
+                                                    <?php else: ?> 
+                                                        <img src="<?php echo ($list["icon_path"]); ?>" style='height: 30px'><?php endif; ?> 
+                                                </td>
                                                 <td>
                                                     <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">                                                      
 
@@ -290,11 +291,23 @@
             <label class="col-sm-3 control-label no-padding-right" for="form-field-1">服务名称：</label>
 
             <div class="col-sm-9">
-                <input type="text" name="service_name" id="form-field-1" placeholder="输入服务名称" class="col-xs-10 col-sm-5">
+                <input type="text" name="service_name" id="form-field-1" placeholder="输入服务名称" class="col-xs-10">
             </div>
         </div>
         <div class="space-4"></div>
 
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">二级服务：</label>
+            <div class="col-sm-9">
+                <input type="text" name="service_two[]"  class="col-xs-10">&nbsp;&nbsp;<a class="service_two_close" href="javascript:void(0)"><i class="icon-remove bigger-110"></i></a>
+            </div>            
+        </div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-9">+ <a  class="service_two_add" href="javascript:void(0)">添加二级服务</a></div>
+        </div>
+        <div class="space-4"></div>
+        
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-2">消息类型： </label>
             <div class="col-sm-9">
@@ -317,11 +330,12 @@
         
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-4">消息类型： </label>
-            <div class="col-sm-9">
-                <select class="col-xs-10 col-sm-5"  name="icon_id">
-                    <?php if(is_array($icon_list)): $i = 0; $__LIST__ = $icon_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list["id"]); ?>" icon_path='<?php echo ($list["icon_path"]); ?>'><?php echo ($list["icon_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+            <div class="col-sm-5">
+                <select class="col-xs-10 "  name="icon_id">
+                    <?php if(is_array($icon_list)): $i = 0; $__LIST__ = $icon_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list["id"]); ?>" icon_path="<?php echo (get_src($list["resource_id"])); ?>"><?php echo ($list["icon_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                 </select>
             </div>
+            <div class="col-sm-3"><img src="<?php echo C('FASTDFS_URL'); echo ($icon_list["0"]["icon_path"]); ?>" style='height: 30px'></div>
         </div>
         <div class="space-4"></div>
         
@@ -339,6 +353,13 @@
             </div>
         </div>
         <div class="space-4"></div>
+        
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-9">+ <a  class="service_two_add" href="javascript:void(0)">添加二级服务</a></div>
+        </div>
+        <div class="space-4"></div>
 
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right" for="form-field-2">消息类型： </label>
@@ -361,15 +382,16 @@
         <div class="space-4"></div>
         
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right" for="form-field-4">消息类型： </label>
-            <div class="col-sm-9">
-                <select class="col-xs-10 col-sm-5"  name="icon_id">
-                    <?php if(is_array($icon_list)): $i = 0; $__LIST__ = $icon_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list["id"]); ?>" icon_path='<?php echo ($list["icon_path"]); ?>'><?php echo ($list["icon_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+            <label class="col-sm-3 control-label no-padding-right" for="form-field-4">消息类型： </label>            
+            <div class="col-sm-5">
+                <select class="col-xs-10 "  name="icon_id">
+                    <?php if(is_array($icon_list)): $i = 0; $__LIST__ = $icon_list;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list["id"]); ?>" icon_path="<?php echo (get_src($list["resource_id"])); ?>"><?php echo ($list["icon_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
                 </select>
             </div>
+            <div class="col-sm-3"><img id="icon_path" src="<?php echo C('FASTDFS_URL'); echo ($icon_list["0"]["icon_path"]); ?>" style='height: 30px'></div>
         </div>
         <div class="space-4"></div>        
-        <input type="hidden" name="service_id" >
+        <input type="hidden" name="id" >
         
     </form>
 </div>
@@ -377,6 +399,7 @@
 <!-- 删除面板 -->
 <div dialog-id="del-service-box" class="hide">
     <h3>确定要删除吗？</h3>
+    <div>服务删除后其对应二级服务也将被删除，且不可恢复！</div>
     <form class="form-horizontal" role="form" form-id="del-service-form" action="<?php echo U('Baseinfo/delRoomService');?>" method="post">
 
         <input type="hidden" name="service_id" >
@@ -388,6 +411,7 @@
 <!-- 批量删除面板 -->
 <div dialog-id="dels-service-box" class="hide">
     <h3>确定要批量删除吗？</h3>
+    <div>服务删除后其对应二级服务也将被删除，且不可恢复！</div>
     <form class="form-horizontal" role="form" form-id="dels-service-form" action="<?php echo U('Baseinfo/delRoomService');?>" method="post">
 
         <input type="hidden" name="service_id" >
@@ -421,7 +445,9 @@
 		
 		
 		<script type="text/javascript">
-			var static_base = "/Public";
+			var static_base 	= '/Public';
+			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

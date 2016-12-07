@@ -1,0 +1,32 @@
+<div dialog-id="shelf-up-box" class="hide">
+
+    <form class="form-horizontal" role="form" form-id="shelf-up-form" action="{:U('Goods/upGoods')}" method="post">
+        <div class="form-group">
+            <label class="col-sm-11  text-left">上架商品：<span id="up-goods-name"></span></label>
+        </div>
+        <div class="space-4"></div>        
+        <div class="form-group">
+            <div class="col-sm-12">
+                <div class="col-sm-5 hotel_list_box">
+                    <h5>上架商户：</h5>
+                    <ul class="hotel_list"></ul>
+                </div>
+                <div class="col-sm-2">
+                    <button type="button" class="btn-add btn btn-sm btn-success" style="margin-top: 100px;">
+                            添加
+                            <i class="icon-arrow-right icon-on-right bigger-110"></i>
+                    </button>
+                    <button type="button" event-name="open-seach-hotel" class="btn-search btn btn-sm btn-success" style="margin-top: 100px; padding:4px 4px;">
+                            商户搜索
+                    </button>
+                </div>
+                <div class="col-sm-5 hotel_list_box">
+                    <h5>已选择酒店：</h5>
+                    <ul class="select_item"></ul>
+                </div>
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+    </form>
+</div>

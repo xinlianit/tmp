@@ -1,0 +1,43 @@
+<div dialog-id="addEdit" class="hide">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="{:U('Shop/addEditFloor')}" method="post">
+		<input name="id" type="hidden" value="0" />
+		<div tag-id="setup-1">
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input name="hotel_id" type="hidden" value="0" />
+					<input type="text" name="hotel_name" disabled="disabled" placeholder="商户名称" class="col-xs-10 col-sm-9" >
+					<a href="javascript:void(0);" event-name="openSeach"><i class="icon-search hotet-sea-btn"></i></a>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 楼层信息：<span class="must">*</span></label>
+				<div class="col-sm-9 floor-info">
+					<div tag-id="floor-list">
+						<div class="row-td td-tit"><span>楼层名称</span></div>
+						<div class="row-td">
+							<div class="col-sm-9">
+								<input type="text" name="floor_name[]" placeholder="输入楼层名称" value="" class="col-xs-10 col-sm-3" >
+							</div>
+						</div>
+						<div class="row-td td-tit"><span>房间数量 </span></div>
+						<div class="row-td" style="width:15%;">
+							<div class="col-sm-9">
+								<input type="text" name="room_number[]" placeholder="输入数量" value="" class="col-xs-10 col-sm-2" >
+							</div>
+						</div>
+						<div class="row-td td-last"><span>间 </span></div>
+						<div class="item-list">
+							<ul tag-id="floor-item">
+								
+							</ul>
+						</div>
+					</div>
+					<a event-name="addFloorItem" href="javascript:void(0);" class="add-floor-btn">
+						<i class="icon-plus-sign"></i> 添加楼层
+					</a>
+				</div>
+			</div>
+		</div>
+	</form>
+</div>

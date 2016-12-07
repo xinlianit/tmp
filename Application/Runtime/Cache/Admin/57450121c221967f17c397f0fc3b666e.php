@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -164,11 +161,22 @@
 
 								<div class="table-responsive">
 									<div class="table-search">
-										<form name="" action="<?php echo U('Shop/index');?>" method="get">
+										<form name="" action="" method="get">
 											<div class="form-group">
 												<div class="seach-item">
-													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">商户名称：</label>
-													<input type="text" name="hotel_name" value="<?php echo I('get.hotel_name');?>" placeholder="支持模糊查询" class="input-sm seach-input value">
+													<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="width:36%!important;" for="form-field-1">节点名称/规则：</label>
+													<input type="text" name="name" value="<?php echo ($_GET['name']); ?>" placeholder="节点名称/节点规则" class="input-sm seach-input value">
+												</div>
+												<div class="seach-item">
+													<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="width:36%!important;" for="form-field-1">模块/控制器：</label>
+													<select name="id" class="form-control value">
+														<option value="0">全部</option>
+														<?php if(is_array($parent_node)): $i = 0; $__LIST__ = $parent_node;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$c_list): $mod = ($i % 2 );++$i;?><option <?php if($c_list['id'] == $_GET['id']): ?>selected="selected"<?php endif; ?> value="<?php echo ($c_list['id']); ?>">
+																	<?php switch($c_list["type"]): case "1": ?>【模块】—<?php break;?>
+																		<?php case "2": ?>【控制器】—<?php break; endswitch;?>
+																	<?php echo ($c_list["title"]); ?>（<?php echo ($c_list["name"]); ?>）
+																</option><?php endforeach; endif; else: echo "" ;endif; ?>
+													</select>
 												</div>
 												<span class="input-group-btn search-btn">
 													<button type="submit" class="btn btn-purple btn-sm">
@@ -182,12 +190,12 @@
 									<div class="table-search">
 										<div class="form-group">
 											<span class="input-group-btn search-btn">
-												<button event-name="addEdit" dialog-title="添加商户" submit-title="添加" type="button" class="btn btn-sm btn-success">
-													新增商户
+												<button event-name="addNode" dialog-title="添加权限节点" submit-title="添加" type="button" class="btn btn-sm btn-success">
+													新增节点
 													<i class="icon-plus smaller-75"></i>
 												</button>
 												<div class="separate-2"><i class="separate-flag"></i></div>
-												<button event-name="delete" table-name="list" url="<?php echo U('Shop/deleteShop');?>" message="确认要删选中的 x 条商户信息？|商户绑定的信息将会一同删除！" type="button" class="btn btn-sm btn-default">
+												<button event-name="delete" table-name="list" url="<?php echo U('Node/deleteNode');?>" message="确认要删选中的 x 条节点？|删除后信息不可恢复！" type="button" class="btn btn-sm btn-default">
 													批量删除
 													<i class="icon-remove"></i>
 												</button>
@@ -204,14 +212,16 @@
 													</label>
 												</th>
 												
-												<th>商户ID</th>
-												<th>商户名称</th>
-												<th>商户类型</th>
-												<th>商户地址和商圈</th>
-												<th>联系人</th>
-												<th>联系电话</th>
-												<th>广告位数量</th>
-												<th>创建时间</th>
+												<th>节点ID</th>
+												<th>上级节点</th>
+												<th>规则名称</th>
+												<th>图标</th>
+												<th>规则标题</th>
+												<th>类型</th>
+												<th>附件条件</th>
+												<th>状态</th>
+												<th>是否显示</th>
+												<th>排序</th>
 												<th class="hidden-480">操作</th>
 											</tr>
 										</thead>
@@ -231,36 +241,33 @@
 													
 													
 	
-													<td><?php echo (sprintf("%05d",$list["id"])); ?></td>
-													<td><?php echo (_default($list["hotel_name"])); ?></td>
-													<td><?php echo (_default(get_fields_to_string("TypeInfo", "type_name", array('id'=>array('in',get_fields_to_array("HotelType", "type_id", array('hotel_id'=>$list["id"]))))))); ?></td>
+													<td><?php echo ($list["id"]); ?></td>
+													<td><?php echo (_default(get_field("AuthRule","title",array('id'=>$list["pid"])))); ?></td>
+													<td><?php echo (_default($list["name"])); ?></td>
+													<td><?php echo (_default($list["icon_name"])); ?></td>
+													<td><?php echo ($list["title"]); ?></td>
 													<td>
-														<?php if(($list["province_id"]) != "0"): echo (get_field("CityInfo","city_name",array('id'=>$list["province_id"]))); endif; ?>
-														
-														<?php if(($list["city_id"]) != "0"): echo (get_field("CityInfo","city_name",array('id'=>$list["city_id"]))); endif; ?>
-														
-														<?php if(($list["region_id"]) != "0"): echo (get_field("CityInfo","city_name",array('id'=>$list["region_id"]))); endif; ?>
-														
-														<?php echo ($list["address"]); ?>
-														
-														<?php if(empty($list['province_id']) && empty($list['city_id']) && empty($list['region_id']) && empty($list['province_id'])): echo C('FIELD_DEFAULT_VALUE'); endif; ?>
-														 
+														<?php switch($list["type"]): case "1": ?>模块<?php break;?>
+															<?php case "2": ?>控制器<?php break;?>
+															<?php case "3": ?>方法<?php break; endswitch;?>
 													</td>
-													<td><?php echo (_default($list["contacts"])); ?></td>
-													<td><?php echo (_default($list["contact_way"])); ?></td>
-													<td><?php echo (_default($list["adver_number"])); ?></td>
-													<td><?php echo (date("Y-m-d H:i:s",$list["create_time"])); ?></td>
+													<td><?php echo (_default($list["condition"])); ?></td>
+													<td>
+														<?php switch($list["status"]): case "0": ?>停用<?php break;?>
+															<?php case "1": ?>启用<?php break; endswitch;?>
+													</td>
+													<td>
+														<?php switch($list["is_show"]): case "0": ?>不显示<?php break;?>
+															<?php case "1": ?>显示<?php break; endswitch;?>
+													</td>
+													<td><?php echo ($list["sort"]); ?></td>
 													<td>
 														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-															<a class="blue" event-name="viewInfo" href="javascript:void(0);" title="查看详情">
-																<i class="icon-zoom-in bigger-130"></i>
-															</a>
-	
-															<a class="green" event-name="addEdit" url="<?php echo U('Shop/shopInfo');?>" params="id=<?php echo ($list["id"]); ?>"  dialog-title="编辑商户" submit-title="保存" flag="edit" href="javascript:void(0);" title="编辑">
+															<a class="green" event-name="addNode" dialog-title="编辑权限节点" submit-title="保存" url="<?php echo U('Node/nodeInfo');?>" params="id=<?php echo ($list["id"]); ?>" flag="edit" href="javascript:void(0);" title="编辑">
 																<i class="icon-pencil bigger-130"></i>
 															</a>
 	
-															<a class="red" event-name="delete" id-value="<?php echo ($list["id"]); ?>" url="<?php echo U('Shop/deleteShop');?>" message="确认要删除此商户信息？|商户绑定的信息将会一同删除！" href="javascript:void(0);" title="删除">
+															<a class="red" event-name="delete" id-value="<?php echo ($list["id"]); ?>" url="<?php echo U('Node/deleteNode');?>" message="确认要删除此节点？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
 																<i class="icon-trash bigger-130"></i>
 															</a>
 														</div>
@@ -302,215 +309,85 @@
 	
 </div><!-- /.main-container -->
 
-
-<!-- 添加编辑 -->
+<!-- 添加编辑节点 -->
 <div dialog-id="addEdit" class="hide">
-
-	<form class="form-horizontal" role="form" form-id="addEdit" action="<?php echo U('Shop/addEdit');?>" method="post">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="<?php echo U('Node/addEditNode');?>" method="post">
 		<input name="id" type="hidden" value="0" />
-		<div tag-id="setup-1">
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户名称：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<input type="text" name="hotel_name" placeholder="输入商户名称" class="col-xs-10 col-sm-8" >
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商户类型：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<div class="shop-type" tag-id="checked-type">
-						请选择类型
-					</div>
-					<button event-name="add-type" url="<?php echo U('Shop/hotelType');?>" type="button" class="btn btn-sm btn-success add-shop-type">
-						添加类型
-					</button>
-					<input type="hidden" name="hotel_type">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 联系人： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="contacts" id="form-field-2" placeholder="输入联系人" class="col-xs-10 col-sm-6">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 联系方式： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="contact_way" id="form-field-2" placeholder="输入联系方式" class="col-xs-10 col-sm-6">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商户图片： </label>
-	
-				<div class="col-sm-9" id="tx-1">
-					
-				   <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
-<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
-<div id="wrapper">
-    <div id="container">
-        <!--头部，相册选择和格式选择-->
-
-        <div id="uploader">
-            <div class="queueList">
-                <div id="dndArea" class="placeholder">
-                    <div id="filePicker"></div>
-                    <p>或将照片拖到这里，单次最多可选300张</p>
-                </div>
-            </div>
-            <div class="statusBar" style="display:none;">
-                <div class="progress">
-                    <span class="text">0%</span>
-                    <span class="percentage"></span>
-                </div><div class="info"></div>
-                <div class="btns">
-                    <div id="filePicker2" class="filePicker2"></div><div class="uploadBtn">开始上传</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
-<script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
-
-				</div>
-			</div>
-		</div>
-		
-		<div tag-id="setup-2" class="hide">
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 商户地址：</label>
-				<div class="col-sm-9">
-					<div class="city-component" default-province="440000" default-city="440300" default-region="440304"></div>
-					<input type="text" name="address" placeholder="详细地址" class="col-xs-10 col-sm-12 address" >
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 商圈： </label>
-	
-				<div class="col-sm-9">
-					<select name="trade_id" url="<?php echo U('Public/getCity');?>" class="form-control area _city _region">
-						<option value="0">--请选择--</option>
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 上级节点：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-6">
+					<select name="pid" class="form-control">
+						<option value="0">请选择</option>
+						<?php if(is_array($parent_node)): $i = 0; $__LIST__ = $parent_node;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$p_list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($p_list["id"]); ?>">
+							<?php switch($p_list["type"]): case "1": ?>*模块*<?php break;?>
+								<?php case "2": ?>控制器<?php break; endswitch;?>
+							— <?php echo ($p_list["title"]); ?>（<?php echo ($p_list["name"]); ?>）</option><?php endforeach; endif; else: echo "" ;endif; ?>
 					</select>
 				</div>
 			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 广告位和数量：</label>
-	
-				<div class="col-sm-9 adv">
-					<div>*首页广告位 </div>
-					<div style="text-align:right;padding-right:10px;width:10%;">数量</div>
-					<div><input type="text" name="adver_number" placeholder="最大数量为 6" class="col-xs-10" style="float:none;width:100%;"></div>
-				</div>
-			</div>
-			
-			<div class="widget-box transparent hotel-intef">
-				<div class="widget-header widget-header-flat">
-					<h4 class="lighter">
-						<i class="icon-signal"></i>
-						接口信息
-					</h4>
-				</div>
-			</div>
 			
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 酒店编码： </label>
-	
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 节点名称：<span class="must">*</span></label>
 				<div class="col-sm-9">
-					<input type="text" name="hotel_code" placeholder="酒店编码系统唯一不能重复；如：10001" class="col-xs-10 col-sm-10">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 客户集团编码： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="group_code" placeholder="客户集团编码系统唯一不能重复；如：20001" class="col-xs-10 col-sm-10">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 客户酒店编码： </label>
-	
-				<div class="col-sm-9">
-					<input type="text" name="customer_code" placeholder="客户酒店编码系统唯一不能重复；如：30001" class="col-xs-10 col-sm-10">
+					<input type="text" name="title" placeholder="节点名称；如：权限管理" class="col-xs-10 col-sm-9" >
 				</div>
 			</div>
 			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 节点规则：<span class="must">*</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="name" placeholder="节点规则；如：Admin/Index/index" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
 			
-		</div>
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 节点类型：<span class="must">*</span></label>
+				<div class="col-sm-4">
+					<select name="type" class="form-control">
+						<option value="1">模块</option>
+						<option value="2">控制器</option>
+						<option value="3">方法</option>
+					</select>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 图标名称：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="icon_name" placeholder="图标名称；如：icon-down" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 排序：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="sort" value="10" placeholder="节点排序号；如：10" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 是否显示：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<label>
+						<input value="1" name="is_show" checked="checked" type="radio" class="ace">
+						<span class="lbl"> 是</span>
+					</label>
+					<span class="separate-3"></span>
+					<label>
+						<input value="0" name="is_show" type="radio" class="ace">
+						<span class="lbl"> 否</span>
+					</label>
+				</div>
+			</div>
+			
+			<div class="form-group">
+				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 附加规则：<span class="must">&nbsp;&nbsp;</span></label>
+				<div class="col-sm-9">
+					<input type="text" name="condition" placeholder="附加规则" class="col-xs-10 col-sm-9" >
+				</div>
+			</div>
 	</form>
 </div>
-
-<!-- 查看面板 -->
-<div dialog-id="view" class="hide">
-	<div class="base-info">
-		<h3>商户信息</h3>
-		<div class="info-row">
-			<div class="base-left">
-				<span class="profile-picture">
-					<img id="avatar" class="editable img-responsive editable-click editable-empty" src="/Public/plugins/assets/avatars/profile-pic.jpg"></img>
-				</span>
-				<div class="width-80 label label-info label-xlg arrowed-in arrowed-in-right img-tit">
-					<div class="inline position-relative">
-						<span class="white">商户ID：00156</span>
-					</div>
-				</div>
-			</div>
-			
-			<div class="base-right">
-				<ul>
-					<li>商户名称：尚美水晶酒店</li>
-					<li>商户类型：商户型酒店；假日酒店；三星级酒店</li>
-					<li>商户地址：广东省深圳市南山区高新科技园XXXXXX</li>
-					<li>所属商圈：科技园</li>
-				</ul>
-			</div>
-		</div>
-	</div>
-	
-	<div class="author-info">
-		<div class="base-info">
-			<h3>联系人信息</h3>
-			<div class="info-row">
-				<div class="base-right">
-					<ul>
-						<li>联系人：王先生</li>
-						<li>联系电话：186XXXX6699</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		
-		<div class="base-info">
-			<h3>商家广告位</h3>
-			<div class="info-row">
-				<div class="base-right">
-					<ul class="adv-info">
-						<li class="adv-title">
-							<span class="adv-name">广告位名称</span>
-							<span class="adv-num">广告位数量</span>
-						</li>
-						<li class="adv-item">
-							<span class="adv-name">首页广告位</span>
-							<span class="adv-num">2 个</span>
-						</li>
-					</ul>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
-
-<!-- 选择类型 -->
-<div dialog-id="type" class="hide">
-	<div class="type-select" tag-id="type-items">
-		
-	</div>
-</div>
-
-
 
 				</div><!-- /.main-content -->
 				<!-- include setting path  -->
@@ -536,7 +413,9 @@
 		
 		
 		<script type="text/javascript">
-			var static_base = "/Public";
+			var static_base 	= '/Public';
+			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

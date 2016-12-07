@@ -1,0 +1,7 @@
+<div dialog-id="del-box" class="hide">
+    <h3>确定要删除吗？删除后不可恢复！</h3>
+    <p id="dialog-msg"></p>
+    <form class="form-horizontal" role="form" form-id="del-form" method="post">
+        <input type="hidden" name="id" >        
+    </form>
+</div>

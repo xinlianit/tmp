@@ -1,0 +1,112 @@
+<div class="main-container" id="main-container">
+    <div class="main-container-inner">
+        <div class="main-content0">
+            <div class="page-content">
+                <div class="row">
+                    <div class="col-xs-12">
+                        <!-- PAGE CONTENT BEGINS -->
+                        <div class="row">
+                            <div class="col-xs-12">
+
+                                <div class="table-responsive">
+                                    <div class="table-search">
+                                        <div class="form-group">
+                                            <label class="col-sm-3 control-label no-padding-right search-label">促销名称：</label>
+                                            <div class="col-sm-2 seach-input-col">
+                                                <input type="text" id="search-key" name="search-key" placeholder="支持模糊查询" value="{$search_key}" class="input-sm seach-input">
+                                            </div>
+                                            <span class="input-group-btn search-btn">
+                                                <button type="button" class="btn btn-purple btn-sm" id="search-button" surl='{:U("Goods/sales")}'>查询<i class="icon-search icon-on-right bigger-110"></i></button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <div class="table-search">
+                                        <div class="form-group">
+                                            <span class="input-group-btn search-btn">
+                                                <button event-name="add-sales" type="button" class="btn btn-sm btn-success">
+                                                    新增
+                                                    <i class="icon-plus smaller-75"></i>
+                                                </button>
+                                                <div class="separate-2"><i class="separate-flag"></i></div>
+                                                <button event-name="del-event"  event-id="checkbox" type="button" class="btn btn-sm btn-default"  url="{:U('Goods/delSales')}" msg='分类下面有商品时不能删除！' title="批量删除促销">
+                                                    删除
+                                                    <i class="icon-remove"></i>
+                                                </button>
+                                            </span>
+                                        </div>
+                                    </div>
+                                    <table id="sample-table-2" class="table table-striped table-bordered table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th class="center">
+                                                    <label>
+                                                        <input type="checkbox" class="ace" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </th>
+
+                                                <th>ID</th>
+                                                <th>促销名称</th>
+                                                <th>页面排序号</th>
+                                                <th>商品信息</th>
+                                                <th class="hidden-480">操作</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                        <include file="Layout:notlist" />
+                                        <volist name="page.list" id="list">
+                                            <tr>
+                                                <td class="center">
+                                                    <label>
+                                                        <input type="checkbox" name="item_id" value="{$list.id}" class="ace" />
+                                                        <span class="lbl"></span>
+                                                    </label>
+                                                </td>
+                                                
+                                                <td>{$list.id}</td>
+                                                <td>{$list.promotion_name}</td>
+                                                <td>{$list.data_sort}</td>
+                                                <td>{$list.goods_name}</td>
+                                                <td>
+                                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">         
+                                                        <a class="green" event-name="edit-sales" event-id="{$list.id}" url="{:U('Goods/editSales')}" info-url="{:U('Goods/getSalesInfo')}" href="javascript:void(0);" title="编辑促销信息">
+                                                            <i class="icon-pencil bigger-130"></i>
+                                                        </a>
+                                                        <a class="red" event-name="del-event"  event-id="{$list.id}" url="{:U('Goods/delSales')}" href="javascript:void(0);" title="删除促销信息">
+                                                            <i class="icon-trash bigger-130"></i>
+                                                        </a>
+                                                    </div>
+                                                </td>
+                                            </tr>
+                                        </volist>
+
+                                        </tbody>
+                                    </table>
+                                    <include file="Layout:page" />
+                                </div>
+                            </div>
+                        </div>
+
+                    </div><!-- /.col -->
+                </div><!-- /.row -->
+            </div><!-- /.page-content -->
+        </div><!-- /.main-content -->
+
+    </div><!-- /.main-container-inner -->
+
+</div><!-- /.main-container -->
+<!-- 选择类型 -->
+
+
+<!-- 添加面板 -->
+<include file="dialog_addsales" />
+
+<!-- 编辑面板 -->
+<include file="dialog_editsales" />
+
+<!-- 删除面板 -->
+<include file="Layout:dialog_del" />
+
+<!-- 搜索商品面板 -->
+<include file="Layout:dialog_searchgoods" />
+

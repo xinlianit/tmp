@@ -1,0 +1,19 @@
+<div dialog-id="add-matchs-box" class="hide">
+
+    <form class="form-horizontal" role="form" form-id="add-matchs-form" action="{:U('Goods/addMatchs')}" method="post" >
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"> 配对信息：<span class="red">*</span></label>
+
+            <div class="col-sm-9">
+                <input type="hidden" name="templet_md5">
+                <include file="Layout:upload_image_single" uploader="uploader1" filepicker='filePicker1'  />
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-9"><a href="{:U('Goods/getMatchsTemp',array('_'=>time()))}">下载模板</a></div>
+        </div>
+        
+    </form>
+</div>

@@ -1,0 +1,81 @@
+<?php
+
+namespace Admin\Controller;
+
+use Think\Controller;
+
+class TestController extends Controller {
+    public function __construct() {
+        parent::__construct();
+        header("Content-type:text/html;charset=utf-8");
+    }
+
+        public function testRedis(){
+        
+        S('name',111);
+        dump(S('name'));
+    }
+    
+    public function testDfs(){
+        //\Think\Log::write('测试日志信息，Dfs开始','INFO');
+        logs('测试日志信息，Dfs开始');
+        logs('测试日志信息，Dfs结束'. json_encode(array('1','3')));
+        $filename = '1.png';
+        $rs = D('File','Api')->uploadFile($filename);
+        dump($rs);
+        
+        $rs2 = D('File','Api')->makeThumb($filename,$rs['filename'],50,50);
+        dump($rs2);
+        
+        $rs31 = D('File','Api')->fileExists($rs['groupname'],$rs['filename']);
+        dump($rs31);
+        $rs32 = D('File','Api')->fileExists($rs2['groupname'],$rs2['filename']);
+        dump($rs32);
+        
+        $rs41 = D('File','Api')->deleteFile($rs['groupname'],$rs['filename']);
+        dump($rs41);
+        $rs42 = D('File','Api')->deleteFile($rs2['groupname'],$rs2['filename']);
+        dump($rs42);
+        
+        $rs51 = D('File','Api')->fileExists($rs['groupname'],$rs['filename']);
+        dump($rs51);
+        $rs52 = D('File','Api')->fileExists($rs2['groupname'],$rs2['filename']);
+        dump($rs52);
+        //\Think\Log::write('测试日志信息，Dfs结束','MY');
+        logs('测试日志信息，Dfs结束');
+    }
+    
+    public function testcurl(){
+        import('Curl.Curl',APP_LIBRARY);
+        $uploadFile = 'http://www.baidu.com';
+        $rs = \Common\Lib\Curl\MyCurl::send($uploadFile,array(),'get');
+        dump($rs);
+    }
+    
+    public function testcache(){
+        $id=1;
+        $key = 'DATA::GOOGS::ID::'.$id;
+        //S($key,null);
+        $rs = D('Goods','Cache')->getGoodsInfo($id);
+        dump($rs);
+    }
+
+    public function phpinfo(){
+        phpinfo();
+    }
+    public function testmysql(){
+        $model_release = D('AdvertRelease');
+        $model_release->startTrans();
+        if(true){
+            $model_release->commit();
+            return false;
+        }
+        $model_release->rollback();
+    }
+    public function test(){
+        
+        $rs = D('AdvertRelease')->getMaxSort(4,1);
+        dump($rs);
+    }
+    
+}

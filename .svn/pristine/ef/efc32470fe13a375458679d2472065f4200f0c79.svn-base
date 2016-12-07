@@ -1,0 +1,32 @@
+<div dialog-id="order-info-box" class="hide">
+    <div class="col-sm-5">
+        <div class="row" >
+            <div>
+                <h4>订单信息</h4>
+            </div>
+            <div class="body header" style="border:1px solid #ccc; padding: 5px; height: 160px; " id="view_order_info"> </div>
+        </div>
+        <div class="row">
+            <div>
+                <h4>订单日志</h4>
+            </div>
+            <div class="body header" style="border:1px solid #ccc; padding: 5px; height: 180px; overflow-y: scroll " id="view_logs"></div>
+        </div>
+    </div>
+    <div class="col-sm-1"></div>
+    <div class="col-sm-5">
+        <div class="row" >
+            <div>
+                <h4>配送信息</h4>
+            </div>
+            <div class="body header" style="border:1px solid #ccc; padding: 5px; height: 120px; " id="view_hotel">   </div>
+        </div>
+        <div class="row" >
+            <div>
+                <h4>商品信息</h4>
+            </div>
+            <div class="body header" style="border:1px solid #ccc; padding: 5px; height: 220px; overflow-y: scroll "  id="view_goods">   
+            </div>
+        </div>
+    </div>
+</div>

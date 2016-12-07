@@ -1,0 +1,99 @@
+<?php
+/**
+ * Cache.class.php - 专门处理缓存类-商品类缓存 
+ * @package Core\Functions
+ * @subpackage
+ * @link http://www.pad-phone.com/
+ * @author PHP DEV TEAM zhaoxizhan(441534536@qq.com)
+ * @copyright 派锋科技 2016年10月31日 上午11:35
+ * @version V1.0.0
+ */
+
+namespace Common\Cache;
+use Common\Cache\BaseCache;
+
+class GoodsCache extends BaseCache {
+    /**
+     * 商品详情
+     * @access public
+     * @param int $id 商品ID
+     * @param boolean $is_set 是否为更新
+     * @param array/string $val 更新值
+     * @param array $full_old_val 原商品详情（完全版），当有此参数时上一参数 $val也必须为数据
+     * @return boolea/array
+     */
+    public function getGoodsInfo($id,$is_set = false, $val = null, $full_old_val = null){
+        $key = self::$KEY_GOODS_INFO.$id;
+        //是否为修改缓存
+        if($is_set){
+            //删除缓存
+            if(is_null($val)){
+                return S($key,null);
+            }
+            //更新缓存值            
+            return S($key, is_null($full_old_val)?$val: array_merge($full_old_val,$val));
+        }
+        
+        //读取当前缓存
+        $info = S($key);
+        if($info){
+            return $info;
+        }
+        
+        //当前缓存不存在，通过数据库重新获取数据 写入缓存并且返回
+        $rs_info = D('GoodsInfo')->getInfo($id);
+        //如果数据库没有找到对应值返回false
+        if(!$rs_info){
+            return false;
+        }
+        //写入缓存并返回
+        if(S($key, $rs_info)){
+            return $rs_info;
+        }
+        
+        return false;
+    }
+    
+    /**
+     * 商品分类详情
+     * @access public
+     * @param int $id 商品分类ID
+     * @param boolean $is_set 是否为更新
+     * @param array/string $val 更新值
+     * @param array $full_old_val 原商品分类详情（完全版），当有此参数时上一参数 $val也必须为数据
+     * @return boolea/array
+     */
+    public function getGoodsCategoryInfo($id,$is_set = false, $val = null, $full_old_val = null){
+        $key = self::$KEY_GOODS_CATEGORY_INFO.$id;
+        //是否为修改缓存
+        if($is_set){
+            //删除缓存
+            if(is_null($val)){
+                return S($key,null);
+            }
+            //更新缓存值            
+            return S($key, is_null($full_old_val)?$val: array_merge($full_old_val,$val));
+        }
+        
+        //读取当前缓存
+        $info = S($key);
+        if($info){
+            return $info;
+        }
+        
+        //当前缓存不存在，通过数据库重新获取数据 写入缓存并且返回
+        $rs_info = D('GoodsCategory')->getInfo($id);
+        //如果数据库没有找到对应值返回false
+        if(!$rs_info){
+            return false;
+        }
+        //写入缓存并返回
+        if(S($key, $rs_info)){
+            return $rs_info;
+        }
+        
+        return false;
+    }
+    
+    
+}

@@ -1,0 +1,414 @@
+/**
+ * 商户界面设置
+ */
+seajs.use(['module/shopsetting','controller/shop','webupload'],function(shopsetting,shop,webupload){
+	
+	//模块初始换
+	shopsetting.initiailize();
+	
+	//新增编辑服务指南
+	$(document).on('click', '[event-name="addEditSerGuide"]', function(){
+		var _this = $(this);
+		
+		var _form = $(document).find('[form-id="addEdit"]');
+
+		//获取详情
+		$.common.getInfoRender({
+			event_object: _this,
+			form_id: 'addEdit',
+			success: function(result){
+				
+				//图片数量定位
+				var pic_num = $(document).find('[tag-id="pic-num"] option');
+				$.each(pic_num, function(i,item){
+					if(result.pic_num == $(this).val()){
+						$(this).attr('selected','selected');
+					}
+				});
+			}
+		});
+		
+		//打开窗口
+		$.common.openWindow({
+			id: 'addEdit',
+			height: 500,
+			width: 700,
+			title: $.common.typeCheck(_this.attr('dialog-title'), 'undefined', ''),
+			confirm_title: $.common.typeCheck(_this.attr('submit-title'), 'undefined', ''),
+			confirm_function: function(){
+				var flag = $.common.typeCheck(_this.attr('flag'), 'undefined', 'add');
+				shopsetting.saveServer('addEdit', flag);
+			}
+		});
+		
+		//上传组件
+		$.common.webupload_initialize(webupload,'pic_md5',1,'jpeg,png,jpg',{
+			multiple_val: true,
+		});
+	});
+	
+	//获取服务指南详情
+	$(document).on('click', '[event-name="viewServer"]', function(){
+		var _this 		= $(this);
+		var url			= $.common.typeCheck(_this.attr('url'), 'undefined', '');
+		
+		//获取详情
+		$.common.ajaxFormSubmit({
+			url: url,
+			data: $.common.getParams({event_object: _this}),
+			success: function(result){
+				//绑定数据
+				var view = $(document).find('[tag-id="floor-view"]');
+				//酒店名称
+				view.find('[tag-id="hotel-name"]').html( result.data.hotel_name );
+				
+				if( typeof(result) == 'object' && typeof(result.data) == 'object' ){
+					
+				}
+				
+				//关闭加载框
+				$.common.closeTips();
+			}
+		});
+		
+		//打开窗口
+		$.common.openWindow({
+			id: 'viewServer',
+			height: 550,
+			width: 750,
+			title: '服务指南详情',
+			enable_confirm: false,
+			cancel_title: '关闭',
+		});
+	});
+	
+	//新增编辑WIFI
+	$(document).on('click', '[event-name="addEditWiFi"]', function(){
+		var _this = $(this);
+		
+		var _form = $(document).find('[form-id="addEdit"]');
+
+		//获取详情
+		$.common.getInfoRender({
+			event_object: _this,
+			form_id: 'addEdit',
+			success: function(result){
+				
+				//连接类型定位
+				var type = $(document).find('[tag-id="link-method"] option');
+				$.each(type, function(i,item){
+					if(result.link_method == $(this).val()){
+						$(this).attr('selected','selected');
+					}
+				});
+				
+				//显示相应类型的输入信息
+				switch( parseInt(result.link_method) ){
+					//账号密码
+					case 1:
+						_form.find('[tag-id="account_type"]').removeClass('hide');
+						_form.find('[tag-id="code_type"]').addClass('hide');
+						_form.find('[tag-id="sns_type"]').removeClass('hide');
+						break;
+					//商户二维码
+					case 2:
+						_form.find('[tag-id="account_type"]').addClass('hide');
+						_form.find('[tag-id="code_type"]').removeClass('hide');
+						_form.find('[tag-id="sns_type"]').addClass('hide');
+						break;
+					//短信认证
+					case 3:
+						_form.find('[tag-id="account_type"]').addClass('hide');
+						_form.find('[tag-id="code_type"]').addClass('hide');
+						_form.find('[tag-id="sns_type"]').removeClass('hide');
+						break;
+				}
+			}
+		});
+		
+		//打开窗口
+		$.common.openWindow({
+			id: 'addEdit',
+			height: 500,
+			width: 700,
+			title: $.common.typeCheck(_this.attr('dialog-title'), 'undefined', ''),
+			confirm_title: $.common.typeCheck(_this.attr('submit-title'), 'undefined', ''),
+			confirm_function: function(){
+				var flag = $.common.typeCheck(_this.attr('flag'), 'undefined', 'add');
+				shopsetting.saveServer('addEdit', flag);
+			}
+		});
+	});
+	
+	//WIFI连接类型切换
+	$(document).on('change', '[event-name="change-type"]', function(){
+		var _this = $(this);
+		var _form = _this.parents('form').eq(0);
+		
+		switch( parseInt(_this.val()) ){
+			//账号密码
+			case 1:
+				_form.find('[tag-id="account_type"]').removeClass('hide');
+				_form.find('[tag-id="code_type"]').addClass('hide');
+				_form.find('[tag-id="sns_type"]').removeClass('hide');
+				break;
+			//商户二维码
+			case 2:
+				_form.find('[tag-id="account_type"]').addClass('hide');
+				_form.find('[tag-id="code_type"]').removeClass('hide');
+				_form.find('[tag-id="sns_type"]').addClass('hide');
+				break;
+			//短信认证
+			case 3:
+				_form.find('[tag-id="account_type"]').addClass('hide');
+				_form.find('[tag-id="code_type"]').addClass('hide');
+				_form.find('[tag-id="sns_type"]').removeClass('hide');
+				break;
+		}
+	});
+	
+	//新增编辑服务电话
+	$(document).on('click', '[event-name="addEditTel"]', function(){
+		var _this = $(this);
+		
+		var _form = $(document).find('[form-id="addEdit"]');
+
+		//获取详情
+		$.common.getInfoRender({
+			event_object: _this,
+			form_id: 'addEdit',
+			success: function(result){
+				
+				//排列号定位
+				var sort = _form.find('[tag-id="data-sort"] option');
+				if( typeof(sort) != 'undefined' && sort.length > 0 ){
+					$.each(sort, function(){
+						if($(this).val() == result.data_sort){
+							$(this).attr('selected','selected');
+						}
+					})
+				} 
+				
+				//ICON定位
+				var icon = _form.find('[tag-id="icon-id"] option');
+				if( typeof(icon) != 'undefined' && icon.length > 0 ){
+					$.each(icon, function(){
+						if($(this).val() == result.icon_id){
+							$(this).attr('selected','selected');
+						}
+					})
+				} 
+				
+				_form.find('[tag-id="icon_log"]').attr('src', result.icon_path);
+				
+			}
+		});
+		
+		//打开窗口
+		$.common.openWindow({
+			id: 'addEdit',
+			height: 500,
+			width: 700,
+			title: $.common.typeCheck(_this.attr('dialog-title'), 'undefined', ''),
+			confirm_title: $.common.typeCheck(_this.attr('submit-title'), 'undefined', ''),
+			confirm_function: function(){
+				var flag = $.common.typeCheck(_this.attr('flag'), 'undefined', 'add');
+				shopsetting.saveTel('addEdit', flag);
+			}
+		});
+	});
+	
+	//ICON图标切换
+	$(document).on('change', '[tag-id="icon-id"]', function(){
+		var _this = $(this);
+		var _form = _this.parents('form').eq(0);
+		var _option = _this.find('option:selected');
+		
+		var log_path = static_base + '/static/images/default_60_60.png';
+		
+		if( $.common.typeCheck(_option.attr('icon-path'), 'undefined', false) && _option.attr('icon-path') != ''){
+			log_path = _option.attr('icon-path');
+		}
+		
+		_form.find('[tag-id="icon_log"]').attr('src', log_path);
+	});
+	
+	/************************************ 客房服务 ************************************/
+	//添加编辑客房服务
+	$(document).on('click', '[event-name="addEditRoomServer"]', function(){
+		
+		var _this = $(this);
+		
+		var _form = $(document).find('[form-id="addEdit"]');
+		
+		//获取详情
+		$.common.getInfoRender({
+			event_object: _this,
+			form_id: 'addEdit',
+			success: function(result){
+				console.log(result);
+				
+				//二级服务
+				var tow_item = '';
+				if( typeof(result.service_two) == 'object' && result.service_two.length > 0 ){
+					//已选二级服务
+					var checked_two_ids = [];
+					if(result.two_service_ids != null){
+						checked_two_ids = result.two_service_ids.split(',');
+					}
+					
+					$.each(result.service_two, function(i, item){
+						if( i > 0 ){
+							tow_item += '<span class="separate-3"></span>';
+						} 
+						
+						if( $.common.inArray(item.id, checked_two_ids) ){
+							checked = ' checked="checked"';
+						}else{
+							checked = '';
+						}
+						
+						tow_item += '<label>' +
+										'<input name="two_service_ids[]"'+checked+' value="'+item.id+'" type="checkbox" class="ace">' +
+										'<span class="lbl"> '+item.server_name+'</span>' +
+									'</label>';
+					});
+				}
+				$(document).find('[tag-id="tow-server"]').html(tow_item);
+				
+				//自定义服务
+				if( result.server_type == 2){
+					_form.find('[component-id="options"] [tag-id="options-1"]').eq(0).addClass('hide');
+					_form.find('[component-id="options"] [tag-id="options-2"]').eq(0).removeClass('hide');
+					if( result.icon_path ){
+						_form.find('[tag-id="icon_log"]').attr('src', result.icon_path);
+					}
+					_form.find('select[name="service_id"]').val(0);
+				}else{
+					_form.find('[component-id="options"] [tag-id="options-1"]').eq(0).removeClass('hide');
+					_form.find('[component-id="options"] [tag-id="options-2"]').eq(0).addClass('hide');
+					_form.find('input[name="service_name"]').val('');
+					_form.find('select[name="icon_id"]').val(0);
+				}
+				
+				//详情类型
+				if( result.service_detail_type == 1 ){
+					_form.find('[component-id="options"] [tag-id="options-1"]').eq(1).removeClass('hide');
+					_form.find('[component-id="options"] [tag-id="options-2"]').eq(1).addClass('hide');
+					
+				}else{
+					_form.find('[component-id="options"] [tag-id="options-1"]').eq(1).addClass('hide');
+					_form.find('[component-id="options"] [tag-id="options-2"]').eq(1).removeClass('hide');
+					_form.find('textarea[name="service_content"]').val('');
+				}
+				
+			}
+		});
+		
+		//还原表单第一步
+		$(document).find('[tag-id="setup-1"]').removeClass('hide');
+		$(document).find('[tag-id="options-1"]').removeClass('hide');
+		$(document).find('[tag-id="options-2"]').addClass('hide');
+		$(document).find('[tag-id="setup-2"]').addClass('hide');
+		$(document).find('[tag-id="setup-2-1"]').addClass('hide');
+		$(document).find('[tag-id="tow-server"]').html('');
+		
+		//打开窗口
+		$.common.openWindow({
+			id:'addEdit',
+			title:$.common.typeCheck(_this.attr('dialog-title'), 'undefined', ''),
+			height:500,
+			width:700,
+			reset: true,
+			enable_next:true,	//启用下一步
+			next_class: 'custom-next',
+			next_function:function(){
+				
+				//服务类型;1：推荐服务、2：自定义服务
+				var server_type = _form.find('[tag-name="server-type"]:checked');
+				
+				//显示第二步
+				$(document).find('[tag-id="setup-1"]').addClass('hide');
+				$(document).find('[tag-id="setup-2"]').removeClass('hide');
+				$(document).find('[tag-id="setup-2-'+server_type.val()+'"]').removeClass('hide');
+				
+				//隐藏下一步按钮
+				$(document).find('.custom-next').addClass('hide');
+				
+				//显示上一步 和 确认按钮
+				$(document).find('.custom-back').removeClass('hide');
+				$(document).find('.custom-confirm').removeClass('hide');
+			},
+			enable_back: true,	//启用上一步
+			back_class: 'custom-back hide',
+			back_function: function(){
+				//显示第一步
+				$(document).find('[tag-id="setup-1"]').removeClass('hide');
+				$(document).find('[tag-id="setup-2"]').addClass('hide');
+				$(document).find('[tag-id="setup-2-1"]').addClass('hide');
+				
+				//隐藏确认 和 上一步按钮
+				$(document).find('.custom-confirm').addClass('hide');
+				$(document).find('.custom-back').addClass('hide');
+				
+				//显示下一步
+				$(document).find('.custom-next').removeClass('hide');
+			},
+			confirm_class: 'custom-confirm hide',
+			confirm_title: $.common.typeCheck(_this.attr('submit-title'), 'undefined', ''),
+			confirm_function: function(){
+				//添加编辑商户
+				var flag = $.common.typeCheck(_this.attr('flag'), 'undefined', 'add');
+				shopsetting.saveRoomServer('addEdit', flag);
+			}
+		});
+	});
+	
+	//获取二级服务
+	$(document).on('change', '[event-name="getChildServer"]', function(){
+		var _this 			= $(this);
+		var url 			= $.common.typeCheck(_this.attr('url'), 'undefined', '');
+		var target_id 		= $.common.typeCheck(_this.attr('target-id'), 'undefined', '');
+		
+		var target_tag		= $(document).find('[tag-id="'+target_id+'"]');
+		
+		if( _this.val() == 0 ){
+			target_tag.html('');
+			return;
+		}
+		
+		$.common.ajaxFormSubmit({
+			url: url,
+			data: {id:_this.val()},
+			success: function(result){
+				$.common.closeTips();
+				
+				if( parseInt(result.status) == 0 ){
+					$.common.openTips({
+						message: '获取数据失败！',
+					}, 'error');
+				}
+				
+				//数据不为空
+				var tow_item = '';
+				if( typeof(result.data) == 'object' && result.data.length > 0){
+					$.each(result.data, function(i, item){
+						
+						if( i > 0 ){
+							tow_item += '<span class="separate-3"></span>';
+						} 
+						
+						tow_item += '<label>' +
+										'<input name="two_service_ids[]" value="'+item.id+'" type="checkbox" class="ace">' +
+										'<span class="lbl"> '+item.server_name+'</span>' +
+									'</label>';
+						
+					});
+				}
+				
+				target_tag.html(tow_item);
+			}
+		});
+	});
+	
+});

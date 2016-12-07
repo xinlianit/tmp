@@ -1,0 +1,7 @@
+@CHARSET "UTF-8";
+.category-box{border:1px solid #D5D5D5;width:58.3333%;height:100px;padding:1px 5px;font-size:15px;color:#A9A9A9;}
+.add-category{float:right;margin:-100px 80px;}
+
+.type-select{padding:1px;overflow:auto;}
+.type-select .big-item{clear:both;}
+.type-select .small-item{float:left;width:25%;}

@@ -1,0 +1,18 @@
+<?php
+return array(
+	//'配置项'=>'配置值'
+    'LOAD_EXT_CONFIG' => ['ROOMAPI' => 'status', 'ROOMTABLE' => 'tableStatus', 'ROOMPASS' => 'publicAction'],
+    //'SIGNKEY' => '0D68B9B5D701DFE4A227191573295C99'    //原串：ROOM_API_PRIVATE_20161109@%*)PAD-PHONE
+    'ICON_LIST' => [
+        '0' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/0.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/0.png'],
+        '1' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/1.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/1.png'],
+        '2' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/2.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/2.png'],
+        '3' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/3.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/3.png'],
+        '4' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/4.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/4.png'],
+        '5' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/5.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/5.png'],
+        '6' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/6.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/6.png'],
+        '7' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/7.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/7.png'],
+        '8' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/8.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/8.png'],
+        '9' => ['http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/day/9.png', 'http://image.nmc.cn/static2/site/nmc/themes/basic/weather/white/night/9.png']
+    ]
+);

@@ -1,0 +1,52 @@
+[ 2016-11-18T16:47:52+08:00 ] 192.168.1.170 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000699s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001108s ]
+SQL: SHOW COLUMNS FROM `pad_admin_info` [ RunTime:0.0020s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+
+[ 2016-11-18T16:47:56+08:00 ] 192.168.1.170 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000202s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000397s ]
+SQL: SHOW COLUMNS FROM `pad_admin_info` [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_admin_info` WHERE `admin_account` = 'admin' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0016s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 281 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 285 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Public','login','192.168.1.170','1','admin登陆后台,时间：2016-11-18 16:47:55','1479458875') [ RunTime:0.0257s ]
+
+[ 2016-11-18T18:46:51+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479440123104
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000191s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000336s ]
+ERR: 非法操作:admin
+
+[ 2016-11-18T18:46:51+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479440123657
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000269s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000456s ]
+ERR: 非法操作:admin
+
+[ 2016-11-18T18:46:52+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479440124280
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000321s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000546s ]
+ERR: 非法操作:admin
+
+[ 2016-11-18T18:47:15+08:00 ] 192.168.1.170 /index.php/Baseinfo/roomService.html
+ERR: 系统不支持:redis
+
+[ 2016-11-18T18:47:30+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479440162339
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000193s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000390s ]
+ERR: 非法操作:admin
+
+[ 2016-11-18T18:47:30+08:00 ] 192.168.1.170 /Public/admin/controller/adv.js?_=1479440162791
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000245s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000392s ]
+ERR: 非法操作:admin
+

@@ -1,0 +1,120 @@
+<?php
+
+/**
+ * GoodsController.class.php - 商品管理
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM Zhaoxizhan(441534536@qq.com)
+ * @copyright 2016-11-22 10:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+
+class GoodsController extends CommonController {
+    
+    public function goodsList(){
+        $this->display();
+    }
+    
+    
+    /**
+     * 商品分类列表
+     */
+    public function cate(){        
+        //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        $model = D('GoodsCategory');
+        
+        //搜索条件
+        $_map['data_status'] = 1;
+        if(!empty($search_key)){
+            $_map['category_name'] = array('like','%'.$search_key.'%');
+        }
+        //当前页数
+        $page_index  = I('get.p',1);
+        
+        $list = $model->where($_map)->order('data_sort asc,id')->page($page_index,C('PAGE_SIZE'))->select();
+        $count = $model->where($_map)->count();
+        
+        $page = show_page($count);
+        $page['list'] = $list;
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+    
+    /**
+     * 添加产品分类
+     */
+    public function addCate(){
+        
+        //添加参数
+        $_data['category_name']  = I('post.category_name');
+        $_data['data_sort']      = I('post.data_sort');
+        $_data['category_desc']  = I('post.category_desc')?I('post.category_desc'):'';
+        
+        //参数校验
+        if(empty($_data['category_name']) || empty($_data['data_sort'])){
+            $this->ajaxReturnErr();
+        }
+        
+        //添加
+        $rs = D('GoodsCategory')->add($_data);
+        
+        if(!$rs){
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+    
+    /**
+     * 删除商品分类
+     * 
+     */    
+    public function delCate(){
+        
+        if(!IS_AJAX){
+            $this->ajaxReturnErr();
+        }        
+  
+        $id = I('post.id'); //要编辑的类型ID
+        //参数校验
+        if( !$id){
+            $this->ajaxReturnErr();
+        }
+        $id_arr = explode(',', $id);
+        
+        //成功及失败数量
+        $succeed = $failed = 0;
+        
+        //遍历删除
+        foreach ($id_arr as $val) {
+            //判断当前分类下是否有商品            
+            $is_exist = D('GoodsInfo','Logic')->isExistByCateId($val);
+            if($is_exist){
+                $failed++;
+                continue;
+            }            
+            //删除
+            $rs = D('GoodsCategory')->delCate($val);
+
+            if($rs === false){
+                $failed++;
+                continue;
+            }
+            $succeed++;
+        }
+       
+        if($succeed>0 && $failed>0){//部分失败
+            $this->ajaxReturnErr(array('msg'=>'该分类下还有商品，不能删除！'));
+        }elseif($failed>0){//全部失败
+            $this->ajaxReturnErr();
+        }
+        
+        $this->ajaxReturnSuccess();
+    }
+}

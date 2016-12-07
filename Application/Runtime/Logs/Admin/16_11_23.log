@@ -1,0 +1,36 @@
+[ 2016-11-23T20:42:20+08:00 ] 192.168.1.150 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000200s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000398s ]
+SQL: SHOW COLUMNS FROM `pad_admin_info` [ RunTime:0.0019s ]
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT * FROM `pad_admin_info` WHERE `admin_account` = 'admin' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 281 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 285 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Public','login','192.168.1.150','1','admin登陆后台,时间：2016-11-23 20:42:20','1479904940') [ RunTime:0.0353s ]
+
+[ 2016-11-23T20:42:38+08:00 ] 192.168.1.150 /index.php/Goods/makeCode.html
+ERR: 非法操作:makeCode
+
+[ 2016-11-23T20:42:42+08:00 ] 192.168.1.150 /index.php/Goods/makeCode.html
+ERR: 非法操作:makeCode
+
+[ 2016-11-23T20:42:51+08:00 ] 192.168.1.150 /index.php/Goods/makeCode.html
+ERR: 非法操作:makeCode
+
+[ 2016-11-23T20:43:02+08:00 ] 192.168.1.150 /index.php/Baseinfo/roomService.html
+ERR: 系统不支持:redis
+
+[ 2016-11-23T20:58:05+08:00 ] 192.168.1.150 /index.php/Goods/makeCode.html
+ERR: 非法操作:makeCode
+
+[ 2016-11-23T20:58:17+08:00 ] 192.168.1.150 /index.php/Goods/makeCode.html
+ERR: 非法操作:makeCode
+
+[ 2016-11-23T20:58:41+08:00 ] 192.168.1.150 /index.php/Goods/makeCode.html
+ERR: 非法操作:makeCode
+
+[ 2016-11-23T20:58:57+08:00 ] 192.168.1.150 /index.php/Goods/makeCode.html
+ERR: 非法操作:makeCode
+

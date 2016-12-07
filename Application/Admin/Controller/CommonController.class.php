@@ -56,24 +56,36 @@ class CommonController extends Controller {
         $login_token = session( $auth_key );
         
         //是否登陆
-        if( !$login_token ) 
-            $this->redirect("Public/login");
-        
-        $Auth = new \Think\Auth();
-        $module_name = MODULE_NAME .'/'. CONTROLLER_NAME . '/' . ACTION_NAME;
-        //非超级管理员，权限检测
-        if(self::$loginInfo['admin_account'] != C('AUTH_CONFIG.AUTH_ADMINISTRATOR') && $module_name != 'Admin/Index/index'){  
-            if(!$Auth->check( $module_name , $login_token)){
-                $this->error('没有权限');
-                exit;
+        if( !$login_token ) {
+            if( IS_AJAX ){
+                $this->result['msg'] = '管理员登陆信息已过期，请重新登陆！';
+                $this->ajaxReturn( $this->result );
+            }else{
+                $this->redirect("Public/login");
             }
         }
-        
+            
         self::header();
         
         self::left();
         
         self::routePath();
+        
+        $Auth = new \Think\Auth();
+        $module_name = MODULE_NAME .'/'. CONTROLLER_NAME . '/' . ACTION_NAME;
+        //非超级管理员，权限检测
+        if(self::$loginInfo['admin_account'] != C('AUTH_CONFIG.AUTH_ADMINISTRATOR') && $module_name != 'Admin/Index/index'){
+            if(!$Auth->check( $module_name , $login_token, 3)){
+                if( IS_AJAX ){
+                    $this->result['msg'] = '抱歉，该功能您暂无操作权限！';
+                    $this->ajaxReturn( $this->result );
+                }else{
+                    $this->display('Layout/no_access');
+                }
+                
+                exit;
+            }
+        }
     }
     
     /**
@@ -87,24 +99,31 @@ class CommonController extends Controller {
      * 左侧菜单
      */
     private function left(){
-        $condition  = array(
-            'pid'       => 0,
-            'status'    => 1,
-            'is_show'   => 1,
-        );
         
-        $rule_list = self::$CommonLogic->getRows( 'AuthRule', $condition, '', array('sort'=>'asc') );
-        foreach($rule_list as $b_k=>$b_v ){
-            $condition['pid'] = $b_v['id'];
-            $rule_list[$b_k]['list'] = self::$CommonLogic->getRows( 'AuthRule', $condition, '', array('sort'=>'asc') );
+        $rule_list = D('Sys', 'Cache')->getMenu();
+        
+        if( !$rule_list || empty($rule_list) ){
+            $condition  = array(
+                'pid'       => 0,
+                'status'    => 1,
+                'is_show'   => 1,
+            );
             
-            foreach($rule_list[$b_k]['list'] as $s_k=>$s_v ){
-                $condition['pid'] = $s_v['id'];
-                $rule_list[$b_k]['list'][$s_k]['list'] = self::$CommonLogic->getRows( 'AuthRule', $condition, '', array('sort'=>'asc') );
+            $rule_list = self::$CommonLogic->getRows( 'AuthRule', $condition, array('id', 'pid', 'icon_name', 'title') , array('sort'=>'asc') );
+            foreach($rule_list as $b_k=>$b_v ){
+                $condition['pid'] = $b_v['id'];
+                $rule_list[$b_k]['list'] = self::$CommonLogic->getRows( 'AuthRule', $condition, array('id', 'pid', 'icon_name', 'title'), array('sort'=>'asc') );
+            
+                foreach($rule_list[$b_k]['list'] as $s_k=>$s_v ){
+                    $condition['pid'] = $s_v['id'];
+                    $rule_list[$b_k]['list'][$s_k]['list'] = self::$CommonLogic->getRows( 'AuthRule', $condition, array('id', 'pid', 'icon_name', 'title'), array('sort'=>'asc') );
+                }
             }
+            
+            $rule_list = D('Sys', 'Cache')->getMenu( $rule_list );
         }
         
-        $this->assign('menu',$rule_list);
+        $this->assign('menu', $rule_list);
     }
     
     /**
@@ -161,18 +180,24 @@ class CommonController extends Controller {
      * @copyright (c) 2016-11-08, zhaoxizhan
      */
     protected function ajaxReturnErr($data=array()){
+        if(is_string($data)){
+            $_data['status'] = 0;
+            $_data['msg'] = $data;
+        }else{
+            $_data = $data;
+        }
         //状态标识
         if(!array_key_exists('status', $data)){
-            $data['status'] = 0;
+            $_data['status'] = 0;
         }
         
         //返回说明
-        if(!array_key_exists('msg', $data)){
-            $data['msg'] = '请求处理失败';
+        if(!array_key_exists('msg', $_data)){
+            $_data['msg'] = '请求处理失败';
         }
         
         //返回
-        $this->ajaxReturn($data);
+        $this->ajaxReturn($_data);
     }
     
     /**
@@ -181,16 +206,23 @@ class CommonController extends Controller {
      * @copyright (c) 2016-11-08, zhaoxizhan
      */
     protected function ajaxReturnSuccess($data = array()){
+        if(!array_key_exists('data', $data)){
+            $_data['data'] = $data;
+        }else{
+            $_data = $data;
+        }
         //状态标识
-        if(!array_key_exists('status', $data)){
-            $data['status'] = 1;
+        if(!array_key_exists('status', $_data)){
+            $_data['status'] = 1;
         }
         //返回说明
-        if(!array_key_exists('msg', $data)){
-            $data['msg'] = '请求处理成功';
+        if(!array_key_exists('msg', $_data)){
+            $_data['msg'] = '请求处理成功';
         }
+        
+        
         //返回
-        $this->ajaxReturn($data);
+        $this->ajaxReturn($_data);
     }
     
     /**
@@ -205,6 +237,10 @@ class CommonController extends Controller {
         }
         
         parent::display($tpl);
+    }
+    
+    public function _empty(){
+        $this->display('Layout/empty');
     }
     
 }

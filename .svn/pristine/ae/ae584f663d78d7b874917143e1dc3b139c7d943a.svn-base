@@ -1,0 +1,126 @@
+<?php 
+/**
+ * status.php - 状态码配置 
+ * @link http://rapi.pad-phone.com/
+ * @author MSC PHP DEV TEAM HuangZH(47198839@qq.com)
+ * @copyright 派锋科技 2016年11月07日  14:39
+ * @version V1.0.0
+ */
+return array(
+    //公共
+    '0'     => array('resCode' => 'ERROR' , 'resMsg' => '请求失败'),
+    '1'     => array('resCode' => 'SUCCESS' , 'resMsg' => '请求成功'),
+    '2'     => array('resCode' => 2 , 'resMsg' => '数据签名错误'),
+    '3'     => array('resCode' => 3 , 'resMsg' => '状态未启用'),
+    '4'     => array('resCode' => 4 , 'resMsg' => '必选输入参数为空！'),
+    '5'     => array('resCode' => 5 , 'resMsg' => '输入参数不合法！'),
+    '6'     => array('resCode' => 6 , 'resMsg' => '数据写入失败！'),
+    
+    //酒店
+    '100000'   => array('resCode' => 'SUCCESS' , 'resMsg' => '酒店信息未找到！'),
+    '100001'   => array('resCode' => 100001 , 'resMsg' => '酒店ID为空'),
+    '100002'   => array('resCode' => 'SUCCESS' , 'resMsg' => '酒店服务指南为空！'),
+    '100003'   => array('resCode' => 100003 , 'resMsg' => '账户不存在'),
+    '100004'   => array('resCode' => 100004 , 'resMsg' => '账户密码错误'),
+    '100005'   => array('resCode' => 100005 , 'resMsg' => '账户已停用或其他不可用状态'),
+    '100006'   => array('resCode' => 100006 , 'resMsg' => '账户酒店ID错误'),
+    '100007'   => array('resCode' => 100007 , 'resMsg' => '用户身份令牌 token 错误或未获取到登录信息'),
+    '100008'   => array('resCode' => 100008 , 'resMsg' => '注销登录失败'),
+    '100009'   => array('resCode' => 100009 , 'resMsg' => '用户令牌（token）不能为空'),
+    '100010'   => array('resCode' => 100010 , 'resMsg' => '服务编码非法或不能为空'),
+    '100011'   => array('resCode' => 100011 , 'resMsg' => '服务状态更新失败'),
+    '100012'   => array('resCode' => 'SUCCESS' , 'resMsg' => 'wifi信息为空！'),
+    '100013'   => array('resCode' => 'SUCCESS' , 'resMsg' => '服务电话列表为空'),
+    '100014'   => array('resCode' => 100014 , 'resMsg' => '酒店ID有误，找不到对应的酒店信息!'),
+    '100015'   => array('resCode' => 'SUCCESS' , 'resMsg' => '楼层信息为空！'),
+    '100016'   => array('resCode' => 100016 , 'resMsg' => '商户ID不存在'),
+    '100017'   => array('resCode' => 100017 , 'resMsg' => '密码格式必须是6位的数字'),
+    '100018'   => array('resCode' => 100018 , 'resMsg' => '新密码两次输入不一致'),
+    '100019'   => array('resCode' => 100019 , 'resMsg' => '原密码输入不正确'),
+    '100020'   => array('resCode' => 100020 , 'resMsg' => '密码修改失败'),
+    
+    //楼宇
+    '200000'   => array('resCode' => 200000 , 'resMsg' => '楼层ID为空或非法！'),
+
+    
+    //房间
+    '300000'   => array('resCode' => 'SUCCESS' , 'resMsg' => '房间数据未找到！'),
+    '300001'   => array('resCode' => 300001 , 'resMsg' => '房间ID为空'),
+    '300002'   => array('resCode' => 300002 , 'resMsg' => '不存在此ID的房间，订单写入失败！'),
+    '300003'   => array('resCode' => 300003 , 'resMsg' => '更新房间信息失败！'),
+    '300004'   => array('resCode' => 300004 , 'resMsg' => '新增房间信息失败'),
+    '300005'   => array('resCode' => 'SUCCESS' , 'resMsg' => '客房服务信息为空！'),
+    '300006'   => array('resCode' => 300006 , 'resMsg' => '客房服务ID为空！'),
+    '300007'   => array('resCode' => 300007 , 'resMsg' => '客房服务数据内容为空！'),
+    '300008'   => array('resCode' => 300008 , 'resMsg' => '客房二级服务ID为空！'),
+    '300009'   => array('resCode' => 'SUCCESS' , 'resMsg' => '客房二级服务信息为空！'),
+    '300010'   => array('resCode' => 300010 , 'resMsg' => '客房服务请求添加失败！'),
+    '300011'   => array('resCode' => 300011 , 'resMsg' => '客房催叫请求添加失败！'),
+    '300012'   => array('resCode' => 300012 , 'resMsg' => '当前房间未有未处理消息！'),
+    
+    //设备
+    '400000'   => array('resCode' => 400000 , 'resMsg' => '当前设备唯一识别码为空！'),
+    '400001'   => array('resCode' => 400001 , 'resMsg' => '入住设备编码与离店编码不一致！'),
+    '400002'   => array('resCode' => 400002 , 'resMsg' => '新桌台ID非法或不能为空'),
+    '400003'   => array('resCode' => 400003 , 'resMsg' => '桌台设为占桌失败'),
+    '400004'   => array('resCode' => 400004 , 'resMsg' => '桌台ID非法或不能为空'),
+    '400005'   => array('resCode' => 400005 , 'resMsg' => '桌台设为维修失败'),
+    '400006'   => array('resCode' => 400006 , 'resMsg' => '占桌原因不能为空'),
+    '400007'   => array('resCode' => 400007 , 'resMsg' => '该桌台非空桌台，不可占桌'),
+    '400008'   => array('resCode' => 400008 , 'resMsg' => '桌台信息修改失败'),
+    '400009'   => array('resCode' => 400009 , 'resMsg' => '解除占桌失败'),
+    '400010'   => array('resCode' => 400010 , 'resMsg' => '解除维修失败'),
+    '400011'   => array('resCode' => 400011 , 'resMsg' => '拼桌失败'),
+    '400012'   => array('resCode' => 400012 , 'resMsg' => '合并主订单号非法或不能为空'),
+    '400013'   => array('resCode' => 400013 , 'resMsg' => '合并当前订单号非法或不能为空'),
+    '400014'   => array('resCode' => 400014 , 'resMsg' => '合并订单失败'),
+    '400015'   => array('resCode' => 400015 , 'resMsg' => '桌台不存在'),
+    '400016'   => array('resCode' => 400016 , 'resMsg' => '非空桌台不能转台'),
+    '400017'   => array('resCode' => 400017 , 'resMsg' => '未获取到桌台订单'),
+    
+    //商品
+    '500000'   => array('resCode' => 'SUCCESS' , 'resMsg' => '商品数据为空！'),
+    '500001'   => array('resCode' => 500001 , 'resMsg' => '拒绝请求，该二维码非本平台二维码'),
+    '500002'   => array('resCode' => 500002 , 'resMsg' => '验证失败，该二维码不属于霸王餐或限量套餐的二维码'),
+    '500003'   => array('resCode' => 500003 , 'resMsg' => '该霸王餐报名未中奖'),
+    '500004'   => array('resCode' => 500004 , 'resMsg' => '该霸王餐报名已消费'),
+    '500005'   => array('resCode' => 500005 , 'resMsg' => '验证失败，二维码唯一码不匹配'),
+    '500006'   => array('resCode' => 500006 , 'resMsg' => '验证失败，订单核验数据更新失败'),
+    '500007'   => array('resCode' => 500007 , 'resMsg' => '推荐时间非法或不能为空'),
+    '500008'   => array('resCode' => 500008 , 'resMsg' => '验证失败，该二维码不属于本商家的限量套餐或霸王餐'),
+    '500009'   => array('resCode' => 500009 , 'resMsg' => '验证失败，该二维码已验证或已失效'),
+    
+    //系统
+    '600000'   => array('resCode' => 600000 , 'resMsg' => '版本类型非法或暂不支持'),
+    '600001'   => array('resCode' => 600001 , 'resMsg' => '版本ID非法或不能为空'),
+    '600002'   => array('resCode' => 600002 , 'resMsg' => '版本号不能为空'),
+    '600003'   => array('resCode' => 600003 , 'resMsg' => 'APP包类型不能为空'),
+    '600004'   => array('resCode' => 'SUCCESS' , 'resMsg' => '当前客房消息为空！'),
+    '600005'   => array('resCode' => 600005 , 'resMsg' => '订单催单消息生成失败！'),
+    '600006'   => array('resCode' => 600006 , 'resMsg' => '订单催单服务生成失败！'),
+    '600007'   => array('resCode' => 'SUCCESS' , 'resMsg' => '服务消息为空！'),
+    '600008'   => array('resCode' => 600008 , 'resMsg' => '消息状态更新失败！'),
+    '600009'   => array('resCode' => 600009 , 'resMsg' => '输入参数有误！'),
+    
+    //广告
+    '700000'   => array('resCode' => 'SUCCESS' , 'resMsg' => '广告数据未找到！'),
+    '700001'   => array('resCode' => 700001 , 'resMsg' => '点菜不可用，商家已下架'),
+
+    //意见反馈
+    '800000'  => array('resCode' => 'SUCCESS' , 'resMsg' => '问卷信息为空！'),
+    //订单
+    '900000'  => array('resCode' => 'SUCCESS' , 'resMsg' => '订单生成成功！'),
+    '900001'  => array('resCode' => 900001 , 'resMsg' => '订单生成失败！'),
+    '900002'  => array('resCode' => 900002 , 'resMsg' => '订单商品ID为空，写入订单失败！'),
+    '900003'  => array('resCode' => 900003 , 'resMsg' => '订单商品为空，写入订单失败！'),
+    '900004'  => array('resCode' => 900003 , 'resMsg' => '订单商品数据写入失败，订单创建失败！'),
+    '900005'  => array('resCode' =>  'SUCCESS' , 'resMsg' => '暂无订单信息！'),
+    '900006'   => array('resCode' => 900006 , 'resMsg' => '订单通知服务生成失败！'),
+    '900007'   => array('resCode' => 900007 , 'resMsg' => '订单状态修改失败！'),
+    '900008'   => array('resCode' => 'SUCCESS' , 'resMsg' => '订单催叫服务为空！'),
+    '900009'   => array('resCode' => 900009 , 'resMsg' => '订单数据未找到，催叫处理失败！'),
+    '900010'   => array('resCode' => 900010 , 'resMsg' => '催叫服务处理失败！'),
+    '900011'   => array('resCode' => 900011 , 'resMsg' => '此订单已进行处理，无需再次处理！'),
+    '900012'   => array('resCode' => 'SUCCESS' , 'resMsg' => '订单状态修改成功！'),
+);
+?>

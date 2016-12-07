@@ -1,0 +1,16 @@
+[ 2016-12-07T16:13:22+08:00 ] 192.168.1.119 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000834s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001193s ]
+
+[ 2016-12-07T16:13:27+08:00 ] 192.168.1.119 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000237s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000583s ]
+SQL: SHOW COLUMNS FROM `pad_admin_info` [ RunTime:0.0032s ]
+SQL: SELECT * FROM `pad_admin_info` WHERE `admin_account` = 'admin' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Public','login','192.168.1.119','1','admin登陆后台,时间：2016-12-07 16:13:26','1481098407') [ RunTime:0.0426s ]
+

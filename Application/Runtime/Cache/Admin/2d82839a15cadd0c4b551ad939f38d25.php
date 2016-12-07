@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -182,12 +179,12 @@
 									<div class="table-search">
 										<div class="form-group">
 											<span class="input-group-btn search-btn">
-												<button event-name="addEditDev" dialog-title="设备新增" submit-title="添加" type="button" class="btn btn-sm btn-success">
+												<button event-name="addEditQuest" dialog-title="新增问卷" submit-title="添加" type="button" class="btn btn-sm btn-success">
 													新增问卷
 													<i class="icon-plus smaller-75"></i>
 												</button>
 												<div class="separate-2"><i class="separate-flag"></i></div>
-												<button event-name="delete" table-name="list" url="<?php echo U('Shop/deleteDev');?>" message="确认要删选中的 x 条设备信息？|删除后信息不可恢复！" type="button" class="btn btn-sm btn-default">
+												<button event-name="delete" table-name="list" url="<?php echo U('Shopsetting/deleteQuest');?>" message="确认要删选中的 x 条问卷？|删除后信息不可恢复！" type="button" class="btn btn-sm btn-default">
 													删除
 													<i class="icon-remove"></i>
 												</button>
@@ -226,18 +223,20 @@
 													
 													
 	
-													<td><?php echo (_default(get_field_status("ROOM_INFO","ROOM_TYPE",$list["room_type"],"NAME"))); ?></td>
-													<td>
-														<?php if(is_array($list["device"])): $i = 0; $__LIST__ = $list["device"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$dev): $mod = ($i % 2 );++$i; echo ($dev["device_address"]); ?> <?php echo ($dev["position"]); ?> <br/><?php endforeach; endif; else: echo "" ;endif; ?>
-													</td>
-													<td><?php echo (_default($list["room_phone"])); ?></td>
+													<td><?php echo (_default(sprintf("%05d",$list["hotel_id"]))); ?></td>
+													<td><?php echo (_default(get_field("HotelInfo","hotel_name",array('id'=>$list["hotel_id"],'data_status'=>array('neq',99))))); ?></td>
+													<td><?php echo (_default($list["topic_quantity"])); ?></td>
 													<td>
 														<div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">
-															<a class="green" event-name="addEditDev" url="<?php echo U('Shop/devInfo');?>" params="id=<?php echo ($list["id"]); ?>"  dialog-title="设备编辑" submit-title="保存" flag="edit" href="javascript:void(0);" title="编辑">
+															<a class="blue" event-name="viewQuest" url="<?php echo U('Shopsetting/questInfo');?>" params="id=<?php echo ($list["id"]); ?>" href="javascript:void(0);" title="查看详情">
+																<i class="icon-zoom-in bigger-130"></i>
+															</a>
+															
+															<a class="green" event-name="addEditQuest" url="<?php echo U('Shopsetting/questInfo');?>" params="id=<?php echo ($list["id"]); ?>"  dialog-title="问卷编辑" submit-title="保存" flag="edit" href="javascript:void(0);" title="编辑">
 																<i class="icon-pencil bigger-130"></i>
 															</a>
 	
-															<a class="red" event-name="delete" id-value="<?php echo ($list["id"]); ?>" url="<?php echo U('Shop/deleteDev');?>" message="确认要删除此设备信息？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
+															<a class="red" event-name="delete" id-value="<?php echo ($list["id"]); ?>" url="<?php echo U('Shopsetting/deleteQuest');?>" message="确认要删除此问卷？|删除后信息不可恢复！" href="javascript:void(0);" title="删除">
 																<i class="icon-trash bigger-130"></i>
 															</a>
 														</div>
@@ -281,7 +280,7 @@
 
 <!-- 添加编辑 -->
 <div dialog-id="addEdit" class="hide">
-	<form class="form-horizontal" role="form" form-id="addEdit" action="<?php echo U('Shop/addEditDev');?>" method="post">
+	<form class="form-horizontal" role="form" form-id="addEdit" action="<?php echo U('Shopsetting/addEditQuest');?>" method="post">
 		<input name="id" type="hidden" value="0" />
 		<div tag-id="setup-1">
 			<div class="form-group">
@@ -293,64 +292,40 @@
 				</div>
 			</div>
 			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 楼层名称：<span class="must">*</span></label>
-				<div class="col-sm-4">
-					<select tag-id="floor-select" name="floor_id" class="form-control">
-						<option value="0">请选择</option>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间号：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<input type="text" name="room_name" placeholder="输入房间号" class="col-xs-10 col-sm-9" style="width:42%;">
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间类型：<span class="must">*</span></label>
-				<div class="col-sm-4">
-					<select tag-id="room_type" name="room_type" class="form-control">
-						<option value="0">请选择</option>
-						<?php $_result=get_field_status('ROOM_INFO','ROOM_TYPE');if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$type_list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($type_list["VALUE"]); ?>"><?php echo ($type_list["NAME"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-					</select>
-				</div>
-			</div>
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 设备信息：<span class="must">*</span></label>
-				<div class="col-sm-9 floor-info">
-					<div tag-id="dev-list">
-						<div class="row-td td-tit"><span>设备地址</span></div>
-						<div class="row-td">
-							<div class="col-sm-9">
-								<input type="text" name="device_address[]" placeholder="输入设备地址" class="col-xs-10 col-sm-3" >
-							</div>
-						</div>
-						<div class="row-td td-tit"><span>摆放位置 </span></div>
-						<div class="row-td" style="width:19%;">
-							<div class="col-sm-9">
-								<input type="text" name="position[]" placeholder="摆放位置" class="col-xs-10 col-sm-2" >
-							</div>
-						</div>
-						<div class="item-list">
-							<ul tag-id="floor-item">
-								
-							</ul>
+				<div class="quest">
+					<div class="quest-head">
+						<div class="head-left"><h3>问卷新增</h3></div>
+						<div class="head-right">
+							<span>添加：</span>
+							<button event-name="add-quest-item" flag="1" class="btn btn-xs btn-pink">单选题</button>
+							<button event-name="add-quest-item" flag="2" class="btn btn-xs btn-inverse">多选题</button>
+							<button event-name="add-quest-item" flag="3" class="btn btn-xs btn-primary">填空题</button>
 						</div>
 					</div>
-					<a event-name="addDevItem" href="javascript:void(0);" class="add-floor-btn">
-						<i class="icon-plus-sign"></i> 添加设备信息
-					</a>
-				</div>
-			</div>
-			
-			<div class="form-group">
-				<label class="col-sm-3 control-label no-padding-right" for="form-field-1"> 房间电话号码：<span class="must">*</span></label>
-				<div class="col-sm-9">
-					<input type="text" name="room_phone" placeholder="输入房间电话号码" class="col-xs-10 col-sm-9" style="width:42%;">
+					
+					<div tag-id="item-body" class="quest-body">
+						<div class="init">请添加问卷题目</div>
+					</div>	
 				</div>
 			</div>
 		</div>
 	</form>
+</div>
+
+<!-- 详情 -->
+<div dialog-id="viewQuest" class="hide">
+		<div tag-id="setup-1">
+			
+			<div class="form-group" tag-id="quest-info">
+				<div class="quest">
+					<div tag-id="item-body" class="quest-body">
+						<ul class="quest-info" tag-id="quest-item">
+							<div class="init">问卷未添加答题</div>							
+						</ul>
+					</div>	
+				</div>
+			</div>
+		</div>
 </div>
 
 <!-- 搜索商户 -->
@@ -362,7 +337,7 @@
 				<input type="text" tag-id="hotel_name" name="hotel_name" placeholder="支持模糊查询" class="input-sm seach-input value" style="width:70%!important;">
 			</div>
 			<span class="input-group-btn search-btn" style="display:inline-block;">
-				<button event-name="seachShop" url="<?php echo U('Shop/seach');?>" class="btn btn-purple btn-sm">
+				<button event-name="seachShop" url="<?php echo U('Inner/seach');?>" class="btn btn-purple btn-sm">
 					搜索
 					<i class="icon-search icon-on-right bigger-110"></i>
 				</button>
@@ -413,6 +388,7 @@
 		<script type="text/javascript">
 			var static_base 	= '/Public';
 			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>

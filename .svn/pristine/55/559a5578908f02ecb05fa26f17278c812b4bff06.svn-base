@@ -1,0 +1,24 @@
+<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/chosen.css" />
+<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/datepicker.css" />
+<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/bootstrap-timepicker.css" />
+<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/daterangepicker.css" />
+<link rel="stylesheet" href="__PUBLIC__/plugins/assets/css/colorpicker.css" />
+
+<script type="text/javascript">
+        window.jQuery || document.write("<script src='__PUBLIC__/plugins/assets/js/jquery-2.0.3.min.js'>"+"<"+"/script>");
+</script>
+
+<script src="__PUBLIC__/plugins/assets/js/date-time/bootstrap-datepicker.min.js"></script>
+<script src="__PUBLIC__/plugins/assets/js/date-time/moment.min.js"></script>
+
+<script src="__PUBLIC__/plugins/assets/js/date-time/daterangepicker.min.js"></script>
+
+<script type="text/javascript">
+    
+jQuery(function($) {                
+        $("body").on('click','input[name=date-picker]',function(){
+            var _this_picker = $(this);
+            _this_picker.datepicker({autoclose:true,showOn:'focus'}).focus();              
+        });
+});
+</script>

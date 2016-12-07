@@ -1,0 +1,51 @@
+<div dialog-id="edit-advmain-box" class="hide">
+    <form class="form-horizontal" role="form" form-id="edit-advmain-form" action="{:U('Adv/editAdver')}" method="post">
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right" >广告主名称：</label>
+            <div class="col-sm-9">
+                <input type="text" name="advert_name" class="col-xs-10 col-sm-7">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">公司名称：</label>
+            <div class="col-sm-9">
+                <input type="text" name="company_name"  class="col-xs-10 col-sm-7">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+                <label class="col-sm-3 control-label no-padding-right"> 行业描述：</label>
+                <div class="col-sm-9">
+                        <div class="category-box" tag-id="checked-type">
+                                选择行业
+                        </div>
+                        <button event-name="add-type" url="{:U('Baseinfo/tradeList')}" type="button" class="btn btn-sm btn-success add-category">
+                                添加行业分类
+                        </button>
+                        <input type="hidden" name="category">
+                </div>
+        </div>
+        <div class="space-4"></div>
+
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">联系人：</label>
+            <div class="col-sm-9">
+                <input type="text" name="contacts"  class="col-xs-10 col-sm-5">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right">联系方式：</label>
+            <div class="col-sm-9">
+                <input type="text" name="contact_way" class="col-xs-10 col-sm-7">
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <input type="hidden" name="id">
+        
+    </form>
+</div>

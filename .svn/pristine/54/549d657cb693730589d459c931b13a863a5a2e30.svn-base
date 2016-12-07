@@ -1,0 +1,68 @@
+<?php
+namespace ManageApi\Controller;
+
+class RoomController extends CommonController {
+    function setMsgStatus(){
+        $msg_id = trim($this->I['msg_id']); //消息ID
+        $staff_id = trim($this->I['staff_id']); //接收服务的员工ID
+        $msg_status = trim($this->I['msg_status']); //消息ID
+
+        if(isset($msg_id) && isset($staff_id) && isset($msg_status)) {
+            $_msg_service = M("msg_service");
+            $_data = [
+                'staff_id' => $staff_id,
+                'data_status' => $msg_status,
+                'update_time' => time()
+            ];
+
+            $rs = $_msg_service->data($_data)->where(['id' => $msg_id])->save();
+            if (!$rs) {
+                $this->result = array_merge($this->result, $this->status['600008']);
+            }
+        }
+
+        $this->ajaxReturn($this->result);
+    }
+
+
+    //客房服务历史消息列表
+    public function getMsgHistoryList(){
+        $staff_id = trim($this->I['staff_id']);             //员工ID
+        $page_no = trim($this->I['page_no']);            //当前页码
+        $list_count = trim($this->I['list_count']);      //获取记录数
+
+        if ( isset($staff_id) && $staff_id > 0 ) {
+            if(!isset($page_no)){
+                $page_no = 1;
+            }else if($page_no<=0){
+                $page_no = 1;
+            }
+
+            if(!isset($list_count)){
+                $list_count = 20;
+            }else if($list_count<=0){
+                $list_count = 20;
+            }
+
+            $_map['staff_id'] = $staff_id;
+            $_map['msg_type'] = [['eq', 1], ['eq', 3], 'or'];
+            $_map['data_status'] = [['eq', 2], ['eq', 99], 'or'];
+
+            $_msg_service = M("msg_service");
+            $msg_service = $_msg_service->field('id as msg_id, msg_content, create_time, data_status as msg_status, room_name, update_time')
+                -> where($_map)
+                -> limit(($page_no - 1) * $list_count, $list_count)
+                -> order('update_time desc')->select();
+
+            if(!$msg_service){
+                $this -> result = array_merge($this -> result, ['list' => []]);
+                $this -> result = array_merge($this -> result, $this -> status['600007']);
+            }else{
+                $this -> result = array_merge($this -> result, ['list' => $msg_service]);
+            }
+        }else{
+            $this -> result = array_merge($this -> result, $this -> status['4']);
+        }
+        $this->ajaxReturn($this->result);
+    }
+}

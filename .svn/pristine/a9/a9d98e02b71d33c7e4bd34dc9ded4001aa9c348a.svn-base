@@ -1,0 +1,53 @@
+<?php
+/**
+ * OrderController.class.php - 订单管理-订单信息管理
+ * @package Controller
+ * @subpackage null
+ * @link http://www.pad-phone.com
+ * @author 派锋科技 PHP DEV TEAM Zhaoxizhan(441534536@qq.com)
+ * @copyright 2016-11-28 10:40
+ */
+namespace Admin\Controller;
+use Admin\Controller\CommonController;
+
+class OrderController extends CommonController {
+    
+    /**
+     * 订单列表
+     */
+    public function orderList(){
+         //搜索信息
+        $search_key = I('get.search_key','');
+        $this->assign('search_key', $search_key);
+        
+        //搜索条件
+        $_map['data_status'] = 1;
+        if(!empty($search_key)){
+            $_map['order_no'] = array('like','%'.$search_key.'%');
+        }
+        
+        
+        $page = D('Common' , 'Logic')->page(array('name'=>'AdvertisersInfo','where'=>$_map), I('get.p',1));
+        
+        //获取所有行业
+        $cate_list = D('CategoryInfo')->getAllWithKey();
+        
+        foreach ($page['list'] as &$val) {
+            //没有行业分类
+            if(empty($val['industry_desc'])){
+                continue;
+            }
+            //处理行业分类  
+            $_cid_arr = explode(',', $val['industry_desc']);
+            foreach ($_cid_arr as $v) {
+                //行业存在
+                if(isset($cate_list[$v])){
+                    $val['industry_desc'] = str_replace($v, $cate_list[$v]['category_name'], $val['industry_desc']);
+                }
+            }
+        }
+
+        $this->assign('page',$page);
+        $this->display();
+    }
+}

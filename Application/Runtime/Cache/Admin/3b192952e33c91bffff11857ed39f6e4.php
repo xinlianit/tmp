@@ -53,15 +53,12 @@
 					<span><?php echo ($loginInfo['admin_name']); ?>，欢迎您</span>
 				</li>
 				<li class="nav-item">
-					<a href=""><i class="icon icon-lock"></i>修改密码</a>
+					<a href="<?php echo U('Index/resetPwd');?>"><i class="icon icon-lock"></i>修改密码</a>
 				</li>
 				<li class="nav-item">
 					<a href="<?php echo U('Public/logout');?>"><i class="icon icon-off"></i>退出系统</a>
 				</li>
 				
-				<li class="nav-item">
-					<a href="<?php echo U('Index/tpl');?>">【模板插件库-开发使用】</a>
-				</li>
 			</ul><!-- /.ace-nav -->
 			<div class="sys-datetime">系统时间：<span id="now-datetime"><?php echo date('Y.m.d H:i:s');?></span>
 			</div>
@@ -214,7 +211,7 @@
                                                 <div class="tree_box col-sm-12">                                                    
                                                 <?php if(is_array($area)): $i = 0; $__LIST__ = $area;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><div class="tree_box_1">
                                                         <div class="tree_box_1_title" style='height:35px; line-height: 35px;margin: 5px 0'>
-                                                            <input type="checkbox" class="ace" value="<?php echo ($list["id"]); ?>"  /><span class="lbl"></span> <a class="spread" herf='javascript:void(0)'>&nbsp;+&nbsp;</a> <?php echo ($list["city_name"]); ?>
+                                                            <input type="checkbox" class="ace" value="<?php echo ($list["id"]); ?>"  /><span class="lbl"></span> <a style="cursor: pointer" class="spread icon-plus-sign" herf='javascript:void(0)'></a> <?php echo ($list["city_name"]); ?>
                                                         </div>                                                        
                                                             <div class="tree_box_2 hide">
                                                             <table class="table table-striped table-bordered table-hover">
@@ -295,7 +292,9 @@
 		
 		
 		<script type="text/javascript">
-			var static_base = "/Public";
+			var static_base 	= '/Public';
+			var static_domain 	= '<?php echo C("FASTDFS_URL");?>';
+			var getTrad_url		= '<?php echo U("Inner/getTrad");?>';
 		</script>
 		<script src="/Public/static/js/sea.js"></script>
 		<script src="/Public/plugins/assets/js/jquery-ui-1.10.3.full.min.js"></script>
