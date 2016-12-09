@@ -16,6 +16,8 @@
 		<link rel="stylesheet" href="/Public/plugins/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/assets/css/jquery-ui-1.10.3.full.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/nice-validator-1.0.7/jquery.validator.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/dropzone.min.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/basic.min.css" />
 		<link rel="stylesheet" href="/Public/static/css/common.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="/Public/plugins/assets/css/ace-ie.min.css" />
@@ -96,21 +98,21 @@
 		</li>
 		
 		<?php if(!empty($menu)): if(is_array($menu)): $i = 0; $__LIST__ = $menu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$big_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($big_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-					<a href="<?php if(($big_item["type"]) == "3"): echo (get_url_by_node($big_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+					<a href="<?php if(isset($big_item['url'])): echo ($big_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 						<i class="<?php echo ($big_item['icon_name']); ?>"></i>
 						<span class="menu-text"> <?php echo ($big_item['title']); ?></span>
 						<?php if(!empty($big_item["list"])): ?><b class="arrow icon-angle-down"></b>
 							</a>
 						    <ul class="submenu" <?php if(in_array($big_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 							    <?php if(is_array($big_item["list"])): $i = 0; $__LIST__ = $big_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$small_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($small_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-										<a href="<?php if(($small_item["type"]) == "3"): echo (get_url_by_node($small_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+										<a href="<?php if(isset($small_item['url'])): echo ($small_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 											<i class="<?php echo ($small_item['icon_name']); ?>"></i>
 											<?php echo ($small_item['title']); ?>
 										<?php if(!empty($small_item["list"])): ?><b class="arrow icon-angle-down"></b>
 											</a>
 											<ul class="submenu" <?php if(in_array($small_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 												<?php if(is_array($small_item["list"])): $i = 0; $__LIST__ = $small_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($item['id'],$path_id)): ?>class="active"<?php endif; ?>>
-														<a href="<?php echo (get_url_by_node($item['id'])); ?>">
+														<a href="<?php if(isset($item['url'])): echo ($item['url']); else: ?>javascript:void(0);<?php endif; ?>">
 															<i class="<?php echo ($item['icon_name']); ?>"></i>
 															<?php echo ($item['title']); ?>
 														</a>
@@ -159,17 +161,41 @@
                         <div class="row">
                             <div class="col-xs-12">
 
-                                <div class="table-responsive">
+                                <div class="table-responsive">                                    
                                     <div class="table-search">
-                                        <div class="form-group">
-                                            <label class="col-sm-3 control-label no-padding-right search-label">商品名称：</label>
-                                            <div class="col-sm-2 seach-input-col">
-                                                <input type="text" id="search-key" name="search-key" placeholder="支持模糊查询" value="<?php echo ($search_key); ?>" class="input-sm seach-input">
+                                        <form class="form-horizontal" role="form" form-id="search-list" action='<?php echo U("Goods/goodsList");?>' method="get">
+                                            <div class="form-group">
+                                                <label class="col-sm-3 control-label no-padding-right search-label">商品名称：</label>
+                                                <div class="col-sm-2 seach-input-col">
+                                                    <input type="text" name="goods_name" placeholder="支持模糊查询" value="<?php echo ($goods_name); ?>" class="input-sm seach-input">
+                                                </div>
+                                                
+                                                <label class="col-sm-3 control-label no-padding-right search-label">商品分类：</label>
+                                                <div class="col-sm-2" style="width: 100px;">
+                                                    <select  name="cate_id">
+                                                        <option value="0" <?php if($data_status == 0 ): ?>selected="selected"<?php endif; ?>>全部</option>
+                                                        <?php if(is_array($cate)): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list["id"]); ?>" <?php if($list["id"] == $cate_id ): ?>selected="selected"<?php endif; ?>><?php echo ($list["category_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+                                                    </select>
+                                                </div>
+                                                
+                                                <label class="col-sm-3 control-label no-padding-right search-label">商品状态：</label>
+                                                <div class="col-sm-2" style="width: 100px;">
+                                                    <select  name="data_status">
+                                                        <option value="0" <?php if($data_status == 0 ): ?>selected="selected"<?php endif; ?>>全部</option>
+                                                        <option value="1" <?php if($data_status == 1 ): ?>selected="selected"<?php endif; ?>>生效中</option>
+                                                        <option value="2" <?php if($data_status == 2 ): ?>selected="selected"<?php endif; ?>>已失效</option>
+                                                    </select>
+                                                </div>
+
+                                                <span class="input-group-btn search-btn">
+                                                    <button type="button" class="btn btn-purple btn-sm" id="search-list-btn">
+                                                        查询
+                                                        <i class="icon-search icon-on-right bigger-110"></i>
+                                                    </button>
+                                                </span>
                                             </div>
-                                            <span class="input-group-btn search-btn">
-                                                <button type="button" class="btn btn-purple btn-sm" id="search-button" surl='<?php echo U("Goods/goodslist");?>'>查询<i class="icon-search icon-on-right bigger-110"></i></button>
-                                            </span>
-                                        </div>
+                                            
+                                        </form>
                                     </div>
                                     <div class="table-search">
                                         <div class="form-group">
@@ -233,8 +259,9 @@
                                                 <td><?php echo ($list["up_count"]); ?></td>
                                                 <td><?php echo (date('Y-m-d H:i:s',$list["update_time"])); ?></td>
                                                 <td>
-                                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">      
-                                                        <a class="green" event-name="shelf-up"   event-id="<?php echo ($list["id"]); ?>" href="javascript:void(0);" title="上架   ">上架</a>
+                                                    <div class="visible-md visible-lg hidden-sm hidden-xs action-buttons">    
+                                                        <?php switch($list["data_status"]): case "1": ?><a class="green" event-name="shelf-down" status="<?php echo ($list["data_status"]); ?>"  event-id="<?php echo ($list["id"]); ?>" href="javascript:void(0);" title="下架   ">下架</a><?php break;?>
+                                                            <?php case "2": ?><a class="green" event-name="shelf-up"   event-id="<?php echo ($list["id"]); ?>" href="javascript:void(0);" title="上架   ">上架</a><?php break; endswitch;?>        
                                                         <a class="green" event-name="edit-goods" event-id="<?php echo ($list["id"]); ?>" status="<?php echo ($list["data_status"]); ?>" info-url="<?php echo U('Goods/getGoodsInfo');?>" href="javascript:void(0);" title="编辑">
                                                             <i class="icon-pencil bigger-130"></i>
                                                         </a>
@@ -322,7 +349,7 @@
         <div class="space-4"></div>
         
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">商品原价：<span class="red">*</span></label>
+            <label class="col-sm-3 control-label no-padding-right">商品原价：</label>
             <div class="col-sm-9">
                 <input type="text" name="original_cost" placeholder="输入商品原价" class="col-xs-10 col-sm-5">
             </div>
@@ -330,12 +357,13 @@
         <div class="space-4"></div>
         
         <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">上传酒店图：<span class="red">*</span></label>
+            <label class="col-sm-3 control-label no-padding-right"><span class="red">*</span></label>
 
             <div class="col-sm-9">
                 <input type="hidden" name="goods_pic_md5">
                 <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
 <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
+
 <div id="wrapper">
     <div id="container">
         <!--头部，相册选择和格式选择-->
@@ -344,7 +372,7 @@
             <div class="queueList">
                 <div id="dndArea" class="placeholder">
                     <div id="filePicker1"></div>
-                    <p>或将照片拖到这里</p>
+                    <p>或将文件/图片拖到这里</p>
                 </div>
             </div>
             <div class="statusBar" style="display:none;">
@@ -353,17 +381,17 @@
                     <span class="percentage"></span>
                 </div><div class="info"></div>
                 <div class="btns">
-                    <div class="uploadBtn">开始上传</div>
+                    <div id="filegoon" class="filegoon hide"></div><div class="uploadBtn">开始上传</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
 <script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
-
             </div>
         </div>
         <div class="space-4"></div>
@@ -371,98 +399,9 @@
     </form>
 </div>
 
-<!-- 编辑面板 -->
-<div dialog-id="edit-goods-box" class="hide">
-
-    <form class="form-horizontal" role="form" form-id="edit-goods-form" action="<?php echo U('Goods/editGoods');?>" method="post">
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">商品名称：<span class="red">*</span></label>
-            <div class="col-sm-9">
-                <input type="text" name="goods_name" placeholder="输入商品名称" class="col-xs-10 col-sm-5">
-            </div>
-        </div>
-        <div class="space-4"></div>
-        
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">商品描述：<span class="red">*</span></label>
-
-            <div class="col-sm-9">
-                <textarea class="col-xs-10" rows="3" name="goods_desc"></textarea>
-            </div>
-        </div>
-        <div class="space-4"></div>
-        
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">商品分类：<span class="red">*</span></label>
-            <div class="col-sm-9">
-                <select class="col-xs-10 col-sm-5"  name="cate_id">
-                    <option value="0">请选择</option>
-                    <?php if(is_array($cate)): $i = 0; $__LIST__ = $cate;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$list): $mod = ($i % 2 );++$i;?><option value="<?php echo ($list["id"]); ?>"><?php echo ($list["category_name"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-                </select>
-            </div>
-        </div>
-        <div class="space-4"></div>
-        
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">商品售价：<span class="red">*</span></label>
-            <div class="col-sm-9">
-                <input type="text" name="goods_price" placeholder="输入商品售价" class="col-xs-10 col-sm-5">
-            </div>
-        </div>
-        <div class="space-4"></div>
-        
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">商品原价：<span class="red">*</span></label>
-            <div class="col-sm-9">
-                <input type="text" name="original_cost" placeholder="输入商品原价" class="col-xs-10 col-sm-5">
-            </div>
-        </div>
-        <div class="space-4"></div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">已有图片：</label>
-            <div class="col-sm-9">
-                <img id="has_img_goods" src="" style="height: 100px">
-            </div>
-        </div>
-        <div class="form-group">
-            <label class="col-sm-3 control-label no-padding-right">上传酒店图：<span class="red">*</span></label>
-            <div class="col-sm-9">
-                <input type="hidden" name="goods_pic_md52">
-                <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
-<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
-<div id="wrapper">
-    <div id="container">
-        <!--头部，相册选择和格式选择-->
-
-        <div id="uploader2" class="uploader">
-            <div class="queueList">
-                <div id="dndArea" class="placeholder">
-                    <div id="filePicker2"></div>
-                    <p>或将照片拖到这里</p>
-                </div>
-            </div>
-            <div class="statusBar" style="display:none;">
-                <div class="progress">
-                    <span class="text">0%</span>
-                    <span class="percentage"></span>
-                </div><div class="info"></div>
-                <div class="btns">
-                    <div class="uploadBtn">开始上传</div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-
-<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
-<script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
-<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
-
-            </div>
-        </div>
-        <div class="space-4"></div>
-        
-    </form>
+<!-- 下架面板 -->
+<div dialog-id="shelf-down-box" class="hide">
+    <h3>确定要下架这些商品吗！</h3>
 </div>
 
 <!-- 删除面板 -->

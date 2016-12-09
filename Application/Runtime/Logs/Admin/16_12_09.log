@@ -1,0 +1,618 @@
+[ 2016-12-09T16:25:10+08:00 ] 192.168.1.119 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000673s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001045s ]
+
+[ 2016-12-09T16:25:14+08:00 ] 192.168.1.119 /index.php/Public/login.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000195s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000349s ]
+SQL: SHOW COLUMNS FROM `pad_admin_info` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_admin_info` WHERE `admin_account` = 'admin' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Public','login','192.168.1.119','1','admin登陆后台,时间：2016-12-09 16:25:14','1481271914') [ RunTime:0.0354s ]
+
+[ 2016-12-09T17:22:00+08:00 ] 192.168.1.119 /index.php/Shop/devInfo.html?id=13
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000268s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000418s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 332 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/devInfo' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_room_info` WHERE `id` = 13 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pad_room_device` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`device_address`,`position` FROM `pad_room_device` WHERE `room_id` = 13  [ RunTime:0.0014s ]
+
+[ 2016-12-09T17:22:09+08:00 ] 192.168.1.119 /index.php/Shop/devInfo.html?id=13
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000349s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 332 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/devInfo' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_room_info` WHERE `id` = 13 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0012s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pad_room_device` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`device_address`,`position` FROM `pad_room_device` WHERE `room_id` = 13  [ RunTime:0.0006s ]
+
+[ 2016-12-09T17:22:11+08:00 ] 192.168.1.119 /index.php/Shop/addEditDev.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.002480s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002902s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 332 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEditDev' LIMIT 1   [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT `id` FROM `pad_room_info` WHERE `data_status` = 1 AND `hotel_id` = 26 AND `room_name` = '1002' AND `id` <> '13' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_room_device` [ RunTime:0.0016s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'pk1234000' AND `id` <> '58' LIMIT 1   [ RunTime:0.0031s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'pk123622222' AND `id` <> '59' LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'pk1237' AND `id` <> '23' LIMIT 1   [ RunTime:0.0011s ]
+SQL: UPDATE `pad_room_info` SET `id`='13',`hotel_id`='26',`floor_id`='18',`room_name`='1002',`room_type`='1',`room_phone`='110',`update_time`='1481275331',`room_code`='1002' WHERE `id` = 13 [ RunTime:0.0014s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'pk1234000' AND `room_id` = 13 LIMIT 1   [ RunTime:0.0012s ]
+SQL: UPDATE `pad_room_device` SET `device_address`='pk1234000',`position`='床头',`id`='58',`room_id`='13',`telephone`='1002' WHERE `device_address` = 'pk1234000' AND `room_id` = 13 [ RunTime:0.0014s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'pk123622222' AND `room_id` = 13 LIMIT 1   [ RunTime:0.0014s ]
+SQL: UPDATE `pad_room_device` SET `device_address`='pk123622222',`position`='左边',`id`='59',`room_id`='13',`telephone`='1002' WHERE `device_address` = 'pk123622222' AND `room_id` = 13 [ RunTime:0.0015s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'pk1237' AND `room_id` = 13 LIMIT 1   [ RunTime:0.0011s ]
+SQL: UPDATE `pad_room_device` SET `device_address`='pk1237',`position`='右边',`id`='23',`room_id`='13',`telephone`='1002' WHERE `device_address` = 'pk1237' AND `room_id` = 13 [ RunTime:0.0014s ]
+NOTIC: [8] Use of undefined constant RoomDevice - assumed 'RoomDevice' /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 400 行.
+SQL: DELETE FROM `pad_room_device` WHERE `room_id` = 13 AND `id` NOT IN ('58','59','23') [ RunTime:0.0017s ]
+NOTIC: [8] Undefined variable: add_dev_id /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 402 行.
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shop','addEditDev','192.168.1.119','1','admin 编辑 房间设备；房间号：1002','1481275331') [ RunTime:0.0037s ]
+
+[ 2016-12-09T17:22:34+08:00 ] 192.168.1.119 /index.php/Shop/deleteDev.html?ids=13
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000873s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001595s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 332 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/deleteDev' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_device` [ RunTime:0.0025s ]
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0014s ]
+SQL: UPDATE `pad_room_info` SET `data_status`='99' WHERE `id` IN ('13') [ RunTime:0.0012s ]
+SQL: DELETE FROM `pad_room_device` WHERE `room_id` IN ('13') [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0831s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shop','deleteDev','192.168.1.119','1','admin 删除房间设备绑定；房间ID：13','1481275354') [ RunTime:0.0046s ]
+
+[ 2016-12-09T17:23:10+08:00 ] 192.168.1.119 /index.php/Shop/deleteDev.html?ids=42
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000342s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000517s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 332 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/deleteDev' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_device` [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0013s ]
+SQL: UPDATE `pad_room_info` SET `data_status`='99' WHERE `id` IN ('42') [ RunTime:0.0016s ]
+SQL: DELETE FROM `pad_room_device` WHERE `room_id` IN ('42') [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0077s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shop','deleteDev','192.168.1.119','1','admin 删除房间设备绑定；房间ID：42','1481275390') [ RunTime:0.0055s ]
+
+[ 2016-12-09T17:23:21+08:00 ] 192.168.1.119 /index.php/Shop/devInfo.html?id=43
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000199s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000394s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 332 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/devInfo' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_room_info` WHERE `id` = 43 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0005s ]
+SQL: SHOW COLUMNS FROM `pad_floor_info` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`floor_name` FROM `pad_floor_info` WHERE `hotel_id` = 26 AND `data_status` <> 99  [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_room_device` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`device_address`,`position` FROM `pad_room_device` WHERE `room_id` = 43  [ RunTime:0.0013s ]
+
+[ 2016-12-09T17:23:22+08:00 ] 192.168.1.119 /index.php/Shop/addEditDev.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000337s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000548s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 332 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shop/addEditDev' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_room_info` [ RunTime:0.0011s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+SQL: SELECT `id` FROM `pad_room_info` WHERE `data_status` = 1 AND `hotel_id` = 26 AND `room_name` = 'aaa' AND `id` <> '43' LIMIT 1   [ RunTime:0.0019s ]
+SQL: SHOW COLUMNS FROM `pad_room_device` [ RunTime:0.0014s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'adfad' AND `id` <> '62' LIMIT 1   [ RunTime:0.0012s ]
+SQL: UPDATE `pad_room_info` SET `id`='43',`hotel_id`='26',`floor_id`='11',`room_name`='aaa',`room_type`='1',`room_phone`='45678',`update_time`='1481275402',`room_code`='aaa' WHERE `id` = 43 [ RunTime:0.0012s ]
+SQL: SELECT `id` FROM `pad_room_device` WHERE `device_address` = 'adfad' AND `room_id` = 43 LIMIT 1   [ RunTime:0.0013s ]
+SQL: UPDATE `pad_room_device` SET `device_address`='adfad',`position`='12',`id`='62',`room_id`='43',`telephone`='aaa' WHERE `device_address` = 'adfad' AND `room_id` = 43 [ RunTime:0.0014s ]
+NOTIC: [8] Use of undefined constant RoomDevice - assumed 'RoomDevice' /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 400 行.
+SQL: DELETE FROM `pad_room_device` WHERE `room_id` = 43 AND `id` NOT IN ('62') [ RunTime:0.0012s ]
+NOTIC: [8] Undefined variable: add_dev_id /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 402 行.
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0015s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shop','addEditDev','192.168.1.119','1','admin 编辑 房间设备；房间号：aaa','1481275402') [ RunTime:0.0147s ]
+
+[ 2016-12-09T17:43:02+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="[<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:03+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="[<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:03+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="[<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:03+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="[<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:03+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="[<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:44+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:45+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:45+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:45+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T17:43:45+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html
+ERR: XML标签语法错误 : name="<?php echo ($seach_item["options"]); ?
+
+[ 2016-12-09T19:04:54+08:00 ] 192.168.1.119 /index.php/Shop/device/p/1.html?p=1&hotel_name=&device_address=&app_version=&room_type=3
+ERR: XML标签语法错误 : name=":call_user_func($seach_item['options'], $seach_item['params'][0], $seach_item['params'][1], $seach_item['params'][2])" id="<?php echo ($seach_item['item']['id']); ?
+
+[ 2016-12-09T20:14:45+08:00 ] 192.168.1.119 /index.php/Shop/device.html
+ERR: read error on connection
+
+[ 2016-12-09T22:56:05+08:00 ] 192.168.1.119 /Public/getCity?province_id=440000&city_id=440300
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000334s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000521s ]
+SQL: SHOW COLUMNS FROM `pad_city_info` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_city_info` WHERE (  `city_level` = 1 OR ( `parent_id` = '440000' OR `parent_id` = '440300' ) ) AND `data_status` = 1  [ RunTime:0.0021s ]
+
+[ 2016-12-09T22:58:38+08:00 ] 192.168.1.119 /Public/getCity?province_id=440000&city_id=440300
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000302s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000492s ]
+SQL: SHOW COLUMNS FROM `pad_city_info` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_city_info` WHERE (  `city_level` = 1 OR ( `parent_id` = '440000' OR `parent_id` = '440300' ) ) AND `data_status` = 1  [ RunTime:0.0021s ]
+
+[ 2016-12-09T23:18:49+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000222s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000410s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0012s ]
+
+[ 2016-12-09T23:18:56+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000243s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000490s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0019s ]
+
+[ 2016-12-09T23:27:27+08:00 ] 192.168.1.119 /Baseinfo/getRoomServiceInfo
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000188s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000336s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Baseinfo/getRoomServiceInfo' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 37 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_service_info` WHERE `id` = 31 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `pad_service_icon` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_service_icon` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_resource` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_resource` WHERE `id` = 373 LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0015s ]
+
+[ 2016-12-09T23:27:30+08:00 ] 192.168.1.119 /index.php/Baseinfo/editRoomService.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000500s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000903s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Baseinfo/editRoomService' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 37 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 1 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0011s ]
+SQL: UPDATE `pad_service_info` SET `icon_id`='9',`service_type`='2',`service_name`='一件续租',`service_info`='' WHERE `id` = 31 [ RunTime:0.0050s ]
+NOTIC: [2] Invalid argument supplied for foreach() /usr/local/www/l_hotel/Application/Admin/Controller/BaseinfoController.class.php 第 576 行.
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0014s ]
+NOTIC: [2] Invalid argument supplied for foreach() /usr/local/www/l_hotel/Application/Admin/Controller/BaseinfoController.class.php 第 609 行.
+
+[ 2016-12-09T23:31:34+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000507s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001354s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0012s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0012s ]
+
+[ 2016-12-09T23:31:54+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000565s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001320s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0010s ]
+
+[ 2016-12-09T23:31:57+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=7
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000547s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000877s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 7  [ RunTime:0.0013s ]
+
+[ 2016-12-09T23:32:00+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=31
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.006409s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.007193s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0012s ]
+
+[ 2016-12-09T23:33:54+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000579s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000892s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0022s ]
+
+[ 2016-12-09T23:33:58+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000339s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000643s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0006s ]
+
+[ 2016-12-09T23:34:02+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=31
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000239s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000542s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0017s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0012s ]
+
+[ 2016-12-09T23:37:32+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000363s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000701s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0033s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0016s ]
+
+[ 2016-12-09T23:37:35+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=31
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000220s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001103s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0020s ]
+
+[ 2016-12-09T23:37:51+08:00 ] 192.168.1.119 /index.php/Shopsetting/roomServerInfo.html?id=21
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000249s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000400s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/roomServerInfo' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_room_service` WHERE `id` = 21 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0014s ]
+NOTIC: [2] trim() expects parameter 1 to be string, array given /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 936 行.
+SQL: SELECT `hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0014s ]
+SQL: SELECT `id`,`hotel_id`,`icon_id`,`service_name` FROM `pad_service_info` WHERE `id` = 49 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_icon` [ RunTime:0.0012s ]
+SQL: SELECT `resource_id` FROM `pad_service_icon` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_resource` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_resource` WHERE `id` = 372 LIMIT 1   [ RunTime:0.0014s ]
+
+[ 2016-12-09T23:37:55+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=6
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000293s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000546s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0013s ]
+
+[ 2016-12-09T23:37:57+08:00 ] 192.168.1.119 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000333s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001090s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0027s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: two_service_ids /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+NOTIC: [2] implode(): Invalid arguments passed /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+SQL: SELECT `id` FROM `pad_room_service` WHERE `hotel_id` = 26 AND `service_id` = 6 AND `data_status` <> 99 AND `id` <> '21' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0013s ]
+SQL: SELECT `hotel_id` FROM `pad_service_info` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0013s ]
+SQL: UPDATE `pad_room_service` SET `id`='21',`hotel_id`='26',`service_id`='6',`data_sort`='2',`telephone`='',`service_detail_type`='1',`service_content`='asdf',`two_service_ids`=NULL WHERE `id` = 21 [ RunTime:0.0127s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0018s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shopsetting','addEditRoom','192.168.1.119','1','admin 编辑 客房服务；酒店ID：26','1481297877') [ RunTime:0.0043s ]
+
+[ 2016-12-09T23:38:03+08:00 ] 192.168.1.119 /index.php/Shopsetting/roomServerInfo.html?id=21
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000382s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/roomServerInfo' LIMIT 1   [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0018s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_room_service` WHERE `id` = 21 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0015s ]
+NOTIC: [2] trim() expects parameter 1 to be string, array given /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 936 行.
+SQL: SELECT `hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`hotel_id`,`icon_id`,`service_name` FROM `pad_service_info` WHERE `id` = 6 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_icon` [ RunTime:0.0014s ]
+SQL: SELECT `resource_id` FROM `pad_service_icon` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_resource` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_resource` WHERE `id` = 371 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_service_two` WHERE `service_id` = 6  [ RunTime:0.0006s ]
+
+[ 2016-12-09T23:38:19+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=31
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000362s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000728s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0010s ]
+
+[ 2016-12-09T23:38:24+08:00 ] 192.168.1.119 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000546s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.002855s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0016s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0026s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0014s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: two_service_ids /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+NOTIC: [2] implode(): Invalid arguments passed /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+SQL: SELECT `id` FROM `pad_room_service` WHERE `hotel_id` = 26 AND `service_id` = 31 AND `data_status` <> 99 AND `id` <> '21' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0013s ]
+SQL: SELECT `hotel_id` FROM `pad_service_info` WHERE `id` = 31 LIMIT 1   [ RunTime:0.0012s ]
+SQL: UPDATE `pad_room_service` SET `id`='21',`hotel_id`='26',`service_id`='31',`data_sort`='2',`telephone`='110',`service_detail_type`='1',`service_content`='asdf',`two_service_ids`=NULL WHERE `id` = 21 [ RunTime:0.0171s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shopsetting','addEditRoom','192.168.1.119','1','admin 编辑 客房服务；酒店ID：26','1481297904') [ RunTime:0.0097s ]
+
+[ 2016-12-09T23:38:30+08:00 ] 192.168.1.119 /index.php/Shopsetting/roomServerInfo.html?id=21
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000205s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000357s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/roomServerInfo' LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_room_service` WHERE `id` = 21 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0013s ]
+NOTIC: [2] trim() expects parameter 1 to be string, array given /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 936 行.
+SQL: SELECT `hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`hotel_id`,`icon_id`,`service_name` FROM `pad_service_info` WHERE `id` = 31 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_icon` [ RunTime:0.0013s ]
+SQL: SELECT `resource_id` FROM `pad_service_icon` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SHOW COLUMNS FROM `pad_resource` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_resource` WHERE `id` = 373 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0006s ]
+
+[ 2016-12-09T23:38:35+08:00 ] 192.168.1.119 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000429s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001454s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0017s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: two_service_ids /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+NOTIC: [2] implode(): Invalid arguments passed /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+SQL: SELECT `id` FROM `pad_room_service` WHERE `hotel_id` = 26 AND `service_id` = 31 AND `data_status` <> 99 AND `id` <> '21' LIMIT 1   [ RunTime:0.0012s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0016s ]
+SQL: SELECT `hotel_id` FROM `pad_service_info` WHERE `id` = 31 LIMIT 1   [ RunTime:0.0014s ]
+SQL: UPDATE `pad_room_service` SET `id`='21',`hotel_id`='26',`service_id`='31',`data_sort`='2',`telephone`='110',`service_detail_type`='1',`service_content`='',`two_service_ids`=NULL WHERE `id` = 21 [ RunTime:0.0048s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shopsetting','addEditRoom','192.168.1.119','1','admin 编辑 客房服务；酒店ID：26','1481297915') [ RunTime:0.0174s ]
+
+[ 2016-12-09T23:38:42+08:00 ] 192.168.1.119 /index.php/Shopsetting/roomServerInfo.html?id=21
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000213s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000388s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/roomServerInfo' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0017s ]
+SQL: SELECT * FROM `pad_room_service` WHERE `id` = 21 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0019s ]
+NOTIC: [2] trim() expects parameter 1 to be string, array given /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 936 行.
+SQL: SELECT `hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0011s ]
+SQL: SELECT `id`,`hotel_id`,`icon_id`,`service_name` FROM `pad_service_info` WHERE `id` = 31 LIMIT 1   [ RunTime:0.0016s ]
+SQL: SHOW COLUMNS FROM `pad_service_icon` [ RunTime:0.0010s ]
+SQL: SELECT `resource_id` FROM `pad_service_icon` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pad_resource` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_resource` WHERE `id` = 373 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0012s ]
+SQL: SELECT * FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0011s ]
+
+[ 2016-12-09T23:38:47+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=8
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.001376s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001622s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0015s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0010s ]
+
+[ 2016-12-09T23:38:50+08:00 ] 192.168.1.119 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000230s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000673s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0025s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0024s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0025s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: two_service_ids /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+NOTIC: [2] implode(): Invalid arguments passed /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+SQL: SELECT `id` FROM `pad_room_service` WHERE `hotel_id` = 26 AND `service_id` = 8 AND `data_status` <> 99 AND `id` <> '21' LIMIT 1   [ RunTime:0.0011s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0011s ]
+SQL: SELECT `hotel_id` FROM `pad_service_info` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0016s ]
+SQL: UPDATE `pad_room_service` SET `id`='21',`hotel_id`='26',`service_id`='8',`data_sort`='2',`telephone`='110',`service_detail_type`='1',`service_content`='',`two_service_ids`=NULL WHERE `id` = 21 [ RunTime:0.0216s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0281s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shopsetting','addEditRoom','192.168.1.119','1','admin 编辑 客房服务；酒店ID：26','1481297930') [ RunTime:0.0163s ]
+
+[ 2016-12-09T23:39:00+08:00 ] 192.168.1.119 /index.php/Shopsetting/roomServerInfo.html?id=21
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000201s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000386s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/roomServerInfo' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0018s ]
+SQL: SELECT * FROM `pad_room_service` WHERE `id` = 21 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0014s ]
+NOTIC: [2] trim() expects parameter 1 to be string, array given /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 936 行.
+SQL: SELECT `hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`hotel_id`,`icon_id`,`service_name` FROM `pad_service_info` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_icon` [ RunTime:0.0013s ]
+SQL: SELECT `resource_id` FROM `pad_service_icon` WHERE `id` = 7 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pad_resource` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_resource` WHERE `id` = 371 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_service_two` WHERE `service_id` = 8  [ RunTime:0.0011s ]
+
+[ 2016-12-09T23:39:04+08:00 ] 192.168.1.119 /index.php/Inner/getServerTow.html?id=31
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000247s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000438s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0016s ]
+SQL: SELECT `id`,`server_name` FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0012s ]
+
+[ 2016-12-09T23:39:06+08:00 ] 192.168.1.119 /index.php/Shopsetting/addEditRoom.html
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000252s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000448s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0021s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/addEditRoom' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0013s ]
+NOTIC: [8] Undefined index: validate /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1185 行.
+NOTIC: [8] Undefined index: auto /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 1128 行.
+NOTIC: [8] Undefined index: two_service_ids /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+NOTIC: [2] implode(): Invalid arguments passed /usr/local/www/l_hotel/Application/Admin/Logic/ShopLogic.class.php 第 746 行.
+SQL: SELECT `id` FROM `pad_room_service` WHERE `hotel_id` = 26 AND `service_id` = 31 AND `data_status` <> 99 AND `id` <> '21' LIMIT 1   [ RunTime:0.0010s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0013s ]
+SQL: SELECT `hotel_id` FROM `pad_service_info` WHERE `id` = 31 LIMIT 1   [ RunTime:0.0006s ]
+SQL: UPDATE `pad_room_service` SET `id`='21',`hotel_id`='26',`service_id`='31',`data_sort`='2',`telephone`='110',`service_detail_type`='1',`service_content`='',`two_service_ids`=NULL WHERE `id` = 21 [ RunTime:0.0046s ]
+SQL: SHOW COLUMNS FROM `pad_admin_logs` [ RunTime:0.0012s ]
+NOTIC: [8] Undefined index: admin_id /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 321 行.
+NOTIC: [8] Undefined index: log_type /usr/local/www/l_hotel/Application/Admin/Logic/CommonLogic.class.php 第 325 行.
+SQL: INSERT INTO `pad_admin_logs` (`admin_id`,`control_name`,`action_name`,`ip_address`,`log_type`,`log_msg`,`create_time`) VALUES ('1','Shopsetting','addEditRoom','192.168.1.119','1','admin 编辑 客房服务；酒店ID：26','1481297946') [ RunTime:0.0037s ]
+
+[ 2016-12-09T23:39:18+08:00 ] 192.168.1.119 /index.php/Shopsetting/roomServerInfo.html?id=21
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000196s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000346s ]
+NOTIC: [2048] Declaration of Admin\Controller\CommonController::display() should be compatible with Think\Controller::display($templateFile = '', $charset = '', $contentType = '', $content = '', $prefix = '') /usr/local/www/l_hotel/Application/Admin/Controller/CommonController.class.php 第 335 行.
+SQL: SHOW COLUMNS FROM `pad_auth_rule` [ RunTime:0.0015s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `name` = 'Admin/Shopsetting/roomServerInfo' LIMIT 1   [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 13 LIMIT 1   [ RunTime:0.0014s ]
+SQL: SELECT * FROM `pad_auth_rule` WHERE `id` = 8 LIMIT 1   [ RunTime:0.0007s ]
+SQL: SHOW COLUMNS FROM `pad_room_service` [ RunTime:0.0011s ]
+SQL: SELECT * FROM `pad_room_service` WHERE `id` = 21 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_hotel_info` [ RunTime:0.0013s ]
+NOTIC: [2] trim() expects parameter 1 to be string, array given /usr/local/www/l_hotel/Core/Library/Think/Model.class.php 第 936 行.
+SQL: SELECT `hotel_name` FROM `pad_hotel_info` WHERE `id` = 26 AND `data_status` <> 99 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_info` [ RunTime:0.0013s ]
+SQL: SELECT `id`,`hotel_id`,`icon_id`,`service_name` FROM `pad_service_info` WHERE `id` = 31 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pad_service_icon` [ RunTime:0.0012s ]
+SQL: SELECT `resource_id` FROM `pad_service_icon` WHERE `id` = 9 LIMIT 1   [ RunTime:0.0006s ]
+SQL: SHOW COLUMNS FROM `pad_resource` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_resource` WHERE `id` = 373 LIMIT 1   [ RunTime:0.0013s ]
+SQL: SHOW COLUMNS FROM `pad_service_two` [ RunTime:0.0013s ]
+SQL: SELECT * FROM `pad_service_two` WHERE `service_id` = 31  [ RunTime:0.0006s ]
+
+[ 2016-12-09T23:48:37+08:00 ] 192.168.1.119 /Public/getCity?province_id=440000&city_id=440300
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000276s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.001753s ]
+SQL: SHOW COLUMNS FROM `pad_city_info` [ RunTime:0.0022s ]
+SQL: SELECT * FROM `pad_city_info` WHERE (  `city_level` = 1 OR ( `parent_id` = '440000' OR `parent_id` = '440300' ) ) AND `data_status` = 1  [ RunTime:0.0020s ]
+
+[ 2016-12-09T23:49:52+08:00 ] 192.168.1.119 /Public/getCity?province_id=440000&city_id=440300
+INFO: [ app_begin ] --START--
+INFO: Run Behavior\ReadHtmlCacheBehavior [ RunTime:0.000216s ]
+INFO: [ app_begin ] --END-- [ RunTime:0.000398s ]
+SQL: SHOW COLUMNS FROM `pad_city_info` [ RunTime:0.0023s ]
+SQL: SELECT * FROM `pad_city_info` WHERE (  `city_level` = 1 OR ( `parent_id` = '440000' OR `parent_id` = '440300' ) ) AND `data_status` = 1  [ RunTime:0.0019s ]
+

@@ -96,21 +96,21 @@
 		</li>
 		
 		<?php if(!empty($menu)): if(is_array($menu)): $i = 0; $__LIST__ = $menu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$big_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($big_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-					<a href="<?php if(($big_item["type"]) == "3"): echo (get_url_by_node($big_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+					<a href="<?php if(isset($big_item['url'])): echo ($big_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 						<i class="<?php echo ($big_item['icon_name']); ?>"></i>
 						<span class="menu-text"> <?php echo ($big_item['title']); ?></span>
 						<?php if(!empty($big_item["list"])): ?><b class="arrow icon-angle-down"></b>
 							</a>
 						    <ul class="submenu" <?php if(in_array($big_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 							    <?php if(is_array($big_item["list"])): $i = 0; $__LIST__ = $big_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$small_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($small_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-										<a href="<?php if(($small_item["type"]) == "3"): echo (get_url_by_node($small_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+										<a href="<?php if(isset($small_item['url'])): echo ($small_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 											<i class="<?php echo ($small_item['icon_name']); ?>"></i>
 											<?php echo ($small_item['title']); ?>
 										<?php if(!empty($small_item["list"])): ?><b class="arrow icon-angle-down"></b>
 											</a>
 											<ul class="submenu" <?php if(in_array($small_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 												<?php if(is_array($small_item["list"])): $i = 0; $__LIST__ = $small_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($item['id'],$path_id)): ?>class="active"<?php endif; ?>>
-														<a href="<?php echo (get_url_by_node($item['id'])); ?>">
+														<a href="<?php if(isset($item['url'])): echo ($item['url']); else: ?>javascript:void(0);<?php endif; ?>">
 															<i class="<?php echo ($item['icon_name']); ?>"></i>
 															<?php echo ($item['title']); ?>
 														</a>
@@ -161,20 +161,29 @@
 
                                 <div class="table-responsive">
                                     <div class="table-search">
+                                        <form class="form-horizontal" form-id="search-list" action='<?php echo U("Goods/goodsMatch");?>' method="get">
                                         <div class="form-group">
                                             <label class="col-sm-3 control-label no-padding-right search-label">商户名称：</label>
                                             <div class="col-sm-2 seach-input-col">
-                                                <input type="text" id="search-key" name="search-key" placeholder="支持模糊查询" value="<?php echo ($search_key); ?>" class="input-sm seach-input">
+                                                <input type="text" name="hotel_name" placeholder="支持模糊查询" value="<?php echo ($hotel_name); ?>" class="input-sm seach-input">
+                                            </div>
+
+                                            <label class="col-sm-3 control-label no-padding-right search-label">商品名称：</label>
+                                            <div class="col-sm-2 seach-input-col">
+                                                <input type="text" name="goods_name" placeholder="支持模糊查询" value="<?php echo ($goods_name); ?>" class="input-sm seach-input">
                                             </div>
                                             <span class="input-group-btn search-btn">
-                                                <button type="button" class="btn btn-purple btn-sm" id="search-button" surl='<?php echo U("Goods/goodsMatch");?>'>查询<i class="icon-search icon-on-right bigger-110"></i></button>
+                                                <button type="button" class="btn btn-purple btn-sm"  id="search-list-btn">查询<i class="icon-search icon-on-right bigger-110"></i></button>
                                             </span>
                                         </div>
+                                        </form>
                                     </div>
                                     <div class="table-search">
                                         <div class="form-group">
                                             <span class="input-group-btn search-btn">
-                                                <button event-name="add-match" type="button" class="btn btn-sm btn-success">新增配对</button>
+                                                <button event-name="add-match" type="button" class="btn btn-sm btn-success">新增配对</button>                                                
+                                                <div class="separate-2"><i class="separate-flag"></i></div>
+                                                <button event-name="add-matchs" type="button" class="btn btn-sm btn-success">批量新增配对</button>
                                                 <div class="separate-2"><i class="separate-flag"></i></div>
                                                 <button event-name="del-event"  event-id="checkbox" type="button" class="btn btn-sm btn-default"  url="<?php echo U('Goods/delMatch');?>" msg='' title="批量删除配对">
                                                     删除<i class="icon-remove"></i>
@@ -288,7 +297,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right"> 商品选择：<span class="must">*</span></label>
             <div class="col-sm-9">
-                    <input name="goods_id" type="hidden" value="0" />
+                    <input name="goods_id" type="hidden" value="0"  tag-id="goods_id_add" />
                     <input type="text" name="goods_name" disabled="disabled" placeholder="商品名称" class="col-xs-10 col-sm-9" >
                     <a href="javascript:void(0);" event-name="open-seach-goods"><i class="icon-search hotet-sea-btn"></i></a>
             </div>
@@ -302,6 +311,57 @@
             </div>
         </div>
         <div class="space-4"></div>
+        
+    </form>
+</div>
+
+
+<!-- 添加面板 -->
+<div dialog-id="add-matchs-box" class="hide">
+
+    <form class="form-horizontal" role="form" form-id="add-matchs-form" action="<?php echo U('Goods/addMatchs');?>" method="post" >
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"> 配对信息：<span class="red">*</span></label>
+
+            <div class="col-sm-9">
+                <input type="hidden" name="templet_md5">
+                <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
+<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
+<div id="wrapper">
+    <div id="container">
+        <!--头部，相册选择和格式选择-->
+
+        <div id="uploader1" class="uploader">
+            <div class="queueList">
+                <div id="dndArea" class="placeholder">
+                    <div id="filePicker1"></div>
+                    <p>或将照片拖到这里</p>
+                </div>
+            </div>
+            <div class="statusBar" style="display:none;">
+                <div class="progress">
+                    <span class="text">0%</span>
+                    <span class="percentage"></span>
+                </div><div class="info"></div>
+                <div class="btns">
+                    <div class="uploadBtn">开始上传</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
+<script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
+<script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
+
+            </div>
+        </div>
+        <div class="space-4"></div>
+        <div class="form-group">
+            <label class="col-sm-3 control-label no-padding-right"></label>
+            <div class="col-sm-9"><a href="<?php echo U('Goods/getMatchsTemp',array('_'=>time()));?>">下载模板</a></div>
+        </div>
         
     </form>
 </div>
@@ -324,7 +384,7 @@
         <div class="form-group">
             <label class="col-sm-3 control-label no-padding-right"> 商品选择：<span class="must">*</span></label>
             <div class="col-sm-9">
-                    <input name="goods_id" type="hidden" value="0" />
+                    <input name="goods_id" type="hidden" value="0"  tag-id="goods_id_edit" />
                     <input type="text" name="goods_name" disabled="disabled" placeholder="商品名称" class="col-xs-10 col-sm-9" >
                     <a href="javascript:void(0);" event-name="open-seach-goods"><i class="icon-search hotet-sea-btn"></i></a>
             </div>

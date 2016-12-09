@@ -16,6 +16,8 @@
 		<link rel="stylesheet" href="/Public/plugins/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/assets/css/jquery-ui-1.10.3.full.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/nice-validator-1.0.7/jquery.validator.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/dropzone.min.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/basic.min.css" />
 		<link rel="stylesheet" href="/Public/static/css/common.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="/Public/plugins/assets/css/ace-ie.min.css" />
@@ -96,21 +98,21 @@
 		</li>
 		
 		<?php if(!empty($menu)): if(is_array($menu)): $i = 0; $__LIST__ = $menu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$big_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($big_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-					<a href="<?php if(($big_item["type"]) == "3"): echo (get_url_by_node($big_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+					<a href="<?php if(isset($big_item['url'])): echo ($big_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 						<i class="<?php echo ($big_item['icon_name']); ?>"></i>
 						<span class="menu-text"> <?php echo ($big_item['title']); ?></span>
 						<?php if(!empty($big_item["list"])): ?><b class="arrow icon-angle-down"></b>
 							</a>
 						    <ul class="submenu" <?php if(in_array($big_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 							    <?php if(is_array($big_item["list"])): $i = 0; $__LIST__ = $big_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$small_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($small_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-										<a href="<?php if(($small_item["type"]) == "3"): echo (get_url_by_node($small_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+										<a href="<?php if(isset($small_item['url'])): echo ($small_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 											<i class="<?php echo ($small_item['icon_name']); ?>"></i>
 											<?php echo ($small_item['title']); ?>
 										<?php if(!empty($small_item["list"])): ?><b class="arrow icon-angle-down"></b>
 											</a>
 											<ul class="submenu" <?php if(in_array($small_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 												<?php if(is_array($small_item["list"])): $i = 0; $__LIST__ = $small_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($item['id'],$path_id)): ?>class="active"<?php endif; ?>>
-														<a href="<?php echo (get_url_by_node($item['id'])); ?>">
+														<a href="<?php if(isset($item['url'])): echo ($item['url']); else: ?>javascript:void(0);<?php endif; ?>">
 															<i class="<?php echo ($item['icon_name']); ?>"></i>
 															<?php echo ($item['title']); ?>
 														</a>
@@ -161,21 +163,34 @@
 
 								<div class="table-responsive">
 									<div class="table-search">
-										<form name="" action="<?php echo U('Shop/index');?>" method="get">
-											<div class="form-group">
-												<div class="seach-item">
-													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">商户名称：</label>
-													<input type="text" name="hotel_name" value="<?php echo I('get.hotel_name');?>" placeholder="支持模糊查询" class="input-sm seach-input value">
-												</div>
-												<span class="input-group-btn search-btn">
-													<button type="submit" class="btn btn-purple btn-sm">
-														查询
-														<i class="icon-search icon-on-right bigger-110"></i>
-													</button>
-												</span>
-											</div>
-										</form>
-									</div>
+	<form name="" action="" method="get">
+		<input name="p" type="hidden" value="1" />
+		<div class="form-group">
+			
+			
+			<?php if(!empty(C('SETCH_ITEM.ADMIN'))): if(!empty(C('SETCH_ITEM.ADMIN')[$seach])): $_result=C('SETCH_ITEM.ADMIN')[$seach];if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$seach_item): $mod = ($i % 2 );++$i; switch($seach_item["type"]): case "input": ?><div class="seach-item">
+									<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="<?php echo ($seach_item["label_css"]); ?>"><?php echo ($seach_item["label"]); ?>：</label>
+									<input type="text" name="<?php echo ($seach_item["name"]); ?>" value="<?php echo ($$seach_item["name"]); ?>" placeholder="<?php echo ($seach_item["placeholder"]); ?>" class="input-sm seach-input value">
+								</div><?php break;?>
+							
+							<?php case "select": ?><div class="seach-item">
+									<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="<?php echo ($seach_item["label_css"]); ?>"><?php echo ($seach_item["label"]); ?>：</label>
+									<select name="<?php echo ($seach_item["name"]); ?>" class="form-control value">
+										<option value="<?php echo ($seach_item["defalut"]["value"]); ?>"><?php echo ($seach_item["defalut"]["title"]); ?></option>
+										<?php $_result=call_user_func($seach_item['options'], $seach_item['params'][0], $seach_item['params'][1], $seach_item['params'][2]);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$options): $mod = ($i % 2 );++$i;?><option <?php if($options[$seach_item['item']['value']] == $$seach_item['name']): ?>selected="selected"<?php endif; ?> value="<?php echo ($options[$seach_item['item']['value']]); ?>"><?php echo ($options[$seach_item['item']['title']]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+									</select>
+								</div><?php break; endswitch; endforeach; endif; else: echo "" ;endif; endif; endif; ?>
+			
+			<span class="input-group-btn search-btn">
+				<button type="submit" class="btn btn-purple btn-sm">
+					查询
+					<i class="icon-search icon-on-right bigger-110"></i>
+				</button>
+			</span>
+		</div>
+	</form>
+</div>
+									
 									<div class="table-search">
 										<div class="form-group">
 											<span class="input-group-btn search-btn">
@@ -337,23 +352,15 @@
 			<input type="text" name="contact_way" id="form-field-2" placeholder="输入联系方式" class="col-xs-10 col-sm-6">
 		</div>
 	</div>
-	
+	 
 	<div class="form-group">
 		<label class="col-sm-3 control-label no-padding-right" for="form-field-2"> 开机语音： <span class="red">&nbsp;&nbsp;</span></label>
 
 		<div class="col-sm-9">
                <input type="hidden" name="voice_md5">
-               
-               <div tag-id="view" class="hide">
-               		<div>
-               			<img tag-id="img" style="border:1px solid #CCC;padding:3px;" src="<?php echo default_img();?>" width="130" />
-               		</div>
-               		<a tag-id="edit-upload" style="display:inline-block;line-height:35px;" href="javascript:void(0);" event-name="edit-upload">编辑图片</a>
-               </div>
-               
-               <div tag-id="upload">
-               		<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
+               <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
 <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
+
 <div id="wrapper">
     <div id="container">
         <!--头部，相册选择和格式选择-->
@@ -362,7 +369,7 @@
             <div class="queueList">
                 <div id="dndArea" class="placeholder">
                     <div id="filePicker2"></div>
-                    <p>或将照片拖到这里</p>
+                    <p>或将文件/图片拖到这里</p>
                 </div>
             </div>
             <div class="statusBar" style="display:none;">
@@ -371,21 +378,18 @@
                     <span class="percentage"></span>
                 </div><div class="info"></div>
                 <div class="btns">
-                    <div class="uploadBtn">开始上传</div>
+                    <div id="filegoon" class="filegoon hide"></div><div class="uploadBtn">开始上传</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
 <script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
-
-               		
-               		<a tag-id="cancel-upload" style="display:inline-block;line-height:35px;" class="hide" href="javascript:void(0);" event-name="cancel-upload">取消编辑</a>
-               </div>
-           </div>
+        </div>
 	</div>
 	
 	<div class="form-group">
@@ -393,17 +397,9 @@
 
            <div class="col-sm-9">
                <input type="hidden" name="pic_md5">
-               
-               <div tag-id="view" class="hide">
-               		<div>
-               			<img tag-id="img" style="border:1px solid #CCC;padding:3px;" src="<?php echo default_img();?>" width="130" />
-               		</div>
-               		<a tag-id="edit-upload" style="display:inline-block;line-height:35px;" href="javascript:void(0);" event-name="edit-upload">编辑图片</a>
-               </div>
-               
-               <div tag-id="upload">
-               		<link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
+               <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/webuploader.css" />
 <link rel="stylesheet" type="text/css" href="/Public/plugins/webuploader/image-upload/style.css" />
+
 <div id="wrapper">
     <div id="container">
         <!--头部，相册选择和格式选择-->
@@ -412,7 +408,7 @@
             <div class="queueList">
                 <div id="dndArea" class="placeholder">
                     <div id="filePicker1"></div>
-                    <p>或将照片拖到这里</p>
+                    <p>或将文件/图片拖到这里</p>
                 </div>
             </div>
             <div class="statusBar" style="display:none;">
@@ -421,20 +417,18 @@
                     <span class="percentage"></span>
                 </div><div class="info"></div>
                 <div class="btns">
-                    <div class="uploadBtn">开始上传</div>
+                    <div id="filegoon" class="filegoon hide"></div><div class="uploadBtn">开始上传</div>
                 </div>
             </div>
         </div>
     </div>
 </div>
 
+
 <script type="text/javascript" src="/Public/plugins/webuploader/image-upload/jquery.js"></script>
 <script type="text/javascript" src="/Public/plugins/webuploader/webuploader.js"></script>
 <script type="text/javascript" src="/Public/plugins/webuploader/image-upload/upload.js"></script>
-
-               		
-               		<a tag-id="cancel-upload" style="display:inline-block;line-height:35px;" class="hide" href="javascript:void(0);" event-name="cancel-upload">取消编辑</a>
-               </div>
+               
            </div>
        </div>
 </div>

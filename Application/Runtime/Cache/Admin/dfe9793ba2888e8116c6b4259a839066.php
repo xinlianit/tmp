@@ -16,6 +16,8 @@
 		<link rel="stylesheet" href="/Public/plugins/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/assets/css/jquery-ui-1.10.3.full.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/nice-validator-1.0.7/jquery.validator.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/dropzone.min.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/basic.min.css" />
 		<link rel="stylesheet" href="/Public/static/css/common.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="/Public/plugins/assets/css/ace-ie.min.css" />
@@ -96,21 +98,21 @@
 		</li>
 		
 		<?php if(!empty($menu)): if(is_array($menu)): $i = 0; $__LIST__ = $menu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$big_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($big_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-					<a href="<?php if(($big_item["type"]) == "3"): echo (get_url_by_node($big_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+					<a href="<?php if(isset($big_item['url'])): echo ($big_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 						<i class="<?php echo ($big_item['icon_name']); ?>"></i>
 						<span class="menu-text"> <?php echo ($big_item['title']); ?></span>
 						<?php if(!empty($big_item["list"])): ?><b class="arrow icon-angle-down"></b>
 							</a>
 						    <ul class="submenu" <?php if(in_array($big_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 							    <?php if(is_array($big_item["list"])): $i = 0; $__LIST__ = $big_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$small_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($small_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-										<a href="<?php if(($small_item["type"]) == "3"): echo (get_url_by_node($small_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+										<a href="<?php if(isset($small_item['url'])): echo ($small_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 											<i class="<?php echo ($small_item['icon_name']); ?>"></i>
 											<?php echo ($small_item['title']); ?>
 										<?php if(!empty($small_item["list"])): ?><b class="arrow icon-angle-down"></b>
 											</a>
 											<ul class="submenu" <?php if(in_array($small_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 												<?php if(is_array($small_item["list"])): $i = 0; $__LIST__ = $small_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($item['id'],$path_id)): ?>class="active"<?php endif; ?>>
-														<a href="<?php echo (get_url_by_node($item['id'])); ?>">
+														<a href="<?php if(isset($item['url'])): echo ($item['url']); else: ?>javascript:void(0);<?php endif; ?>">
 															<i class="<?php echo ($item['icon_name']); ?>"></i>
 															<?php echo ($item['title']); ?>
 														</a>
@@ -161,36 +163,34 @@
 
 								<div class="table-responsive">
 									<div class="table-search">
-										<form name="" action="<?php echo U('Node/user');?>" method="get">
-											<div class="form-group">
-												<div class="seach-item">
-													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">所属组：</label>
-													<select name="group_id" class="form-control" style="max-width:200px;height:30px;line-height:30px;">
-														<option value="0">全部</option>
-														<?php if(is_array($group)): $i = 0; $__LIST__ = $group;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$group_list): $mod = ($i % 2 );++$i;?><option <?php if($_GET['group_id'] == $group_list['id']): ?>selected="selected"<?php endif; ?> value="<?php echo ($group_list["id"]); ?>"><?php echo ($group_list["title"]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
-													</select>
-												</div>
-												<div class="seach-item">
-													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">账号：</label>
-													<input type="text" name="admin_account" value="<?php echo I('get.admin_account');?>" placeholder="支持模糊查询" class="input-sm seach-input value">
-												</div>
-												<div class="seach-item">
-													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">姓名：</label>
-													<input type="text" name="admin_name" value="<?php echo I('get.admin_name');?>" placeholder="支持模糊查询" class="input-sm seach-input value">
-												</div>
-												<div class="seach-item">
-													<label class="col-sm-3 control-label no-padding-right search-label sea-label" for="form-field-1">手机号：</label>
-													<input type="text" name="admin_mobile" value="<?php echo I('get.admin_mobile');?>" placeholder="支持模糊查询" class="input-sm seach-input value">
-												</div>
-												<span class="input-group-btn search-btn">
-													<button type="submit" class="btn btn-purple btn-sm">
-														查询
-														<i class="icon-search icon-on-right bigger-110"></i>
-													</button>
-												</span>
-											</div>
-										</form>
-									</div>
+	<form name="" action="" method="get">
+		<input name="p" type="hidden" value="1" />
+		<div class="form-group">
+			
+			
+			<?php if(!empty(C('SETCH_ITEM.ADMIN'))): if(!empty(C('SETCH_ITEM.ADMIN')[$seach])): $_result=C('SETCH_ITEM.ADMIN')[$seach];if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$seach_item): $mod = ($i % 2 );++$i; switch($seach_item["type"]): case "input": ?><div class="seach-item">
+									<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="<?php echo ($seach_item["label_css"]); ?>"><?php echo ($seach_item["label"]); ?>：</label>
+									<input type="text" name="<?php echo ($seach_item["name"]); ?>" value="<?php echo ($$seach_item["name"]); ?>" placeholder="<?php echo ($seach_item["placeholder"]); ?>" class="input-sm seach-input value">
+								</div><?php break;?>
+							
+							<?php case "select": ?><div class="seach-item">
+									<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="<?php echo ($seach_item["label_css"]); ?>"><?php echo ($seach_item["label"]); ?>：</label>
+									<select name="<?php echo ($seach_item["name"]); ?>" class="form-control value">
+										<option value="<?php echo ($seach_item["defalut"]["value"]); ?>"><?php echo ($seach_item["defalut"]["title"]); ?></option>
+										<?php $_result=call_user_func($seach_item['options'], $seach_item['params'][0], $seach_item['params'][1], $seach_item['params'][2]);if(is_array($_result)): $i = 0; $__LIST__ = $_result;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$options): $mod = ($i % 2 );++$i;?><option <?php if($options[$seach_item['item']['value']] == $$seach_item['name']): ?>selected="selected"<?php endif; ?> value="<?php echo ($options[$seach_item['item']['value']]); ?>"><?php echo ($options[$seach_item['item']['title']]); ?></option><?php endforeach; endif; else: echo "" ;endif; ?>
+									</select>
+								</div><?php break; endswitch; endforeach; endif; else: echo "" ;endif; endif; endif; ?>
+			
+			<span class="input-group-btn search-btn">
+				<button type="submit" class="btn btn-purple btn-sm">
+					查询
+					<i class="icon-search icon-on-right bigger-110"></i>
+				</button>
+			</span>
+		</div>
+	</form>
+</div>
+									
 									<div class="table-search">
 										<div class="form-group">
 											<span class="input-group-btn search-btn">

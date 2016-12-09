@@ -1,0 +1,47 @@
+<div class="table-search">
+	<form name="" action="[action]" method="[method]">
+		<input name="p" type="hidden" value="1" />
+		<div class="form-group">
+			
+			
+			<if condition="!empty(C('SETCH_ITEM.ADMIN'))">
+				<if condition="!empty(C('SETCH_ITEM.ADMIN')[$seach])">
+					
+					<volist name=":C('SETCH_ITEM.ADMIN')[$seach]" id="seach_item">
+					
+						<switch name="seach_item.type">
+							<case value="input">
+								<div class="seach-item">
+									<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="{$seach_item.label_css}">{$seach_item.label}：</label>
+									<input type="text" name="{$seach_item.name}" value="{$$seach_item.name}" placeholder="{$seach_item.placeholder}" class="input-sm seach-input value">
+								</div>
+							</case>
+							
+							<case value="select">
+								<div class="seach-item">
+									<label class="col-sm-3 control-label no-padding-right search-label sea-label" style="{$seach_item.label_css}">{$seach_item.label}：</label>
+									<select name="{$seach_item.name}" class="form-control value">
+										<option value="{$seach_item.defalut.value}">{$seach_item.defalut.title}</option>
+										<volist name=":call_user_func($seach_item['options'], $seach_item['params'][0], $seach_item['params'][1], $seach_item['params'][2])" id="options">
+												<option <if condition="$options[$seach_item['item']['value']] eq $$seach_item['name']">selected="selected"</if> value="{$options[$seach_item['item']['value']]}">{$options[$seach_item['item']['title']]}</option>
+										</volist>
+									</select>
+								</div>
+							</case>
+						</switch>
+					
+						
+					</volist>
+					
+				</if>
+			</if>
+			
+			<span class="input-group-btn search-btn">
+				<button type="submit" class="btn btn-purple btn-sm">
+					查询
+					<i class="icon-search icon-on-right bigger-110"></i>
+				</button>
+			</span>
+		</div>
+	</form>
+</div>

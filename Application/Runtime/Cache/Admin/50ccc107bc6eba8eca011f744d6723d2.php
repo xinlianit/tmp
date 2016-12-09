@@ -16,6 +16,8 @@
 		<link rel="stylesheet" href="/Public/plugins/assets/css/ace.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/assets/css/jquery-ui-1.10.3.full.min.css" />
 		<link rel="stylesheet" href="/Public/plugins/nice-validator-1.0.7/jquery.validator.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/dropzone.min.css" />
+		<link rel="stylesheet" href="/Public/plugins/dropzone/css/basic.min.css" />
 		<link rel="stylesheet" href="/Public/static/css/common.css" />
 		<!--[if lte IE 8]>
 		  <link rel="stylesheet" href="/Public/plugins/assets/css/ace-ie.min.css" />
@@ -96,21 +98,21 @@
 		</li>
 		
 		<?php if(!empty($menu)): if(is_array($menu)): $i = 0; $__LIST__ = $menu;if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$big_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($big_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-					<a href="<?php if(($big_item["type"]) == "3"): echo (get_url_by_node($big_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+					<a href="<?php if(isset($big_item['url'])): echo ($big_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 						<i class="<?php echo ($big_item['icon_name']); ?>"></i>
 						<span class="menu-text"> <?php echo ($big_item['title']); ?></span>
 						<?php if(!empty($big_item["list"])): ?><b class="arrow icon-angle-down"></b>
 							</a>
 						    <ul class="submenu" <?php if(in_array($big_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 							    <?php if(is_array($big_item["list"])): $i = 0; $__LIST__ = $big_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$small_item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($small_item['id'],$path_id)): ?>class="open"<?php endif; ?>>
-										<a href="<?php if(($small_item["type"]) == "3"): echo (get_url_by_node($small_item['id'])); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
+										<a href="<?php if(isset($small_item['url'])): echo ($small_item['url']); else: ?>javascript:void(0);<?php endif; ?>" class="dropdown-toggle">
 											<i class="<?php echo ($small_item['icon_name']); ?>"></i>
 											<?php echo ($small_item['title']); ?>
 										<?php if(!empty($small_item["list"])): ?><b class="arrow icon-angle-down"></b>
 											</a>
 											<ul class="submenu" <?php if(in_array($small_item['id'],$path_id)): ?>style="display: block;"<?php endif; ?>>
 												<?php if(is_array($small_item["list"])): $i = 0; $__LIST__ = $small_item["list"];if( count($__LIST__)==0 ) : echo "" ;else: foreach($__LIST__ as $key=>$item): $mod = ($i % 2 );++$i;?><li <?php if(in_array($item['id'],$path_id)): ?>class="active"<?php endif; ?>>
-														<a href="<?php echo (get_url_by_node($item['id'])); ?>">
+														<a href="<?php if(isset($item['url'])): echo ($item['url']); else: ?>javascript:void(0);<?php endif; ?>">
 															<i class="<?php echo ($item['icon_name']); ?>"></i>
 															<?php echo ($item['title']); ?>
 														</a>
